@@ -1238,6 +1238,7 @@ window.renderOnsenPage = function() {
     tsukioka:    'images/japan/niigata/niigata-landscape-01.jpg',
     sukayu:      'images/japan/aomori/aomori-oirase-01.jpg',
     akiu:        'images/japan/miyagi/miyagi-matsushima-01.jpg',
+    yamanaka:    'images/japan/ishikawa/ishikawa-kanazawa-01.jpg',
   };
   const heroImg = ONSEN_HERO_IMGS[id];
   const hero = document.querySelector('.onsen-hero');
