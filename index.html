@@ -1014,14 +1014,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // 温泉グリッド（トップ6件：代表的な温泉地を厳選）
   const onsenGrid = document.getElementById('onsen-grid');
   if (onsenGrid && window.ONSENS_DATA) {
-    const ONSEN_TOP6 = ['arima','kusatsu','hakone','beppu','yufuin','kurokawa'];
+    const ONSEN_TOP6 = ['arima','kusatsu','hakone','beppu','dogo','nyuto'];
     const ONSEN_IMGS = {
-      arima:       'images/japan/hyogo/hyogo-arima-kinsenkawa-01.jpg',
-      kusatsu:     'images/japan/gunma/gunma-kusatsu-yunohata-01.jpg',
-      hakone:      'images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg',
-      beppu:       'images/japan/oita/oita-beppu-01.jpg',
-      yufuin:      'images/japan/oita/oita-beppu-01.jpg',
-      kurokawa:    'images/japan/kumamoto/kumamoto-aso-02.jpg',
+      arima:   'images/japan/hyogo/hyogo-arima-kinsenkawa-01.jpg',
+      kusatsu: 'images/japan/gunma/gunma-kusatsu-yunohata-01.jpg',
+      hakone:  'images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg',
+      beppu:   'images/japan/oita/oita-beppu-01.jpg',
+      dogo:    'images/japan/ehime/ehime-dogo-honkan-01.jpg',
+      nyuto:   'images/japan/akita/akita-nyutou-onsen-01.jpg',
     };
     onsenGrid.innerHTML = ONSEN_TOP6.map(id => {
       const o = ONSENS_DATA[id];

@@ -1208,6 +1208,7 @@ window.renderOnsenPage = function() {
   const onsenOgUrl = document.querySelector('meta[property="og:url"]');
   if (onsenOgUrl) onsenOgUrl.setAttribute('content', onsenCanonical.href);
 
+  // 専用写真がある温泉のみ記載。ない場合はグラデーション背景を使用
   const ONSEN_HERO_IMGS = {
     noboribetsu: 'images/japan/hokkaido/hokkaido-noboribetsu-jigokudani-01.jpg',
     kusatsu:     'images/japan/gunma/gunma-kusatsu-yunohata-01.jpg',
@@ -1218,27 +1219,11 @@ window.renderOnsenPage = function() {
     shirahama:   'images/japan/wakayama/wakayama-shirahama-beach-01.jpg',
     dogo:        'images/japan/ehime/ehime-dogo-honkan-01.jpg',
     beppu:       'images/japan/oita/oita-beppu-01.jpg',
-    yufuin:      'images/japan/oita/oita-beppu-01.jpg',
     nyuto:       'images/japan/akita/akita-nyutou-onsen-01.jpg',
-    kurokawa:    'images/japan/kumamoto/kumamoto-aso-02.jpg',
-    gero:        'images/japan/gifu/gifu-shirakawago-01.jpg',
     zao:         'images/japan/yamagata/yamagata-zao-02.jpg',
-    jozankei:    'images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg',
     ginzan:      'images/japan/yamagata/yamagata-ginzan-01.jpg',
-    ikaho:       'images/japan/gunma/gunma-kusatsu-yunohata-01.jpg',
-    kinugawa:    'images/japan/tochigi/tochigi-nikko-01.jpg',
-    wakura:      'images/japan/ishikawa/ishikawa-kanazawa-01.jpg',
-    ibusuki:     'images/japan/kagoshima/kagoshima-nature-01.jpg',
-    tamatsukuri: 'images/japan/shimane/shimane-izumo-01.jpg',
-    yudanaka:    'images/japan/nagano/nagano-kamikochi-01.jpg',
-    okuhida:     'images/japan/gifu/gifu-shirakawago-01.jpg',
-    shima:       'images/japan/gunma/gunma-kusatsu-01.jpg',
-    yugawara:    'images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg',
-    yamashiro:   'images/japan/ishikawa/ishikawa-kanazawa-01.jpg',
-    tsukioka:    'images/japan/niigata/niigata-landscape-01.jpg',
     sukayu:      'images/japan/aomori/aomori-oirase-01.jpg',
-    akiu:        'images/japan/miyagi/miyagi-matsushima-01.jpg',
-    yamanaka:    'images/japan/ishikawa/ishikawa-kanazawa-01.jpg',
+    tsukioka:    'images/japan/niigata/niigata-landscape-01.jpg',
   };
   const heroImg = ONSEN_HERO_IMGS[id];
   const hero = document.querySelector('.onsen-hero');
