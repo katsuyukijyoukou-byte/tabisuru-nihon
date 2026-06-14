@@ -1208,8 +1208,36 @@ window.renderOnsenPage = function() {
   const onsenOgUrl = document.querySelector('meta[property="og:url"]');
   if (onsenOgUrl) onsenOgUrl.setAttribute('content', onsenCanonical.href);
 
+  const ONSEN_HERO_IMGS = {
+    noboribetsu: 'images/japan/hokkaido/hokkaido-noboribetsu-jigokudani-01.jpg',
+    kusatsu:     'images/japan/gunma/gunma-kusatsu-yunohata-01.jpg',
+    hakone:      'images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg',
+    atami:       'images/japan/shizuoka/shizuoka-atami-onsen-01.jpg',
+    arima:       'images/japan/hyogo/hyogo-arima-kinsenkawa-01.jpg',
+    kinosaki:    'images/japan/hyogo/hyogo-kinosaki-01.jpg',
+    shirahama:   'images/japan/wakayama/wakayama-shirahama-beach-01.jpg',
+    dogo:        'images/japan/ehime/ehime-dogo-honkan-01.jpg',
+    beppu:       'images/japan/oita/oita-beppu-01.jpg',
+    yufuin:      'images/japan/oita/oita-beppu-01.jpg',
+    nyuto:       'images/japan/akita/akita-nyutou-onsen-01.jpg',
+    kurokawa:    'images/japan/kumamoto/kumamoto-aso-02.jpg',
+    gero:        'images/japan/gifu/gifu-shirakawago-01.jpg',
+    zao:         'images/japan/yamagata/yamagata-zao-02.jpg',
+    jozankei:    'images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg',
+    ginzan:      'images/japan/yamagata/yamagata-ginzan-01.jpg',
+    ikaho:       'images/japan/gunma/gunma-kusatsu-yunohata-01.jpg',
+    kinugawa:    'images/japan/tochigi/tochigi-nikko-01.jpg',
+    wakura:      'images/japan/ishikawa/ishikawa-kanazawa-01.jpg',
+  };
+  const heroImg = ONSEN_HERO_IMGS[id];
   const hero = document.querySelector('.onsen-hero');
-  if (hero) hero.style.background = `linear-gradient(135deg, ${d.color || '#0c1b35'}, #1a3060)`;
+  if (hero) {
+    if (heroImg) {
+      hero.style.background = `linear-gradient(to bottom, rgba(12,27,53,0.5) 0%, rgba(12,27,53,0.75) 100%), url(../${heroImg}) center/cover no-repeat`;
+    } else {
+      hero.style.background = `linear-gradient(135deg, ${d.color || '#0c1b35'}, #1a3060)`;
+    }
+  }
 
   setEl('#onsen-name', `${d.emoji} ${d.name}`);
   setEl('#onsen-pref', d.name);
