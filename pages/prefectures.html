@@ -123,9 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
     hokkaido:'../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg',
     aomori:'../images/japan/aomori/aomori-oirase-01.jpg',
     iwate:'../images/japan/iwate/iwate-nature-01.jpg',
-    miyagi:'../images/japan/miyagi/miyagi-matsushima-01.jpg',
+    miyagi:'../images/japan/miyagi/miyagi-matsushima-02.jpg',
     akita:'../images/japan/akita/akita-tazawako-01.jpg',
-    yamagata:'../images/japan/yamagata/yamagata-ginzan-01.jpg',
+    yamagata:'../images/japan/yamagata/yamagata-zao-02.jpg',
     fukushima:'../images/japan/fukushima/fukushima-goshikinuma-01.jpg',
     ibaraki:'../images/japan/ibaraki/ibaraki-kairakuen-02.jpg',
     tochigi:'../images/japan/tochigi/tochigi-nikko-01.jpg',
@@ -138,17 +138,17 @@ document.addEventListener('DOMContentLoaded', () => {
     toyama:'../images/japan/toyama/toyama-tateyama-02.jpg',
     ishikawa:'../images/japan/ishikawa/ishikawa-kanazawa-01.jpg',
     fukui:'../images/japan/fukui/fukui-nature-02.jpg',
-    yamanashi:'../images/japan/yamanashi/yamanashi-fuji-kawaguchi-01.jpg',
-    nagano:'../images/japan/nagano/nagano-kamikochi-01.jpg',
+    yamanashi:'../images/japan/yamanashi/yamanashi-fuji-lake-02.jpg',
+    nagano:'',
     gifu:'../images/japan/gifu/gifu-shirakawago-01.jpg',
     shizuoka:'../images/japan/shizuoka/shizuoka-fuji-01.jpg',
     aichi:'../images/japan/aichi/aichi-nagoya-castle-01.jpg',
     mie:'../images/japan/mie/mie-kumano-02.jpg',
     shiga:'../images/japan/shiga/shiga-lake-01.jpg',
     kyoto:'../images/japan/kyoto/kyoto-fushimi-inari-01.jpg',
-    osaka:'../images/japan/osaka/osaka-dotonbori-01.jpg',
-    hyogo:'../images/japan/hyogo/hyogo-himeji-01.jpg',
-    nara:'../images/japan/nara/nara-deer-01.jpg',
+    osaka:'../images/japan/osaka/osaka-castle-01.jpg',
+    hyogo:'../images/japan/hyogo/hyogo-kobe-port-02.jpg',
+    nara:'../images/japan/nara/nara-todaiji-02.jpg',
     wakayama:'../images/japan/wakayama/wakayama-nachi-01.jpg',
     tottori:'../images/japan/tottori/tottori-sanddune-02.jpg',
     shimane:'../images/japan/shimane/shimane-izumo-01.jpg',
@@ -159,9 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
     kagawa:'../images/japan/kagawa/kagawa-chichibugahama-01.jpg',
     ehime:'../images/japan/ehime/ehime-dogo-honkan-01.jpg',
     kochi:'../images/japan/kochi/kochi-katsurahama-01.jpg',
-    fukuoka:'../images/japan/fukuoka/fukuoka-city-01.jpg',
+    fukuoka:'../images/japan/fukuoka/fukuoka-dazaifu-02.jpg',
     saga:'../images/japan/saga/saga-castle-01.jpg',
-    nagasaki:'../images/japan/nagasaki/nagasaki-harbor-01.jpg',
+    nagasaki:'',
     kumamoto:'../images/japan/kumamoto/kumamoto-castle-01.jpg',
     miyazaki:'../images/japan/miyazaki/miyazaki-coast-01.jpg',
     kagoshima:'../images/japan/kagoshima/kagoshima-nature-01.jpg',
@@ -209,7 +209,10 @@ document.addEventListener('DOMContentLoaded', () => {
     prefGrid.innerHTML = ALL_PREFS.map(p => {
       const imgSrc = PREF_IMGS[p.id];
       return `<div class="pref-tile ready featured has-img" data-id="${p.id}" data-region="${p.region||''}">
-        <div class="pref-tile-img"><img src="${imgSrc||''}" alt="${p.name}の風景" loading="lazy" width="200" height="140" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="pref-tile-img">${imgSrc
+          ? `<img src="${imgSrc}" alt="${p.name}の風景" loading="lazy" width="200" height="140" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#0ea5e9)'">`
+          : `<div style="width:100%;height:100%;background:linear-gradient(135deg,#1a3060,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:2.5rem">${p.emoji}</div>`
+        }</div>
         <div class="pref-tile-body">
           <div class="pref-emoji">${p.emoji}</div>
           <div class="pref-name">${p.name}</div>

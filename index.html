@@ -333,8 +333,8 @@
       <!-- 大阪 -->
       <div class="dest-card" onclick="location.href='templates/prefecture.html?id=osaka'" style="cursor:pointer">
         <div class="dest-thumb">
-          <img src="images/japan/osaka/osaka-dotonbori-01.jpg"
-               alt="大阪・道頓堀の夜景とグリコ看板"
+          <img src="images/japan/osaka/osaka-castle-01.jpg"
+               alt="大阪・通天閣と新世界の街並み"
                loading="lazy" width="400" height="300">
         </div>
         <div class="dest-body">
@@ -348,8 +348,8 @@
       <!-- 奈良 -->
       <div class="dest-card" onclick="location.href='templates/prefecture.html?id=nara'" style="cursor:pointer">
         <div class="dest-thumb">
-          <img src="images/japan/nara/nara-deer-01.jpg"
-               alt="奈良公園の鹿と観光客"
+          <img src="images/japan/nara/nara-todaiji-02.jpg"
+               alt="奈良・東大寺大仏殿"
                loading="lazy" width="400" height="300">
         </div>
         <div class="dest-body">
@@ -363,8 +363,8 @@
       <!-- 兵庫 -->
       <div class="dest-card" onclick="location.href='templates/prefecture.html?id=hyogo'" style="cursor:pointer">
         <div class="dest-thumb">
-          <img src="images/japan/hyogo/hyogo-himeji-01.jpg"
-               alt="白鷺城・姫路城の優美な姿"
+          <img src="images/japan/hyogo/hyogo-kobe-port-02.jpg"
+               alt="神戸ポートタワーと神戸港"
                loading="lazy" width="400" height="300">
         </div>
         <div class="dest-body">
@@ -379,8 +379,9 @@
       <div class="dest-card" onclick="location.href='templates/prefecture.html?id=nagano'" style="cursor:pointer">
         <div class="dest-thumb">
           <img src="images/japan/nagano/nagano-kamikochi-01.jpg"
-               alt="上高地の清流と山岳景観"
-               loading="lazy" width="400" height="300">
+               alt="長野・日本アルプスの山岳景観"
+               loading="lazy" width="400" height="300"
+               onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#0ea5e9)';this.parentElement.style.minHeight='140px'">
         </div>
         <div class="dest-body">
           <div class="dest-region">中部</div>
@@ -423,8 +424,8 @@
       <!-- 福岡 -->
       <div class="dest-card" onclick="location.href='templates/prefecture.html?id=fukuoka'" style="cursor:pointer">
         <div class="dest-thumb">
-          <img src="images/japan/fukuoka/fukuoka-city-01.jpg"
-               alt="福岡市の博多の街並み"
+          <img src="images/japan/fukuoka/fukuoka-dazaifu-02.jpg"
+               alt="福岡・太宰府天満宮"
                loading="lazy" width="400" height="300">
         </div>
         <div class="dest-body">
@@ -439,8 +440,9 @@
       <div class="dest-card" onclick="location.href='templates/prefecture.html?id=nagasaki'" style="cursor:pointer">
         <div class="dest-thumb">
           <img src="images/japan/nagasaki/nagasaki-harbor-01.jpg"
-               alt="長崎港とグラバー園の夜景"
-               loading="lazy" width="400" height="300">
+               alt="長崎港の風景"
+               loading="lazy" width="400" height="300"
+               onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#0ea5e9)';this.parentElement.style.minHeight='140px'">
         </div>
         <div class="dest-body">
           <div class="dest-region">九州</div>
@@ -468,7 +470,7 @@
       <!-- 山形 -->
       <div class="dest-card" onclick="location.href='templates/prefecture.html?id=yamagata'" style="cursor:pointer">
         <div class="dest-thumb">
-          <img src="images/japan/yamagata/yamagata-ginzan-01.jpg"
+          <img src="images/japan/yamagata/yamagata-zao-02.jpg"
                alt="山形県銀山温泉の大正ロマン漂う温泉街"
                loading="lazy" width="400" height="300">
         </div>
@@ -498,7 +500,7 @@
       <!-- 山梨 -->
       <div class="dest-card" onclick="location.href='templates/prefecture.html?id=yamanashi'" style="cursor:pointer">
         <div class="dest-thumb">
-          <img src="images/japan/yamanashi/yamanashi-fuji-kawaguchi-01.jpg"
+          <img src="images/japan/yamanashi/yamanashi-fuji-lake-02.jpg"
                alt="山梨県河口湖と富士山"
                loading="lazy" width="400" height="300">
         </div>
@@ -513,7 +515,7 @@
       <!-- 宮城 -->
       <div class="dest-card" onclick="location.href='templates/prefecture.html?id=miyagi'" style="cursor:pointer">
         <div class="dest-thumb">
-          <img src="images/japan/miyagi/miyagi-matsushima-01.jpg"
+          <img src="images/japan/miyagi/miyagi-matsushima-02.jpg"
                alt="宮城県松島の松林と島々"
                loading="lazy" width="400" height="300">
         </div>
@@ -942,11 +944,11 @@ document.addEventListener('DOMContentLoaded', () => {
       'images/japan/yamagata/yamagata-zao-02.jpg',
       'images/japan/ibaraki/ibaraki-kairakuen-02.jpg',
       'images/japan/aomori/aomori-hirosaki-02.jpg',
-      'images/japan/nagano/nagano-kamikochi-01.jpg',
+      null,
       'images/japan/ibaraki/ibaraki-nemophila-02.jpg',
       'images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg',
       'images/japan/okinawa/okinawa-sea-coast-02.jpg',
-      'images/japan/miyagi/miyagi-matsushima-01.jpg',
+      'images/japan/miyagi/miyagi-matsushima-02.jpg',
       'images/japan/kyoto/kyoto-arashiyama-01.jpg',
       'images/japan/kyoto/kyoto-kinkakuji-01.jpg',
       'images/japan/tokyo/tokyo-shibuya-night-04.jpg',
@@ -1007,13 +1009,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const PURPOSE_CARD_IMGS = {
       anniversary:  'images/japan/kyoto/kyoto-arashiyama-01.jpg',
       onsen:        'images/japan/gunma/gunma-kusatsu-yunohata-01.jpg',
-      gourmet:      'images/japan/osaka/osaka-dotonbori-01.jpg',
+      gourmet:      'images/japan/osaka/osaka-castle-01.jpg',
       family:       'images/japan/okinawa/okinawa-sea-coast-02.jpg',
       couple:       'images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg',
       solo:         'images/japan/kyoto/kyoto-fushimi-inari-01.jpg',
       rain:         'images/japan/kyoto/kyoto-kinkakuji-01.jpg',
       history:      'images/japan/nara/nara-todaiji-02.jpg',
-      scenery_photo:'images/japan/yamagata/yamagata-ginzan-01.jpg',
+      scenery_photo:'images/japan/yamagata/yamagata-zao-02.jpg',
     };
     // フォールバックデータ（PURPOSES_DATA未ロード時）
     const PURPOSE_FB = [
@@ -1071,11 +1073,11 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     const PREF_IMGS_G = {
       hokkaido:  'images/japan/hokkaido/hokkaido-shiretoko-01.jpg',
-      miyagi:    'images/japan/miyagi/miyagi-matsushima-01.jpg',
+      miyagi:    'images/japan/miyagi/miyagi-matsushima-02.jpg',
       aichi:     'images/japan/aichi/aichi-nagoya-castle-01.jpg',
-      osaka:     'images/japan/osaka/osaka-dotonbori-01.jpg',
+      osaka:     'images/japan/osaka/osaka-castle-01.jpg',
       hiroshima: 'images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg',
-      fukuoka:   'images/japan/fukuoka/fukuoka-city-01.jpg',
+      fukuoka:   'images/japan/fukuoka/fukuoka-dazaifu-02.jpg',
     };
     // SPECIALTIES_DATAがあれば実データ優先、なければフォールバック
     let gourmetItems = GOURMET_FIXED;

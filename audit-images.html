@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>画像監査レポート | 旅する日本図鑑</title>
+<style>
+  body{font-family:sans-serif;background:#f5f5f5;margin:0;padding:24px}
+  h1{font-size:1.4rem;margin-bottom:8px}
+  .summary{background:#fff;border-radius:8px;padding:16px;margin-bottom:24px;display:flex;gap:24px;flex-wrap:wrap}
+  .stat{text-align:center} .stat .num{font-size:2rem;font-weight:800}
+  .stat.ok .num{color:#16a34a} .stat.ng .num{color:#dc2626} .stat.warn .num{color:#d97706}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .filters button{padding:4px 14px;border:1px solid #ccc;background:#fff;border-radius:20px;cursor:pointer;font-size:0.8rem}
+  .filters button.active{background:#1a3060;color:#fff;border-color:#1a3060}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+  .card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.08)}
+  .thumb{width:100%;height:140px;object-fit:cover;display:block;background:#eee}
+  .thumb-placeholder{width:100%;height:140px;display:flex;align-items:center;justify-content:center;font-size:2rem;background:#e5e7eb}
+  .meta{padding:10px 12px;font-size:0.78rem}
+  .meta .file{font-size:0.68rem;color:#666;word-break:break-all;margin-top:4px}
+  .badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:0.68rem;font-weight:700;margin-top:6px}
+  .badge.ok{background:#dcfce7;color:#15803d}
+  .badge.fixed{background:#dbeafe;color:#1d4ed8}
+  .badge.ng{background:#fee2e2;color:#b91c1c}
+  .badge.warn{background:#fef3c7;color:#92400e}
+  .badge.placeholder{background:#f3f4f6;color:#6b7280}
+  .note{font-size:0.7rem;color:#666;margin-top:4px}
+</style>
+</head>
+<body>
+
+<h1>🔍 画像監査レポート — 旅する日本図鑑</h1>
+<p style="font-size:0.82rem;color:#666;margin-bottom:16px">生成日: 2026-06-15 ／ 目視確認済み画像を記録</p>
+
+<div class="summary">
+  <div class="stat ok"><div class="num" id="cnt-ok">0</div><div>正常</div></div>
+  <div class="stat ok" style=""><div class="num" id="cnt-fixed" style="color:#1d4ed8">0</div><div>修正済み</div></div>
+  <div class="stat ng"><div class="num" id="cnt-ng">0</div><div>NG（要差替）</div></div>
+  <div class="stat warn"><div class="num" id="cnt-warn">0</div><div>要確認</div></div>
+</div>
+
+<div class="filters">
+  <button class="active" onclick="filterCards('')">すべて</button>
+  <button onclick="filterCards('ok')">✅ 正常</button>
+  <button onclick="filterCards('fixed')">🔧 修正済み</button>
+  <button onclick="filterCards('ng')">❌ NG</button>
+  <button onclick="filterCards('warn')">⚠️ 要確認</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const IMAGES = [
+  // 都道府県カード画像（確認済み）
+  { page:'都道府県/index', name:'北海道', file:'images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg', status:'ok', note:'美瑛の花畑' },
+  { page:'都道府県/index', name:'青森', file:'images/japan/aomori/aomori-oirase-01.jpg', status:'ok', note:'奥入瀬渓流' },
+  { page:'都道府県/index', name:'山形', file:'images/japan/yamagata/yamagata-zao-02.jpg', status:'fixed', note:'【修正】实験器具→蔵王の雪景色' },
+  { page:'都道府県/index', name:'宮城', file:'images/japan/miyagi/miyagi-matsushima-02.jpg', status:'warn', note:'【修正】黒画像→針葉樹林（要将来差替）' },
+  { page:'都道府県/index', name:'秋田', file:'images/japan/akita/akita-tazawako-01.jpg', status:'ok', note:'田沢湖' },
+  { page:'都道府県/index', name:'山梨', file:'images/japan/yamanashi/yamanashi-fuji-lake-02.jpg', status:'fixed', note:'【修正】箱根鳥居→河口湖と富士山' },
+  { page:'都道府県/index', name:'長野', file:'', status:'fixed', note:'【修正】汎用登山→絵文字グラデーション表示' },
+  { page:'都道府県/index', name:'大阪', file:'images/japan/osaka/osaka-castle-01.jpg', status:'fixed', note:'【修正】京都清水寺→通天閣・新世界' },
+  { page:'都道府県/index', name:'奈良', file:'images/japan/nara/nara-todaiji-02.jpg', status:'fixed', note:'【修正】夜の路地→東大寺大仏殿' },
+  { page:'都道府県/index', name:'兵庫', file:'images/japan/hyogo/hyogo-kobe-port-02.jpg', status:'fixed', note:'【修正】富士山+五重塔→神戸ポートタワー' },
+  { page:'都道府県/index', name:'福岡', file:'images/japan/fukuoka/fukuoka-dazaifu-02.jpg', status:'fixed', note:'【修正】桜の川沿い→太宰府天満宮' },
+  { page:'都道府県/index', name:'長崎', file:'', status:'fixed', note:'【修正】ダイビング→絵文字グラデーション表示' },
+  { page:'都道府県/index', name:'広島', file:'images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg', status:'ok', note:'厳島神社鳥居' },
+  { page:'都道府県/index', name:'京都', file:'images/japan/kyoto/kyoto-fushimi-inari-01.jpg', status:'ok', note:'伏見稲荷' },
+  { page:'都道府県/index', name:'東京', file:'images/japan/tokyo/tokyo-asakusa-sensoji-01.jpg', status:'ok', note:'浅草雷門' },
+  { page:'都道府県/index', name:'神奈川', file:'images/japan/kanagawa/kanagawa-kamakura-01.jpg', status:'ok', note:'鎌倉大仏' },
+  { page:'都道府県/index', name:'石川', file:'images/japan/ishikawa/ishikawa-kanazawa-01.jpg', status:'ok', note:'金沢・兼六園' },
+  { page:'都道府県/index', name:'沖縄', file:'images/japan/okinawa/okinawa-sea-coast-02.jpg', status:'ok', note:'沖縄の海岸' },
+  // NG画像（差替できなかったもの記録）
+  { page:'[NG記録]', name:'山形・旧画像', file:'images/japan/yamagata/yamagata-ginzan-01.jpg', status:'ng', note:'実験器具・スポイト写真（使用停止）' },
+  { page:'[NG記録]', name:'宮城・旧画像', file:'images/japan/miyagi/miyagi-matsushima-01.jpg', status:'ng', note:'真っ黒な画像（使用停止）' },
+  { page:'[NG記録]', name:'山梨・旧画像', file:'images/japan/yamanashi/yamanashi-fuji-kawaguchi-01.jpg', status:'ng', note:'箱根・芦ノ湖の鳥居（使用停止）' },
+  { page:'[NG記録]', name:'大阪・旧画像', file:'images/japan/osaka/osaka-dotonbori-01.jpg', status:'ng', note:'京都・清水寺からの市街展望（使用停止）' },
+  { page:'[NG記録]', name:'奈良・旧画像', file:'images/japan/nara/nara-deer-01.jpg', status:'ng', note:'夜の居酒屋路地（使用停止）' },
+  { page:'[NG記録]', name:'兵庫・旧画像', file:'images/japan/hyogo/hyogo-himeji-01.jpg', status:'ng', note:'富士山+新倉山五重塔（山梨）（使用停止）' },
+  { page:'[NG記録]', name:'福岡・旧画像', file:'images/japan/fukuoka/fukuoka-city-01.jpg', status:'ng', note:'目黒川の夜桜（東京）（使用停止）' },
+  { page:'[NG記録]', name:'長崎・旧画像', file:'images/japan/nagasaki/nagasaki-harbor-01.jpg', status:'ng', note:'ダイビング写真（使用停止）' },
+  { page:'[NG記録]', name:'長崎・旧画像2', file:'images/japan/nagasaki/nagasaki-nightview-02.jpg', status:'ng', note:'渋谷の雨の夜（東京）（使用停止）' },
+  { page:'[NG記録]', name:'長野・旧画像', file:'images/japan/nagano/nagano-kamikochi-01.jpg', status:'ng', note:'汎用登山写真（使用停止）' },
+  { page:'[NG記録]', name:'長野・旧画像2', file:'images/japan/nagano/nagano-hakuba-01.jpg', status:'ng', note:'パスポート写真（全く無関係）（使用停止）' },
+  { page:'[NG記録]', name:'宮城・針葉樹', file:'images/japan/miyagi/miyagi-matsushima-02.jpg', status:'warn', note:'欧州系針葉樹林（暫定使用中、要差替）' },
+];
+
+const grid = document.getElementById('grid');
+
+function renderAll(filter) {
+  const filtered = filter ? IMAGES.filter(i => i.status === filter) : IMAGES;
+  grid.innerHTML = filtered.map(img => {
+    const thumb = img.file
+      ? `<img class="thumb" src="${img.file}" alt="${img.name}" loading="lazy" onerror="this.style.background='#fee2e2';this.style.content='none'">`
+      : `<div class="thumb-placeholder">🏔️</div>`;
+    return `<div class="card" data-status="${img.status}">
+      ${thumb}
+      <div class="meta">
+        <div style="font-weight:700">${img.name}</div>
+        <div style="font-size:0.7rem;color:#888">${img.page}</div>
+        <div class="file">${img.file || '（画像なし・絵文字表示）'}</div>
+        <span class="badge ${img.status}">${{ok:'✅ 正常',fixed:'🔧 修正済み',ng:'❌ NG',warn:'⚠️ 要確認',placeholder:'🔲 未設定'}[img.status]}</span>
+        <div class="note">${img.note}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('cnt-ok').textContent = IMAGES.filter(i=>i.status==='ok').length;
+  document.getElementById('cnt-fixed').textContent = IMAGES.filter(i=>i.status==='fixed').length;
+  document.getElementById('cnt-ng').textContent = IMAGES.filter(i=>i.status==='ng').length;
+  document.getElementById('cnt-warn').textContent = IMAGES.filter(i=>i.status==='warn').length;
+}
+
+function filterCards(f) {
+  document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderAll(f);
+}
+
+renderAll('');
+</script>
+</body>
+</html>
