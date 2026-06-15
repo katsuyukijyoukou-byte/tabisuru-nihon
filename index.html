@@ -15,7 +15,7 @@
   <meta property="og:image" content="https://tabisuru-nihon.github.io/images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <link rel="stylesheet" href="css/style.css?v=20260617">
+  <link rel="stylesheet" href="css/style.css?v=20260618">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -539,7 +539,32 @@
       <h2 class="section-title">温泉地から探す</h2>
       <p class="section-desc">「なぜ有名か」「誰に向いているか」を解説。似た温泉地の比較も。</p>
     </div>
-    <div class="onsen-grid fade-in" id="onsen-grid"></div>
+    <div class="onsen-grid fade-in" id="onsen-grid">
+      <div class="onsen-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/onsen.html?id=kusatsu'">
+        <div style="height:140px;overflow:hidden;position:relative"><img src="images/japan/gunma/gunma-kusatsu-yunohata-01.jpg" alt="草津温泉" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">♨️</div></div>
+        <div class="onsen-body" style="flex:1;display:flex;flex-direction:column;padding:14px"><div class="onsen-name">草津温泉</div><div class="onsen-pref">群馬県</div><div class="onsen-why" style="font-size:0.78rem;line-height:1.5;color:var(--text-light);margin:6px 0">日本三名泉。強酸性の湯が肌に効く。湯畑の湯けむりが幻想的。</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin:4px 0"><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">三名泉</span><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">電車OK</span></div><div style="margin-top:8px;font-size:0.72rem;color:var(--teal);font-weight:700">詳しく見る →</div></div>
+      </div>
+      <div class="onsen-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/onsen.html?id=hakone'">
+        <div style="height:140px;overflow:hidden;position:relative"><img src="images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg" alt="箱根温泉" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">🗻</div></div>
+        <div class="onsen-body" style="flex:1;display:flex;flex-direction:column;padding:14px"><div class="onsen-name">箱根温泉</div><div class="onsen-pref">神奈川県</div><div class="onsen-why" style="font-size:0.78rem;line-height:1.5;color:var(--text-light);margin:6px 0">東京から90分。富士山ビューの露天風呂と芦ノ湖の絶景。</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin:4px 0"><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">東京近い</span><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">富士山</span></div><div style="margin-top:8px;font-size:0.72rem;color:var(--teal);font-weight:700">詳しく見る →</div></div>
+      </div>
+      <div class="onsen-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/onsen.html?id=arima'">
+        <div style="height:140px;overflow:hidden;position:relative"><img src="images/japan/hyogo/hyogo-arima-kinsenkawa-01.jpg" alt="有馬温泉" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">♨️</div></div>
+        <div class="onsen-body" style="flex:1;display:flex;flex-direction:column;padding:14px"><div class="onsen-name">有馬温泉</div><div class="onsen-pref">兵庫県</div><div class="onsen-why" style="font-size:0.78rem;line-height:1.5;color:var(--text-light);margin:6px 0">日本三古湯。金泉・銀泉の二種。大阪・神戸から日帰りも可能。</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin:4px 0"><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">三古湯</span><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">大阪近い</span></div><div style="margin-top:8px;font-size:0.72rem;color:var(--teal);font-weight:700">詳しく見る →</div></div>
+      </div>
+      <div class="onsen-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/onsen.html?id=beppu'">
+        <div style="height:140px;overflow:hidden;position:relative"><img src="images/japan/oita/oita-beppu-01.jpg" alt="別府温泉" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">💧</div></div>
+        <div class="onsen-body" style="flex:1;display:flex;flex-direction:column;padding:14px"><div class="onsen-name">別府温泉</div><div class="onsen-pref">大分県</div><div class="onsen-why" style="font-size:0.78rem;line-height:1.5;color:var(--text-light);margin:6px 0">日本最多の源泉数。地獄めぐりと7種の泉質が楽しめる温泉都市。</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin:4px 0"><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">地獄めぐり</span><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">コスパ良</span></div><div style="margin-top:8px;font-size:0.72rem;color:var(--teal);font-weight:700">詳しく見る →</div></div>
+      </div>
+      <div class="onsen-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/onsen.html?id=kinosaki'">
+        <div style="height:140px;overflow:hidden;position:relative"><img src="images/japan/hyogo/hyogo-kinosaki-01.jpg" alt="城崎温泉" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">🦢</div></div>
+        <div class="onsen-body" style="flex:1;display:flex;flex-direction:column;padding:14px"><div class="onsen-name">城崎温泉</div><div class="onsen-pref">兵庫県</div><div class="onsen-why" style="font-size:0.78rem;line-height:1.5;color:var(--text-light);margin:6px 0">柳並木と外湯めぐり。浴衣で7つの外湯を巡る風情ある温泉街。</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin:4px 0"><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">外湯めぐり</span><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">電車OK</span></div><div style="margin-top:8px;font-size:0.72rem;color:var(--teal);font-weight:700">詳しく見る →</div></div>
+      </div>
+      <div class="onsen-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/onsen.html?id=yufuin'">
+        <div style="height:140px;overflow:hidden;position:relative;background:linear-gradient(135deg,#1a3060,#2563a0)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem">🏞️</div><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">🏞️</div></div>
+        <div class="onsen-body" style="flex:1;display:flex;flex-direction:column;padding:14px"><div class="onsen-name">由布院温泉</div><div class="onsen-pref">大分県</div><div class="onsen-why" style="font-size:0.78rem;line-height:1.5;color:var(--text-light);margin:6px 0">由布岳を望む高原温泉。洗練された宿と湯の坪街道のアート。</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin:4px 0"><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">高品質宿</span><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">カップル</span></div><div style="margin-top:8px;font-size:0.72rem;color:var(--teal);font-weight:700">詳しく見る →</div></div>
+      </div>
+    </div>
     <div class="text-center" style="margin-top:28px">
       <a href="pages/onsen.html" class="btn btn-ghost">すべての温泉地を見る →</a>
     </div>
@@ -554,7 +579,32 @@
       <h2 class="section-title">時期から旅先を選ぶ</h2>
       <p class="section-desc">1月〜12月、季節ごとのベスト旅先を旅ノアが提案します。</p>
     </div>
-    <div class="monthly-grid fade-in" id="monthly-grid"></div>
+    <div class="monthly-grid fade-in" id="monthly-grid">
+      <div class="month-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm)" onclick="location.href='templates/monthly-detail.html?month=4'">
+        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/aomori/aomori-hirosaki-02.jpg" alt="4月" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;top:8px;left:10px;font-size:1.4rem;font-weight:900;color:white;opacity:0.9">4</div><div style="position:absolute;bottom:6px;left:10px;color:white;font-size:0.78rem;font-weight:700">🌸 4月</div></div>
+        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">満開の桜と花見旅行</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5">弘前城・吉野山・角館の桜。日本最高の花見スポットへ。</div><div style="font-size:0.68rem;color:var(--text-muted)">🗾 青森・奈良・秋田</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:auto">詳しく見る →</div></div>
+      </div>
+      <div class="month-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm)" onclick="location.href='templates/monthly-detail.html?month=7'">
+        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg" alt="7月" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;top:8px;left:10px;font-size:1.4rem;font-weight:900;color:white;opacity:0.9">7</div><div style="position:absolute;bottom:6px;left:10px;color:white;font-size:0.78rem;font-weight:700">🌻 7月</div></div>
+        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">夏祭り・花火・ラベンダー</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5">美瑛のラベンダー・祇園祭・花火大会。夏旅の最盛期。</div><div style="font-size:0.68rem;color:var(--text-muted)">🗾 北海道・京都・新潟</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:auto">詳しく見る →</div></div>
+      </div>
+      <div class="month-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm)" onclick="location.href='templates/monthly-detail.html?month=8'">
+        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/okinawa/okinawa-sea-coast-02.jpg" alt="8月" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;top:8px;left:10px;font-size:1.4rem;font-weight:900;color:white;opacity:0.9">8</div><div style="position:absolute;bottom:6px;left:10px;color:white;font-size:0.78rem;font-weight:700">🌊 8月</div></div>
+        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">海水浴と夏休み旅行</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5">沖縄・伊豆・湘南の海。家族旅行にも最適な真夏の旅。</div><div style="font-size:0.68rem;color:var(--text-muted)">🗾 沖縄・静岡・神奈川</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:auto">詳しく見る →</div></div>
+      </div>
+      <div class="month-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm)" onclick="location.href='templates/monthly-detail.html?month=10'">
+        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/kyoto/kyoto-arashiyama-bamboo-03.jpg" alt="10月" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;top:8px;left:10px;font-size:1.4rem;font-weight:900;color:white;opacity:0.9">10</div><div style="position:absolute;bottom:6px;left:10px;color:white;font-size:0.78rem;font-weight:700">🍁 10月</div></div>
+        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">紅葉ベストシーズン</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5">日光・嵐山・立山黒部。全国の紅葉スポットが色づく。</div><div style="font-size:0.68rem;color:var(--text-muted)">🗾 栃木・京都・富山</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:auto">詳しく見る →</div></div>
+      </div>
+      <div class="month-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm)" onclick="location.href='templates/monthly-detail.html?month=12'">
+        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/hokkaido/hokkaido-otaru-canal-02.jpg" alt="12月" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;top:8px;left:10px;font-size:1.4rem;font-weight:900;color:white;opacity:0.9">12</div><div style="position:absolute;bottom:6px;left:10px;color:white;font-size:0.78rem;font-weight:700">✨ 12月</div></div>
+        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">イルミネーションと年越し</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5">小樽運河・神社の年越し。冬の特別な旅でシメを。</div><div style="font-size:0.68rem;color:var(--text-muted)">🗾 北海道・東京・箱根・伊勢</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:auto">詳しく見る →</div></div>
+      </div>
+      <div class="month-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm)" onclick="location.href='templates/monthly-detail.html?month=2'">
+        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/yamagata/yamagata-zao-02.jpg" alt="2月" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;top:8px;left:10px;font-size:1.4rem;font-weight:900;color:white;opacity:0.9">2</div><div style="position:absolute;bottom:6px;left:10px;color:white;font-size:0.78rem;font-weight:700">⛄ 2月</div></div>
+        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">蔵王の樹氷と雪まつり</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5">さっぽろ雪まつり・蔵王の樹氷モンスター・温泉めぐり。</div><div style="font-size:0.68rem;color:var(--text-muted)">🗾 北海道・山形・長野</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:auto">詳しく見る →</div></div>
+      </div>
+    </div>
     <div class="text-center" style="margin-top:28px">
       <a href="pages/monthly.html" class="btn btn-ghost">月別一覧をすべて見る →</a>
     </div>
@@ -569,7 +619,40 @@
       <h2 class="section-title">目的・タイプから探す</h2>
       <p class="section-desc">「記念日旅行」「一人旅」「温泉旅行」「グルメ旅」など20種類の目的別に最適な旅先を提案。</p>
     </div>
-    <div class="purpose-grid fade-in" id="purpose-grid"></div>
+    <div class="purpose-grid fade-in" id="purpose-grid">
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=anniversary'">
+        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#3b1a5c,#7c3aed)"><img src="images/japan/kyoto/kyoto-arashiyama-bamboo-03.jpg" alt="記念日旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">💍</div></div>
+        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">記念日旅行</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">誕生日・結婚記念日・プロポーズ。高級旅館で忘れられない一日を。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 有馬・箱根・金沢</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=couple'">
+        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1a3060,#0ea5e9)"><img src="images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg" alt="カップル旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">💕</div></div>
+        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">カップル旅行</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">宮島・京都・函館など絵になるスポットでふたりの思い出を。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 宮島・京都・函館</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=family'">
+        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#0c4a6e,#0284c7)"><img src="images/japan/okinawa/okinawa-sea-coast-02.jpg" alt="子連れ旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">👨‍👩‍👧</div></div>
+        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">子連れ旅行</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">子どもが喜ぶ体験と安心の設備。沖縄・北海道が定番。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 沖縄・北海道・大阪</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=solo'">
+        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1a3060,#0ea5e9)"><img src="images/japan/kyoto/kyoto-fushimi-inari-01.jpg" alt="一人旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">🎒</div></div>
+        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">一人旅</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">自分のペースで行きたい場所へ。京都・金沢・長崎がおすすめ。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 京都・金沢・長崎</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=onsen'">
+        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#0c3a5c,#0369a1)"><img src="images/japan/gunma/gunma-kusatsu-yunohata-01.jpg" alt="温泉旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">♨️</div></div>
+        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">温泉旅行</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">泉質・景色・宿の雰囲気を重視した温泉旅行ガイド。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 草津・箱根・有馬温泉</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=gourmet'">
+        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#7c2d12,#c2410c)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.2rem">🍜</div><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">🍜</div></div>
+        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">グルメ旅</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">市場・屋台・名店めぐりで胃袋を満たす食の旅行。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 福岡・大阪・札幌</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=history'">
+        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1a3060,#2563a0)"><img src="images/japan/nara/nara-todaiji-02.jpg" alt="歴史旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">⛩️</div></div>
+        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">歴史・神社仏閣めぐり</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">神社・仏閣・城・古民家。日本の歴史と文化を深く体感。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 京都・奈良・広島</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=scenery'">
+        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#0c3a5c,#0ea5e9)"><img src="images/japan/yamanashi/yamanashi-fuji-lake-02.jpg" alt="絶景旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">🏔️</div></div>
+        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">絶景旅</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">富士山・知床・宮島。一生に一度は見たい絶景スポットへ。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 富士五湖・知床・宮島</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
+      </div>
+    </div>
     <div class="text-center" style="margin-top:28px">
       <a href="pages/purpose.html" class="btn btn-ghost">すべての目的を見る →</a>
     </div>
@@ -584,7 +667,32 @@
       <h2 class="section-title">名産品・ご当地グルメ</h2>
       <p class="section-desc">北海道の海鮮から鹿児島の黒豚まで。旅行前に知っておきたい25品のご当地グルメを旅ノアが解説。</p>
     </div>
-    <div id="gourmet-preview" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:28px"></div>
+    <div id="gourmet-preview" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:28px">
+      <a href="pages/specialties.html" style="text-decoration:none;display:flex;flex-direction:column;background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/hokkaido/hokkaido-noboribetsu-jigokudani-01.jpg" alt="北海道の海鮮丼" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#0c4a6e,#0284c7)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:6px;left:10px;font-size:1.4rem">🦞</div></div>
+        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">北海道の海鮮丼</div><div style="font-size:0.7rem;color:var(--text-muted)">🗾 北海道 ／ 🦞 海鮮・魚介</div><div style="font-size:0.75rem;line-height:1.5;color:var(--text-light)">ウニ・イクラ・カニが豪快に乗る究極の海鮮丼。函館朝市が有名。</div></div>
+      </a>
+      <a href="pages/specialties.html" style="text-decoration:none;display:flex;flex-direction:column;background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+        <div style="height:120px;position:relative;overflow:hidden;background:linear-gradient(135deg,#7c2d12,#c2410c)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem">🐂</div><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:6px;left:10px;font-size:1.4rem">🐂</div></div>
+        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">仙台の牛タン</div><div style="font-size:0.7rem;color:var(--text-muted)">🗾 宮城県 ／ 🥩 肉料理</div><div style="font-size:0.75rem;line-height:1.5;color:var(--text-light)">厚切りの牛タン焼きと麦飯・テールスープのセット。仙台駅周辺で味わえる。</div></div>
+      </a>
+      <a href="pages/specialties.html" style="text-decoration:none;display:flex;flex-direction:column;background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/osaka/osaka-castle-01.jpg" alt="大阪たこ焼き" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#92400e,#b45309)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:6px;left:10px;font-size:1.4rem">🐙</div></div>
+        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">大阪のたこ焼き</div><div style="font-size:0.7rem;color:var(--text-muted)">🗾 大阪府 ／ 🍢 B級グルメ</div><div style="font-size:0.75rem;line-height:1.5;color:var(--text-light)">外カリ・中トロの本場たこ焼き。道頓堀・新世界エリアの名店へ。</div></div>
+      </a>
+      <a href="pages/specialties.html" style="text-decoration:none;display:flex;flex-direction:column;background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+        <div style="height:120px;position:relative;overflow:hidden;background:linear-gradient(135deg,#92400e,#d97706)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem">🍜</div><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:6px;left:10px;font-size:1.4rem">🍜</div></div>
+        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">博多ラーメン</div><div style="font-size:0.7rem;color:var(--text-muted)">🗾 福岡県 ／ 🍜 郷土料理</div><div style="font-size:0.75rem;line-height:1.5;color:var(--text-light)">豚骨スープの白濁した一杯。替え玉文化が根付く博多・長浜の名店で。</div></div>
+      </a>
+      <a href="pages/specialties.html" style="text-decoration:none;display:flex;flex-direction:column;background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+        <div style="height:120px;position:relative;overflow:hidden;background:linear-gradient(135deg,#064e3b,#059669)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem">🍵</div><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:6px;left:10px;font-size:1.4rem">🍵</div></div>
+        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">讃岐うどん</div><div style="font-size:0.7rem;color:var(--text-muted)">🗾 香川県 ／ 🍵 郷土料理</div><div style="font-size:0.75rem;line-height:1.5;color:var(--text-light)">コシの強い讃岐うどん。製麺所めぐりは香川旅行の必須アクティビティ。</div></div>
+      </a>
+      <a href="pages/specialties.html" style="text-decoration:none;display:flex;flex-direction:column;background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/okinawa/okinawa-sea-coast-02.jpg" alt="沖縄そば" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a3060,#0ea5e9)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:6px;left:10px;font-size:1.4rem">🌺</div></div>
+        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">沖縄そば</div><div style="font-size:0.7rem;color:var(--text-muted)">🗾 沖縄県 ／ 🍜 郷土料理</div><div style="font-size:0.75rem;line-height:1.5;color:var(--text-light)">豚骨・鰹だしのスープに太麺。ソーキそば・三枚肉そばを沖縄で堪能。</div></div>
+      </a>
+    </div>
     <div style="text-align:center">
       <a href="pages/specialties.html" class="btn btn-primary">全25品を見る →</a>
     </div>
@@ -599,7 +707,48 @@
       <h2 class="section-title">予約サイトの選び方</h2>
       <p class="section-desc">楽天・一休・じゃらん・Booking.com・Agoda。旅行タイプ別にどれを使うべきか解説します。</p>
     </div>
-    <div class="booking-grid" id="booking-grid" style="opacity:1"></div>
+    <div class="booking-grid" id="booking-grid" style="opacity:1">
+      <div class="booking-card" style="padding:14px 16px;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm);border:1.5px solid var(--border);display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:1.1rem">🛒</span><div style="font-size:0.95rem;font-weight:800;color:var(--navy)">楽天トラベル</div><span style="font-size:0.65rem;padding:2px 8px;border-radius:99px;background:#BF0000;color:white;font-weight:700;margin-left:auto">国内最大手</span></div>
+        <div style="font-size:0.77rem;color:var(--text-muted);font-weight:600">向いている人</div>
+        <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">楽天ユーザー全員・ポイントを貯めたい方。SPU対象でさらにお得になる。</div>
+        <div style="font-size:0.77rem;color:var(--text-muted);font-weight:600">強み</div>
+        <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">国内最多掲載件数。楽天ポイントが貯まる。セール・キャンペーンが豊富。</div>
+        <a href="pages/booking.html" style="display:block;margin-top:auto;text-align:center;background:#BF0000;color:white;padding:8px;border-radius:6px;font-size:0.8rem;font-weight:700;text-decoration:none">詳しく見る →</a>
+      </div>
+      <div class="booking-card" style="padding:14px 16px;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm);border:1.5px solid var(--border);display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:1.1rem">🌸</span><div style="font-size:0.95rem;font-weight:800;color:var(--navy)">じゃらん</div><span style="font-size:0.65rem;padding:2px 8px;border-radius:99px;background:#E85298;color:white;font-weight:700;margin-left:auto">国内旅行特化</span></div>
+        <div style="font-size:0.77rem;color:var(--text-muted);font-weight:600">向いている人</div>
+        <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">子連れ家族・温泉旅行・じゃらん限定プランを探したい方。</div>
+        <div style="font-size:0.77rem;color:var(--text-muted);font-weight:600">強み</div>
+        <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">国内旅行に完全特化。子どもの詳細料金が見やすい。限定プランが豊富。</div>
+        <a href="pages/booking.html" style="display:block;margin-top:auto;text-align:center;background:#E85298;color:white;padding:8px;border-radius:6px;font-size:0.8rem;font-weight:700;text-decoration:none">詳しく見る →</a>
+      </div>
+      <div class="booking-card" style="padding:14px 16px;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm);border:1.5px solid var(--border);display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:1.1rem">👑</span><div style="font-size:0.95rem;font-weight:800;color:var(--navy)">一休.com</div><span style="font-size:0.65rem;padding:2px 8px;border-radius:99px;background:#D4AF37;color:#1a1a1a;font-weight:700;margin-left:auto">高級宿特化</span></div>
+        <div style="font-size:0.77rem;color:var(--text-muted);font-weight:600">向いている人</div>
+        <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">記念日・ハネムーン・特別な温泉旅館を探したい方。</div>
+        <div style="font-size:0.77rem;color:var(--text-muted);font-weight:600">強み</div>
+        <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">厳選された高品質旅館のみ掲載。口コミ精度が高い。プレミアム宿が充実。</div>
+        <a href="pages/booking.html" style="display:block;margin-top:auto;text-align:center;background:#D4AF37;color:#1a1a1a;padding:8px;border-radius:6px;font-size:0.8rem;font-weight:700;text-decoration:none">詳しく見る →</a>
+      </div>
+      <div class="booking-card" style="padding:14px 16px;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm);border:1.5px solid var(--border);display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:1.1rem">🌍</span><div style="font-size:0.95rem;font-weight:800;color:var(--navy)">Booking.com</div><span style="font-size:0.65rem;padding:2px 8px;border-radius:99px;background:#003580;color:white;font-weight:700;margin-left:auto">世界最大手</span></div>
+        <div style="font-size:0.77rem;color:var(--text-muted);font-weight:600">向いている人</div>
+        <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">海外旅行メイン・世界中のホテルを比較したい方。</div>
+        <div style="font-size:0.77rem;color:var(--text-muted);font-weight:600">強み</div>
+        <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">世界220カ国以上に対応。無料キャンセル対応宿多数。レビュー数が圧倒的。</div>
+        <a href="pages/booking.html" style="display:block;margin-top:auto;text-align:center;background:#003580;color:white;padding:8px;border-radius:6px;font-size:0.8rem;font-weight:700;text-decoration:none">詳しく見る →</a>
+      </div>
+      <div class="booking-card" style="padding:14px 16px;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm);border:1.5px solid var(--border);display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:1.1rem">✈️</span><div style="font-size:0.95rem;font-weight:800;color:var(--navy)">JTB</div><span style="font-size:0.65rem;padding:2px 8px;border-radius:99px;background:#0056A0;color:white;font-weight:700;margin-left:auto">大手旅行代理店</span></div>
+        <div style="font-size:0.77rem;color:var(--text-muted);font-weight:600">向いている人</div>
+        <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">パックツアー希望・旅行計画をすべておまかせしたい方。</div>
+        <div style="font-size:0.77rem;color:var(--text-muted);font-weight:600">強み</div>
+        <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">交通＋宿のセットが豊富。添乗員付きツアーが充実。安心のサポート体制。</div>
+        <a href="pages/booking.html" style="display:block;margin-top:auto;text-align:center;background:#0056A0;color:white;padding:8px;border-radius:6px;font-size:0.8rem;font-weight:700;text-decoration:none">詳しく見る →</a>
+      </div>
+    </div>
     <div class="text-center" style="margin-top:28px">
       <a href="pages/booking.html" class="btn btn-ghost">詳細な比較・選び方ガイドを見る →</a>
     </div>
@@ -778,14 +927,14 @@
   </div>
 </footer>
 
-<script src="data/prefectures.js?v=20260617"></script>
-<script src="data/onsens.js?v=20260617"></script>
-<script src="data/monthly.js?v=20260617"></script>
-<script src="data/purposes.js?v=20260617"></script>
-<script src="data/booking.js?v=20260617"></script>
-<script src="data/specialties.js?v=20260617"></script>
+<script src="data/prefectures.js?v=20260618"></script>
+<script src="data/onsens.js?v=20260618"></script>
+<script src="data/monthly.js?v=20260618"></script>
+<script src="data/purposes.js?v=20260618"></script>
+<script src="data/booking.js?v=20260618"></script>
+<script src="data/specialties.js?v=20260618"></script>
 <script src="js/chat.js"></script>
-<script src="js/app.js?v=20260617"></script>
+<script src="js/app.js?v=20260618"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
