@@ -114,8 +114,8 @@
       <p class="fh-copy">まだ知らない日本に、会いに行こう。</p>
       <p class="fh-desc">温泉、絶景、食べ歩き、歴史ある町並み。<br>47都道府県の旅の魅力を、地域と写真から探せます。</p>
       <div class="fh-cta">
-        <a href="#map-section" class="fh-btn primary">🗾 地域から旅先を探す</a>
-        <a href="pages/prefectures.html" class="fh-btn secondary">都道府県一覧を見る</a>
+        <a href="pages/monthly.html" class="fh-btn primary">📅 季節のおすすめを見る</a>
+        <a href="pages/onsen.html" class="fh-btn secondary">♨️ 温泉地から探す</a>
         <a href="#chat-section" class="fh-btn ghost">💬 旅ノアに相談する</a>
       </div>
     </div>
@@ -253,278 +253,204 @@
       <h2 class="section-title">注目の旅先</h2>
       <p class="section-desc">写真で見る、日本の絶景・観光地 18選。気になる県をクリックして詳細を確認。</p>
     </div>
-    <div class="dest-grid fade-in">
 
-      <!-- 広島 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=hiroshima'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg"
-               alt="広島県宮島の厳島神社大鳥居"
-               loading="lazy" width="400" height="300">
+    <!-- エディトリアル：大1 + 中2 -->
+    <div class="feat-editorial fade-in">
+      <a class="feat-big" href="templates/prefecture.html?id=hiroshima">
+        <img src="images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg"
+             alt="広島県宮島の厳島神社大鳥居と夕日" loading="lazy">
+        <div class="feat-overlay">
+          <div class="feat-region-label">中国地方</div>
+          <div class="feat-name-label">広島</div>
+          <div class="feat-copy-label">世界遺産・厳島神社の大鳥居が海に浮かぶ絶景。歴史と自然が共存する旅先。</div>
+          <span class="feat-btn">詳細を見る →</span>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">中国地方</div>
-          <div class="dest-name">広島</div>
-          <p class="dest-desc">世界遺産・厳島神社の大鳥居が海に浮かぶ絶景。歴史と自然が共存する旅先。</p>
-          <a href="templates/prefecture.html?id=hiroshima" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
-
-      <!-- 京都 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=kyoto'" style="cursor:pointer">
-        <div class="dest-thumb">
+      </a>
+      <div class="feat-med-col">
+        <a class="feat-med" href="templates/prefecture.html?id=kyoto">
           <img src="images/japan/kyoto/kyoto-fushimi-inari-01.jpg"
-               alt="京都の伏見稲荷大社の千本鳥居トンネル"
-               loading="lazy" width="400" height="300">
-        </div>
-        <div class="dest-body">
-          <div class="dest-region">近畿地方</div>
-          <div class="dest-name">京都</div>
-          <p class="dest-desc">伏見稲荷・嵐山・祇園。日本の伝統文化と美しい社寺が集まる古都。</p>
-          <a href="templates/prefecture.html?id=kyoto" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
+               alt="京都・伏見稲荷大社の千本鳥居" loading="lazy">
+          <div class="feat-overlay">
+            <div class="feat-region-label">近畿地方</div>
+            <div class="feat-name-label">京都</div>
+            <div class="feat-copy-label">伏見稲荷・嵐山・祇園。日本の伝統文化と美しい社寺。</div>
+            <span class="feat-btn">詳細を見る →</span>
+          </div>
+        </a>
+        <a class="feat-med" href="templates/prefecture.html?id=hokkaido">
+          <img src="images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg"
+               alt="北海道美瑛の丘と花畑" loading="lazy">
+          <div class="feat-overlay">
+            <div class="feat-region-label">北海道</div>
+            <div class="feat-name-label">北海道</div>
+            <div class="feat-copy-label">大自然と絶品グルメ。ラベンダー・知床・流氷と四季の顔を持つ大地。</div>
+            <span class="feat-btn">詳細を見る →</span>
+          </div>
+        </a>
       </div>
+    </div>
+
+    <!-- 小カードグリッド（残り15件） -->
+    <div class="dest-small-grid fade-in">
 
       <!-- 東京 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=tokyo'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/tokyo/tokyo-asakusa-sensoji-01.jpg"
-               alt="東京浅草の浅草寺と参拝者"
-               loading="lazy" width="400" height="300">
+      <a class="dest-photo-card" href="templates/prefecture.html?id=tokyo">
+        <img src="images/japan/tokyo/tokyo-asakusa-sensoji-01.jpg"
+             alt="東京浅草の浅草寺" loading="lazy">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">関東</div>
+          <div class="dpo-name">東京</div>
+          <div class="dpo-copy">浅草・渋谷・新宿。下町の情緒と最先端が共存する首都。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">関東地方</div>
-          <div class="dest-name">東京</div>
-          <p class="dest-desc">浅草・渋谷・新宿。下町の情緒と最先端が共存する日本の首都。</p>
-          <a href="templates/prefecture.html?id=tokyo" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
-
-      <!-- 北海道 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=hokkaido'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg"
-               alt="北海道美瑛の丘と花畑の絶景"
-               loading="lazy" width="400" height="300">
-        </div>
-        <div class="dest-body">
-          <div class="dest-region">北海道</div>
-          <div class="dest-name">北海道</div>
-          <p class="dest-desc">大自然と絶品グルメ。ラベンダー畑・知床・流氷と四季それぞれの顔を持つ大地。</p>
-          <a href="templates/prefecture.html?id=hokkaido" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
-
+      </a>
       <!-- 沖縄 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=okinawa'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/okinawa/okinawa-sea-coast-02.jpg"
-               alt="沖縄の青い海と緑豊かな海岸"
-               loading="lazy" width="400" height="300">
+      <a class="dest-photo-card" href="templates/prefecture.html?id=okinawa">
+        <img src="images/japan/okinawa/okinawa-sea-coast-02.jpg" alt="沖縄の青い海と海岸" loading="lazy">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">九州・沖縄</div>
+          <div class="dpo-name">沖縄</div>
+          <div class="dpo-copy">エメラルドグリーンの海・首里城・独自の食文化。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">九州・沖縄</div>
-          <div class="dest-name">沖縄</div>
-          <p class="dest-desc">日本最南端の楽園。エメラルドグリーンの海・首里城・独自の食文化。</p>
-          <a href="templates/prefecture.html?id=okinawa" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
+      </a>
 
       <!-- 大阪 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=osaka'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/osaka/osaka-castle-01.jpg"
-               alt="大阪・通天閣と新世界の街並み"
-               loading="lazy" width="400" height="300">
+      <a class="dest-photo-card" href="templates/prefecture.html?id=osaka">
+        <img src="images/japan/osaka/osaka-castle-01.jpg" alt="大阪城" loading="lazy">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">近畿</div>
+          <div class="dpo-name">大阪</div>
+          <div class="dpo-copy">道頓堀・黒門市場・たこ焼き・大阪城。食い倒れの街。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">近畿</div>
-          <div class="dest-name">大阪</div>
-          <p class="dest-desc">食い倒れの街。道頓堀・黒門市場・たこ焼き・大阪城と絶品グルメが待つ。</p>
-          <a href="templates/prefecture.html?id=osaka" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
+      </a>
 
       <!-- 奈良 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=nara'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/nara/nara-todaiji-02.jpg"
-               alt="奈良・東大寺大仏殿"
-               loading="lazy" width="400" height="300">
+      <a class="dest-photo-card" href="templates/prefecture.html?id=nara">
+        <img src="images/japan/nara/nara-todaiji-02.jpg" alt="奈良・東大寺大仏殿" loading="lazy">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">近畿</div>
+          <div class="dpo-name">奈良</div>
+          <div class="dpo-copy">世界遺産と野生の鹿が共存する古都。東大寺・吉野山。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">近畿</div>
-          <div class="dest-name">奈良</div>
-          <p class="dest-desc">世界遺産と野生の鹿が共存する古都。東大寺・春日大社・吉野山の桜が有名。</p>
-          <a href="templates/prefecture.html?id=nara" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
+      </a>
 
       <!-- 兵庫 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=hyogo'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/aomori/aomori-hirosaki-02.jpg"
-               alt="世界遺産・姫路城と桜（兵庫）"
-               loading="lazy" width="400" height="300">
+      <a class="dest-photo-card" href="templates/prefecture.html?id=hyogo">
+        <img src="images/japan/hyogo/hyogo-himeji-01.jpg" alt="世界遺産・姫路城（兵庫）" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">近畿</div>
+          <div class="dpo-name">兵庫</div>
+          <div class="dpo-copy">世界遺産・姫路城と有馬温泉・神戸の洋館。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">近畿</div>
-          <div class="dest-name">兵庫</div>
-          <p class="dest-desc">世界遺産・姫路城から有馬温泉・神戸の洋館まで多彩な魅力が揃う。</p>
-          <a href="templates/prefecture.html?id=hyogo" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
+      </a>
 
       <!-- 長野 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=nagano'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/nagano/nagano-kamikochi-01.jpg"
-               alt="長野・日本アルプスの山岳景観"
-               loading="lazy" width="400" height="300"
-               onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#0ea5e9)';this.parentElement.style.minHeight='140px'">
+      <a class="dest-photo-card" href="templates/prefecture.html?id=nagano">
+        <img src="images/japan/nagano/nagano-kamikochi-01.jpg" alt="長野・上高地と穂高連峰" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#0ea5e9)'">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">中部</div>
+          <div class="dpo-name">長野</div>
+          <div class="dpo-copy">上高地・松本城・善光寺・野沢温泉。アルプスの絶景。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">中部</div>
-          <div class="dest-name">長野</div>
-          <p class="dest-desc">日本アルプスと高原。上高地・松本城・善光寺・野沢温泉が一度に楽しめる。</p>
-          <a href="templates/prefecture.html?id=nagano" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
+      </a>
 
       <!-- 神奈川 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=kanagawa'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg"
-               alt="神奈川・箱根湯本の温泉街"
-               loading="lazy" width="400" height="300"
-               onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#0ea5e9)'">
+      <a class="dest-photo-card" href="templates/prefecture.html?id=kanagawa">
+        <img src="images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg" alt="神奈川・箱根湯本の温泉街" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#0ea5e9)'">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">関東</div>
+          <div class="dpo-name">神奈川</div>
+          <div class="dpo-copy">鎌倉大仏・箱根温泉・横浜中華街。東京から日帰りも。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">関東</div>
-          <div class="dest-name">神奈川</div>
-          <p class="dest-desc">鎌倉大仏・横浜中華街・箱根温泉と富士山眺望。東京から日帰りも可能な万能県。</p>
-          <a href="templates/prefecture.html?id=kanagawa" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
+      </a>
 
       <!-- 石川 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=ishikawa'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/ishikawa/ishikawa-kanazawa-01.jpg"
-               alt="石川県金沢の兼六園"
-               loading="lazy" width="400" height="300">
+      <a class="dest-photo-card" href="templates/prefecture.html?id=ishikawa">
+        <img src="images/japan/ishikawa/ishikawa-kanazawa-01.jpg" alt="石川・兼六園" loading="lazy">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">中部</div>
+          <div class="dpo-name">石川（金沢）</div>
+          <div class="dpo-copy">兼六園・ひがし茶屋街・近江町市場。西の京都。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">中部</div>
-          <div class="dest-name">石川（金沢）</div>
-          <p class="dest-desc">「西の京都」金沢。兼六園・ひがし茶屋街・近江町市場で海鮮グルメと伝統文化を堪能。</p>
-          <a href="templates/prefecture.html?id=ishikawa" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
+      </a>
 
       <!-- 福岡 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=fukuoka'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/fukuoka/fukuoka-dazaifu-02.jpg"
-               alt="福岡・太宰府天満宮"
-               loading="lazy" width="400" height="300">
+      <a class="dest-photo-card" href="templates/prefecture.html?id=fukuoka">
+        <img src="images/japan/fukuoka/fukuoka-dazaifu-02.jpg" alt="福岡・太宰府天満宮" loading="lazy">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">九州</div>
+          <div class="dpo-name">福岡</div>
+          <div class="dpo-copy">太宰府天満宮・博多ラーメン・中洲屋台。九州随一の食文化。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">九州</div>
-          <div class="dest-name">福岡</div>
-          <p class="dest-desc">太宰府天満宮・博多ラーメン・中洲屋台。学問の神様と九州随一の食文化が共存する多彩な街。</p>
-          <a href="templates/prefecture.html?id=fukuoka" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
+      </a>
 
       <!-- 長崎 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=nagasaki'" style="cursor:pointer">
-        <div class="dest-thumb" style="background:linear-gradient(135deg,#1a3060,#2563a0);display:flex;align-items:center;justify-content:center;font-size:3rem">
-          ⛵
+      <a class="dest-photo-card" href="templates/prefecture.html?id=nagasaki">
+        <img src="images/japan/nagasaki/nagasaki-nightview-02.jpg" alt="長崎の夜景" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#2563a0)'">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">九州</div>
+          <div class="dpo-name">長崎</div>
+          <div class="dpo-copy">グラバー園・ハウステンボス・軍艦島と日本三大夜景。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">九州</div>
-          <div class="dest-name">長崎</div>
-          <p class="dest-desc">異国情緒あふれる港街。グラバー園・ハウステンボス・軍艦島と日本三大夜景。</p>
-          <a href="templates/prefecture.html?id=nagasaki" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
+      </a>
 
       <!-- 岐阜 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=gifu'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/gifu/gifu-shirakawago-01.jpg"
-               alt="岐阜県白川郷の合掌造り集落"
-               loading="lazy" width="400" height="300">
+      <a class="dest-photo-card" href="templates/prefecture.html?id=gifu">
+        <img src="images/japan/gifu/gifu-shirakawago-01.jpg" alt="岐阜・白川郷の合掌造り集落" loading="lazy">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">中部</div>
+          <div class="dpo-name">岐阜（白川郷）</div>
+          <div class="dpo-copy">世界遺産・合掌造り集落と冬の雪景色が圧巻。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">中部</div>
-          <div class="dest-name">岐阜（白川郷）</div>
-          <p class="dest-desc">世界遺産・合掌造り集落の白川郷。冬の雪景色は圧巻。下呂温泉も有名な秘境感漂う県。</p>
-          <a href="templates/prefecture.html?id=gifu" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
+      </a>
 
       <!-- 山形 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=yamagata'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/yamagata/yamagata-zao-02.jpg"
-               alt="山形県蔵王の樹氷と雪景色"
-               loading="lazy" width="400" height="300">
+      <a class="dest-photo-card" href="templates/prefecture.html?id=yamagata">
+        <img src="images/japan/yamagata/yamagata-zao-02.jpg" alt="山形・蔵王の樹氷" loading="lazy">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">東北</div>
+          <div class="dpo-name">山形</div>
+          <div class="dpo-copy">蔵王の樹氷・銀山温泉・さくらんぼ。東北屈指の温泉。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">東北</div>
-          <div class="dest-name">山形（蔵王・銀山温泉）</div>
-          <p class="dest-desc">大正ロマン漂う銀山温泉・蔵王の樹氷・さくらんぼ。東北屈指の温泉と自然が揃う。</p>
-          <a href="templates/prefecture.html?id=yamagata" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
+      </a>
 
       <!-- 栃木 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=tochigi'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/tochigi/tochigi-nikko-01.jpg"
-               alt="栃木県日光東照宮"
-               loading="lazy" width="400" height="300">
+      <a class="dest-photo-card" href="templates/prefecture.html?id=tochigi">
+        <img src="images/japan/tochigi/tochigi-nikko-01.jpg" alt="栃木・日光東照宮" loading="lazy">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">関東</div>
+          <div class="dpo-name">栃木（日光）</div>
+          <div class="dpo-copy">世界遺産・日光東照宮と華厳の滝。鬼怒川温泉も。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">関東</div>
-          <div class="dest-name">栃木（日光）</div>
-          <p class="dest-desc">世界遺産・日光東照宮と華厳の滝。那須高原・鬼怒川温泉と関東からのアクセスも快適。</p>
-          <a href="templates/prefecture.html?id=tochigi" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
+      </a>
 
       <!-- 山梨 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=yamanashi'" style="cursor:pointer">
-        <div class="dest-thumb">
-          <img src="images/japan/yamanashi/yamanashi-fuji-lake-02.jpg"
-               alt="山梨県河口湖と富士山"
-               loading="lazy" width="400" height="300">
+      <a class="dest-photo-card" href="templates/prefecture.html?id=yamanashi">
+        <img src="images/japan/yamanashi/yamanashi-fuji-lake-02.jpg" alt="山梨・河口湖と富士山" loading="lazy">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">中部</div>
+          <div class="dpo-name">山梨（富士五湖）</div>
+          <div class="dpo-copy">河口湖から眺める富士山は日本一の絶景。ほうとうも必食。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">中部</div>
-          <div class="dest-name">山梨（富士五湖）</div>
-          <p class="dest-desc">河口湖から眺める富士山は日本一の絶景。ほうとう・富士サファリパーク・温泉も充実。</p>
-          <a href="templates/prefecture.html?id=yamanashi" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
+      </a>
 
       <!-- 宮城 -->
-      <div class="dest-card" onclick="location.href='templates/prefecture.html?id=miyagi'" style="cursor:pointer">
-        <div class="dest-thumb" style="background:linear-gradient(135deg,#0c3a5c,#1a7090);display:flex;align-items:center;justify-content:center;font-size:3rem">
-          🏝️
+      <a class="dest-photo-card" href="templates/prefecture.html?id=miyagi">
+        <img src="images/japan/miyagi/miyagi-matsushima-01.jpg" alt="宮城・松島の島々" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0c3a5c,#1a7090)'">
+        <div class="dest-photo-overlay">
+          <div class="dpo-region">東北</div>
+          <div class="dpo-name">宮城（松島）</div>
+          <div class="dpo-copy">日本三景・松島と牛タン・ずんだ餅。東北の中心地。</div>
         </div>
-        <div class="dest-body">
-          <div class="dest-region">東北</div>
-          <div class="dest-name">宮城（松島）</div>
-          <p class="dest-desc">日本三景・松島と牛タン・ずんだ餅。仙台を拠点に温泉・海産物が充実する東北の中心地。</p>
-          <a href="templates/prefecture.html?id=miyagi" class="btn btn-sm btn-ghost">詳細を見る →</a>
-        </div>
-      </div>
+      </a>
 
-    </div>
-    <div class="text-center" style="margin-top:28px">
+    </div><!-- /.dest-small-grid -->
+
+    <div class="text-center" style="margin-top:32px">
       <a href="pages/prefectures.html" class="btn btn-ghost">47都道府県をすべて見る →</a>
     </div>
   </div>
@@ -539,31 +465,74 @@
       <h2 class="section-title">温泉地から探す</h2>
       <p class="section-desc">「なぜ有名か」「誰に向いているか」を解説。似た温泉地の比較も。</p>
     </div>
-    <div class="onsen-grid fade-in" id="onsen-grid">
-      <div class="onsen-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/onsen.html?id=kusatsu'">
-        <div style="height:140px;overflow:hidden;position:relative"><img src="images/japan/gunma/gunma-kusatsu-yunohata-01.jpg" alt="草津温泉" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">♨️</div></div>
-        <div class="onsen-body" style="flex:1;display:flex;flex-direction:column;padding:14px"><div class="onsen-name">草津温泉</div><div class="onsen-pref">群馬県</div><div class="onsen-why" style="font-size:0.78rem;line-height:1.5;color:var(--text-light);margin:6px 0">日本三名泉。強酸性の湯が肌に効く。湯畑の湯けむりが幻想的。</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin:4px 0"><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">三名泉</span><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">電車OK</span></div><div style="margin-top:8px;font-size:0.72rem;color:var(--teal);font-weight:700">詳しく見る →</div></div>
-      </div>
-      <div class="onsen-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/onsen.html?id=hakone'">
-        <div style="height:140px;overflow:hidden;position:relative"><img src="images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg" alt="箱根温泉" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">🗻</div></div>
-        <div class="onsen-body" style="flex:1;display:flex;flex-direction:column;padding:14px"><div class="onsen-name">箱根温泉</div><div class="onsen-pref">神奈川県</div><div class="onsen-why" style="font-size:0.78rem;line-height:1.5;color:var(--text-light);margin:6px 0">東京から90分。富士山ビューの露天風呂と芦ノ湖の絶景。</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin:4px 0"><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">東京近い</span><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">富士山</span></div><div style="margin-top:8px;font-size:0.72rem;color:var(--teal);font-weight:700">詳しく見る →</div></div>
-      </div>
-      <div class="onsen-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/onsen.html?id=arima'">
-        <div style="height:140px;overflow:hidden;position:relative"><img src="images/japan/hyogo/hyogo-arima-kinsenkawa-01.jpg" alt="有馬温泉" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">♨️</div></div>
-        <div class="onsen-body" style="flex:1;display:flex;flex-direction:column;padding:14px"><div class="onsen-name">有馬温泉</div><div class="onsen-pref">兵庫県</div><div class="onsen-why" style="font-size:0.78rem;line-height:1.5;color:var(--text-light);margin:6px 0">日本三古湯。金泉・銀泉の二種。大阪・神戸から日帰りも可能。</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin:4px 0"><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">三古湯</span><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">大阪近い</span></div><div style="margin-top:8px;font-size:0.72rem;color:var(--teal);font-weight:700">詳しく見る →</div></div>
-      </div>
-      <div class="onsen-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/onsen.html?id=beppu'">
-        <div style="height:140px;overflow:hidden;position:relative"><img src="images/japan/oita/oita-beppu-01.jpg" alt="別府温泉" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">💧</div></div>
-        <div class="onsen-body" style="flex:1;display:flex;flex-direction:column;padding:14px"><div class="onsen-name">別府温泉</div><div class="onsen-pref">大分県</div><div class="onsen-why" style="font-size:0.78rem;line-height:1.5;color:var(--text-light);margin:6px 0">日本最多の源泉数。地獄めぐりと7種の泉質が楽しめる温泉都市。</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin:4px 0"><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">地獄めぐり</span><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">コスパ良</span></div><div style="margin-top:8px;font-size:0.72rem;color:var(--teal);font-weight:700">詳しく見る →</div></div>
-      </div>
-      <div class="onsen-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/onsen.html?id=kinosaki'">
-        <div style="height:140px;overflow:hidden;position:relative"><img src="images/japan/hyogo/hyogo-kinosaki-01.jpg" alt="城崎温泉" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">🦢</div></div>
-        <div class="onsen-body" style="flex:1;display:flex;flex-direction:column;padding:14px"><div class="onsen-name">城崎温泉</div><div class="onsen-pref">兵庫県</div><div class="onsen-why" style="font-size:0.78rem;line-height:1.5;color:var(--text-light);margin:6px 0">柳並木と外湯めぐり。浴衣で7つの外湯を巡る風情ある温泉街。</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin:4px 0"><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">外湯めぐり</span><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">電車OK</span></div><div style="margin-top:8px;font-size:0.72rem;color:var(--teal);font-weight:700">詳しく見る →</div></div>
-      </div>
-      <div class="onsen-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/onsen.html?id=yufuin'">
-        <div style="height:140px;overflow:hidden;position:relative;background:linear-gradient(135deg,#1a3060,#2563a0)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem">🏞️</div><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">🏞️</div></div>
-        <div class="onsen-body" style="flex:1;display:flex;flex-direction:column;padding:14px"><div class="onsen-name">由布院温泉</div><div class="onsen-pref">大分県</div><div class="onsen-why" style="font-size:0.78rem;line-height:1.5;color:var(--text-light);margin:6px 0">由布岳を望む高原温泉。洗練された宿と湯の坪街道のアート。</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin:4px 0"><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">高品質宿</span><span style="font-size:0.67rem;padding:2px 7px;border-radius:999px;background:rgba(12,27,53,0.07);color:var(--navy);font-weight:600">カップル</span></div><div style="margin-top:8px;font-size:0.72rem;color:var(--teal);font-weight:700">詳しく見る →</div></div>
-      </div>
+    <div class="onsen-top-grid fade-in" id="onsen-grid">
+
+      <a class="onsen-top-card" href="pages/onsen.html?id=kusatsu">
+        <img src="images/japan/gunma/gunma-kusatsu-yunohata-01.jpg" alt="草津温泉・湯畑" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'">
+        <div class="onsen-top-overlay">
+          <div class="oto-pref">群馬県</div>
+          <div class="oto-name">草津温泉</div>
+          <div class="oto-tagline">日本三名泉。強酸性の湯と湯畑の湯けむりが幻想的。</div>
+          <div class="oto-tags"><span class="oto-tag">三名泉</span><span class="oto-tag">電車OK</span></div>
+        </div>
+      </a>
+
+      <a class="onsen-top-card" href="pages/onsen.html?id=hakone">
+        <img src="images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg" alt="箱根温泉" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'">
+        <div class="onsen-top-overlay">
+          <div class="oto-pref">神奈川県</div>
+          <div class="oto-name">箱根温泉</div>
+          <div class="oto-tagline">東京から90分。富士山ビューの露天風呂と芦ノ湖の絶景。</div>
+          <div class="oto-tags"><span class="oto-tag">東京近い</span><span class="oto-tag">富士山</span></div>
+        </div>
+      </a>
+
+      <a class="onsen-top-card" href="pages/onsen.html?id=arima">
+        <img src="images/japan/hyogo/hyogo-arima-kinsenkawa-01.jpg" alt="有馬温泉" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'">
+        <div class="onsen-top-overlay">
+          <div class="oto-pref">兵庫県</div>
+          <div class="oto-name">有馬温泉</div>
+          <div class="oto-tagline">日本三古湯。金泉・銀泉の二種。大阪・神戸から日帰りも。</div>
+          <div class="oto-tags"><span class="oto-tag">三古湯</span><span class="oto-tag">大阪近い</span></div>
+        </div>
+      </a>
+
+      <a class="onsen-top-card" href="pages/onsen.html?id=beppu">
+        <img src="images/japan/oita/oita-beppu-01.jpg" alt="別府温泉・地獄めぐり" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'">
+        <div class="onsen-top-overlay">
+          <div class="oto-pref">大分県</div>
+          <div class="oto-name">別府温泉</div>
+          <div class="oto-tagline">日本最多の源泉数。地獄めぐりと7種の泉質が楽しめる温泉都市。</div>
+          <div class="oto-tags"><span class="oto-tag">地獄めぐり</span><span class="oto-tag">コスパ良</span></div>
+        </div>
+      </a>
+
+      <a class="onsen-top-card" href="pages/onsen.html?id=kinosaki">
+        <img src="images/japan/hyogo/hyogo-kinosaki-01.jpg" alt="城崎温泉・柳並木" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'">
+        <div class="onsen-top-overlay">
+          <div class="oto-pref">兵庫県</div>
+          <div class="oto-name">城崎温泉</div>
+          <div class="oto-tagline">柳並木と外湯めぐり。浴衣で7つの外湯を巡る風情ある温泉街。</div>
+          <div class="oto-tags"><span class="oto-tag">外湯めぐり</span><span class="oto-tag">電車OK</span></div>
+        </div>
+      </a>
+
+      <a class="onsen-top-card" href="pages/onsen.html?id=dogo">
+        <img src="images/japan/ehime/ehime-dogo-honkan-01.jpg" alt="道後温泉・本館" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#374151)'">
+        <div class="onsen-top-overlay">
+          <div class="oto-pref">愛媛県</div>
+          <div class="oto-name">道後温泉</div>
+          <div class="oto-tagline">日本最古の温泉。明治建築の本館と宮内庁御用達の名湯。</div>
+          <div class="oto-tags"><span class="oto-tag">日本最古</span><span class="oto-tag">歴史的建築</span></div>
+        </div>
+      </a>
+
     </div>
     <div class="text-center" style="margin-top:28px">
       <a href="pages/onsen.html" class="btn btn-ghost">すべての温泉地を見る →</a>
@@ -579,31 +548,75 @@
       <h2 class="section-title">時期から旅先を選ぶ</h2>
       <p class="section-desc">1月〜12月、季節ごとのベスト旅先を旅ノアが提案します。</p>
     </div>
-    <div class="monthly-grid fade-in" id="monthly-grid">
-      <div class="month-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm)" onclick="location.href='templates/monthly-detail.html?month=4'">
-        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/aomori/aomori-hirosaki-02.jpg" alt="4月" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;top:8px;left:10px;font-size:1.4rem;font-weight:900;color:white;opacity:0.9">4</div><div style="position:absolute;bottom:6px;left:10px;color:white;font-size:0.78rem;font-weight:700">🌸 4月</div></div>
-        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">満開の桜と花見旅行</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5">弘前城・吉野山・角館の桜。日本最高の花見スポットへ。</div><div style="font-size:0.68rem;color:var(--text-muted)">🗾 青森・奈良・秋田</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:auto">詳しく見る →</div></div>
-      </div>
-      <div class="month-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm)" onclick="location.href='templates/monthly-detail.html?month=7'">
-        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg" alt="7月" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;top:8px;left:10px;font-size:1.4rem;font-weight:900;color:white;opacity:0.9">7</div><div style="position:absolute;bottom:6px;left:10px;color:white;font-size:0.78rem;font-weight:700">🌻 7月</div></div>
-        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">夏祭り・花火・ラベンダー</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5">美瑛のラベンダー・祇園祭・花火大会。夏旅の最盛期。</div><div style="font-size:0.68rem;color:var(--text-muted)">🗾 北海道・京都・新潟</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:auto">詳しく見る →</div></div>
-      </div>
-      <div class="month-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm)" onclick="location.href='templates/monthly-detail.html?month=8'">
-        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/okinawa/okinawa-sea-coast-02.jpg" alt="8月" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;top:8px;left:10px;font-size:1.4rem;font-weight:900;color:white;opacity:0.9">8</div><div style="position:absolute;bottom:6px;left:10px;color:white;font-size:0.78rem;font-weight:700">🌊 8月</div></div>
-        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">海水浴と夏休み旅行</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5">沖縄・伊豆・湘南の海。家族旅行にも最適な真夏の旅。</div><div style="font-size:0.68rem;color:var(--text-muted)">🗾 沖縄・静岡・神奈川</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:auto">詳しく見る →</div></div>
-      </div>
-      <div class="month-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm)" onclick="location.href='templates/monthly-detail.html?month=10'">
-        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/kyoto/kyoto-arashiyama-bamboo-03.jpg" alt="10月" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;top:8px;left:10px;font-size:1.4rem;font-weight:900;color:white;opacity:0.9">10</div><div style="position:absolute;bottom:6px;left:10px;color:white;font-size:0.78rem;font-weight:700">🍁 10月</div></div>
-        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">紅葉ベストシーズン</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5">日光・嵐山・立山黒部。全国の紅葉スポットが色づく。</div><div style="font-size:0.68rem;color:var(--text-muted)">🗾 栃木・京都・富山</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:auto">詳しく見る →</div></div>
-      </div>
-      <div class="month-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm)" onclick="location.href='templates/monthly-detail.html?month=12'">
-        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/hokkaido/hokkaido-otaru-canal-02.jpg" alt="12月" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;top:8px;left:10px;font-size:1.4rem;font-weight:900;color:white;opacity:0.9">12</div><div style="position:absolute;bottom:6px;left:10px;color:white;font-size:0.78rem;font-weight:700">✨ 12月</div></div>
-        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">イルミネーションと年越し</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5">小樽運河・神社の年越し。冬の特別な旅でシメを。</div><div style="font-size:0.68rem;color:var(--text-muted)">🗾 北海道・東京・箱根・伊勢</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:auto">詳しく見る →</div></div>
-      </div>
-      <div class="month-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm)" onclick="location.href='templates/monthly-detail.html?month=2'">
-        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/yamagata/yamagata-zao-02.jpg" alt="2月" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;top:8px;left:10px;font-size:1.4rem;font-weight:900;color:white;opacity:0.9">2</div><div style="position:absolute;bottom:6px;left:10px;color:white;font-size:0.78rem;font-weight:700">⛄ 2月</div></div>
-        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">蔵王の樹氷と雪まつり</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5">さっぽろ雪まつり・蔵王の樹氷モンスター・温泉めぐり。</div><div style="font-size:0.68rem;color:var(--text-muted)">🗾 北海道・山形・長野</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:auto">詳しく見る →</div></div>
-      </div>
+    <div class="month-cal-grid fade-in" id="monthly-grid">
+
+      <a class="month-cal-card" href="templates/monthly-detail.html?month=2">
+        <img src="images/japan/yamagata/yamagata-zao-02.jpg" alt="2月・蔵王の樹氷" loading="lazy">
+        <div class="month-cal-overlay">
+          <div class="mco-num">2</div>
+          <div class="mco-season">⛄ WINTER</div>
+          <div class="mco-title">蔵王の樹氷と雪まつり</div>
+          <div class="mco-copy">さっぽろ雪まつり・蔵王の樹氷モンスター・温泉めぐり。</div>
+          <div class="mco-places">北海道・山形・長野</div>
+        </div>
+      </a>
+
+      <a class="month-cal-card" href="templates/monthly-detail.html?month=4">
+        <img src="images/japan/aomori/aomori-hirosaki-02.jpg" alt="4月・弘前の桜" loading="lazy">
+        <div class="month-cal-overlay">
+          <div class="mco-num">4</div>
+          <div class="mco-season">🌸 SPRING</div>
+          <div class="mco-title">満開の桜と花見旅行</div>
+          <div class="mco-copy">弘前城・吉野山・角館の桜。日本最高の花見スポットへ。</div>
+          <div class="mco-places">青森・奈良・秋田</div>
+        </div>
+      </a>
+
+      <a class="month-cal-card" href="templates/monthly-detail.html?month=7">
+        <img src="images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg" alt="7月・北海道のラベンダー" loading="lazy">
+        <div class="month-cal-overlay">
+          <div class="mco-num">7</div>
+          <div class="mco-season">🌻 SUMMER</div>
+          <div class="mco-title">夏祭り・花火・ラベンダー</div>
+          <div class="mco-copy">美瑛のラベンダー・祇園祭・花火大会。夏旅の最盛期。</div>
+          <div class="mco-places">北海道・京都・新潟</div>
+        </div>
+      </a>
+
+      <a class="month-cal-card" href="templates/monthly-detail.html?month=8">
+        <img src="images/japan/okinawa/okinawa-sea-coast-02.jpg" alt="8月・沖縄の海" loading="lazy">
+        <div class="month-cal-overlay">
+          <div class="mco-num">8</div>
+          <div class="mco-season">🌊 SUMMER</div>
+          <div class="mco-title">海水浴と夏休み旅行</div>
+          <div class="mco-copy">沖縄・伊豆・湘南の海。家族旅行にも最適な真夏の旅。</div>
+          <div class="mco-places">沖縄・静岡・神奈川</div>
+        </div>
+      </a>
+
+      <a class="month-cal-card" href="templates/monthly-detail.html?month=10">
+        <img src="images/japan/kyoto/kyoto-arashiyama-bamboo-03.jpg" alt="10月・嵐山の竹林と紅葉" loading="lazy">
+        <div class="month-cal-overlay">
+          <div class="mco-num">10</div>
+          <div class="mco-season">🍁 AUTUMN</div>
+          <div class="mco-title">紅葉ベストシーズン</div>
+          <div class="mco-copy">日光・嵐山・立山黒部。全国の紅葉スポットが色づく。</div>
+          <div class="mco-places">栃木・京都・富山</div>
+        </div>
+      </a>
+
+      <a class="month-cal-card" href="templates/monthly-detail.html?month=12">
+        <img src="images/japan/nagasaki/nagasaki-nightview-02.jpg" alt="12月・長崎の夜景とイルミネーション" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0c1b35,#1a3060)'">
+        <div class="month-cal-overlay">
+          <div class="mco-num">12</div>
+          <div class="mco-season">✨ WINTER</div>
+          <div class="mco-title">イルミネーションと年越し</div>
+          <div class="mco-copy">長崎夜景・神社の年越し・温泉で締めくくる冬旅。</div>
+          <div class="mco-places">長崎・東京・箱根・伊勢</div>
+        </div>
+      </a>
+
     </div>
     <div class="text-center" style="margin-top:28px">
       <a href="pages/monthly.html" class="btn btn-ghost">月別一覧をすべて見る →</a>
@@ -619,39 +632,96 @@
       <h2 class="section-title">目的・タイプから探す</h2>
       <p class="section-desc">「記念日旅行」「一人旅」「温泉旅行」「グルメ旅」など20種類の目的別に最適な旅先を提案。</p>
     </div>
-    <div class="purpose-grid fade-in" id="purpose-grid">
-      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=anniversary'">
-        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#3b1a5c,#7c3aed)"><img src="images/japan/kyoto/kyoto-arashiyama-bamboo-03.jpg" alt="記念日旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">💍</div></div>
-        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">記念日旅行</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">誕生日・結婚記念日・プロポーズ。高級旅館で忘れられない一日を。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 有馬・箱根・金沢</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
-      </div>
-      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=couple'">
-        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1a3060,#0ea5e9)"><img src="images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg" alt="カップル旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">💕</div></div>
-        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">カップル旅行</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">宮島・京都・函館など絵になるスポットでふたりの思い出を。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 宮島・京都・函館</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
-      </div>
-      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=family'">
-        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#0c4a6e,#0284c7)"><img src="images/japan/okinawa/okinawa-sea-coast-02.jpg" alt="子連れ旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">👨‍👩‍👧</div></div>
-        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">子連れ旅行</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">子どもが喜ぶ体験と安心の設備。沖縄・北海道が定番。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 沖縄・北海道・大阪</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
-      </div>
-      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=solo'">
-        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1a3060,#0ea5e9)"><img src="images/japan/kyoto/kyoto-fushimi-inari-01.jpg" alt="一人旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">🎒</div></div>
-        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">一人旅</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">自分のペースで行きたい場所へ。京都・金沢・長崎がおすすめ。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 京都・金沢・長崎</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
-      </div>
-      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=onsen'">
-        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#0c3a5c,#0369a1)"><img src="images/japan/gunma/gunma-kusatsu-yunohata-01.jpg" alt="温泉旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">♨️</div></div>
-        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">温泉旅行</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">泉質・景色・宿の雰囲気を重視した温泉旅行ガイド。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 草津・箱根・有馬温泉</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
-      </div>
-      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=gourmet'">
-        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#7c2d12,#c2410c)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.2rem">🍜</div><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">🍜</div></div>
-        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">グルメ旅</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">市場・屋台・名店めぐりで胃袋を満たす食の旅行。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 福岡・大阪・札幌</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
-      </div>
-      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=history'">
-        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1a3060,#2563a0)"><img src="images/japan/nara/nara-todaiji-02.jpg" alt="歴史旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">⛩️</div></div>
-        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">歴史・神社仏閣めぐり</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">神社・仏閣・城・古民家。日本の歴史と文化を深く体感。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 京都・奈良・広島</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
-      </div>
-      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='pages/purpose.html?id=scenery'">
-        <div style="height:100px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#0c3a5c,#0ea5e9)"><img src="images/japan/yamanashi/yamanashi-fuji-lake-02.jpg" alt="絶景旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.65))"></div><div style="position:absolute;bottom:6px;left:8px;font-size:1.2rem">🏔️</div></div>
-        <div style="padding:10px 11px 12px;flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">絶景旅</div><div style="font-size:0.73rem;color:var(--text-light);line-height:1.5;flex:1">富士山・知床・宮島。一生に一度は見たい絶景スポットへ。</div><div style="font-size:0.67rem;color:var(--text-muted)">🗾 富士五湖・知床・宮島</div><div style="font-size:0.68rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div></div>
-      </div>
+    <div class="purpose-mood-grid fade-in" id="purpose-grid">
+
+      <a class="purpose-mood-card" href="pages/purpose.html?id=anniversary">
+        <img src="images/japan/kyoto/kyoto-arashiyama-bamboo-03.jpg" alt="記念日旅行" loading="lazy">
+        <div class="purpose-mood-overlay">
+          <div class="pmo-emoji">💍</div>
+          <div class="pmo-name">記念日旅行</div>
+          <div class="pmo-copy">誕生日・結婚記念日・プロポーズ。高級旅館で忘れられない一日を。</div>
+          <div class="pmo-places">有馬・箱根・金沢</div>
+          <div class="pmo-tags"><span class="pmo-tag">カップル</span><span class="pmo-tag">高級宿</span></div>
+        </div>
+      </a>
+
+      <a class="purpose-mood-card" href="pages/purpose.html?id=couple">
+        <img src="images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg" alt="カップル旅行" loading="lazy">
+        <div class="purpose-mood-overlay">
+          <div class="pmo-emoji">💕</div>
+          <div class="pmo-name">カップル旅行</div>
+          <div class="pmo-copy">宮島・京都・函館など絵になるスポットでふたりの思い出を。</div>
+          <div class="pmo-places">宮島・京都・函館</div>
+          <div class="pmo-tags"><span class="pmo-tag">絶景</span><span class="pmo-tag">写真映え</span></div>
+        </div>
+      </a>
+
+      <a class="purpose-mood-card" href="pages/purpose.html?id=family">
+        <img src="images/japan/okinawa/okinawa-sea-coast-02.jpg" alt="子連れ旅行" loading="lazy">
+        <div class="purpose-mood-overlay">
+          <div class="pmo-emoji">👨‍👩‍👧</div>
+          <div class="pmo-name">子連れ旅行</div>
+          <div class="pmo-copy">子どもが喜ぶ体験と安心の設備。沖縄・北海道が定番。</div>
+          <div class="pmo-places">沖縄・北海道・大阪</div>
+          <div class="pmo-tags"><span class="pmo-tag">家族</span><span class="pmo-tag">安心</span></div>
+        </div>
+      </a>
+
+      <a class="purpose-mood-card" href="pages/purpose.html?id=solo">
+        <img src="images/japan/kyoto/kyoto-fushimi-inari-01.jpg" alt="一人旅" loading="lazy">
+        <div class="purpose-mood-overlay">
+          <div class="pmo-emoji">🎒</div>
+          <div class="pmo-name">一人旅</div>
+          <div class="pmo-copy">自分のペースで行きたい場所へ。京都・金沢・長崎がおすすめ。</div>
+          <div class="pmo-places">京都・金沢・長崎</div>
+          <div class="pmo-tags"><span class="pmo-tag">自由</span><span class="pmo-tag">電車OK</span></div>
+        </div>
+      </a>
+
+      <a class="purpose-mood-card" href="pages/purpose.html?id=onsen">
+        <img src="images/japan/gunma/gunma-kusatsu-yunohata-01.jpg" alt="温泉旅行" loading="lazy">
+        <div class="purpose-mood-overlay">
+          <div class="pmo-emoji">♨️</div>
+          <div class="pmo-name">温泉旅行</div>
+          <div class="pmo-copy">泉質・景色・宿の雰囲気を重視した温泉旅行ガイド。</div>
+          <div class="pmo-places">草津・箱根・有馬</div>
+          <div class="pmo-tags"><span class="pmo-tag">温泉</span><span class="pmo-tag">旅館</span></div>
+        </div>
+      </a>
+
+      <a class="purpose-mood-card" href="pages/purpose.html?id=gourmet">
+        <img src="images/japan/osaka/osaka-castle-01.jpg" alt="グルメ旅" loading="lazy">
+        <div class="purpose-mood-overlay">
+          <div class="pmo-emoji">🍜</div>
+          <div class="pmo-name">グルメ旅</div>
+          <div class="pmo-copy">市場・屋台・名店めぐりで胃袋を満たす食の旅行。</div>
+          <div class="pmo-places">福岡・大阪・札幌</div>
+          <div class="pmo-tags"><span class="pmo-tag">食べ歩き</span><span class="pmo-tag">B級グルメ</span></div>
+        </div>
+      </a>
+
+      <a class="purpose-mood-card" href="pages/purpose.html?id=history">
+        <img src="images/japan/nara/nara-todaiji-02.jpg" alt="歴史・神社仏閣めぐり" loading="lazy">
+        <div class="purpose-mood-overlay">
+          <div class="pmo-emoji">⛩️</div>
+          <div class="pmo-name">歴史・神社仏閣めぐり</div>
+          <div class="pmo-copy">神社・仏閣・城・古民家。日本の歴史と文化を深く体感。</div>
+          <div class="pmo-places">京都・奈良・広島</div>
+          <div class="pmo-tags"><span class="pmo-tag">世界遺産</span><span class="pmo-tag">寺社</span></div>
+        </div>
+      </a>
+
+      <a class="purpose-mood-card" href="pages/purpose.html?id=scenery">
+        <img src="images/japan/yamanashi/yamanashi-fuji-lake-02.jpg" alt="絶景旅" loading="lazy">
+        <div class="purpose-mood-overlay">
+          <div class="pmo-emoji">🏔️</div>
+          <div class="pmo-name">絶景旅</div>
+          <div class="pmo-copy">富士山・知床・宮島。一生に一度は見たい絶景スポットへ。</div>
+          <div class="pmo-places">富士五湖・知床・宮島</div>
+          <div class="pmo-tags"><span class="pmo-tag">絶景</span><span class="pmo-tag">写真映え</span></div>
+        </div>
+      </a>
+
     </div>
     <div class="text-center" style="margin-top:28px">
       <a href="pages/purpose.html" class="btn btn-ghost">すべての目的を見る →</a>
@@ -667,31 +737,74 @@
       <h2 class="section-title">名産品・ご当地グルメ</h2>
       <p class="section-desc">北海道の海鮮から鹿児島の黒豚まで。旅行前に知っておきたい25品のご当地グルメを旅ノアが解説。</p>
     </div>
-    <div id="gourmet-preview" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:28px">
-      <a href="pages/specialties.html" style="text-decoration:none;display:flex;flex-direction:column;background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
-        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/hokkaido/hokkaido-noboribetsu-jigokudani-01.jpg" alt="北海道の海鮮丼" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#0c4a6e,#0284c7)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:6px;left:10px;font-size:1.4rem">🦞</div></div>
-        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">北海道の海鮮丼</div><div style="font-size:0.7rem;color:var(--text-muted)">🗾 北海道 ／ 🦞 海鮮・魚介</div><div style="font-size:0.75rem;line-height:1.5;color:var(--text-light)">ウニ・イクラ・カニが豪快に乗る究極の海鮮丼。函館朝市が有名。</div></div>
+    <div class="gourmet-photo-grid fade-in" id="gourmet-preview">
+
+      <a class="gourmet-photo-card" href="pages/specialties.html">
+        <img src="images/japan/hokkaido/hokkaido-noboribetsu-jigokudani-01.jpg" alt="北海道・函館の海鮮丼" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0c4a6e,#0284c7)'">
+        <div class="gourmet-photo-overlay">
+          <div class="gpo-cat">🦞 海鮮・魚介 ／ 北海道</div>
+          <div class="gpo-name">北海道の海鮮丼</div>
+          <div class="gpo-desc">ウニ・イクラ・カニが豪快に乗る究極の海鮮丼。函館朝市が有名。</div>
+          <div class="gpo-places">函館・小樽・札幌</div>
+        </div>
       </a>
-      <a href="pages/specialties.html" style="text-decoration:none;display:flex;flex-direction:column;background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
-        <div style="height:120px;position:relative;overflow:hidden;background:linear-gradient(135deg,#7c2d12,#c2410c)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem">🐂</div><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:6px;left:10px;font-size:1.4rem">🐂</div></div>
-        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">仙台の牛タン</div><div style="font-size:0.7rem;color:var(--text-muted)">🗾 宮城県 ／ 🥩 肉料理</div><div style="font-size:0.75rem;line-height:1.5;color:var(--text-light)">厚切りの牛タン焼きと麦飯・テールスープのセット。仙台駅周辺で味わえる。</div></div>
+
+      <a class="gourmet-photo-card" href="pages/specialties.html">
+        <img src="images/japan/miyagi/miyagi-matsushima-01.jpg" alt="宮城・松島（仙台の牛タン）" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#7c2d12,#c2410c)'">
+        <div class="gourmet-photo-overlay">
+          <div class="gpo-cat">🥩 肉料理 ／ 宮城県</div>
+          <div class="gpo-name">仙台の牛タン</div>
+          <div class="gpo-desc">厚切りの牛タン焼きと麦飯・テールスープのセット。仙台駅周辺で。</div>
+          <div class="gpo-places">仙台・宮城</div>
+        </div>
       </a>
-      <a href="pages/specialties.html" style="text-decoration:none;display:flex;flex-direction:column;background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
-        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/osaka/osaka-castle-01.jpg" alt="大阪たこ焼き" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#92400e,#b45309)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:6px;left:10px;font-size:1.4rem">🐙</div></div>
-        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">大阪のたこ焼き</div><div style="font-size:0.7rem;color:var(--text-muted)">🗾 大阪府 ／ 🍢 B級グルメ</div><div style="font-size:0.75rem;line-height:1.5;color:var(--text-light)">外カリ・中トロの本場たこ焼き。道頓堀・新世界エリアの名店へ。</div></div>
+
+      <a class="gourmet-photo-card" href="pages/specialties.html">
+        <img src="images/japan/osaka/osaka-castle-01.jpg" alt="大阪・たこ焼き" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#92400e,#b45309)'">
+        <div class="gourmet-photo-overlay">
+          <div class="gpo-cat">🐙 B級グルメ ／ 大阪府</div>
+          <div class="gpo-name">大阪のたこ焼き</div>
+          <div class="gpo-desc">外カリ・中トロの本場たこ焼き。道頓堀・新世界エリアの名店へ。</div>
+          <div class="gpo-places">道頓堀・新世界</div>
+        </div>
       </a>
-      <a href="pages/specialties.html" style="text-decoration:none;display:flex;flex-direction:column;background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
-        <div style="height:120px;position:relative;overflow:hidden;background:linear-gradient(135deg,#92400e,#d97706)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem">🍜</div><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:6px;left:10px;font-size:1.4rem">🍜</div></div>
-        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">博多ラーメン</div><div style="font-size:0.7rem;color:var(--text-muted)">🗾 福岡県 ／ 🍜 郷土料理</div><div style="font-size:0.75rem;line-height:1.5;color:var(--text-light)">豚骨スープの白濁した一杯。替え玉文化が根付く博多・長浜の名店で。</div></div>
+
+      <a class="gourmet-photo-card" href="pages/specialties.html">
+        <img src="images/japan/fukuoka/fukuoka-dazaifu-02.jpg" alt="福岡・博多ラーメン" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#92400e,#d97706)'">
+        <div class="gourmet-photo-overlay">
+          <div class="gpo-cat">🍜 郷土料理 ／ 福岡県</div>
+          <div class="gpo-name">博多ラーメン</div>
+          <div class="gpo-desc">豚骨スープの白濁した一杯。替え玉文化が根付く博多・長浜の名店で。</div>
+          <div class="gpo-places">博多・長浜・天神</div>
+        </div>
       </a>
-      <a href="pages/specialties.html" style="text-decoration:none;display:flex;flex-direction:column;background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
-        <div style="height:120px;position:relative;overflow:hidden;background:linear-gradient(135deg,#064e3b,#059669)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem">🍵</div><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:6px;left:10px;font-size:1.4rem">🍵</div></div>
-        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">讃岐うどん</div><div style="font-size:0.7rem;color:var(--text-muted)">🗾 香川県 ／ 🍵 郷土料理</div><div style="font-size:0.75rem;line-height:1.5;color:var(--text-light)">コシの強い讃岐うどん。製麺所めぐりは香川旅行の必須アクティビティ。</div></div>
+
+      <a class="gourmet-photo-card" href="pages/specialties.html">
+        <img src="images/japan/kagawa/kagawa-chichibugahama-01.jpg" alt="香川・讃岐うどん" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#064e3b,#059669)'">
+        <div class="gourmet-photo-overlay">
+          <div class="gpo-cat">🍵 郷土料理 ／ 香川県</div>
+          <div class="gpo-name">讃岐うどん</div>
+          <div class="gpo-desc">コシの強い讃岐うどん。製麺所めぐりは香川旅行の必須アクティビティ。</div>
+          <div class="gpo-places">高松・丸亀・坂出</div>
+        </div>
       </a>
-      <a href="pages/specialties.html" style="text-decoration:none;display:flex;flex-direction:column;background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
-        <div style="height:120px;position:relative;overflow:hidden"><img src="images/japan/okinawa/okinawa-sea-coast-02.jpg" alt="沖縄そば" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a3060,#0ea5e9)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:6px;left:10px;font-size:1.4rem">🌺</div></div>
-        <div style="padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-size:0.9rem;font-weight:800;color:var(--navy)">沖縄そば</div><div style="font-size:0.7rem;color:var(--text-muted)">🗾 沖縄県 ／ 🍜 郷土料理</div><div style="font-size:0.75rem;line-height:1.5;color:var(--text-light)">豚骨・鰹だしのスープに太麺。ソーキそば・三枚肉そばを沖縄で堪能。</div></div>
+
+      <a class="gourmet-photo-card" href="pages/specialties.html">
+        <img src="images/japan/okinawa/okinawa-sea-coast-02.jpg" alt="沖縄そば" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a3060,#0ea5e9)'">
+        <div class="gourmet-photo-overlay">
+          <div class="gpo-cat">🍜 郷土料理 ／ 沖縄県</div>
+          <div class="gpo-name">沖縄そば</div>
+          <div class="gpo-desc">豚骨・鰹だしのスープに太麺。ソーキそば・三枚肉そばを堪能。</div>
+          <div class="gpo-places">那覇・首里・宮古島</div>
+        </div>
       </a>
+
     </div>
     <div style="text-align:center">
       <a href="pages/specialties.html" class="btn btn-primary">全25品を見る →</a>
