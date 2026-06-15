@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://tabisuru-nihon.github.io/images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <link rel="stylesheet" href="../css/style.css?v=20260618">
+  <link rel="stylesheet" href="../css/style.css?v=20260615">
 </head>
 <body>
 
@@ -194,7 +194,7 @@
       </div>
       <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=gourmet'">
         <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#7c2d12,#c2410c)">
-          <img src="../images/japan/osaka/osaka-castle-01.jpg" alt="グルメ旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <img src="../images/japan/osaka/osaka-dotonbori-night-01.jpg" alt="グルメ旅・道頓堀" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
           <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
           <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">🍜</div>
         </div>
@@ -264,7 +264,7 @@
       </div>
       <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=relax'">
         <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#064e3b,#059669)">
-          <img src="../images/japan/kumamoto/kumamoto-aso-02.jpg" alt="のんびり癒やし旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <img src="../images/japan/oita/oita-yufuin-01.jpg" alt="のんびり癒やし旅・湯布院" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
           <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
           <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">😌</div>
         </div>
@@ -292,7 +292,7 @@
       </div>
       <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=outdoor'">
         <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1a3a1a,#2d6a2d)">
-          <img src="../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg" alt="登山・自然旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <img src="../images/japan/nagano/nagano-kamikochi-01.jpg" alt="登山・自然旅・上高地" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
           <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
           <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">⛰️</div>
         </div>
@@ -489,12 +489,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const PURPOSE_IMGS = {
         anniversary:    '../images/japan/kyoto/kyoto-arashiyama-bamboo-03.jpg', // 嵐山竹林
         onsen:          '../images/japan/gunma/gunma-kusatsu-yunohata-01.jpg',
-        gourmet:        '../images/japan/osaka/osaka-castle-01.jpg',            // 大阪城（dotonbori-01はNG）
+        gourmet:        '../images/japan/osaka/osaka-dotonbori-night-01.jpg',    // 道頓堀の夜景
         family:         '../images/japan/okinawa/okinawa-sea-coast-02.jpg',
         couple:         '../images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg',
         solo:           '../images/japan/kyoto/kyoto-fushimi-inari-01.jpg',
         rain:           '../images/japan/kyoto/kyoto-kinkakuji-01.jpg',
-        outdoor:        '../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg', // kamikochi-01はNG
+        outdoor:        '../images/japan/nagano/nagano-kamikochi-01.jpg',         // 上高地・登山 // kamikochi-01はNG
         scenery:        '../images/japan/yamanashi/yamanashi-fuji-lake-02.jpg',  // 河口湖と富士山
         history:        '../images/japan/nara/nara-todaiji-02.jpg',
         flowers:        '../images/japan/aomori/aomori-hirosaki-02.jpg',
@@ -502,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sansedai:       '../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg',
         couple_married: '../images/japan/hyogo/hyogo-arima-kinsenkawa-01.jpg',
         scenery_photo:  '../images/japan/kyoto/kyoto-fushimi-inari-01.jpg',     // ginzan-01はNG（実験器具）
-        relax:          '../images/japan/kumamoto/kumamoto-aso-02.jpg',
+        relax:          '../images/japan/oita/oita-yufuin-01.jpg',             // 湯布院
         active:         '../images/japan/okinawa/okinawa-sea-coast-02.jpg',     // shiretoko-01はNG（山梨）
         budget:         '../images/japan/nara/nara-todaiji-02.jpg',             // kamakura-01はNG（富士山+湖）
         photo_trip:     '../images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg', // ginzan-01はNG（実験器具）
@@ -597,12 +597,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const PURPOSE_CARD_IMGS = {
       anniversary:    '../images/japan/kyoto/kyoto-arashiyama-bamboo-03.jpg',
       onsen:          '../images/japan/gunma/gunma-kusatsu-yunohata-01.jpg',
-      gourmet:        '../images/japan/osaka/osaka-castle-01.jpg',
+      gourmet:        '../images/japan/osaka/osaka-dotonbori-night-01.jpg',
       family:         '../images/japan/okinawa/okinawa-sea-coast-02.jpg',
       couple:         '../images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg',
       solo:           '../images/japan/kyoto/kyoto-fushimi-inari-01.jpg',
       rain:           '../images/japan/kyoto/kyoto-kinkakuji-01.jpg',
-      outdoor:        '../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg',
+      outdoor:        '../images/japan/nagano/nagano-kamikochi-01.jpg',         // 上高地・登山
       scenery:        '../images/japan/yamanashi/yamanashi-fuji-lake-02.jpg',
       history:        '../images/japan/nara/nara-todaiji-02.jpg',
       flowers:        '../images/japan/aomori/aomori-hirosaki-02.jpg',
@@ -610,7 +610,7 @@ document.addEventListener('DOMContentLoaded', () => {
       sansedai:       '../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg',
       couple_married: '../images/japan/hyogo/hyogo-arima-kinsenkawa-01.jpg',
       scenery_photo:  '../images/japan/kyoto/kyoto-fushimi-inari-01.jpg',
-      relax:          '../images/japan/kumamoto/kumamoto-aso-02.jpg',
+      relax:          '../images/japan/oita/oita-yufuin-01.jpg',             // 湯布院
       active:         '../images/japan/okinawa/okinawa-sea-coast-02.jpg',
       budget:         '../images/japan/nara/nara-todaiji-02.jpg',
       photo_trip:     '../images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg',
@@ -642,5 +642,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 

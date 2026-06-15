@@ -681,7 +681,7 @@ window.renderPrefecturePage = function() {
       hokkaido: '../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg',
       aomori: '../images/japan/aomori/aomori-oirase-01.jpg',
       iwate: '../images/japan/iwate/iwate-nature-01.jpg',
-      // miyagi: 全画像NG（黒画像・欧州針葉樹林） → グラデーション表示
+      miyagi: '../images/japan/miyagi/miyagi-matsushima-01.jpg',
       akita: '../images/japan/akita/akita-tazawako-01.jpg',
       yamagata: '../images/japan/yamagata/yamagata-zao-02.jpg',
       fukushima: '../images/japan/fukushima/fukushima-goshikinuma-01.jpg',
@@ -692,12 +692,12 @@ window.renderPrefecturePage = function() {
       chiba: '../images/japan/chiba/chiba-seaside-01.jpg',
       tokyo: '../images/japan/tokyo/tokyo-asakusa-sensoji-01.jpg',
       kanagawa: '../images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg',
-      // niigata: landscape-01はMonument Valley（米国）のためNG → グラデーション表示
+      niigata: '../images/japan/niigata/niigata-winter-01.jpg',
       toyama: '../images/japan/toyama/toyama-tateyama-02.jpg',
       ishikawa: '../images/japan/ishikawa/ishikawa-kanazawa-01.jpg',
       fukui: '../images/japan/fukui/fukui-nature-02.jpg',
       yamanashi: '../images/japan/yamanashi/yamanashi-fuji-kawaguchi-01.jpg',
-      // nagano: 全画像NG（汎用登山写真・パスポート写真） → グラデーション表示
+      nagano: '../images/japan/nagano/nagano-kamikochi-01.jpg',
       gifu: '../images/japan/gifu/gifu-shirakawago-01.jpg',
       shizuoka: '../images/japan/shizuoka/shizuoka-fuji-01.jpg',
       aichi: '../images/japan/aichi/aichi-nagoya-02.jpg',
@@ -719,11 +719,11 @@ window.renderPrefecturePage = function() {
       kochi: '../images/japan/kochi/kochi-katsurahama-01.jpg',
       fukuoka: '../images/japan/fukuoka/fukuoka-dazaifu-02.jpg',
       saga: '../images/japan/saga/saga-shrine-02.jpg',
-      // nagasaki: 全画像NG（ダイビング・渋谷夜景） → グラデーション表示
+      nagasaki: '../images/japan/nagasaki/nagasaki-harbor-01.jpg',
       kumamoto: '../images/japan/kumamoto/kumamoto-castle-01.jpg',
       oita: '../images/japan/oita/oita-beppu-01.jpg',
       miyazaki: '../images/japan/miyazaki/miyazaki-coast-01.jpg',
-      // kagoshima: 全画像NG（ドロミテ・メイク用品） → グラデーション表示
+      kagoshima: '../images/japan/kagoshima/kagoshima-sakurajima-02.jpg',
       okinawa: '../images/japan/okinawa/okinawa-sea-coast-02.jpg',
     };
     const heroImg = PREF_HERO_IMGS[id];
