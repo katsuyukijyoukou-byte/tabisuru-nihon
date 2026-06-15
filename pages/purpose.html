@@ -152,7 +152,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => { backTop.classList.toggle('visible', window.scrollY > 400); });
     backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
-  if (!window.PURPOSES_DATA) return;
+  if (!window.PURPOSES_DATA || !Array.isArray(window.PURPOSES_DATA)) {
+    const listMode = document.getElementById('list-mode');
+    if (listMode) listMode.innerHTML = '<div class="container" style="padding:60px 0;text-align:center"><div style="font-size:3rem;margin-bottom:16px">🔍</div><p style="color:var(--text-light)">データを読み込み中です。ページを再読み込みしてください。</p><a href="purpose.html" class="btn btn-primary" style="margin-top:16px">再読み込み →</a></div>';
+    return;
+  }
 
   const id = new URLSearchParams(location.search).get('id');
 
@@ -201,25 +205,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 目的別ヒーロー画像
       const PURPOSE_IMGS = {
-        anniversary:    '../images/japan/kyoto/kyoto-arashiyama-01.jpg',
+        anniversary:    '../images/japan/kyoto/kyoto-arashiyama-bamboo-03.jpg', // 嵐山竹林
         onsen:          '../images/japan/gunma/gunma-kusatsu-yunohata-01.jpg',
-        gourmet:        '../images/japan/osaka/osaka-dotonbori-01.jpg',
+        gourmet:        '../images/japan/osaka/osaka-castle-01.jpg',            // 大阪城（dotonbori-01はNG）
         family:         '../images/japan/okinawa/okinawa-sea-coast-02.jpg',
         couple:         '../images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg',
         solo:           '../images/japan/kyoto/kyoto-fushimi-inari-01.jpg',
         rain:           '../images/japan/kyoto/kyoto-kinkakuji-01.jpg',
-        outdoor:        '../images/japan/nagano/nagano-kamikochi-01.jpg',
-        scenery:        '../images/japan/yamanashi/yamanashi-fuji-kawaguchi-01.jpg',
+        outdoor:        '../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg', // kamikochi-01はNG
+        scenery:        '../images/japan/yamanashi/yamanashi-fuji-lake-02.jpg',  // 河口湖と富士山
         history:        '../images/japan/nara/nara-todaiji-02.jpg',
         flowers:        '../images/japan/aomori/aomori-hirosaki-02.jpg',
         fujoshi:        '../images/japan/ishikawa/ishikawa-kanazawa-01.jpg',
         sansedai:       '../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg',
         couple_married: '../images/japan/hyogo/hyogo-arima-kinsenkawa-01.jpg',
-        scenery_photo:  '../images/japan/yamagata/yamagata-ginzan-01.jpg',
+        scenery_photo:  '../images/japan/kyoto/kyoto-fushimi-inari-01.jpg',     // ginzan-01はNG（実験器具）
         relax:          '../images/japan/kumamoto/kumamoto-aso-02.jpg',
-        active:         '../images/japan/hokkaido/hokkaido-shiretoko-01.jpg',
-        budget:         '../images/japan/kanagawa/kanagawa-kamakura-01.jpg',
-        photo_trip:     '../images/japan/yamagata/yamagata-ginzan-01.jpg',
+        active:         '../images/japan/okinawa/okinawa-sea-coast-02.jpg',     // shiretoko-01はNG（山梨）
+        budget:         '../images/japan/nara/nara-todaiji-02.jpg',             // kamakura-01はNG（富士山+湖）
+        photo_trip:     '../images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg', // ginzan-01はNG（実験器具）
         senior:         '../images/japan/hyogo/hyogo-arima-kinsenkawa-01.jpg',
       };
       const heroImgWrap = document.getElementById('purpose-hero-img-wrap');
@@ -309,33 +313,33 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     // 一覧モード
     const PURPOSE_CARD_IMGS = {
-      anniversary:    '../images/japan/kyoto/kyoto-arashiyama-01.jpg',
+      anniversary:    '../images/japan/kyoto/kyoto-arashiyama-bamboo-03.jpg',
       onsen:          '../images/japan/gunma/gunma-kusatsu-yunohata-01.jpg',
-      gourmet:        '../images/japan/osaka/osaka-dotonbori-01.jpg',
+      gourmet:        '../images/japan/osaka/osaka-castle-01.jpg',
       family:         '../images/japan/okinawa/okinawa-sea-coast-02.jpg',
       couple:         '../images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg',
       solo:           '../images/japan/kyoto/kyoto-fushimi-inari-01.jpg',
       rain:           '../images/japan/kyoto/kyoto-kinkakuji-01.jpg',
-      outdoor:        '../images/japan/nagano/nagano-kamikochi-01.jpg',
-      scenery:        '../images/japan/yamanashi/yamanashi-fuji-kawaguchi-01.jpg',
+      outdoor:        '../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg',
+      scenery:        '../images/japan/yamanashi/yamanashi-fuji-lake-02.jpg',
       history:        '../images/japan/nara/nara-todaiji-02.jpg',
       flowers:        '../images/japan/aomori/aomori-hirosaki-02.jpg',
       fujoshi:        '../images/japan/ishikawa/ishikawa-kanazawa-01.jpg',
       sansedai:       '../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg',
       couple_married: '../images/japan/hyogo/hyogo-arima-kinsenkawa-01.jpg',
-      scenery_photo:  '../images/japan/yamagata/yamagata-ginzan-01.jpg',
+      scenery_photo:  '../images/japan/kyoto/kyoto-fushimi-inari-01.jpg',
       relax:          '../images/japan/kumamoto/kumamoto-aso-02.jpg',
-      active:         '../images/japan/hokkaido/hokkaido-shiretoko-01.jpg',
-      budget:         '../images/japan/kanagawa/kanagawa-kamakura-01.jpg',
-      photo_trip:     '../images/japan/yamagata/yamagata-ginzan-01.jpg',
+      active:         '../images/japan/okinawa/okinawa-sea-coast-02.jpg',
+      budget:         '../images/japan/nara/nara-todaiji-02.jpg',
+      photo_trip:     '../images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg',
       senior:         '../images/japan/hyogo/hyogo-arima-kinsenkawa-01.jpg',
     };
     const grid = document.getElementById('purpose-grid');
     grid.innerHTML = PURPOSES_DATA.map(p => {
       const img = PURPOSE_CARD_IMGS[p.id];
       return `<div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=${p.id}'">
-        ${img ? `<div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative">
-          <img src="${img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block" loading="lazy">
+        ${img ? `<div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1a3060,#0ea5e9)">
+          <img src="${img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block" loading="lazy" onerror="this.style.display='none'">
           <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
         </div>` : ''}
         <div style="padding:14px 14px 16px;flex:1;display:flex;flex-direction:column;gap:6px">
