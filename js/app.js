@@ -719,7 +719,7 @@ window.renderPrefecturePage = function() {
       kochi: '../images/japan/kochi/kochi-katsurahama-01.jpg',
       fukuoka: '../images/japan/fukuoka/fukuoka-dazaifu-02.jpg',
       saga: '../images/japan/saga/saga-shrine-02.jpg',
-      nagasaki: '../images/japan/nagasaki/nagasaki-harbor-01.jpg',
+      nagasaki: '../images/japan/nagasaki/nagasaki-inasa-night-01.jpg',
       kumamoto: '../images/japan/kumamoto/kumamoto-castle-01.jpg',
       oita: '../images/japan/oita/oita-beppu-01.jpg',
       miyazaki: '../images/japan/miyazaki/miyazaki-coast-01.jpg',
@@ -749,9 +749,9 @@ window.renderPrefecturePage = function() {
       { src: '../images/japan/iwate/iwate-nature-01.jpg', alt: '岩手の自然' },
       { src: '../images/japan/iwate/iwate-hiraizumi-01.jpg', alt: '平泉・中尊寺' },
     ],
-    // miyagi: 全画像NG（黒画像・欧州針葉樹林）のためギャラリーなし
     miyagi: [
-      // matsushima-01（黒画像）・matsushima-02（欧州針葉樹林）は使用禁止
+      { src: '../images/japan/miyagi/miyagi-matsushima-01.jpg', alt: '松島' },
+      // matsushima-02（欧州針葉樹林）は使用禁止
     ],
     akita: [
       { src: '../images/japan/akita/akita-tazawako-01.jpg', alt: '田沢湖' },
@@ -794,6 +794,9 @@ window.renderPrefecturePage = function() {
     kanagawa: [
       { src: '../images/japan/kanagawa/kanagawa-hakone-ashinoko-01.jpg', alt: '箱根・芦ノ湖と富士山' },
       { src: '../images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg', alt: '箱根湯本の温泉街' },
+    ],
+    niigata: [
+      { src: '../images/japan/niigata/niigata-winter-01.jpg', alt: '冬の新潟・雪景色' },
     ],
     toyama: [
       { src: '../images/japan/toyama/toyama-tateyama-02.jpg', alt: '立山黒部アルペンルート' },
@@ -904,6 +907,7 @@ window.renderPrefecturePage = function() {
       // saga-castle-01（シカゴ高層ビル・米国）は使用禁止
     ],
     nagasaki: [
+      { src: '../images/japan/nagasaki/nagasaki-inasa-night-01.jpg', alt: '稲佐山からの長崎夜景' },
       // nagasaki-harbor-01（ダイビング写真）・nagasaki-nightview-02（渋谷夜景・東京）は使用禁止
     ],
     oita: [
