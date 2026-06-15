@@ -680,7 +680,7 @@ window.renderPrefecturePage = function() {
     const PREF_HERO_IMGS = {
       hokkaido: '../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg',
       aomori: '../images/japan/aomori/aomori-oirase-01.jpg',
-      iwate: '../images/japan/iwate/iwate-nature-01.jpg',
+      iwate: '../images/japan/iwate/iwate-hiraizumi-01.jpg',
       miyagi: '../images/japan/miyagi/miyagi-matsushima-03.jpg',
       akita: '../images/japan/akita/akita-tazawako-01.jpg',
       yamagata: '../images/japan/yamagata/yamagata-zao-02.jpg',
@@ -695,7 +695,7 @@ window.renderPrefecturePage = function() {
       niigata: '../images/japan/niigata/niigata-winter-01.jpg',
       toyama: '../images/japan/toyama/toyama-tateyama-02.jpg',
       ishikawa: '../images/japan/ishikawa/ishikawa-kanazawa-01.jpg',
-      fukui: '../images/japan/fukui/fukui-nature-02.jpg',
+      fukui: '../images/japan/fukui/fukui-tojinbo-01.jpg',
       yamanashi: '../images/japan/yamanashi/yamanashi-fuji-kawaguchi-01.jpg',
       nagano: '../images/japan/nagano/nagano-kamikochi-01.jpg',
       gifu: '../images/japan/gifu/gifu-shirakawago-01.jpg',
