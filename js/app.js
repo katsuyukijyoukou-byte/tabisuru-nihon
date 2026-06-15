@@ -706,7 +706,7 @@ window.renderPrefecturePage = function() {
       kyoto: '../images/japan/kyoto/kyoto-fushimi-inari-01.jpg',
       osaka: '../images/japan/osaka/osaka-castle-01.jpg',
       hyogo: '../images/japan/hyogo/hyogo-himeji-01.jpg',
-      nara: '../images/japan/nara/nara-deer-01.jpg',
+      nara: '../images/japan/nara/nara-todaiji-02.jpg',
       wakayama: '../images/japan/wakayama/wakayama-nachi-01.jpg',
       tottori: '../images/japan/tottori/tottori-sanddune-02.jpg',
       shimane: '../images/japan/shimane/shimane-izumo-01.jpg',
@@ -855,7 +855,7 @@ window.renderPrefecturePage = function() {
       { src: '../images/japan/hyogo/hyogo-kobe-port-02.jpg', alt: '神戸ポートタワー' },
     ],
     nara: [
-      { src: '../images/japan/nara/nara-deer-01.jpg', alt: '奈良の鹿' },
+      { src: '../images/japan/nara/nara-todaiji-02.jpg', alt: '奈良の鹿' },
       { src: '../images/japan/nara/nara-todaiji-02.jpg', alt: '東大寺' },
     ],
     wakayama: [
