@@ -40,6 +40,55 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- 都道府県詳細 -->
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=hokkaido</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=aomori</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=iwate</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=miyagi</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=akita</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=yamagata</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=fukushima</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=ibaraki</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=tochigi</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=gunma</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=saitama</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=chiba</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=tokyo</loc><priority>0.8</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=kanagawa</loc><priority>0.8</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=niigata</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=toyama</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=ishikawa</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=fukui</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=yamanashi</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=nagano</loc><priority>0.8</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=gifu</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=shizuoka</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=aichi</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=mie</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=shiga</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=kyoto</loc><priority>0.8</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=osaka</loc><priority>0.8</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=hyogo</loc><priority>0.8</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=nara</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=wakayama</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=tottori</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=shimane</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=okayama</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=hiroshima</loc><priority>0.8</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=yamaguchi</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=tokushima</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=kagawa</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=ehime</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=kochi</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=fukuoka</loc><priority>0.8</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=saga</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=nagasaki</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=kumamoto</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=oita</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=miyazaki</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=kagoshima</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=okinawa</loc><priority>0.8</priority></url>
+
   <!-- 月別詳細 -->
   <url><loc>https://tabisuru-nihon.github.io/templates/monthly-detail.html?month=1</loc><priority>0.6</priority></url>
   <url><loc>https://tabisuru-nihon.github.io/templates/monthly-detail.html?month=2</loc><priority>0.6</priority></url>
