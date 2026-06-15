@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://tabisuru-nihon.github.io/images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <link rel="stylesheet" href="../css/style.css?v=20260616">
+  <link rel="stylesheet" href="../css/style.css?v=20260617">
 </head>
 <body>
 
@@ -78,7 +78,289 @@
       </div>
     </div>
 
-    <div class="purpose-grid" id="purpose-grid"></div>
+    <div class="purpose-grid" id="purpose-grid">
+      <!-- 静的フォールバック：JSが動く前でも20件のカードが表示される。JSが起動すると差し替わる -->
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=anniversary'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#3b1a5c,#7c3aed)">
+          <img src="../images/japan/kyoto/kyoto-arashiyama-bamboo-03.jpg" alt="記念日旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">💍</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">記念日旅行</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">誕生日・結婚記念日・プロポーズ。高級旅館・特別プランで忘れられない一日を。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：京都・有馬温泉・湯布院</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">カップル</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">夫婦</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=couple_married'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#7c2d12,#c2410c)">
+          <img src="../images/japan/hyogo/hyogo-arima-kinsenkawa-01.jpg" alt="夫婦旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">👫</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">夫婦旅</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">ふたりで過ごす特別な時間。城崎・有馬・草津などの温泉宿で非日常を。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：城崎温泉・有馬温泉・湯布院</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">夫婦</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">温泉</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=couple'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1a3060,#0ea5e9)">
+          <img src="../images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg" alt="カップル旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">💕</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">カップル旅行</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">ふたりの思い出になる旅。宮島・京都・函館など絵になるスポットが満載。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：宮島・京都・函館</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">カップル</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">絶景</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=family'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#0c4a6e,#0284c7)">
+          <img src="../images/japan/okinawa/okinawa-sea-coast-02.jpg" alt="子連れ旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">👨‍👩‍👧</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">子連れ旅行</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">子どもが喜ぶ体験と安心の設備。沖縄・北海道・那須高原など子連れに最適な旅先。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：沖縄・北海道・那須高原</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">ファミリー</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">子連れ</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=sansedai'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#166534,#16a34a)">
+          <img src="../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg" alt="三世代旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">👴</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">三世代旅行</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">おじいちゃん・おばあちゃんと孫まで楽しめる旅。バリアフリーと移動のしやすさを重視。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：温泉旅館・城崎・箱根</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">家族全員</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">温泉</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=solo'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1a3060,#0ea5e9)">
+          <img src="../images/japan/kyoto/kyoto-fushimi-inari-01.jpg" alt="一人旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">🎒</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">一人旅</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">自分のペースで行きたい場所へ。京都・金沢・長崎など一人旅向きの都市を厳選。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：京都・金沢・長崎</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">一人旅</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">自由旅行</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=fujoshi'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#701a75,#a21caf)">
+          <img src="../images/japan/ishikawa/ishikawa-kanazawa-01.jpg" alt="女子旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">👩</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">女子旅</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">女友達との旅行。映えスポット・スイーツ・ショッピングを楽しむ旅先を提案。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：京都・金沢・城崎温泉</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">女子旅</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">映えスポット</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=onsen'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#0c3a5c,#0369a1)">
+          <img src="../images/japan/gunma/gunma-kusatsu-yunohata-01.jpg" alt="温泉旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">♨️</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">温泉旅行</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">日常の疲れを癒したい。泉質・景色・宿の雰囲気を重視した温泉旅行ガイド。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：草津・箱根・有馬温泉</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">温泉</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">癒し</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=gourmet'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#7c2d12,#c2410c)">
+          <img src="../images/japan/osaka/osaka-castle-01.jpg" alt="グルメ旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">🍜</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">グルメ旅</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">食べることが目的の旅。市場・屋台・名店めぐりで胃袋を満たす食の旅行。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：大阪・福岡・金沢</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">グルメ</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">食べ歩き</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=history'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1a3060,#2563a0)">
+          <img src="../images/japan/nara/nara-todaiji-02.jpg" alt="歴史・神社仏閣めぐり" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">⛩️</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">歴史・神社仏閣めぐり</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">神社・仏閣・城・古民家。日本の歴史と文化を深く体感する旅。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：京都・奈良・日光</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">歴史</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">文化</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=scenery'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#0c3a5c,#0ea5e9)">
+          <img src="../images/japan/yamanashi/yamanashi-fuji-lake-02.jpg" alt="絶景旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">🏔️</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">絶景旅</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">一生に一度は見たい絶景スポット。富士山・知床・宮島など日本を代表する風景へ。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：富士五湖・知床・宮島</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">絶景</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">自然</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=scenery_photo'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#4c1d95,#6d28d9)">
+          <img src="../images/japan/kyoto/kyoto-fushimi-inari-01.jpg" alt="写真映え旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">📸</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">写真映え旅</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">SNSに上げたくなる絶景・映えスポット。インスタ映えする場所を旅ノアが案内。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：伏見稲荷・竹富島・蔵王</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">写真</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">絶景</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=rain'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1e3a5f,#2563a0)">
+          <img src="../images/japan/kyoto/kyoto-kinkakuji-01.jpg" alt="雨の日旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">☔</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">雨の日旅行</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">雨でも楽しめる美術館・水族館・温泉・屋内観光スポットを厳選してご案内。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：京都・大阪・金沢</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">雨でもOK</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">室内観光</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=relax'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#064e3b,#059669)">
+          <img src="../images/japan/kumamoto/kumamoto-aso-02.jpg" alt="のんびり癒やし旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">😌</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">のんびり癒やし旅</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">急がず、詰め込まず、ただゆっくり過ごす旅。旅館でのんびり・温泉・自然散策。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：湯布院・草津・阿蘇</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">癒し</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">温泉</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=active'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#0c4a6e,#0891b2)">
+          <img src="../images/japan/okinawa/okinawa-sea-coast-02.jpg" alt="アクティブ旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">🏄</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">アクティブ旅</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">体を動かす旅。サーフィン・シュノーケル・カヤック・ラフティングなど体験型の旅。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：沖縄・北海道・宮崎</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">アクティブ</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">体験</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=outdoor'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1a3a1a,#2d6a2d)">
+          <img src="../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg" alt="登山・自然旅" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">⛰️</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">登山・自然旅</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">百名山・トレッキング・自然散策。北アルプス・大雪山・屋久島など大自然へ。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：北海道・長野・屋久島</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">登山</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">自然</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=flowers'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#831843,#db2777)">
+          <img src="../images/japan/aomori/aomori-hirosaki-02.jpg" alt="美術館・博物館めぐり" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">🖼️</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">美術館・博物館めぐり</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">国内屈指の美術館・博物館を旅のテーマに。東京・大阪・直島のアートを深掘り。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：東京・直島・金沢21世紀美術館</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">アート</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">文化</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=solo'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1c3d5a,#2563a0)">
+          <img src="../images/japan/ishikawa/ishikawa-kanazawa-01.jpg" alt="車なし旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">🚃</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">車なし旅行</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">新幹線・電車・バスだけで楽しめる旅先。免許なし・ペーパードライバーでも安心。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：京都・金沢・長崎</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">電車OK</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">車なし</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=budget'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1a3060,#0ea5e9)">
+          <img src="../images/japan/kyoto/kyoto-arashiyama-bamboo-03.jpg" alt="週末旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">🌅</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">週末旅行</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">土日2日間でも満足できる旅先。東京から近い温泉・歴史・自然スポットを厳選。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：箱根・鎌倉・草津・日光</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">週末</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">短期</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+      <div class="purpose-card" style="cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column" onclick="location.href='purpose.html?id=budget'">
+        <div style="height:120px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative;background:linear-gradient(135deg,#1a3060,#374151)">
+          <img src="../images/japan/nara/nara-todaiji-02.jpg" alt="予算を抑えた旅行" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.6))"></div>
+          <div style="position:absolute;bottom:8px;left:10px;font-size:1.4rem">💴</div>
+        </div>
+        <div style="padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">予算を抑えた旅行</div>
+          <div style="font-size:0.77rem;line-height:1.6;color:var(--text-light);flex:1">コスパ最強の旅先と宿を旅ノアが提案。無料スポット・格安宿・早割フル活用。</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 おすすめ：奈良・福岡・京都</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">コスパ</span><span style="font-size:0.65rem;padding:2px 7px;border-radius:99px;background:var(--gold-pale);color:var(--navy);font-weight:700">節約</span></div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:2px">詳しく見る →</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -143,8 +425,8 @@
   </div>
 </footer>
 
-<script src="../data/purposes.js?v=20260616"></script>
-<script src="../js/app.js?v=20260616"></script>
+<script src="../data/purposes.js?v=20260617"></script>
+<script src="../js/app.js?v=20260617"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const backTop = document.getElementById('back-to-top');

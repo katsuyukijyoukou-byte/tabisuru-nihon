@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://tabisuru-nihon.github.io/images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <link rel="stylesheet" href="../css/style.css?v=20260616">
+  <link rel="stylesheet" href="../css/style.css?v=20260617">
 </head>
 <body>
 
@@ -86,7 +86,69 @@
       <button class="region-btn" data-cat="sweets">🍡 スイーツ</button>
     </div>
 
-    <div id="specialty-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px"></div>
+    <div id="specialty-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px">
+      <!-- 静的フォールバック：JSが動く前でもグルメカードが表示される。JSが起動すると差し替わる -->
+      <div style="background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border);display:flex;flex-direction:column">
+        <div style="height:140px;position:relative;overflow:hidden"><img src="../images/japan/hokkaido/hokkaido-noboribetsu-jigokudani-01.jpg" alt="北海道の海鮮" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#0c4a6e,#0284c7)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:8px;left:12px;font-size:1.6rem">🦞</div></div>
+        <div style="padding:14px 16px 16px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:1rem;font-weight:800;color:var(--navy)">北海道の海鮮丼</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 北海道 ／ 🦞 海鮮・魚介</div>
+          <div style="font-size:0.8rem;line-height:1.6;color:var(--text-light);flex:1">ウニ・イクラ・カニが豪快に乗る究極の海鮮丼。函館朝市・小樽・札幌の市場が有名。</div>
+          <div style="font-size:0.73rem;color:var(--text-muted)">💴 価格帯：¥2,000〜¥6,000 ／ 旬：通年</div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border);display:flex;flex-direction:column">
+        <div style="height:140px;position:relative;overflow:hidden;background:linear-gradient(135deg,#7c2d12,#c2410c)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3rem">🍣</div><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:8px;left:12px;font-size:1.6rem">🍣</div></div>
+        <div style="padding:14px 16px 16px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:1rem;font-weight:800;color:var(--navy)">金沢の回転寿司</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 石川県 ／ 🦞 海鮮・魚介</div>
+          <div style="font-size:0.8rem;line-height:1.6;color:var(--text-light);flex:1">能登半島の新鮮魚介をリーズナブルに。のどぐろ・甘エビ・ズワイガニは絶品。</div>
+          <div style="font-size:0.73rem;color:var(--text-muted)">💴 価格帯：¥1,000〜¥3,000 ／ 旬：冬（カニ）</div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border);display:flex;flex-direction:column">
+        <div style="height:140px;position:relative;overflow:hidden"><img src="../images/japan/osaka/osaka-castle-01.jpg" alt="大阪のたこ焼き" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#92400e,#b45309)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:8px;left:12px;font-size:1.6rem">🐙</div></div>
+        <div style="padding:14px 16px 16px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:1rem;font-weight:800;color:var(--navy)">大阪のたこ焼き</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 大阪府 ／ 🍢 B級グルメ</div>
+          <div style="font-size:0.8rem;line-height:1.6;color:var(--text-light);flex:1">外カリ・中トロの本場たこ焼き。道頓堀・新世界エリアには名店が軒を連ねる。</div>
+          <div style="font-size:0.73rem;color:var(--text-muted)">💴 価格帯：¥400〜¥800 ／ 旬：通年</div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border);display:flex;flex-direction:column">
+        <div style="height:140px;position:relative;overflow:hidden;background:linear-gradient(135deg,#7c2d12,#c2410c)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3rem">🥩</div><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:8px;left:12px;font-size:1.6rem">🥩</div></div>
+        <div style="padding:14px 16px 16px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:1rem;font-weight:800;color:var(--navy)">飛騨牛の朴葉焼き</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 岐阜県 ／ 🥩 肉料理</div>
+          <div style="font-size:0.8rem;line-height:1.6;color:var(--text-light);flex:1">A5ランクの飛騨牛を朴の葉の上で焼く郷土料理。高山市の飛騨古川周辺で味わえる。</div>
+          <div style="font-size:0.73rem;color:var(--text-muted)">💴 価格帯：¥3,000〜¥8,000 ／ 旬：通年</div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border);display:flex;flex-direction:column">
+        <div style="height:140px;position:relative;overflow:hidden"><img src="../images/japan/kyoto/kyoto-kinkakuji-01.jpg" alt="京都の懐石料理" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a3060,#2563a0)'"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:8px;left:12px;font-size:1.6rem">🍱</div></div>
+        <div style="padding:14px 16px 16px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:1rem;font-weight:800;color:var(--navy)">京都の懐石料理</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 京都府 ／ 🍱 郷土料理</div>
+          <div style="font-size:0.8rem;line-height:1.6;color:var(--text-light);flex:1">四季の食材を活かした日本料理の粋。祇園・木屋町の名料亭で本物の懐石を体験。</div>
+          <div style="font-size:0.73rem;color:var(--text-muted)">💴 価格帯：¥5,000〜¥30,000 ／ 旬：通年</div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1.5px solid var(--border);display:flex;flex-direction:column">
+        <div style="height:140px;position:relative;overflow:hidden;background:linear-gradient(135deg,#831843,#db2777)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3rem">🍡</div><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.7))"></div><div style="position:absolute;bottom:8px;left:12px;font-size:1.6rem">🍡</div></div>
+        <div style="padding:14px 16px 16px;flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:1rem;font-weight:800;color:var(--navy)">草津温泉の湯もみ餅</div>
+          <div style="font-size:0.7rem;color:var(--text-muted)">🗾 群馬県 ／ 🍡 スイーツ</div>
+          <div style="font-size:0.8rem;line-height:1.6;color:var(--text-light);flex:1">草津温泉の湯もみ体験と一緒に楽しむ名物もち。湯の花まんじゅうも外せない。</div>
+          <div style="font-size:0.73rem;color:var(--text-muted)">💴 価格帯：¥300〜¥800 ／ 旬：通年</div>
+          <div style="font-size:0.73rem;color:var(--teal);font-weight:700;margin-top:4px">詳しく見る →</div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>
@@ -110,8 +172,8 @@
   </div>
 </footer>
 
-<script src="../data/specialties.js?v=20260616"></script>
-<script src="../js/app.js?v=20260616"></script>
+<script src="../data/specialties.js?v=20260617"></script>
+<script src="../js/app.js?v=20260617"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const backTop = document.getElementById('back-to-top');

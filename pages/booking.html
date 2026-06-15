@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://tabisuru-nihon.github.io/images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <link rel="stylesheet" href="../css/style.css?v=20260616">
+  <link rel="stylesheet" href="../css/style.css?v=20260617">
 </head>
 <body>
 
@@ -67,7 +67,34 @@
         <div class="section-label">⚡ QUICK GUIDE</div>
         <h2 class="section-title">シーン別おすすめサイト</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px" id="guide-grid"></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px" id="guide-grid">
+        <!-- 静的フォールバック -->
+        <div style="background:var(--card-bg);border-radius:var(--radius-lg);padding:16px 18px;border:1.5px solid var(--border);display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:1rem;font-weight:800;color:var(--navy)">🛒 ポイント重視の旅</div>
+          <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">楽天市場を日常使いする方なら<strong>楽天トラベル</strong>が最強。SPU対象で還元率が跳ね上がる。</div>
+          <div style="font-size:0.72rem;font-weight:700;color:var(--teal)">→ 楽天トラベル・Yahoo!トラベル（PayPay）</div>
+        </div>
+        <div style="background:var(--card-bg);border-radius:var(--radius-lg);padding:16px 18px;border:1.5px solid var(--border);display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:1rem;font-weight:800;color:var(--navy)">👑 高級旅館・特別な宿</div>
+          <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">料亭旅館・五つ星ホテルは<strong>一休.com</strong>が圧倒的。高級宿の掲載数・口コミ精度がトップ。</div>
+          <div style="font-size:0.72rem;font-weight:700;color:var(--teal)">→ 一休.com・るるぶトラベル</div>
+        </div>
+        <div style="background:var(--card-bg);border-radius:var(--radius-lg);padding:16px 18px;border:1.5px solid var(--border);display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:1rem;font-weight:800;color:var(--navy)">🌍 海外旅行・格安ホテル</div>
+          <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">世界中のホテルを検索するなら<strong>Booking.com</strong>か<strong>Agoda</strong>。アジアの格安宿に強み。</div>
+          <div style="font-size:0.72rem;font-weight:700;color:var(--teal)">→ Booking.com・Agoda</div>
+        </div>
+        <div style="background:var(--card-bg);border-radius:var(--radius-lg);padding:16px 18px;border:1.5px solid var(--border);display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:1rem;font-weight:800;color:var(--navy)">👨‍👩‍👧 子連れ・家族旅行</div>
+          <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">子連れプラン・貸し切り露天・子ども料金が詳細に表示される<strong>じゃらん</strong>がおすすめ。</div>
+          <div style="font-size:0.72rem;font-weight:700;color:var(--teal)">→ じゃらん・楽天トラベル</div>
+        </div>
+        <div style="background:var(--card-bg);border-radius:var(--radius-lg);padding:16px 18px;border:1.5px solid var(--border);display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:1rem;font-weight:800;color:var(--navy)">✈️ ツアーパック・添乗員付き</div>
+          <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">ホテル＋交通のセットや添乗員付きパックなら<strong>JTB</strong>・<strong>近畿日本ツーリスト</strong>が安心。</div>
+          <div style="font-size:0.72rem;font-weight:700;color:var(--teal)">→ JTB・近畿日本ツーリスト</div>
+        </div>
+      </div>
     </div>
 
     <!-- 各サイト詳細 -->
@@ -76,7 +103,171 @@
         <div class="section-label">📊 DETAIL</div>
         <h2 class="section-title">サイト別詳細比較</h2>
       </div>
-      <div class="booking-grid" id="booking-grid"></div>
+      <div class="booking-grid" id="booking-grid">
+        <!-- 静的フォールバック：JSが動く前でも9サイトのカードが表示される。JSが起動すると差し替わる -->
+        <div class="booking-card" style="padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+          <div style="padding:16px 18px 0">
+            <div style="font-size:1.05rem;font-weight:900;color:var(--navy);margin-bottom:4px">🛒 楽天トラベル</div>
+            <div style="display:inline-block;font-size:0.65rem;padding:2px 8px;border-radius:99px;background:#BF0000;color:white;font-weight:700;margin-bottom:8px">国内最大手</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">向いている人</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">楽天ユーザー全員・ポイントを貯めたい方・初めて旅行予約するすべての方。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">強み</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">国内最多掲載件数。楽天ポイントがザクザク貯まる。SPU対象でさらにお得。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">注意点</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">高級旅館は一休.comに劣る場合あり。会員登録が前提。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">おすすめの使い方</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:12px">「楽天スーパーセール」「お買い物マラソン」に合わせて予約するとポイント還元率が最大化。</div>
+          </div>
+          <div style="padding:0 18px 16px;margin-top:auto">
+            <div style="font-size:0.67rem;color:var(--text-muted);margin-bottom:6px">※PR・アフィリエイトリンクを含みます</div>
+            <a href="https://travel.rakuten.co.jp/" target="_blank" rel="noopener" style="display:block;text-align:center;background:#BF0000;color:white;padding:10px;border-radius:8px;font-size:0.85rem;font-weight:700;text-decoration:none">楽天トラベルで探す →</a>
+          </div>
+        </div>
+        <div class="booking-card" style="padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+          <div style="padding:16px 18px 0">
+            <div style="font-size:1.05rem;font-weight:900;color:var(--navy);margin-bottom:4px">🌸 じゃらん</div>
+            <div style="display:inline-block;font-size:0.65rem;padding:2px 8px;border-radius:99px;background:#E85298;color:white;font-weight:700;margin-bottom:8px">国内旅行特化</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">向いている人</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">子連れ家族・温泉旅行・じゃらん限定プランを探したい方。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">強み</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">国内旅行に完全特化。じゃらん限定プランが豊富。子どもの詳細料金が見やすい。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">注意点</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">海外ホテルは掲載なし。ポイント倍率は楽天より控えめ。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">おすすめの使い方</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:12px">「じゃらん限定プラン」と「早割」の組み合わせで国内温泉旅行が格安に。</div>
+          </div>
+          <div style="padding:0 18px 16px;margin-top:auto">
+            <div style="font-size:0.67rem;color:var(--text-muted);margin-bottom:6px">※PR・アフィリエイトリンクを含みます</div>
+            <a href="https://www.jalan.net/" target="_blank" rel="noopener" style="display:block;text-align:center;background:#E85298;color:white;padding:10px;border-radius:8px;font-size:0.85rem;font-weight:700;text-decoration:none">じゃらんで探す →</a>
+          </div>
+        </div>
+        <div class="booking-card" style="padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+          <div style="padding:16px 18px 0">
+            <div style="font-size:1.05rem;font-weight:900;color:var(--navy);margin-bottom:4px">👑 一休.com</div>
+            <div style="display:inline-block;font-size:0.65rem;padding:2px 8px;border-radius:99px;background:#D4AF37;color:#1a1a1a;font-weight:700;margin-bottom:8px">高級宿特化</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">向いている人</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">記念日・ハネムーン・高級旅館に泊まりたい方。質にこだわる方。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">強み</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">厳選された高品質旅館のみ掲載。口コミの精度が高い。プレミアム宿の掲載数が国内No.1。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">注意点</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">格安宿・ビジネスホテルはほぼ掲載なし。高額帯が中心。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">おすすめの使い方</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:12px">記念日プランや「特別室」「部屋食」などの特別なプランを比較するのに最適。</div>
+          </div>
+          <div style="padding:0 18px 16px;margin-top:auto">
+            <div style="font-size:0.67rem;color:var(--text-muted);margin-bottom:6px">※PR・アフィリエイトリンクを含みます</div>
+            <a href="https://www.ikyu.com/" target="_blank" rel="noopener" style="display:block;text-align:center;background:#D4AF37;color:#1a1a1a;padding:10px;border-radius:8px;font-size:0.85rem;font-weight:700;text-decoration:none">一休.comで探す →</a>
+          </div>
+        </div>
+        <div class="booking-card" style="padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+          <div style="padding:16px 18px 0">
+            <div style="font-size:1.05rem;font-weight:900;color:var(--navy);margin-bottom:4px">💳 Yahoo!トラベル</div>
+            <div style="display:inline-block;font-size:0.65rem;padding:2px 8px;border-radius:99px;background:#FF0033;color:white;font-weight:700;margin-bottom:8px">PayPay還元</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">向いている人</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">PayPayユーザー・SoftBankユーザー・Yahoo!プレミアム会員。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">強み</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">PayPayポイント還元が強力。Yahoo!プレミアムで割引多数。じゃらんと同じ在庫を使う場合が多い。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">注意点</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">PayPayユーザー以外にはメリットが薄い。海外には対応していない。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">おすすめの使い方</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:12px">「5のつく日」「ゾロ目の日」にPayPayで支払うとポイント還元が最大化。</div>
+          </div>
+          <div style="padding:0 18px 16px;margin-top:auto">
+            <div style="font-size:0.67rem;color:var(--text-muted);margin-bottom:6px">※PR・アフィリエイトリンクを含みます</div>
+            <a href="https://travel.yahoo.co.jp/" target="_blank" rel="noopener" style="display:block;text-align:center;background:#FF0033;color:white;padding:10px;border-radius:8px;font-size:0.85rem;font-weight:700;text-decoration:none">Yahoo!トラベルで探す →</a>
+          </div>
+        </div>
+        <div class="booking-card" style="padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+          <div style="padding:16px 18px 0">
+            <div style="font-size:1.05rem;font-weight:900;color:var(--navy);margin-bottom:4px">🌍 Booking.com</div>
+            <div style="display:inline-block;font-size:0.65rem;padding:2px 8px;border-radius:99px;background:#003580;color:white;font-weight:700;margin-bottom:8px">世界最大手</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">向いている人</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">海外旅行メインの方・ビジネス旅行者・世界中のホテルを比較したい方。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">強み</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">世界220カ国以上のホテルを掲載。無料キャンセル対応宿が多い。レビュー数が圧倒的。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">注意点</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">日本の旅館・和室文化の情報が薄い。日本語サポートに限界あり。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">おすすめの使い方</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:12px">「無料キャンセル」フィルターで予約し、直前まで他を比較できる柔軟な予約スタイルに。</div>
+          </div>
+          <div style="padding:0 18px 16px;margin-top:auto">
+            <div style="font-size:0.67rem;color:var(--text-muted);margin-bottom:6px">※PR・アフィリエイトリンクを含みます</div>
+            <a href="https://www.booking.com/" target="_blank" rel="noopener" style="display:block;text-align:center;background:#003580;color:white;padding:10px;border-radius:8px;font-size:0.85rem;font-weight:700;text-decoration:none">Booking.comで探す →</a>
+          </div>
+        </div>
+        <div class="booking-card" style="padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+          <div style="padding:16px 18px 0">
+            <div style="font-size:1.05rem;font-weight:900;color:var(--navy);margin-bottom:4px">🌏 Agoda</div>
+            <div style="display:inline-block;font-size:0.65rem;padding:2px 8px;border-radius:99px;background:#5392FF;color:white;font-weight:700;margin-bottom:8px">アジア格安強し</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">向いている人</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">アジア・東南アジアへの旅行者・格安ホテルを探したい方。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">強み</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">アジア圏で特に安い価格が多い。独自割引クーポンが頻繁に発行。Agodaコインで次回割引。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">注意点</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">日本の和室・温泉旅館文化の説明が薄い。日本語カスタマーサポートが弱め。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">おすすめの使い方</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:12px">Booking.comと価格比較しながら、クーポン適用でより安い方を選ぶのがコツ。</div>
+          </div>
+          <div style="padding:0 18px 16px;margin-top:auto">
+            <div style="font-size:0.67rem;color:var(--text-muted);margin-bottom:6px">※PR・アフィリエイトリンクを含みます</div>
+            <a href="https://www.agoda.com/ja-jp/" target="_blank" rel="noopener" style="display:block;text-align:center;background:#5392FF;color:white;padding:10px;border-radius:8px;font-size:0.85rem;font-weight:700;text-decoration:none">Agodaで探す →</a>
+          </div>
+        </div>
+        <div class="booking-card" style="padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+          <div style="padding:16px 18px 0">
+            <div style="font-size:1.05rem;font-weight:900;color:var(--navy);margin-bottom:4px">✈️ JTB</div>
+            <div style="display:inline-block;font-size:0.65rem;padding:2px 8px;border-radius:99px;background:#0056A0;color:white;font-weight:700;margin-bottom:8px">大手旅行代理店</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">向いている人</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">パックツアー希望の方・高齢者・旅行プランをすべておまかせしたい方。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">強み</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">交通＋宿のセットが豊富。添乗員付きツアーが充実。安心のサポート体制。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">注意点</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">個別手配と比べると割高な場合がある。自由度が低い。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">おすすめの使い方</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:12px">「旅行の計画が面倒」という方は、JTBのパックツアーで交通・宿・観光をまとめて依頼。</div>
+          </div>
+          <div style="padding:0 18px 16px;margin-top:auto">
+            <div style="font-size:0.67rem;color:var(--text-muted);margin-bottom:6px">※PR・アフィリエイトリンクを含みます</div>
+            <a href="https://www.jtb.co.jp/" target="_blank" rel="noopener" style="display:block;text-align:center;background:#0056A0;color:white;padding:10px;border-radius:8px;font-size:0.85rem;font-weight:700;text-decoration:none">JTBで探す →</a>
+          </div>
+        </div>
+        <div class="booking-card" style="padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+          <div style="padding:16px 18px 0">
+            <div style="font-size:1.05rem;font-weight:900;color:var(--navy);margin-bottom:4px">📖 るるぶトラベル</div>
+            <div style="display:inline-block;font-size:0.65rem;padding:2px 8px;border-radius:99px;background:#E86100;color:white;font-weight:700;margin-bottom:8px">旅行ガイド連携</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">向いている人</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">るるぶ雑誌読者・観光情報と予約を一緒に探したい方。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">強み</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">るるぶ旅行ガイドと連動。観光スポット情報と宿の比較が同時にできる。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">注意点</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">掲載件数は楽天・じゃらんに劣る。ポイント制度は控えめ。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">おすすめの使い方</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:12px">旅行先の観光情報を読みながらそのまま宿を予約できる「読む→予約」の流れが便利。</div>
+          </div>
+          <div style="padding:0 18px 16px;margin-top:auto">
+            <div style="font-size:0.67rem;color:var(--text-muted);margin-bottom:6px">※PR・アフィリエイトリンクを含みます</div>
+            <a href="https://rurubu.travel/" target="_blank" rel="noopener" style="display:block;text-align:center;background:#E86100;color:white;padding:10px;border-radius:8px;font-size:0.85rem;font-weight:700;text-decoration:none">るるぶトラベルで探す →</a>
+          </div>
+        </div>
+        <div class="booking-card" style="padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:var(--card-bg);box-shadow:var(--shadow-sm);border:1.5px solid var(--border)">
+          <div style="padding:16px 18px 0">
+            <div style="font-size:1.05rem;font-weight:900;color:var(--navy);margin-bottom:4px">🗾 近畿日本ツーリスト</div>
+            <div style="display:inline-block;font-size:0.65rem;padding:2px 8px;border-radius:99px;background:#00457C;color:white;font-weight:700;margin-bottom:8px">老舗旅行会社</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">向いている人</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">国内旅行・シニア向けツアー・バスツアーを探している方。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">強み</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">国内旅行パックの品質が高い。バスツアー・温泉旅行のプランが充実。シニアに優しい設計。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">注意点</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:8px">オンライン予約の使い勝手は他社に劣る。若い世代は他社の方が慣れている。</div>
+            <div style="font-size:0.77rem;color:var(--text-muted);font-weight:700;margin-bottom:2px">おすすめの使い方</div>
+            <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;margin-bottom:12px">「バスで行く温泉ツアー」「三世代旅行パック」など、国内旅行の特別プランを探すのに最適。</div>
+          </div>
+          <div style="padding:0 18px 16px;margin-top:auto">
+            <div style="font-size:0.67rem;color:var(--text-muted);margin-bottom:6px">※PR・アフィリエイトリンクを含みます</div>
+            <a href="https://www.knt.co.jp/" target="_blank" rel="noopener" style="display:block;text-align:center;background:#00457C;color:white;padding:10px;border-radius:8px;font-size:0.85rem;font-weight:700;text-decoration:none">近畿日本ツーリストで探す →</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- 徹底比較表 -->
@@ -242,8 +433,8 @@
   </div>
 </footer>
 
-<script src="../data/booking.js?v=20260616"></script>
-<script src="../js/app.js?v=20260616"></script>
+<script src="../data/booking.js?v=20260617"></script>
+<script src="../js/app.js?v=20260617"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const backTop = document.getElementById('back-to-top');

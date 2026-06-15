@@ -15,7 +15,7 @@
   <meta property="og:image" content="https://tabisuru-nihon.github.io/images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <link rel="stylesheet" href="css/style.css?v=20260616">
+  <link rel="stylesheet" href="css/style.css?v=20260617">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -642,6 +642,7 @@
             <input type="text" id="chat2-input" placeholder="旅の悩みを入力（例：草津と箱根どっちが良い？）">
             <button class="btn-send" id="chat2-send">送信</button>
           </div>
+          <div id="chat2-empty-error" style="display:none;font-size:0.75rem;color:#dc2626;padding:4px 4px 0;font-weight:600">何か入力してから送信してください</div>
         </div>
       </div>
     </div>
@@ -777,14 +778,14 @@
   </div>
 </footer>
 
-<script src="data/prefectures.js?v=20260616"></script>
-<script src="data/onsens.js?v=20260616"></script>
-<script src="data/monthly.js?v=20260616"></script>
-<script src="data/purposes.js?v=20260616"></script>
-<script src="data/booking.js?v=20260616"></script>
-<script src="data/specialties.js?v=20260616"></script>
+<script src="data/prefectures.js?v=20260617"></script>
+<script src="data/onsens.js?v=20260617"></script>
+<script src="data/monthly.js?v=20260617"></script>
+<script src="data/purposes.js?v=20260617"></script>
+<script src="data/booking.js?v=20260617"></script>
+<script src="data/specialties.js?v=20260617"></script>
 <script src="js/chat.js"></script>
-<script src="js/app.js?v=20260616"></script>
+<script src="js/app.js?v=20260617"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -1192,6 +1193,32 @@ document.addEventListener('DOMContentLoaded', () => {
         { role: 'noa', text: '旅ノアです！なんでも聞いてください😊\n\n「草津vs箱根どっちがいい？」「子連れで行けるおすすめは？」など、旅の悩みを気軽に相談してみて！' }
       ],
     });
+  }
+
+  // 空入力エラー制御
+  const chat2Input = document.getElementById('chat2-input');
+  const chat2Send = document.getElementById('chat2-send');
+  const chat2ErrEl = document.getElementById('chat2-empty-error');
+  if (chat2Input && chat2Send && chat2ErrEl) {
+    chat2Input.addEventListener('input', () => {
+      if (chat2Input.value.trim()) chat2ErrEl.style.display = 'none';
+    });
+    chat2Send.addEventListener('click', (e) => {
+      if (!chat2Input.value.trim()) {
+        e.stopImmediatePropagation();
+        chat2ErrEl.style.display = 'block';
+        chat2Input.focus();
+      } else {
+        chat2ErrEl.style.display = 'none';
+      }
+    }, true);
+    chat2Input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !chat2Input.value.trim()) {
+        e.stopImmediatePropagation();
+        chat2ErrEl.style.display = 'block';
+        chat2Input.focus();
+      }
+    }, true);
   }
 
   // チャット例文ボタン → chat2-input に自動入力
