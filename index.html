@@ -118,7 +118,7 @@
       <div class="fh-cta">
         <a href="pages/monthly.html" class="fh-btn primary">📅 季節のおすすめを見る</a>
         <a href="pages/onsen.html" class="fh-btn secondary">♨️ 温泉地から探す</a>
-        <a href="#chat-section" class="fh-btn ghost">💬 旅ノアに相談する</a>
+        <a href="javascript:void(0)" id="fh-open-noa" class="fh-btn ghost">💬 旅ノアに相談する</a>
       </div>
     </div>
 
@@ -1043,6 +1043,40 @@
   </div>
 </footer>
 
+<!-- ===== 旅ノア フロートウィジェット ===== -->
+<button id="noa-float-btn" class="noa-float-btn" aria-label="旅ノアに相談する">
+  <div class="noa-float-icon">
+    <img src="images/character/base/noa-purple-kimono-wink.png" alt="旅ノア">
+  </div>
+  <span class="noa-float-balloon">旅ノアに相談</span>
+</button>
+
+<div id="noa-float-panel" class="noa-float-panel" aria-hidden="true" role="dialog" aria-label="旅ノアに相談">
+  <div class="noa-fp-header">
+    <div class="noa-fp-avatar">
+      <img src="images/character/base/noa-purple-kimono-wink.png" alt="旅ノア">
+    </div>
+    <div class="noa-fp-info">
+      <div class="noa-fp-name">旅ノア</div>
+      <div class="noa-fp-status"><span class="online-dot"></span>相談受付中</div>
+    </div>
+    <button class="noa-fp-close" aria-label="閉じる">✕</button>
+  </div>
+  <div class="noa-fp-messages" id="noa-fp-messages"></div>
+  <div class="noa-fp-chips">
+    <button class="noa-chip">温泉旅行がしたい</button>
+    <button class="noa-chip">カップルにおすすめは？</button>
+    <button class="noa-chip">11月の旅先を教えて</button>
+    <button class="noa-chip">一人旅でどこ行く？</button>
+    <button class="noa-chip">子連れ旅行のおすすめ</button>
+    <button class="noa-chip">絶景を見に行きたい</button>
+  </div>
+  <div class="noa-fp-input-row">
+    <input type="text" id="noa-fp-input" placeholder="旅の悩みを相談…">
+    <button id="noa-fp-send">送信</button>
+  </div>
+</div>
+
 <script src="data/prefectures.js?v=20260616"></script>
 <script src="data/onsens.js?v=20260616"></script>
 <script src="data/monthly.js?v=20260616"></script>
@@ -1485,6 +1519,55 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, true);
   }
+
+  // フロートノアパネルの開閉
+  (function initFloatNoa() {
+    const floatBtn   = document.getElementById('noa-float-btn');
+    const panel      = document.getElementById('noa-float-panel');
+    const closeBtn   = panel && panel.querySelector('.noa-fp-close');
+    const messagesEl = document.getElementById('noa-fp-messages');
+    const inputEl    = document.getElementById('noa-fp-input');
+    const sendEl     = document.getElementById('noa-fp-send');
+    const chips      = panel && panel.querySelectorAll('.noa-chip');
+    if (!floatBtn || !panel) return;
+
+    let initialized = false;
+
+    function openPanel() {
+      panel.classList.add('open');
+      panel.setAttribute('aria-hidden', 'false');
+      floatBtn.classList.add('active');
+      if (!initialized && window.NoaChat) {
+        initialized = true;
+        NoaChat.init({
+          messagesEl,
+          inputEl,
+          sendBtnEl: sendEl,
+          quickBtns: chips,
+          rootPath: '',
+          initialMessages: [
+            { role: 'noa', text: 'こんにちは！旅ノアです🗾✨\n\n47都道府県・温泉・グルメ・季節別おすすめなど、旅の悩みをなんでも相談してください！' }
+          ]
+        });
+      }
+      if (inputEl) setTimeout(function() { inputEl.focus(); }, 300);
+    }
+
+    function closePanel() {
+      panel.classList.remove('open');
+      panel.setAttribute('aria-hidden', 'true');
+      floatBtn.classList.remove('active');
+    }
+
+    floatBtn.addEventListener('click', function() {
+      panel.classList.contains('open') ? closePanel() : openPanel();
+    });
+    if (closeBtn) closeBtn.addEventListener('click', closePanel);
+
+    // トップCTAからパネルを開く
+    var ctaBtn = document.getElementById('fh-open-noa');
+    if (ctaBtn) ctaBtn.addEventListener('click', function(e) { e.preventDefault(); openPanel(); });
+  })();
 
   // チャット例文ボタン → chat2-input に自動入力
   document.querySelectorAll('.chat-example-item').forEach(item => {

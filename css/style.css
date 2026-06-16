@@ -2504,6 +2504,211 @@ button { font-family: inherit; cursor: pointer; }
   transform: translateY(-2px);
 }
 
+/* ===== 旅ノア フロートウィジェット ===== */
+.noa-float-btn {
+  position: fixed;
+  bottom: 88px;
+  right: 24px;
+  z-index: 9000;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: none;
+  padding: 0;
+}
+.noa-float-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(12,27,53,0.3), 0 0 0 3px var(--gold);
+  background: var(--navy);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.noa-float-btn:hover .noa-float-icon,
+.noa-float-btn.active .noa-float-icon {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(12,27,53,0.4), 0 0 0 3px var(--gold-light);
+}
+.noa-float-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.noa-float-balloon {
+  background: var(--navy);
+  color: var(--gold-light);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  pointer-events: none;
+}
+
+.noa-float-panel {
+  position: fixed;
+  bottom: 164px;
+  right: 24px;
+  width: 360px;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  z-index: 8999;
+  display: flex;
+  flex-direction: column;
+  max-height: 520px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(16px) scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.4,0,0.2,1), transform 0.25s cubic-bezier(0.4,0,0.2,1);
+  transform-origin: bottom right;
+}
+.noa-float-panel.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.noa-fp-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--navy);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  flex-shrink: 0;
+}
+.noa-fp-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--gold-light);
+}
+.noa-fp-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.noa-fp-info { flex: 1; min-width: 0; }
+.noa-fp-name { font-size: 0.88rem; font-weight: 700; color: var(--gold-light); }
+.noa-fp-status { display: flex; align-items: center; gap: 5px; font-size: 0.7rem; color: rgba(255,255,255,0.65); }
+.noa-fp-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.12);
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+.noa-fp-close:hover { background: rgba(255,255,255,0.24); }
+
+.noa-fp-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  min-height: 160px;
+  max-height: 240px;
+  background: var(--cream);
+}
+
+.noa-fp-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 12px;
+  background: white;
+  border-top: 1px solid var(--border-light);
+  flex-shrink: 0;
+}
+.noa-chip {
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--navy-light);
+  background: white;
+  color: var(--navy);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  font-family: inherit;
+  font-weight: 600;
+}
+.noa-chip:hover {
+  background: var(--navy);
+  color: var(--gold-light);
+  border-color: var(--navy);
+}
+
+.noa-fp-input-row {
+  display: flex;
+  gap: 6px;
+  padding: 10px 12px;
+  background: white;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.noa-fp-input-row input {
+  flex: 1;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 7px 12px;
+  font-size: 0.8rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.noa-fp-input-row input:focus { border-color: var(--navy-mid); }
+.noa-fp-input-row button {
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: var(--navy);
+  color: var(--gold-light);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.noa-fp-input-row button:hover { background: var(--navy-mid); }
+
+@media (max-width: 479px) {
+  .noa-float-btn {
+    bottom: 80px;
+    right: 16px;
+  }
+  .noa-float-icon {
+    width: 58px;
+    height: 58px;
+  }
+  .noa-float-panel {
+    right: 12px;
+    left: 12px;
+    width: auto;
+    bottom: 152px;
+    max-height: 480px;
+  }
+}
+
 /* 月別ページ 季節シーン — モバイル対応 */
 @media (max-width: 640px) {
   .season-noa-strip { grid-template-columns: repeat(2, 1fr) !important; }
