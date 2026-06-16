@@ -222,6 +222,18 @@
   </div>
 </div>
 
+<!-- 温泉宿の予約を比較する（アフィリエイト） -->
+<section class="aff-top-section">
+  <div class="container">
+    <div class="aff-section-header">
+      <span class="aff-section-pr-label">PR</span>
+      <h2 class="aff-section-title">温泉宿の予約を比較する</h2>
+    </div>
+    <p style="font-size:0.82rem;color:var(--text-light);margin-bottom:16px;line-height:1.6">高級旅館・平日割引・ポイント還元など、目的に合わせて比較してみてください。</p>
+    <div class="aff-card-grid" id="aff-onsen-grid"></div>
+  </div>
+</section>
+
 <!-- 回遊導線 -->
 <section style="background:var(--bg-alt);padding:40px 0 32px">
   <div class="container">
@@ -263,6 +275,7 @@
 </footer>
 
 <script src="../data/onsens.js?v=20260616"></script>
+<script src="../js/affiliate-links.js"></script>
 <script src="../js/app.js?v=20260616"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -385,6 +398,10 @@ document.addEventListener('DOMContentLoaded', () => {
         renderOnsens(btn.dataset.region);
       });
     });
+  }
+
+  if (window.AFF) {
+    AFF.renderA8Grid(AFF.PAGE_SETS.onsen, 'aff-onsen-grid');
   }
 });
 </script>

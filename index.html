@@ -914,6 +914,18 @@
   </div>
 </section>
 
+<!-- ===== 宿・交通の予約を比較する（アフィリエイト） ===== -->
+<section class="aff-top-section">
+  <div class="container">
+    <div class="aff-section-header">
+      <span class="aff-section-pr-label">PR</span>
+      <h2 class="aff-section-title">宿・旅行プランを比較する</h2>
+    </div>
+    <p style="font-size:0.82rem;color:var(--text-light);margin-bottom:16px;line-height:1.6">旅先が決まったら、複数の予約サービスで料金・空室を比較するのがおすすめです。</p>
+    <div class="aff-card-grid" id="aff-top-grid"></div>
+  </div>
+</section>
+
 <!-- ===== 旅のおすすめグッズ（厳選6件） ===== -->
 <section class="section section-alt goods-section">
   <div class="container">
@@ -1084,6 +1096,7 @@
 <script src="data/booking.js?v=20260616"></script>
 <script src="data/specialties.js?v=20260616"></script>
 <script src="js/chat.js"></script>
+<script src="js/affiliate-links.js"></script>
 <script src="js/app.js?v=20260616"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -1518,6 +1531,11 @@ document.addEventListener('DOMContentLoaded', () => {
         chat2Input.focus();
       }
     }, true);
+  }
+
+  // アフィリエイト（トップページ）
+  if (window.AFF) {
+    AFF.renderA8Grid(AFF.PAGE_SETS.top, 'aff-top-grid');
   }
 
   // フロートノアパネルの開閉

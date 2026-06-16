@@ -167,6 +167,16 @@
           <div class="souvenirs-list" id="pref-souvenirs"></div>
         </div>
 
+        <!-- アフィリエイト（テスト：北海道・京都・広島のみ） -->
+        <div class="content-block fade-in" id="pref-aff-block" style="display:none">
+          <h2 class="block-title">
+            <div class="block-icon icon-gold">🔖</div>
+            この旅の予約・準備
+            <span style="font-size:0.65rem;font-weight:600;color:var(--text-muted);background:var(--section-alt);border:1px solid var(--border-light);padding:2px 7px;border-radius:999px;margin-left:8px">PR</span>
+          </h2>
+          <div id="pref-aff-content"></div>
+        </div>
+
         <!-- 雨の日の過ごし方 -->
         <div class="content-block fade-in" id="rainy-day-block" style="display:none">
           <h2 class="block-title"><div class="block-icon icon-blue">☔</div>雨の日でも楽しめる過ごし方</h2>
@@ -265,11 +275,12 @@
   </div>
 </footer>
 
-<script src="../data/prefectures.js?v=20260618"></script>
-<script src="../data/souvenirs.js?v=20260618"></script>
-<script src="../data/onsens.js?v=20260618"></script>
-<script src="../js/chat.js?v=20260618"></script>
-<script src="../js/app.js?v=20260618"></script>
+<script src="../data/prefectures.js?v=20260616"></script>
+<script src="../data/souvenirs.js?v=20260616"></script>
+<script src="../data/onsens.js?v=20260616"></script>
+<script src="../js/chat.js?v=20260616"></script>
+<script src="../js/affiliate-links.js"></script>
+<script src="../js/app.js?v=20260616"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   renderPrefecturePage();
@@ -575,6 +586,17 @@ document.addEventListener('DOMContentLoaded', () => {
             <div style="font-size:0.72rem;color:var(--text-muted)">${o.tagline}</div>
           </div>
         </a>`).join('');
+    }
+  }
+
+  // アフィリエイト（テスト対象：北海道・京都・広島のみ）
+  if (window.AFF) {
+    const affPrefId = typeof getPageParam === 'function' ? getPageParam('id') : '';
+    const affBlock  = document.getElementById('pref-aff-block');
+    const affContent = document.getElementById('pref-aff-content');
+    if (affPrefId && AFF.RAKUTEN_PREFS[affPrefId] && affBlock && affContent) {
+      affBlock.style.display = '';
+      AFF.renderPrefAff(affPrefId, 'pref-aff-content');
     }
   }
 });
