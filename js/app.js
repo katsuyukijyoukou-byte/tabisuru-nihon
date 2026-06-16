@@ -670,6 +670,11 @@ window.renderPrefecturePage = function() {
   let canonicalEl = document.querySelector('link[rel="canonical"]');
   if (!canonicalEl) { canonicalEl = document.createElement('link'); canonicalEl.rel = 'canonical'; document.head.appendChild(canonicalEl); }
   canonicalEl.href = `https://tabisuru-nihon.github.io/templates/prefecture.html?id=${id}`;
+  // BreadcrumbList
+  const prefBcScript = document.createElement('script');
+  prefBcScript.type = 'application/ld+json';
+  prefBcScript.textContent = JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"TOP","item":"https://tabisuru-nihon.github.io/"},{"@type":"ListItem","position":2,"name":"都道府県一覧","item":"https://tabisuru-nihon.github.io/pages/prefectures.html"},{"@type":"ListItem","position":3,"name":d.name,"item":`https://tabisuru-nihon.github.io/templates/prefecture.html?id=${id}`}]});
+  document.head.appendChild(prefBcScript);
 
   // heroの背景グラデーション + 代表写真
   const hero = document.querySelector('.pref-hero');
@@ -680,50 +685,50 @@ window.renderPrefecturePage = function() {
     const PREF_HERO_IMGS = {
       hokkaido: '../images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg',
       aomori: '../images/japan/aomori/aomori-oirase-01.jpg',
-      iwate: '../images/japan/iwate/iwate-hiraizumi-01.jpg',
+      iwate: '../images/japan/iwate/iwate-forest-01.jpg',
       miyagi: '../images/japan/miyagi/miyagi-matsushima-03.jpg',
-      akita: '../images/japan/akita/akita-tazawako-01.jpg',
+      akita: '../images/japan/akita/akita-kakunodate-01.jpg',
       yamagata: '../images/japan/yamagata/yamagata-zao-02.jpg',
-      fukushima: '../images/japan/fukushima/fukushima-goshikinuma-01.jpg',
-      ibaraki: '../images/japan/ibaraki/ibaraki-kairakuen-02.jpg',
+      fukushima: '../images/japan/fukushima/fukushima-lake-01.jpg',
+      ibaraki: '../images/japan/ibaraki/ibaraki-hitachi-01.jpg',
       tochigi: '../images/japan/tochigi/tochigi-nikko-01.jpg',
       gunma: '../images/japan/gunma/gunma-kusatsu-01.jpg',
       saitama: '../images/japan/saitama/saitama-kawagoe-01.jpg',
-      chiba: '../images/japan/chiba/chiba-seaside-01.jpg',
+      chiba: '../images/japan/chiba/chiba-naritasan-01.jpg',
       tokyo: '../images/japan/tokyo/tokyo-asakusa-sensoji-01.jpg',
       kanagawa: '../images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg',
-      niigata: '../images/japan/niigata/niigata-winter-01.jpg',
-      toyama: '../images/japan/toyama/toyama-tateyama-02.jpg',
+      niigata: '../images/japan/niigata/niigata-shrine-01.jpg',
+      toyama: '../images/japan/toyama/toyama-kurobe-01.jpg',
       ishikawa: '../images/japan/ishikawa/ishikawa-kanazawa-01.jpg',
-      fukui: '../images/japan/fukui/fukui-tojinbo-01.jpg',
-      yamanashi: '../images/japan/yamanashi/yamanashi-fuji-kawaguchi-01.jpg',
-      nagano: '../images/japan/nagano/nagano-kamikochi-01.jpg',
+      fukui: '../images/japan/fukui/fukui-tojinbo-02.jpg',
+      yamanashi: '../images/japan/yamanashi/yamanashi-fuji-01.jpg',
+      nagano: '../images/japan/nagano/nagano-alps-01.jpg',
       gifu: '../images/japan/gifu/gifu-shirakawago-01.jpg',
       shizuoka: '../images/japan/shizuoka/shizuoka-fuji-01.jpg',
       aichi: '../images/japan/aichi/aichi-nagoya-02.jpg',
       mie: '../images/japan/mie/mie-kumano-02.jpg',
-      shiga: '../images/japan/shiga/shiga-lake-01.jpg',
+      shiga: '../images/japan/shiga/shiga-biwako-01.jpg',
       kyoto: '../images/japan/kyoto/kyoto-fushimi-inari-01.jpg',
       osaka: '../images/japan/osaka/osaka-castle-01.jpg',
-      hyogo: '../images/japan/hyogo/hyogo-himeji-01.jpg',
+      hyogo: '../images/japan/hyogo/hyogo-himeji-castle-01.jpg',
       nara: '../images/japan/nara/nara-todaiji-02.jpg',
       wakayama: '../images/japan/wakayama/wakayama-nachi-01.jpg',
-      tottori: '../images/japan/tottori/tottori-sanddune-02.jpg',
+      tottori: '../images/japan/tottori/tottori-sand-dunes-01.jpg',
       shimane: '../images/japan/shimane/shimane-izumo-01.jpg',
       okayama: '../images/japan/okayama/okayama-kurashiki-02.jpg',
       hiroshima: '../images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg',
       yamaguchi: '../images/japan/yamaguchi/yamaguchi-torii-02.jpg',
-      tokushima: '../images/japan/tokushima/tokushima-awa-02.jpg',
-      kagawa: '../images/japan/kagawa/kagawa-chichibugahama-01.jpg',
+      tokushima: '../images/japan/tokushima/tokushima-naruto-01.jpg',
+      kagawa: '../images/japan/kagawa/kagawa-ritsurin-01.jpg',
       ehime: '../images/japan/ehime/ehime-dogo-honkan-01.jpg',
-      kochi: '../images/japan/kochi/kochi-katsurahama-01.jpg',
+      kochi: '../images/japan/kochi/kochi-castle-01.jpg',
       fukuoka: '../images/japan/fukuoka/fukuoka-dazaifu-02.jpg',
-      saga: '../images/japan/saga/saga-shrine-02.jpg',
+      saga: '../images/japan/saga/saga-balloon-01.jpg',
       nagasaki: '../images/japan/nagasaki/nagasaki-inasa-night-01.jpg',
       kumamoto: '../images/japan/kumamoto/kumamoto-castle-01.jpg',
       oita: '../images/japan/oita/oita-beppu-01.jpg',
-      miyazaki: '../images/japan/miyazaki/miyazaki-coast-01.jpg',
-      kagoshima: '../images/japan/kagoshima/kagoshima-sakurajima-02.jpg',
+      miyazaki: '../images/japan/miyazaki/miyazaki-takachiho-01.jpg',
+      kagoshima: '../images/japan/kagoshima/kagoshima-sakurajima-03.jpg',
       okinawa: '../images/japan/okinawa/okinawa-sea-coast-02.jpg',
     };
     const heroImg = PREF_HERO_IMGS[id];
@@ -749,7 +754,7 @@ window.renderPrefecturePage = function() {
     ],
     iwate: [
       { src: '../images/japan/iwate/iwate-nature-01.jpg', alt: '岩手の自然' },
-      { src: '../images/japan/iwate/iwate-hiraizumi-01.jpg', alt: '平泉・中尊寺' },
+      { src: '../images/japan/iwate/iwate-forest-01.jpg', alt: '岩手の深い杉木立と神社門' },
     ],
     miyagi: [
       { src: '../images/japan/miyagi/miyagi-matsushima-03.jpg', alt: '松島湾の岩島と松' },
@@ -757,7 +762,7 @@ window.renderPrefecturePage = function() {
       // matsushima-01（真っ黒な画像）・matsushima-02（欧州針葉樹林）は使用禁止
     ],
     akita: [
-      { src: '../images/japan/akita/akita-tazawako-01.jpg', alt: '田沢湖' },
+      { src: '../images/japan/akita/akita-kakunodate-01.jpg', alt: '角館・武家屋敷の雪景色' },
       { src: '../images/japan/akita/akita-nyutou-onsen-01.jpg', alt: '乳頭温泉郷' },
     ],
     yamagata: [
@@ -766,11 +771,11 @@ window.renderPrefecturePage = function() {
       // yamagata-ginzan-01（実験器具写真）は使用禁止
     ],
     fukushima: [
-      { src: '../images/japan/fukushima/fukushima-goshikinuma-01.jpg', alt: '五色沼' },
+      { src: '../images/japan/fukushima/fukushima-lake-01.jpg', alt: '福島の紅葉と湖' },
       { src: '../images/japan/fukushima/fukushima-waterfall-02.jpg', alt: '福島の渓流' },
     ],
     ibaraki: [
-      { src: '../images/japan/ibaraki/ibaraki-kairakuen-02.jpg', alt: '偕楽園' },
+      { src: '../images/japan/ibaraki/ibaraki-hitachi-01.jpg', alt: 'ひたち海浜公園・コキア' },
       { src: '../images/japan/ibaraki/ibaraki-nemophila-02.jpg', alt: 'ひたち海浜公園・ネモフィラ' },
     ],
     tochigi: [
@@ -786,7 +791,7 @@ window.renderPrefecturePage = function() {
       { src: '../images/japan/saitama/saitama-kawagoe-02.jpg', alt: '川越・蔵造りの街' },
     ],
     chiba: [
-      { src: '../images/japan/chiba/chiba-seaside-01.jpg', alt: '九十九里浜' },
+      { src: '../images/japan/chiba/chiba-naritasan-01.jpg', alt: '成田山の滝' },
       { src: '../images/japan/chiba/chiba-nokogiri-02.jpg', alt: '鋸山からの絶景' },
     ],
     tokyo: [
@@ -800,10 +805,10 @@ window.renderPrefecturePage = function() {
       { src: '../images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg', alt: '箱根湯本の温泉街' },
     ],
     niigata: [
-      { src: '../images/japan/niigata/niigata-winter-01.jpg', alt: '冬の新潟・雪景色' },
+      { src: '../images/japan/niigata/niigata-shrine-01.jpg', alt: '新潟・雪の神社' },
     ],
     toyama: [
-      { src: '../images/japan/toyama/toyama-tateyama-02.jpg', alt: '立山黒部アルペンルート' },
+      { src: '../images/japan/toyama/toyama-kurobe-01.jpg', alt: '黒部峡谷トロッコと紅葉' },
       { src: '../images/japan/toyama/toyama-kurobe-02.jpg', alt: '黒部峡谷の滝' },
     ],
     ishikawa: [
@@ -811,15 +816,16 @@ window.renderPrefecturePage = function() {
       { src: '../images/japan/ishikawa/ishikawa-kenroku-01.jpg', alt: '兼六園' },
     ],
     fukui: [
-      { src: '../images/japan/fukui/fukui-tojinbo-01.jpg', alt: '東尋坊' },
-      { src: '../images/japan/fukui/fukui-nature-02.jpg', alt: '福井の自然' },
+      { src: '../images/japan/fukui/fukui-tojinbo-02.jpg', alt: '東尋坊の柱状節理と日本海' },
+      { src: '../images/japan/fukui/fukui-eiheiji-01.jpg', alt: '永平寺の参道と杉木立' },
+      { src: '../images/japan/fukui/fukui-nature-02.jpg', alt: '越前海岸の柱状節理' },
     ],
     yamanashi: [
-      { src: '../images/japan/yamanashi/yamanashi-fuji-kawaguchi-01.jpg', alt: '富士山・河口湖' },
+      { src: '../images/japan/yamanashi/yamanashi-fuji-01.jpg', alt: '富士山と山梨の街並み' },
       { src: '../images/japan/yamanashi/yamanashi-fuji-lake-02.jpg', alt: '富士山・湖の夜明け' },
     ],
     nagano: [
-      { src: '../images/japan/nagano/nagano-kamikochi-01.jpg', alt: '上高地' },
+      { src: '../images/japan/nagano/nagano-alps-01.jpg', alt: '北アルプスの山岳風景' },
       { src: '../images/japan/nagano/nagano-jigokudani-01.jpg', alt: '地獄谷野猿公苑・スノーモンキー' },
       // nagano-hakuba-01（パスポート写真）は使用禁止
     ],
@@ -841,7 +847,7 @@ window.renderPrefecturePage = function() {
       { src: '../images/japan/mie/mie-kumano-02.jpg', alt: '熊野古道' },
     ],
     shiga: [
-      { src: '../images/japan/shiga/shiga-lake-01.jpg', alt: '琵琶湖' },
+      { src: '../images/japan/shiga/shiga-biwako-01.jpg', alt: '琵琶湖と雪の比良山系' },
       { src: '../images/japan/shiga/shiga-hikone-02.jpg', alt: '彦根城' },
     ],
     kyoto: [
@@ -855,7 +861,7 @@ window.renderPrefecturePage = function() {
       // osaka-dotonbori-01（京都清水寺の市街展望）は使用禁止
     ],
     hyogo: [
-      { src: '../images/japan/hyogo/hyogo-himeji-01.jpg', alt: '姫路城' },
+      { src: '../images/japan/hyogo/hyogo-himeji-castle-01.jpg', alt: '姫路城と庭園' },
       { src: '../images/japan/hyogo/hyogo-kobe-port-02.jpg', alt: '神戸ポートタワー' },
     ],
     nara: [
@@ -867,7 +873,7 @@ window.renderPrefecturePage = function() {
       { src: '../images/japan/wakayama/wakayama-seigantoji-02.jpg', alt: '青岸渡寺と那智の滝' },
     ],
     tottori: [
-      { src: '../images/japan/tottori/tottori-sanddune-02.jpg', alt: '鳥取砂丘' },
+      { src: '../images/japan/tottori/tottori-sand-dunes-01.jpg', alt: '鳥取砂丘の夕景' },
       { src: '../images/japan/tottori/tottori-coast-02.jpg', alt: '鳥取の海岸' },
     ],
     shimane: [
@@ -890,11 +896,11 @@ window.renderPrefecturePage = function() {
       // yamaguchi-coast-01（ビッグベン・英国）は使用禁止
     ],
     tokushima: [
-      { src: '../images/japan/tokushima/tokushima-awa-02.jpg', alt: '阿波おどり' },
+      { src: '../images/japan/tokushima/tokushima-naruto-01.jpg', alt: '大鳴門橋と鳴門海峡' },
       { src: '../images/japan/tokushima/tokushima-bridge-02.jpg', alt: '徳島の橋・川' },
     ],
     kagawa: [
-      { src: '../images/japan/kagawa/kagawa-chichibugahama-01.jpg', alt: '父母ヶ浜' },
+      { src: '../images/japan/kagawa/kagawa-ritsurin-01.jpg', alt: '栗林公園の池と紅葉' },
       { src: '../images/japan/kagawa/kagawa-naoshima-02.jpg', alt: '直島・アート島' },
     ],
     ehime: [
@@ -902,7 +908,7 @@ window.renderPrefecturePage = function() {
       { src: '../images/japan/ehime/ehime-dogo-02.jpg', alt: '道後温泉本館' },
     ],
     kochi: [
-      { src: '../images/japan/kochi/kochi-katsurahama-01.jpg', alt: '桂浜' },
+      { src: '../images/japan/kochi/kochi-castle-01.jpg', alt: '高知城と石段' },
       { src: '../images/japan/kochi/kochi-nature-02.jpg', alt: '高知の清流・自然' },
     ],
     fukuoka: [
@@ -911,7 +917,7 @@ window.renderPrefecturePage = function() {
       // fukuoka-city-01（目黒川夜桜・東京）は使用禁止
     ],
     saga: [
-      { src: '../images/japan/saga/saga-shrine-02.jpg', alt: '佐賀の神社' },
+      { src: '../images/japan/saga/saga-balloon-01.jpg', alt: '佐賀インターナショナルバルーンフェスタ' },
       // saga-castle-01（シカゴ高層ビル・米国）は使用禁止
     ],
     nagasaki: [
@@ -924,11 +930,11 @@ window.renderPrefecturePage = function() {
       // oita-aso-01（使用禁止）
     ],
     miyazaki: [
-      { src: '../images/japan/miyazaki/miyazaki-coast-01.jpg', alt: '宮崎の海岸' },
+      { src: '../images/japan/miyazaki/miyazaki-takachiho-01.jpg', alt: '高千穂峡・真名井の滝' },
       { src: '../images/japan/miyazaki/miyazaki-shrine-02.jpg', alt: '宮崎神宮' },
     ],
     kagoshima: [
-      { src: '../images/japan/kagoshima/kagoshima-sakurajima-02.jpg', alt: '桜島' },
+      { src: '../images/japan/kagoshima/kagoshima-sakurajima-03.jpg', alt: '桜島の噴煙と錦江湾' },
       // kagoshima-nature-01（イタリア・ドロミテ）は使用禁止
     ],
     kumamoto: [
@@ -1223,16 +1229,25 @@ window.renderOnsenPage = function() {
   if (!id || !window.ONSENS_DATA) return;
 
   const d = ONSENS_DATA[id];
-  if (!d) return;
+  if (!d) {
+    const body = document.querySelector('.pref-body .container');
+    if (body) body.innerHTML = `<div style="text-align:center;padding:80px 20px"><p style="font-size:1.1rem;color:var(--text-muted);margin-bottom:24px">温泉地「${id}」の情報が見つかりませんでした。</p><a href="../pages/onsen.html" style="display:inline-block;padding:12px 28px;background:var(--teal);color:white;border-radius:8px;text-decoration:none;font-weight:700">← 温泉地一覧へ戻る</a></div>`;
+    document.title = '温泉地が見つかりません | 旅する日本図鑑';
+    return;
+  }
 
   document.title = `${d.name} 温泉ガイド | 旅する日本図鑑`;
   let onsenCanonical = document.querySelector('link[rel="canonical"]');
   if (!onsenCanonical) { onsenCanonical = document.createElement('link'); onsenCanonical.rel = 'canonical'; document.head.appendChild(onsenCanonical); }
   onsenCanonical.href = `https://tabisuru-nihon.github.io/templates/onsen.html?id=${id}`;
   const onsenOgUrl = document.querySelector('meta[property="og:url"]');
+  // BreadcrumbList
+  const onsenBcScript = document.createElement('script');
+  onsenBcScript.type = 'application/ld+json';
+  onsenBcScript.textContent = JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"TOP","item":"https://tabisuru-nihon.github.io/"},{"@type":"ListItem","position":2,"name":"温泉地一覧","item":"https://tabisuru-nihon.github.io/pages/onsen.html"},{"@type":"ListItem","position":3,"name":d.name,"item":`https://tabisuru-nihon.github.io/templates/onsen.html?id=${id}`}]});
+  document.head.appendChild(onsenBcScript);
   if (onsenOgUrl) onsenOgUrl.setAttribute('content', onsenCanonical.href);
 
-  // 専用写真がある温泉のみ記載。ない場合はグラデーション背景を使用
   const ONSEN_HERO_IMGS = {
     noboribetsu: 'images/japan/hokkaido/hokkaido-noboribetsu-jigokudani-01.jpg',
     kusatsu:     'images/japan/gunma/gunma-kusatsu-yunohata-01.jpg',
@@ -1243,11 +1258,27 @@ window.renderOnsenPage = function() {
     shirahama:   'images/japan/wakayama/wakayama-shirahama-beach-01.jpg',
     dogo:        'images/japan/ehime/ehime-dogo-honkan-01.jpg',
     beppu:       'images/japan/oita/oita-beppu-01.jpg',
+    yufuin:      'images/japan/oita/oita-yufuin-01.jpg',
     nyuto:       'images/japan/akita/akita-nyutou-onsen-01.jpg',
+    kurokawa:    'images/japan/kumamoto/kumamoto-aso-02.jpg',
+    gero:        'images/japan/gifu/gifu-onsen-01.jpg',
     zao:         'images/japan/yamagata/yamagata-zao-02.jpg',
-    // ginzan: yamagata-ginzan-01（実験器具）は使用禁止 → グラデーション表示
+    jozankei:    'images/japan/hokkaido/hokkaido-shirogane-blue-pond-02.jpg',
+    ginzan:      'images/japan/yamagata/yamagata-ginzan-02.jpg',
+    ikaho:       'images/japan/gunma/gunma-mochi-01.jpg',
+    kinugawa:    'images/japan/tochigi/tochigi-kinugawa-01.jpg',
+    yudanaka:    'images/japan/nagano/nagano-jigokudani-01.jpg',
+    akiu:        'images/japan/miyagi/miyagi-matsushima-03.jpg',
+    ibusuki:     'images/japan/kagoshima/kagoshima-sakurajima-02.jpg',
+    tamatsukuri: 'images/japan/shimane/shimane-izumo-01.jpg',
+    wakura:      'images/japan/ishikawa/ishikawa-kenroku-01.jpg',
+    okuhida:     'images/japan/gifu/gifu-shirakawago-01.jpg',
+    shima:       'images/japan/gunma/gunma-kusatsu-yunohata-01.jpg',
+    yugawara:    'images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg',
+    yamashiro:   'images/japan/ishikawa/ishikawa-kanazawa-01.jpg',
+    tsukioka:    'images/japan/niigata/niigata-winter-01.jpg',
     sukayu:      'images/japan/aomori/aomori-oirase-01.jpg',
-    // tsukioka: niigata-landscape-01（Monument Valley・米国）は使用禁止 → グラデーション表示
+    yamanaka:    'images/japan/ishikawa/ishikawa-kenroku-01.jpg',
   };
   const heroImg = ONSEN_HERO_IMGS[id];
   const hero = document.querySelector('.onsen-hero');
@@ -1327,6 +1358,11 @@ window.renderMonthlyPage = function() {
   monthCanonical.href = `https://tabisuru-nihon.github.io/templates/monthly-detail.html?month=${month}`;
   const monthOgUrl = document.querySelector('meta[property="og:url"]');
   if (monthOgUrl) monthOgUrl.setAttribute('content', monthCanonical.href);
+  // BreadcrumbList
+  const monthBcScript = document.createElement('script');
+  monthBcScript.type = 'application/ld+json';
+  monthBcScript.textContent = JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"TOP","item":"https://tabisuru-nihon.github.io/"},{"@type":"ListItem","position":2,"name":"月別特集","item":"https://tabisuru-nihon.github.io/pages/monthly.html"},{"@type":"ListItem","position":3,"name":`${month}月の旅行おすすめ`,"item":`https://tabisuru-nihon.github.io/templates/monthly-detail.html?month=${month}`}]});
+  document.head.appendChild(monthBcScript);
 
   setEl('#month-num', `${month}月`);
   setEl('#month-name', d.name);
