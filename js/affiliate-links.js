@@ -185,19 +185,13 @@ const AFF = (() => {
     return 'https://hb.afl.rakuten.co.jp/hgc/' + RAKUTEN_ID + '/?pc=' + encodeURIComponent(dest) + '&m=' + encodeURIComponent(dest);
   }
 
-  /* ===== A8カードHTML生成 ===== */
-  function _a8Card(key) {
-    const d = A8[key];
+  /* ===== A8バナーHTML生成（A8発行コードをそのまま使用） ===== */
+  function _a8Banner(key) {
+    var d = A8[key];
     if (!d) return '';
-    return '<div class="aff-card">'
-      + '<a href="' + d.href + '" rel="nofollow sponsored noopener" target="_blank" class="aff-card-link">'
-      +   '<span class="aff-card-emoji" aria-hidden="true">' + d.emoji + '</span>'
-      +   '<span class="aff-card-body">'
-      +     '<strong class="aff-card-name">' + d.name + '</strong>'
-      +     '<span class="aff-card-desc">' + d.desc + '</span>'
-      +   '</span>'
-      +   '<span class="aff-card-cta">' + d.label + '&nbsp;→</span>'
-      +   '<img border="0" width="300" height="250" alt="" src="' + d.banner + '" class="aff-banner-hidden" aria-hidden="true">'
+    return '<div class="aff-banner-wrap">'
+      + '<a href="' + d.href + '" target="_blank">'
+      +   '<img border="0" width="300" height="250" alt="' + d.name + '" src="' + d.banner + '">'
       + '</a>'
       + '<img border="0" width="1" height="1" src="' + d.tracker + '" alt="">'
       + '</div>';
@@ -205,7 +199,7 @@ const AFF = (() => {
 
   /* ===== 楽天ボタンHTML生成 ===== */
   function _rakutenBtn(emoji, label, href) {
-    return '<a href="' + href + '" rel="nofollow sponsored noopener" target="_blank" class="aff-rakuten-btn">'
+    return '<a href="' + href + '" rel="nofollow sponsored" target="_blank" class="aff-rakuten-btn">'
       + '<span class="aff-btn-emoji" aria-hidden="true">' + emoji + '</span>'
       + '<span>' + label + '</span>'
       + '</a>';
@@ -221,7 +215,7 @@ const AFF = (() => {
   function renderA8Grid(keys, containerId) {
     var el = document.getElementById(containerId);
     if (!el) return;
-    el.innerHTML = keys.map(_a8Card).join('');
+    el.innerHTML = '<div class="aff-banner-grid">' + keys.map(_a8Banner).join('') + '</div>';
   }
 
   /**
@@ -245,13 +239,13 @@ const AFF = (() => {
       + _rakutenBtn('🎁', pref.name + 'のお土産を楽天市場で探す', rUrl2)
       + _rakutenBtn('🗾', pref.name + 'のふるさと納税返礼品を探す', rUrl3);
 
-    var a8Html = PAGE_SETS.prefecture.map(_a8Card).join('');
+    var a8Html = PAGE_SETS.prefecture.map(_a8Banner).join('');
 
     el.innerHTML
       = '<div class="aff-subsection-label">楽天で探す</div>'
       + '<div class="aff-rakuten-btns">' + rakutenHtml + '</div>'
       + '<div class="aff-subsection-label" style="margin-top:16px">宿・交通を比較する</div>'
-      + '<div class="aff-card-grid">' + a8Html + '</div>';
+      + '<div class="aff-banner-grid">' + a8Html + '</div>';
   }
 
   return { renderA8Grid, renderPrefAff, A8, PAGE_SETS, RAKUTEN_PREFS };

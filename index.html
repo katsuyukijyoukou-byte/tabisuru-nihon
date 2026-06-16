@@ -871,49 +871,6 @@
   </div>
 </section>
 
-<!-- ===== 旅ノア相談 ===== -->
-<section class="section chat-section" id="chat-section">
-  <div class="container">
-    <div class="chat-section-inner">
-      <div class="chat-intro fade-in">
-        <div class="section-label" style="color:var(--gold-light)">🗾 CHAT WITH NOA</div>
-        <h2 class="chat-intro-title"><em>旅ノア</em>に<br>相談してみよう</h2>
-        <p class="chat-intro-desc">「行き先が決まっていない」「予算とエリアだけ決まっている」…そんな時こそ旅ノアの出番。具体的な提案をお返しします。</p>
-        <div class="noa-char-frame-dark" style="margin:20px 0">
-          <img src="images/character/base/noa-main-black-gold.png"
-               alt="旅ノア"
-               style="width:180px;height:auto;display:block;filter:drop-shadow(0 6px 20px rgba(200,150,10,0.4))">
-        </div>
-        <div class="chat-example-list">
-          <div class="chat-example-item">「草津と箱根、どっちが良い？」</div>
-          <div class="chat-example-item">「11月に関西で紅葉を見たい」</div>
-          <div class="chat-example-item">「夫婦の結婚記念日旅行を考えたい」</div>
-          <div class="chat-example-item">「子連れで失敗しない旅先は？」</div>
-        </div>
-      </div>
-      <div class="chat-widget fade-in">
-        <div class="chat-widget-header">
-          <div class="hero-chat-avatar" style="overflow:hidden;border-radius:50%">
-            <img src="images/character/base/noa-purple-kimono-wink.png" alt="旅ノア" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">
-          </div>
-          <div class="hero-chat-info">
-            <div class="hero-chat-name">旅ノア</div>
-            <div class="hero-chat-status"><span class="online-dot"></span>相談受付中</div>
-          </div>
-        </div>
-        <div class="hero-chat-messages" id="chat2-messages" style="min-height:200px"></div>
-        <div class="hero-chat-input">
-          <div class="chat-input-row">
-            <input type="text" id="chat2-input" placeholder="旅の悩みを入力（例：草津と箱根どっちが良い？）">
-            <button class="btn-send" id="chat2-send">送信</button>
-          </div>
-          <div id="chat2-empty-error" style="display:none;font-size:0.75rem;color:#dc2626;padding:4px 4px 0;font-weight:600">何か入力してから送信してください</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== 宿・交通の予約を比較する（アフィリエイト） ===== -->
 <section class="aff-top-section">
   <div class="container">
@@ -1049,7 +1006,7 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 旅する日本図鑑</span>
-      <p style="font-size:0.72rem;color:rgba(255,255,255,0.35);margin-top:12px;line-height:1.6">当サイトは楽天アフィリエイト・Amazonアソシエイト等のアフィリエイトプログラムに参加しています。記事内のリンクから購入・予約された場合、サイト運営者に報酬が発生することがあります。</p>
+      <p style="font-size:0.72rem;color:rgba(255,255,255,0.35);margin-top:12px;line-height:1.6">当サイトは楽天アフィリエイト・A8.net・Amazonアソシエイト等のアフィリエイトプログラムに参加しています。記事内のリンクから商品・サービスを購入・予約された場合、サイト運営者に報酬が発生することがあります。</p>
       <span>本サイトはアフィリエイト広告を含む場合があります</span>
     </div>
   </div>
@@ -1586,22 +1543,6 @@ document.addEventListener('DOMContentLoaded', () => {
     var ctaBtn = document.getElementById('fh-open-noa');
     if (ctaBtn) ctaBtn.addEventListener('click', function(e) { e.preventDefault(); openPanel(); });
   })();
-
-  // チャット例文ボタン → chat2-input に自動入力
-  document.querySelectorAll('.chat-example-item').forEach(item => {
-    item.style.cursor = 'pointer';
-    item.addEventListener('click', () => {
-      const text = item.textContent.trim().replace(/^「|」$/g, '');
-      const input = document.getElementById('chat2-input');
-      const send = document.getElementById('chat2-send');
-      if (input && text) {
-        input.value = text;
-        input.focus();
-        document.getElementById('chat-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        setTimeout(() => send?.click(), 500);
-      }
-    });
-  });
 
   // トップへ戻るボタン
   const backTop = document.getElementById('back-to-top');

@@ -2711,16 +2711,22 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ===== アフィリエイト共通スタイル ===== */
 
-/* バナー画像（300×250）はDOM内に保持しトラッキングに使用、視覚的には非表示 */
-.aff-banner-hidden {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-  pointer-events: none;
+/* A8バナーグリッド（公式バナーをそのまま表示） */
+.aff-banner-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-start;
+}
+.aff-banner-wrap {
+  display: inline-block;
+  line-height: 0;
+  flex-shrink: 0;
+}
+.aff-banner-wrap img[width="300"] {
+  max-width: 300px;
+  height: auto;
+  display: block;
 }
 
 /* PR表記ラベル */
@@ -2859,14 +2865,11 @@ button { font-family: inherit; cursor: pointer; }
 
 /* スマホ対応 */
 @media (max-width: 640px) {
-  .aff-card-grid {
-    grid-template-columns: 1fr;
+  .aff-banner-grid {
+    justify-content: center;
   }
-  .aff-card-link {
-    padding: 11px 12px;
-  }
-  .aff-card-cta {
-    display: none;
+  .aff-banner-wrap img[width="300"] {
+    max-width: 100%;
   }
 }
 
