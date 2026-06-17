@@ -238,6 +238,29 @@ window.AFF = (() => {
       tracker: 'https://www13.a8.net/0.gif?a8mat=4B5OO4+9T24TM+44YI+HV7V6',
     },
 
+    /* ── JTB 旅物語 ── */
+    jtb_tabimono_intl: {
+      name: 'JTB 旅物語（国内/海外）', emoji: '🗺️',
+      desc: 'JTBの国内・海外ツアーブランド「旅物語」',
+      href: 'https://px.a8.net/svt/ejp?a8mat=4B5Y0B+9B75G2+15A4+1NJRXE',
+      text: '旅物語　国内/海外',
+      tracker: 'https://www11.a8.net/0.gif?a8mat=4B5Y0B+9B75G2+15A4+1NJRXE',
+    },
+    jtb_tabimono: {
+      name: 'JTB 旅物語', emoji: '🧳',
+      desc: 'JTBの人気ツアーブランド「旅物語」',
+      href: 'https://px.a8.net/svt/ejp?a8mat=4B5Y0B+9B75G2+15A4+1NJK7M',
+      text: '旅物語',
+      tracker: 'https://www13.a8.net/0.gif?a8mat=4B5Y0B+9B75G2+15A4+1NJK7M',
+    },
+    jtb_cruise: {
+      name: 'JTB 飛鳥2クルーズ', emoji: '🚢',
+      desc: '飛鳥2チャーター・クリスマスクルーズ',
+      href: 'https://px.a8.net/svt/ejp?a8mat=4B5Y0B+9B75G2+15A4+1NL282',
+      text: '飛鳥2チャーター・クリスマスクルーズ',
+      tracker: 'https://www13.a8.net/0.gif?a8mat=4B5Y0B+9B75G2+15A4+1NL282',
+    },
+
     /* ── J-TRIP 地域別（A8発行テキストリンク）── */
     jtrip_hokkaido: {
       name: 'J-TRIP 北海道', emoji: '✈️',
