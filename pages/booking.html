@@ -85,46 +85,143 @@
       </div>
     </div>
 
-    <!-- 各サイト特徴早見表 -->
+    <!-- 予約サイト比較表 -->
     <div style="margin-bottom:48px">
-      <div style="font-size:0.82rem;font-weight:700;color:var(--navy);margin-bottom:10px">📋 各サービスの特徴早見表</div>
-      <!-- 主要宿泊サービス（2列固定でスマホでも詰まらない） -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px">
-        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:9px 11px">
-          <div style="font-size:0.8rem;font-weight:800;color:var(--navy);margin-bottom:2px">🟢 じゃらん</div>
-          <div style="font-size:0.72rem;color:var(--text-light);line-height:1.4">温泉宿・近場旅行・家族旅行</div>
-        </div>
-        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:9px 11px">
-          <div style="font-size:0.8rem;font-weight:800;color:var(--navy);margin-bottom:2px">🔴 楽天トラベル</div>
-          <div style="font-size:0.72rem;color:var(--text-light);line-height:1.4">ポイント重視・楽天経済圏</div>
-        </div>
-        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:9px 11px">
-          <div style="font-size:0.8rem;font-weight:800;color:var(--navy);margin-bottom:2px">🟠 一休.com</div>
-          <div style="font-size:0.72rem;color:var(--text-light);line-height:1.4">高級旅館・記念日・失敗したくない旅</div>
-        </div>
-        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:9px 11px">
-          <div style="font-size:0.8rem;font-weight:800;color:var(--navy);margin-bottom:2px">💳 Yahoo!トラベル</div>
-          <div style="font-size:0.72rem;color:var(--text-light);line-height:1.4">PayPayポイント重視</div>
-        </div>
-        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:9px 11px">
-          <div style="font-size:0.8rem;font-weight:800;color:var(--navy);margin-bottom:2px">🗾 日本旅行</div>
-          <div style="font-size:0.72rem;color:var(--text-light);line-height:1.4">新幹線＋宿泊・国内ツアー</div>
-        </div>
-        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:9px 11px">
-          <div style="font-size:0.8rem;font-weight:800;color:var(--navy);margin-bottom:2px">✈️ Agoda</div>
-          <div style="font-size:0.72rem;color:var(--text-light);line-height:1.4">海外・アジア旅行・格安ホテル</div>
-        </div>
+      <div style="font-size:0.82rem;font-weight:700;color:var(--navy);margin-bottom:10px">📊 予約サイト比較表</div>
+      <!-- 凡例 -->
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:10px;font-size:0.7rem;color:var(--text-muted)">
+        <span><strong style="color:#1a7a2a">◎</strong> 特に強い</span>
+        <span><strong style="color:#2a8a5a">○</strong> 向いている</span>
+        <span><strong style="color:#c07820">△</strong> 条件による</span>
+        <span><strong style="color:#bbb">×</strong> 主用途ではない</span>
       </div>
-      <!-- 交通・体験・地域系（小さく補足） -->
-      <div style="background:var(--section-alt);border-radius:var(--radius);padding:10px 12px">
-        <div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;font-weight:700">交通・体験・地域ツアーは下の目的別セクションで探せます</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px">
-          <span style="font-size:0.7rem;background:var(--card-bg);border:1px solid var(--border);border-radius:4px;padding:3px 8px;color:var(--navy)">✈️ エアトリ（航空券・バス・レンタカー）</span>
-          <span style="font-size:0.7rem;background:var(--card-bg);border:1px solid var(--border);border-radius:4px;padding:3px 8px;color:var(--navy)">✈️ J-TRIP（地域別JALツアー）</span>
-          <span style="font-size:0.7rem;background:var(--card-bg);border:1px solid var(--border);border-radius:4px;padding:3px 8px;color:var(--navy)">🔵 JTB旅物語（添乗員同行・クルーズ）</span>
-          <span style="font-size:0.7rem;background:var(--card-bg);border:1px solid var(--border);border-radius:4px;padding:3px 8px;color:var(--navy)">♨️ ゆめやど / OZmall（温泉・女子旅）</span>
-        </div>
+      <!-- 横スクロール可能な比較表 -->
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius-lg);border:1.5px solid var(--border)">
+        <table style="border-collapse:collapse;background:var(--card-bg);font-size:0.72rem;white-space:nowrap;width:100%;min-width:720px">
+          <thead>
+            <tr style="background:var(--navy);color:white">
+              <th style="padding:9px 12px;text-align:left;position:sticky;left:0;background:var(--navy);z-index:1;min-width:88px">比較項目</th>
+              <th style="padding:9px 8px;text-align:center">🟢<br>じゃらん</th>
+              <th style="padding:9px 8px;text-align:center">🔴<br>楽天</th>
+              <th style="padding:9px 8px;text-align:center">🟠<br>一休</th>
+              <th style="padding:9px 8px;text-align:center">💳<br>Yahoo!</th>
+              <th style="padding:9px 8px;text-align:center">✈️<br>Agoda</th>
+              <th style="padding:9px 8px;text-align:center">🗾<br>日本旅行</th>
+              <th style="padding:9px 8px;text-align:center">✈️<br>エアトリ</th>
+              <th style="padding:9px 8px;text-align:center">✈️<br>J-TRIP</th>
+              <th style="padding:9px 8px;text-align:center">🔵<br>JTB旅物語</th>
+              <th style="padding:9px 8px;text-align:center">♨️<br>ゆめやど/<br>OZmall</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:8px 12px;font-weight:700;color:var(--navy);position:sticky;left:0;background:var(--card-bg);z-index:1">♨️ 温泉旅行</td>
+              <td style="padding:8px;text-align:center;font-weight:800;color:#1a7a2a">◎</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;font-weight:800;color:#1a7a2a">◎</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);background:var(--section-alt)">
+              <td style="padding:8px 12px;font-weight:700;color:var(--navy);position:sticky;left:0;background:var(--section-alt);z-index:1">👑 高級旅館</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;font-weight:800;color:#1a7a2a">◎</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:8px 12px;font-weight:700;color:var(--navy);position:sticky;left:0;background:var(--card-bg);z-index:1">🎂 記念日旅行</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;font-weight:800;color:#1a7a2a">◎</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);background:var(--section-alt)">
+              <td style="padding:8px 12px;font-weight:700;color:var(--navy);position:sticky;left:0;background:var(--section-alt);z-index:1">💰 ポイント還元</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;font-weight:800;color:#1a7a2a">◎</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;font-weight:800;color:#1a7a2a">◎</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:8px 12px;font-weight:700;color:var(--navy);position:sticky;left:0;background:var(--card-bg);z-index:1">🏡 近場旅行</td>
+              <td style="padding:8px;text-align:center;font-weight:800;color:#1a7a2a">◎</td>
+              <td style="padding:8px;text-align:center;font-weight:800;color:#1a7a2a">◎</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);background:var(--section-alt)">
+              <td style="padding:8px 12px;font-weight:700;color:var(--navy);position:sticky;left:0;background:var(--section-alt);z-index:1">🚄 航空券・交通</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;font-weight:800;color:#1a7a2a">◎</td>
+              <td style="padding:8px;text-align:center;font-weight:800;color:#1a7a2a">◎</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:8px 12px;font-weight:700;color:var(--navy);position:sticky;left:0;background:var(--card-bg);z-index:1">🌍 海外旅行</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;font-weight:800;color:#1a7a2a">◎</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;color:#bbb">×</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px;font-weight:700;color:var(--navy);position:sticky;left:0;background:var(--card-bg);z-index:1">👨‍👩‍👧 家族旅行</td>
+              <td style="padding:8px;text-align:center;font-weight:800;color:#1a7a2a">◎</td>
+              <td style="padding:8px;text-align:center;font-weight:800;color:#1a7a2a">◎</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;font-weight:700;color:#2a8a5a">○</td>
+              <td style="padding:8px;text-align:center;color:#c07820">△</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+      <p style="font-size:0.7rem;color:var(--text-muted);margin-top:6px;line-height:1.6">※旅ノア視点の目安です。プランや時期によって異なります。スマホでは左右にスクロールして全サービスを確認できます。</p>
     </div>
 
     <!-- ===== Section 1: まず比較したい予約サイト ===== -->
