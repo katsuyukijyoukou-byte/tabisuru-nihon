@@ -1451,45 +1451,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }).join('');
   }
 
-  // 2つ目チャット
-  if (window.NoaChat) {
-    NoaChat.init({
-      messagesEl: document.getElementById('chat2-messages'),
-      inputEl: document.getElementById('chat2-input'),
-      sendBtnEl: document.getElementById('chat2-send'),
-      rootPath: '',
-      initialMessages: [
-        { role: 'noa', text: '旅ノアです！なんでも聞いてください😊\n\n「草津vs箱根どっちがいい？」「子連れで行けるおすすめは？」など、旅の悩みを気軽に相談してみて！' }
-      ],
-    });
-  }
-
-  // 空入力エラー制御
-  const chat2Input = document.getElementById('chat2-input');
-  const chat2Send = document.getElementById('chat2-send');
-  const chat2ErrEl = document.getElementById('chat2-empty-error');
-  if (chat2Input && chat2Send && chat2ErrEl) {
-    chat2Input.addEventListener('input', () => {
-      if (chat2Input.value.trim()) chat2ErrEl.style.display = 'none';
-    });
-    chat2Send.addEventListener('click', (e) => {
-      if (!chat2Input.value.trim()) {
-        e.stopImmediatePropagation();
-        chat2ErrEl.style.display = 'block';
-        chat2Input.focus();
-      } else {
-        chat2ErrEl.style.display = 'none';
-      }
-    }, true);
-    chat2Input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !chat2Input.value.trim()) {
-        e.stopImmediatePropagation();
-        chat2ErrEl.style.display = 'block';
-        chat2Input.focus();
-      }
-    }, true);
-  }
-
   // アフィリエイト（トップページ）
   if (window.AFF) {
     AFF.renderA8Grid(AFF.PAGE_SETS.top, 'aff-top-grid');
