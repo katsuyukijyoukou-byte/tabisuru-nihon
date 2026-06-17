@@ -337,7 +337,7 @@ function renderRegionMap() {
     const prefChips = region.prefs.map(pref => {
       const id = PREF_NAME_TO_ID[pref] || '';
       const href = id ? `${ROOT}templates/prefecture.html?id=${id}` : `${ROOT}pages/prefectures.html?region=${region.id}`;
-      return `<a href="${href}" class="racc-pref-chip">${pref}</a>`;
+      return `<a href="${href}" class="racc-pref-chip" data-track-category="prefecture" data-track-id="${id || pref}" data-track-title="${pref}" data-track-type="chip">${pref}</a>`;
     }).join('');
 
     const body = document.createElement('div');

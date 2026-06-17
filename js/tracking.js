@@ -3,8 +3,19 @@
    現在は console.log。将来 GA4 / GAS に差し替え可能。
 
    ランキングスコア設計（将来参照用）:
-     score = views × 1 + clicks × 10 + manualBoost
-   クリックを重視（閲覧より行動の方が価値が高い）。
+     score = views × 1 + clicks × CLICK_WEIGHT[category] + manualBoost
+
+   カテゴリ別クリック重み:
+     featured   10  旅先選択の起点
+     onsen      10  温泉宿探しの起点
+     booking    20  予約遷移 = 収益直結
+     gourmet     8  情報閲覧寄り
+     souvenir    8  情報閲覧寄り
+     purpose     8  旅のテーマ選択
+     prefecture 10  旅先詳細への遷移
+     monthly     6  季節コンテンツ
+     noah        5  相談導線
+     activity    8  体験・アクティビティ
 =================================================== */
 (function () {
   'use strict';
