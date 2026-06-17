@@ -67,6 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ===== ヒーローチャット初期化 ===== */
   initHeroChat();
 
+  /* ===== 注目の旅先（日替わりランダム5件） ===== */
+  renderFeaturedDest();
+
   /* ===== 地方地図レンダリング（トップ） ===== */
   renderRegionMap();
 
@@ -90,6 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ===== 旅グッズタブ切り替え ===== */
   initGoodsTabs();
+
+  /* ===== 動的カードのImpression観測を追加登録 ===== */
+  if (window.Track && window.Track.observe) {
+    window.Track.observe(document);
+  }
 });
 
 /* ===== ヒーローチャット ===== */
@@ -119,6 +127,109 @@ const ROOT = (() => {
   if (p.includes('/pages/') || p.includes('/templates/')) return '../';
   return '';
 })();
+
+/* ===== 注目の旅先データ（18件プール） ===== */
+const FEATURED_DESTS = [
+  { id: 'hiroshima', name: '広島',        region: '中国地方', img: 'images/japan/hiroshima/hiroshima-miyajima-torii-01.jpg',   alt: '広島県宮島の厳島神社大鳥居と夕日',       copy: '世界遺産・厳島神社の大鳥居が海に浮かぶ絶景。歴史と自然が共存する旅先。', manualBoost: 1000 },
+  { id: 'kyoto',     name: '京都',        region: '近畿',     img: 'images/japan/kyoto/kyoto-fushimi-inari-01.jpg',              alt: '京都・伏見稲荷大社の千本鳥居',           copy: '伏見稲荷・嵐山・祇園。日本の伝統文化と美しい社寺。',                   manualBoost: 500 },
+  { id: 'hokkaido',  name: '北海道',      region: '北海道',   img: 'images/japan/hokkaido/hokkaido-biei-flower-field-01.jpg',    alt: '北海道美瑛の丘と花畑',                   copy: '大自然と絶品グルメ。ラベンダー・知床・流氷と四季の顔を持つ大地。',       manualBoost: 300 },
+  { id: 'tokyo',     name: '東京',        region: '関東',     img: 'images/japan/tokyo/tokyo-asakusa-sensoji-01.jpg',            alt: '東京浅草の浅草寺',                       copy: '浅草・渋谷・新宿。下町の情緒と最先端が共存する首都。',                   manualBoost: 0 },
+  { id: 'okinawa',   name: '沖縄',        region: '九州・沖縄', img: 'images/japan/okinawa/okinawa-sea-coast-02.jpg',            alt: '沖縄の青い海と海岸',                     copy: 'エメラルドグリーンの海・首里城・独自の食文化。',                         manualBoost: 300 },
+  { id: 'osaka',     name: '大阪',        region: '近畿',     img: 'images/japan/osaka/osaka-castle-01.jpg',                    alt: '大阪城',                                 copy: '道頓堀・黒門市場・たこ焼き・大阪城。食い倒れの街。',                     manualBoost: 0 },
+  { id: 'nara',      name: '奈良',        region: '近畿',     img: 'images/japan/nara/nara-todaiji-02.jpg',                     alt: '奈良・東大寺大仏殿',                     copy: '世界遺産と野生の鹿が共存する古都。東大寺・吉野山。',                     manualBoost: 0 },
+  { id: 'hyogo',     name: '兵庫',        region: '近畿',     img: 'images/japan/hyogo/hyogo-himeji-01.jpg',                    alt: '世界遺産・姫路城',                       copy: '世界遺産・姫路城と有馬温泉・神戸の洋館。',                               manualBoost: 0 },
+  { id: 'nagano',    name: '長野',        region: '中部',     img: 'images/japan/nagano/nagano-kamikochi-01.jpg',               alt: '長野・上高地と穂高連峰',                 copy: '上高地・松本城・善光寺・野沢温泉。アルプスの絶景。',                     manualBoost: 0 },
+  { id: 'kanagawa',  name: '神奈川',      region: '関東',     img: 'images/japan/kanagawa/kanagawa-hakone-yumoto-01.jpg',        alt: '神奈川・箱根湯本の温泉街',               copy: '鎌倉大仏・箱根温泉・横浜中華街。東京から日帰りも。',                     manualBoost: 0 },
+  { id: 'ishikawa',  name: '石川（金沢）', region: '中部',    img: 'images/japan/ishikawa/ishikawa-kanazawa-01.jpg',            alt: '石川・兼六園',                           copy: '兼六園・ひがし茶屋街・近江町市場。西の京都。',                           manualBoost: 0 },
+  { id: 'fukuoka',   name: '福岡',        region: '九州',     img: 'images/japan/fukuoka/fukuoka-dazaifu-02.jpg',               alt: '福岡・太宰府天満宮',                     copy: '太宰府天満宮・博多ラーメン・中洲屋台。九州随一の食文化。',               manualBoost: 0 },
+  { id: 'nagasaki',  name: '長崎',        region: '九州',     img: 'images/japan/nagasaki/nagasaki-inasa-night-01.jpg',         alt: '長崎の夜景',                             copy: 'グラバー園・ハウステンボス・軍艦島と日本三大夜景。',                     manualBoost: 0 },
+  { id: 'gifu',      name: '岐阜（白川郷）', region: '中部',  img: 'images/japan/gifu/gifu-shirakawago-01.jpg',                 alt: '岐阜・白川郷の合掌造り集落',             copy: '世界遺産・合掌造り集落と冬の雪景色が圧巻。',                             manualBoost: 0 },
+  { id: 'yamagata',  name: '山形',        region: '東北',     img: 'images/japan/yamagata/yamagata-zao-02.jpg',                 alt: '山形・蔵王の樹氷',                       copy: '蔵王の樹氷・銀山温泉・さくらんぼ。東北屈指の温泉。',                     manualBoost: 0 },
+  { id: 'tochigi',   name: '栃木（日光）', region: '関東',    img: 'images/japan/tochigi/tochigi-nikko-01.jpg',                 alt: '栃木・日光東照宮',                       copy: '世界遺産・日光東照宮と華厳の滝。鬼怒川温泉も。',                         manualBoost: 0 },
+  { id: 'yamanashi', name: '山梨（富士五湖）', region: '中部', img: 'images/japan/yamanashi/yamanashi-fuji-lake-02.jpg',         alt: '山梨・河口湖と富士山',                   copy: '河口湖から眺める富士山は日本一の絶景。ほうとうも必食。',                 manualBoost: 0 },
+  { id: 'miyagi',    name: '宮城（松島）', region: '東北',    img: 'images/japan/miyagi/miyagi-matsushima-03.jpg',              alt: '宮城・松島の島々',                       copy: '日本三景・松島と牛タン・ずんだ餅。東北の中心地。',                       manualBoost: 0 },
+];
+
+/* ===== LCG 疑似乱数（日付シード） ===== */
+function seededRNG(seed) {
+  let s = (seed >>> 0) || 1;
+  return function () {
+    s = (Math.imul(1664525, s) + 1013904223) >>> 0;
+    return s / 4294967296;
+  };
+}
+
+/* ===== 注目の旅先レンダリング（日替わりランダム5件） ===== */
+function renderFeaturedDest() {
+  const container = document.getElementById('featured-dest');
+  if (!container) return;
+
+  /* 日付シード（毎日変わる、同日中は同じ） */
+  const t = new Date();
+  const seed = t.getFullYear() * 10000 + (t.getMonth() + 1) * 100 + t.getDate();
+  const rng = seededRNG(seed);
+
+  /* 広島を必ず含む + 残り4件をランダム選出 */
+  const hiroshima = FEATURED_DESTS.find(d => d.id === 'hiroshima');
+  const pool = FEATURED_DESTS.filter(d => d.id !== 'hiroshima');
+
+  /* Fisher-Yates shuffle (seeded) */
+  const shuffled = pool.slice();
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    const tmp = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = tmp;
+  }
+  const five = [hiroshima].concat(shuffled.slice(0, 4));
+
+  /* 5件の表示順もシャッフル（広島の位置もランダム） */
+  for (let i = five.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    const tmp = five[i]; five[i] = five[j]; five[j] = tmp;
+  }
+
+  /* レイアウト：big(0) + med×2(1,2) + small×2(3,4) */
+  function ta(d) {
+    return 'data-track-category="featured" data-track-id="' + d.id + '" data-track-title="' + d.name + '" data-track-type="card"';
+  }
+  function bigCard(d) {
+    return '<a class="feat-big" href="' + ROOT + 'templates/prefecture.html?id=' + d.id + '" ' + ta(d) + '>' +
+      '<img src="' + ROOT + d.img + '" alt="' + d.alt + '" loading="lazy">' +
+      '<div class="feat-overlay">' +
+        '<div class="feat-region-label">' + d.region + '</div>' +
+        '<div class="feat-name-label">' + d.name + '</div>' +
+        '<div class="feat-copy-label">' + d.copy + '</div>' +
+        '<span class="feat-btn">詳細を見る →</span>' +
+      '</div></a>';
+  }
+  function medCard(d) {
+    return '<a class="feat-med" href="' + ROOT + 'templates/prefecture.html?id=' + d.id + '" ' + ta(d) + '>' +
+      '<img src="' + ROOT + d.img + '" alt="' + d.alt + '" loading="lazy">' +
+      '<div class="feat-overlay">' +
+        '<div class="feat-region-label">' + d.region + '</div>' +
+        '<div class="feat-name-label">' + d.name + '</div>' +
+        '<div class="feat-copy-label">' + d.copy + '</div>' +
+        '<span class="feat-btn">詳細を見る →</span>' +
+      '</div></a>';
+  }
+  function smallCard(d) {
+    return '<a class="dest-photo-card" href="' + ROOT + 'templates/prefecture.html?id=' + d.id + '" ' + ta(d) + '>' +
+      '<img src="' + ROOT + d.img + '" alt="' + d.alt + '" loading="lazy">' +
+      '<div class="dest-photo-overlay">' +
+        '<div class="dpo-region">' + d.region + '</div>' +
+        '<div class="dpo-name">' + d.name + '</div>' +
+        '<div class="dpo-copy">' + d.copy + '</div>' +
+      '</div></a>';
+  }
+
+  container.innerHTML =
+    '<div class="feat-editorial">' +
+      bigCard(five[0]) +
+      '<div class="feat-med-col">' + medCard(five[1]) + medCard(five[2]) + '</div>' +
+    '</div>' +
+    '<div class="dest-small-grid" style="grid-template-columns:repeat(2,1fr);margin-top:16px">' +
+      smallCard(five[3]) + smallCard(five[4]) +
+    '</div>';
+}
 
 /* ===== 地域アコーディオン（トップページ用） ===== */
 function renderRegionMap() {
