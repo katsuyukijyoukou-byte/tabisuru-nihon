@@ -528,7 +528,11 @@
 <script>
 (function(){
   var _cat = 'all';
-  function shortTitle(t){ return t.replace(/【[^】]*】/g,'').split(/[　 ]/)[0].slice(0,22); }
+  function shortTitle(t){ return t.replace(/【[^】]*】/g,'').split(/[　 ]/)[0].slice(0,24); }
+  function imgSrc(imgHtml){
+    var m = imgHtml.match(/src="([^"]+)"/);
+    return m ? m[1] : '';
+  }
   function renderGoods(){
     var data = window.TRAVEL_GOODS_DATA;
     if(!data){ return; }
@@ -536,11 +540,18 @@
     if(!grid){ return; }
     var items = _cat === 'all' ? data : data.filter(function(g){ return g.cat === _cat; });
     grid.innerHTML = items.map(function(g){
-      return '<div class="gr-card">'
-        + '<div class="gr-img">' + g.img + '</div>'
-        + '<div class="gr-ttl">' + shortTitle(g.title) + '</div>'
-        + '<a class="gr-cta" href="' + g.url + '" target="_blank" rel="nofollow sponsored noopener">楽天で見る →</a>'
-        + '</div>';
+      var src = imgSrc(g.img);
+      var ttl = shortTitle(g.title);
+      var url = g.url;
+      return '<article class="gr-card">'
+        + '<a class="gr-img-wrap" href="' + url + '" target="_blank" rel="nofollow sponsored noopener">'
+        +   '<img class="gr-img" src="' + src + '" alt="' + ttl + '" loading="lazy">'
+        + '</a>'
+        + '<div class="gr-body">'
+        +   '<div class="gr-title">' + ttl + '</div>'
+        +   '<a class="gr-cta" href="' + url + '" target="_blank" rel="nofollow sponsored noopener">楽天で見る →</a>'
+        + '</div>'
+        + '</article>';
     }).join('');
   }
   document.addEventListener('DOMContentLoaded', function(){
