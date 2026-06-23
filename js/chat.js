@@ -723,15 +723,223 @@ const NoaChat = (() => {
     },
   ];
 
+  /* ---------- セッション状態管理 ---------- */
+  var SESSION = {};
+  function resetSession() {
+    SESSION = { intent: null, slots: {}, waitingFor: null, turnCount: 0 };
+  }
+  resetSession();
+
+  /* ---------- スロット抽出 ---------- */
+  function extractSlots(q) {
+    var slots = {};
+    var budgetM = q.match(/(\d+)万/);
+    if (budgetM) slots.budget = parseInt(budgetM[1]) * 10000;
+    if (/格安|安め|リーズナブル|コスパ/.test(q)) slots.budgetLevel = 'low';
+    if (/贅沢|高め|奮発|豪華|ラグジュアリー/.test(q)) slots.budgetLevel = 'high';
+    if (/一人|ひとり|ソロ/.test(q)) slots.who = 'solo';
+    if (/カップル|二人|彼女と|彼氏と|夫婦/.test(q)) slots.who = 'couple';
+    if (/家族|子供|子ども|子連れ|ファミリー/.test(q)) slots.who = 'family';
+    if (/友達|グループ|女子旅/.test(q)) slots.who = 'friends';
+    if (/温泉|おんせん/.test(q)) slots.purpose = 'onsen';
+    if (/グルメ|食事|食べ/.test(q)) slots.purpose = 'gourmet';
+    if (/絶景|景色/.test(q)) slots.purpose = 'scenic';
+    if (/歴史|城|神社|寺/.test(q)) slots.purpose = 'history';
+    var monthM = q.match(/(\d+)月/);
+    if (monthM) slots.month = parseInt(monthM[1]);
+    if (/春|3月|4月|5月/.test(q)) slots.season = 'spring';
+    if (/夏|6月|7月|8月/.test(q)) slots.season = 'summer';
+    if (/秋|9月|10月|11月/.test(q)) slots.season = 'autumn';
+    if (/冬|12月|1月|2月/.test(q)) slots.season = 'winter';
+    Object.values(PREF_CHAT).forEach(function(d) {
+      if (q.includes(d.name)) slots.pref = d.name;
+    });
+    return slots;
+  }
+
+  /* ---------- インテント定義 ---------- */
+  var INTENTS = {
+    onsen: {
+      keywords: /温泉|おんせん|湯治|湯めぐり|露天風呂/,
+      respond: function(s) {
+        if (s.who === 'couple') return { text: 'カップルで温泉なら♨️💑\n\n**おすすめトップ3**\n1. **由布院（大分）** — 絵になる街並みと朝霧\n2. **城崎温泉（兵庫）** — 7つの外湯めぐりが二人旅に最高\n3. **草津温泉（群馬）** — 日本最高峰の泉質\n\n♨️ [温泉地一覧を見る](pages/onsen.html)', buttons: ['由布院の観光スポットは？', '城崎温泉を詳しく', '記念日向けの旅館を探したい', '関西の温泉は？'] };
+        if (s.who === 'family') return { text: '家族で楽しめる温泉地なら！\n\n**アクセス良好・施設充実の3選**\n・**鬼怒川温泉（栃木）** — 東京から2時間以内\n・**湯布院（大分）** — 観光スポットも豊富\n・**熱海（静岡）** — 水族館・遊園地も近い\n\nお子さんは何歳くらいですか？', buttons: ['鬼怒川温泉を詳しく', '子連れで行きやすい温泉は？', '関東の温泉を教えて', '家族向けの宿を探したい'] };
+        if (s.who === 'solo') return { text: '一人旅の温泉なら、静かな秘湯がおすすめです♨️\n\n・**乳頭温泉郷（秋田）** — 秘境感ある混浴露天\n・**野沢温泉（長野）** — 地元民に愛される外湯\n・**黒川温泉（熊本）** — 入湯手形で複数湯めぐり', buttons: ['乳頭温泉を詳しく', '黒川温泉を詳しく', '一人旅向けの宿は？', '秘湯系の温泉地は？'] };
+        return { text: '温泉旅行をお考えですね♨️\n\n**人気温泉地トップ3**\n1. **草津温泉（群馬）** — 日本一の湯量\n2. **由布院（大分）** — 情緒ある街並みと絶景\n3. **道後温泉（愛媛）** — 日本最古の温泉\n\n誰と行く旅ですか？', buttons: ['一人旅', 'カップル・夫婦', '家族・子連れ', '友達グループ'] };
+      },
+    },
+    budget: {
+      keywords: /予算|いくら|費用|値段|安く|格安|リーズナブル|コスパ|贅沢|奮発/,
+      respond: function(s) {
+        var lvl = s.budgetLevel || (s.budget && s.budget < 50000 ? 'low' : s.budget && s.budget >= 100000 ? 'high' : null);
+        if (lvl === 'low') return { text: '格安で楽しめる旅先をご紹介します！\n\n**コスパ最強エリア**\n・**北九州（福岡周辺）** — 飛行機が安く、グルメも豊富\n・**高知** — 四万十川など大自然を安く満喫\n・**長野** — 青春18きっぷでも行ける温泉地多数\n\nどんな目的の旅をご希望ですか？', buttons: ['温泉に入りたい', '絶景を見たい', 'グルメを楽しみたい', '歴史・文化を感じたい'] };
+        if (lvl === 'high') return { text: '贅沢な旅をお探しですね✨\n\n**特別感のある旅先**\n・**京都** — 老舗旅館で本物の和の体験\n・**由布院** — 隠れ家的高級宿が点在\n・**沖縄離島** — 波照間・与那国の秘境感\n\n記念日やご褒美旅行ですか？', buttons: ['記念日・アニバーサリー旅行', '大人カップル向けは？', '高級旅館を探したい', '全国の絶景宿は？'] };
+        return { text: 'ご予算についてお聞きします💰\n\nどのくらいの予算帯をお考えですか？\n（お一人様・一泊あたりの目安）', buttons: ['〜1万円（格安）', '1〜3万円（標準）', '3〜5万円（ちょっと贅沢）', '5万円以上（特別な旅）'] };
+      },
+    },
+    couple: {
+      keywords: /カップル|二人旅|彼女と|彼氏と|夫婦旅|新婚|ハネムーン/,
+      respond: function(s) {
+        if (s.purpose === 'onsen') return { text: 'カップルで温泉旅行なら♨️💑\n\n**おすすめトップ3**\n1. **由布院（大分）** — 絵になる街並みと絶景の朝霧\n2. **城崎温泉（兵庫）** — 7つの外湯めぐりが二人旅に最高\n3. **草津温泉（群馬）** — 日本最高峰の泉質\n\n♨️ [温泉地一覧を見る](pages/onsen.html)', buttons: ['由布院の観光スポットは？', '城崎温泉を詳しく', '記念日向けの旅館を探したい', '関西圏の温泉は？'] };
+        return { text: 'カップル旅行のおすすめです💑\n\n**シーン別おすすめ**\n・**ロマンチックな街歩き** → 京都・金沢・小樽\n・**温泉でゆっくり** → 由布院・城崎・草津\n・**南国リゾート** → 石垣島・宮古島・沖縄本島\n\nどんな雰囲気がお好みですか？', buttons: ['温泉でゆっくりしたい', '街歩きが好き', '海・リゾートへ行きたい', '予算から絞り込む'] };
+      },
+    },
+    family: {
+      keywords: /家族旅行|子連れ|子供と|子どもと|ファミリー|お子さん/,
+      respond: function(s) {
+        return { text: '家族旅行のおすすめです👨‍👩‍👧‍👦\n\n**子連れに人気のエリア**\n・**北海道** — 広大な自然と動物ふれあい\n・**沖縄** — きれいな海と子供向け施設が充実\n・**京都・奈良** — 学校の社会科見学にも最適\n\nお子さんの年齢を教えてください！', buttons: ['0〜5歳（幼児・赤ちゃん）', '小学生（6〜12歳）', '中高生と行く旅', '関東圏の家族向け旅先'] };
+      },
+    },
+    solo: {
+      keywords: /一人旅|ひとり旅|ソロ旅|一人で行/,
+      respond: function(s) {
+        return { text: '一人旅、いいですね！🎒\n\n一人だからこそできる自由な旅を提案します。\n**旅の目的は何ですか？**', buttons: ['温泉でゆっくりしたい', '絶景・自然を満喫したい', 'グルメ巡りがしたい', '歴史・文化を感じたい'] };
+      },
+    },
+    women: {
+      keywords: /女子旅|女性一人|女性向け|女友達/,
+      respond: function(s) {
+        return { text: '女子旅のおすすめです💄\n\n**女性に人気の旅先**\n・**京都** — 着物レンタルで街歩き、カフェ巡り\n・**金沢** — ひがし茶屋街・近江町市場\n・**由布院** — 温泉と雑貨屋さん巡り\n・**小樽** — ガラス工房・スイーツ巡り\n\n温泉・グルメ・ショッピングのどれが中心ですか？', buttons: ['温泉でゆっくりしたい', 'グルメ・カフェ巡りがしたい', 'ショッピング・観光がしたい', '映えるスポットを教えて'] };
+      },
+    },
+    anniversary: {
+      keywords: /記念日|誕生日|プロポーズ|サプライズ|アニバーサリー|結婚記念|ご褒美/,
+      respond: function(s) {
+        return { text: '特別な記念日旅行ですね🎉\n\n**サプライズ・記念日におすすめ**\n・**由布院（大分）** — 湯けむりの朝と絵になる街並み\n・**京都** — 和の美意識で特別な夜を\n・**石垣島** — 南国の海と星空\n・**箱根** — 富士山ビューの宿でゆったり\n\nご予算はどのくらいをお考えですか？', buttons: ['〜3万円/人', '3〜5万円/人', '5万円以上/人', '旅ノアにおまかせ'] };
+      },
+    },
+    booking: {
+      keywords: /宿|ホテル|旅館|民宿|予約|泊まり/,
+      respond: function(s) {
+        if (s.pref) {
+          return { text: s.pref + 'の宿をお探しですね🏨\n\n楽天トラベルで最新の空室・料金を確認できます。\nご予算や宿のタイプを教えてください！', buttons: ['温泉旅館がいい', 'ビジネスホテルでOK', 'リゾートホテルがいい', '格安で探したい'] };
+        }
+        return { text: '宿をお探しですね🏨\n\nどのエリア（都道府県）に泊まりたいですか？\n場所を教えていただければ、おすすめをご案内します！', buttons: ['北海道・東北', '関東（東京・箱根など）', '関西（京都・大阪など）', '九州・沖縄'] };
+      },
+    },
+    scenic: {
+      keywords: /絶景|景色|夕日|富士山|星空|天空|ビュー|展望|SNS映え/,
+      respond: function(s) {
+        return { text: '絶景スポットをご紹介します🏔️✨\n\n**日本の絶景ベスト**\n・**富士山（静岡・山梨）** — 日本のシンボル\n・**天橋立（京都）** — 日本三景のひとつ\n・**鳥取砂丘** — 国内唯一の砂丘\n・**美瑛（北海道）** — 映画のような風景\n・**西表島（沖縄）** — 日本最多の星が見える\n\n季節はいつごろお考えですか？', buttons: ['春の絶景（桜・菜の花）', '夏の絶景（海・緑）', '秋の絶景（紅葉）', '冬の絶景（雪景色）'] };
+      },
+    },
+    history: {
+      keywords: /歴史|城めぐり|神社仏閣|武士|侍|戦国|幕末|古都/,
+      respond: function(s) {
+        return { text: '歴史の旅をお考えですね⛩️\n\n**歴史好きにおすすめのエリア**\n・**京都** — 1000年以上の都、神社仏閣が無数\n・**奈良** — 日本最古の都、東大寺・法隆寺\n・**金沢** — 戦災を免れた武家屋敷・茶屋街\n・**会津（福島）** — 幕末・戊辰戦争の舞台\n・**姫路** — 世界遺産・姫路城\n\nどの時代が気になりますか？', buttons: ['京都のおすすめを教えて', '戦国・城めぐりがしたい', '幕末ゆかりの地を訪ねたい', '奈良の観光スポットは？'] };
+      },
+    },
+    gourmet: {
+      keywords: /グルメ旅|食べ歩き|ご当地グルメ|名物料理|食の旅/,
+      respond: function(s) {
+        return { text: 'グルメ旅をお考えですね🍜\n\n**ご当地グルメで選ぶ旅先**\n・**福岡** — 博多ラーメン・もつ鍋・明太子\n・**札幌** — 味噌ラーメン・スープカレー・カニ\n・**香川** — 讃岐うどんの本場\n・**宮崎** — チキン南蛮・地鶏炭火焼\n・**仙台** — 牛タン・ずんだもち\n\n食べたいものやエリアはありますか？', buttons: ['ラーメン目当ての旅先は？', '海鮮を楽しめる場所は？', '関西圏でグルメを楽しむなら', '九州のグルメを教えて'] };
+      },
+    },
+    rainy: {
+      keywords: /雨|梅雨|台風|天気が悪い|室内|屋内/,
+      respond: function(s) {
+        return { text: '雨の日でも楽しめる旅先を紹介します☔\n\n**室内・雨でも楽しい観光地**\n・**大阪** — 水族館・USJ・道頓堀グルメ\n・**東京** — 美術館・博物館・スカイツリー\n・**小樽（北海道）** — 運河沿いのガラス工房・食事\n・**長崎** — 歴史的建物巡り\n\nどんなアクティビティが好きですか？', buttons: ['美術館・博物館めぐり', '水族館・テーマパーク', '温泉でゆっくりしたい', 'グルメ中心に楽しみたい'] };
+      },
+    },
+    car: {
+      keywords: /車.*旅|ドライブ|レンタカー|マイカー/,
+      respond: function(s) {
+        return { text: '車（ドライブ）旅行ですね🚗\n\n**ドライブにおすすめのルート**\n・**北海道** — 富良野〜美瑛の花畑ロード\n・**山陰** — 出雲〜鳥取砂丘の日本海ドライブ\n・**九州** — 阿蘇〜黒川温泉の絶景ルート\n・**伊豆（静岡）** — 海沿いの景色が最高\n\nどのエリアに興味がありますか？', buttons: ['北海道をドライブしたい', '九州をドライブしたい', '伊豆・箱根周辺を走りたい', 'レンタカーが必要な離島は？'] };
+      },
+    },
+    premium: {
+      keywords: /高級|贅沢旅|特別な旅|リゾート|一流|ラグジュアリー/,
+      respond: function(s) {
+        return { text: '特別な高級旅行をお考えですね✨\n\n**プレミアムな旅先**\n・**京都** — 老舗旅館で非日常体験\n・**由布院** — 高級別荘宿で静かな時間\n・**沖縄リゾート** — プールと海で非日常\n・**富良野・美瑛** — 大自然の高原リゾート\n\n記念日やご褒美旅行ですか？', buttons: ['記念日旅行を計画したい', '温泉×高級宿を探したい', '沖縄リゾートの詳細は？', '予算を相談したい'] };
+      },
+    },
+    monthly: {
+      keywords: /何月|いつ.*行く|ベストシーズン|旅行の時期/,
+      respond: function(s) {
+        if (s.month) {
+          var season = s.month >= 3 && s.month <= 5 ? '春' : s.month >= 6 && s.month <= 8 ? '夏' : s.month >= 9 && s.month <= 11 ? '秋' : '冬';
+          return { text: s.month + '月の旅行をお考えですね📅\n\n' + s.month + '月は' + season + 'の旅にぴったりです！\n月別のおすすめをご覧ください。\n\n📅 [月別おすすめ旅先](pages/monthly.html)', buttons: ['北海道の' + s.month + '月は？', '沖縄の' + s.month + '月は？', '桜の名所を教えて', '混雑しない時期は？'] };
+        }
+        return { text: '旅行の時期はいつごろですか？📅\n\n季節や月を教えていただければ、その時期にぴったりの旅先をご案内します！', buttons: ['春（3〜5月）', '夏（6〜8月）', '秋（9〜11月）', '冬（12〜2月）'] };
+      },
+    },
+    nodecide: {
+      keywords: /どこ.*行こう|行き先.*決まら|おすすめ.*教えて|どこがいい|迷って|決められない/,
+      respond: function(s) {
+        return { text: '行き先が決まっていなくても大丈夫です😊\n\nいくつか質問させてください！\n\n**まずは「誰と行く旅」ですか？**', buttons: ['一人旅', 'カップル・夫婦', '家族・子連れ', '友達と'] };
+      },
+      waitingFor: 'who',
+    },
+    purpose: {
+      keywords: /目的.*旅|旅.*目的|何したい|楽しみ方|アクティビティ.*旅/,
+      respond: function(s) {
+        return { text: '旅の目的から探しましょう🎯\n\n📍 [目的から旅先を探す](pages/purpose.html)\n\nどんな旅がしたいですか？', buttons: ['温泉でゆっくりしたい', '絶景・自然を満喫したい', 'グルメ旅がしたい', '歴史・文化を感じたい'] };
+      },
+    },
+    kids: {
+      keywords: /赤ちゃん.*旅|幼児.*旅|小学生.*旅|子供.*何歳/,
+      respond: function(s) {
+        return { text: 'お子さん連れの旅行ですね👶\n\n年齢別でおすすめが変わります！\nお子さんは何歳くらいですか？', buttons: ['0〜2歳（赤ちゃん）', '3〜5歳（幼児）', '6〜12歳（小学生）', '中高生'] };
+      },
+    },
+  };
+
+  /* ---------- インテント検出 ---------- */
+  function detectIntent(q) {
+    for (var key in INTENTS) {
+      if (INTENTS[key].keywords && INTENTS[key].keywords.test(q)) return key;
+    }
+    return null;
+  }
+
+  /* ---------- セッション応答 ---------- */
+  function sessionRespond_withWho(who) {
+    if (who === 'solo') return { text: '一人旅ですね！\n\n**どんな旅がしたいですか？**', buttons: ['温泉でゆっくりしたい', '絶景・自然を満喫', 'グルメ巡りがしたい', '歴史・文化に触れたい'] };
+    if (who === 'couple') return { text: 'カップル旅行ですね💑\n\n**どんな旅がしたいですか？**', buttons: ['温泉でゆっくりしたい', '海・リゾートへ行きたい', '街歩き・観光がしたい', '記念日・特別な旅'] };
+    if (who === 'family') return { text: '家族旅行ですね👨‍👩‍👧‍👦\n\n**お子さんは何歳くらいですか？**', buttons: ['未就学児（0〜5歳）', '小学生（6〜12歳）', '中高生', '大人のみ家族旅'] };
+    return { text: '友達との旅ですね🎒\n\n**旅の目的は？**', buttons: ['温泉・リゾートで遊ぶ', 'グルメ巡り', '観光・アクティビティ', '夜遊び・お酒を楽しむ'] };
+  }
+
+  function sessionRespond(query) {
+    var q = query.trim();
+    var slots = extractSlots(q);
+    for (var k in slots) { SESSION.slots[k] = slots[k]; }
+    SESSION.turnCount++;
+
+    // スロット待ち状態の処理
+    if (SESSION.waitingFor === 'who') {
+      if (/一人|ひとり|ソロ/.test(q)) SESSION.slots.who = 'solo';
+      else if (/カップル|二人|夫婦/.test(q)) SESSION.slots.who = 'couple';
+      else if (/家族|子連れ|ファミリー/.test(q)) SESSION.slots.who = 'family';
+      else if (/友達|グループ/.test(q)) SESSION.slots.who = 'friends';
+      SESSION.waitingFor = null;
+      if (SESSION.slots.who) return sessionRespond_withWho(SESSION.slots.who);
+    }
+
+    var intentKey = detectIntent(q);
+    if (intentKey) SESSION.intent = intentKey;
+    var intent = SESSION.intent ? INTENTS[SESSION.intent] : null;
+
+    if (intent) {
+      if (intent.waitingFor && !SESSION.slots[intent.waitingFor]) {
+        SESSION.waitingFor = intent.waitingFor;
+      }
+      return intent.respond(SESSION.slots);
+    }
+    return null;
+  }
+
   /* ---------- マッチング ---------- */
   function findResponse(query) {
-    const q = query.trim();
-    for (const rule of RULES) {
-      if (rule.patterns.some(p => p.test(q))) {
-        return rule.response(q);
+    var q = query.trim();
+    var sessionResult = sessionRespond(q);
+    if (sessionResult) return sessionResult;
+    for (var i = 0; i < RULES.length; i++) {
+      if (RULES[i].patterns.some(function(p) { return p.test(q); })) {
+        return { text: RULES[i].response(q), buttons: null };
       }
     }
-    return RULES[RULES.length - 1].response(q);
+    return { text: RULES[RULES.length - 1].response(q), buttons: null };
   }
 
   /* ---------- UI レンダリング ---------- */
@@ -797,6 +1005,27 @@ const NoaChat = (() => {
     container.scrollTop = container.scrollHeight;
   }
 
+  function renderSuggestionsWithLinks(container, inputEl, handleSend, items) {
+    const wrap = document.createElement('div');
+    wrap.className = 'chat-suggestions';
+    items.forEach(item => {
+      const parts = item.split('|');
+      const label = parts[0];
+      const url = parts[1] || null;
+      const btn = document.createElement('button');
+      btn.className = 'chat-suggest-btn';
+      btn.textContent = label;
+      if (url) {
+        btn.addEventListener('click', () => { wrap.remove(); window.location.href = url; });
+      } else {
+        btn.addEventListener('click', () => { inputEl.value = label; wrap.remove(); handleSend(); });
+      }
+      wrap.appendChild(btn);
+    });
+    container.appendChild(wrap);
+    container.scrollTop = container.scrollHeight;
+  }
+
   function getSuggestions(query) {
     const q = query;
     const prefMatch = Object.values(PREF_CHAT).find(d => q.includes(d.name));
@@ -829,13 +1058,19 @@ const NoaChat = (() => {
       const typing = showTyping(messagesEl);
       await new Promise(r => setTimeout(r, 700 + Math.random() * 500));
       typing.remove();
-      renderMessage(messagesEl, findResponse(query), 'noa');
-      // フォローアップ質問チップ表示
-      const sugg = getSuggestions(query);
-      let suggestions;
-      if (sugg.type === 'pref') suggestions = FOLLOWUP_SETS.pref(sugg.name);
-      else suggestions = FOLLOWUP_SETS[sugg.type] || FOLLOWUP_SETS.default;
-      renderSuggestions(messagesEl, inputEl, handleSend, suggestions);
+      const result = findResponse(query);
+      const text = (typeof result === 'string') ? result : result.text;
+      const buttons = (typeof result === 'string') ? null : result.buttons;
+      renderMessage(messagesEl, text, 'noa');
+      if (buttons && buttons.length) {
+        renderSuggestionsWithLinks(messagesEl, inputEl, handleSend, buttons);
+      } else {
+        const sugg = getSuggestions(query);
+        let suggestions;
+        if (sugg.type === 'pref') suggestions = FOLLOWUP_SETS.pref(sugg.name);
+        else suggestions = FOLLOWUP_SETS[sugg.type] || FOLLOWUP_SETS.default;
+        renderSuggestions(messagesEl, inputEl, handleSend, suggestions);
+      }
     }
 
     sendBtnEl.addEventListener('click', handleSend);
