@@ -2424,10 +2424,76 @@ button { font-family: inherit; cursor: pointer; }
   border-radius: 8px;
 }
 
+.goods-pr-notice {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-top: 8px;
+}
+
+/* 楽天アフィリエイト画像カード */
+.goods-rakuten-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.gr-card {
+  background: #fff;
+  border: 1px solid #e8e4dc;
+  border-radius: 14px;
+  padding: 14px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.gr-card:hover {
+  box-shadow: 0 6px 20px rgba(200,150,10,0.14);
+  transform: translateY(-2px);
+}
+.gr-img {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gr-img img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.gr-ttl {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.4;
+  flex: 1;
+}
+.gr-cta {
+  display: block;
+  width: 100%;
+  padding: 8px 0;
+  background: linear-gradient(135deg, #bf0000, #cc3300);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 8px;
+  text-align: center;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+.gr-cta:hover { opacity: 0.85; }
+
 @media (max-width: 768px) {
   .goods-grid { grid-template-columns: 1fr; }
   .goods-tabs { gap: 6px; }
   .goods-tab { padding: 8px 14px; font-size: 0.82rem; }
+  .goods-rakuten-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .gr-img img { width: 100px; height: 100px; }
 }
 
 /* ===== ブラッシュアップ追加スタイル ===== */

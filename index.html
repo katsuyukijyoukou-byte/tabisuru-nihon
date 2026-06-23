@@ -501,73 +501,62 @@
   </div>
 </section>
 
-<!-- ===== 旅のおすすめグッズ（厳選6件） ===== -->
-<section class="section section-alt goods-section">
+<!-- ===== 旅のおすすめグッズ ===== -->
+<section class="section section-alt goods-section" id="travel-goods">
   <div class="container">
     <div class="section-header fade-in">
       <div class="section-label">🎒 TRAVEL GOODS</div>
       <h2 class="section-title">旅が快適になる厳選グッズ</h2>
-      <p class="section-desc">旅ノアが厳選した旅の必需品6点。まずはこれだけ揃えれば旅の準備は万全です。</p>
+      <p class="section-desc">旅ノアが厳選した旅の必需品。季節や目的で絞り込んで探せます。</p>
+      <p class="goods-pr-notice">※本ページにはPR・アフィリエイトリンクを含みます。</p>
     </div>
-    <div class="goods-grid" style="opacity:1">
-      <div class="goods-card js-card">
-        <div class="goods-icon">🧳</div>
-        <div class="goods-body">
-          <div class="goods-cat">荷物</div>
-          <div class="goods-name">軽量スーツケース（機内持ち込みサイズ）</div>
-          <p class="goods-desc">国内旅行1〜2泊なら機内持ち込みサイズが最強。荷物受け取り不要でスムーズ。</p>
-          <div class="goods-point">✅ 移動時間が大幅に短縮</div>
-        </div>
-      </div>
-      <div class="goods-card js-card">
-        <div class="goods-icon">🔌</div>
-        <div class="goods-body">
-          <div class="goods-cat">充電</div>
-          <div class="goods-name">モバイルバッテリー（20000mAh）</div>
-          <p class="goods-desc">スマホのナビ・写真撮影で電池を消耗する旅行では大容量が安心。</p>
-          <div class="goods-point">✅ 旅行中の電池切れゼロに</div>
-        </div>
-      </div>
-      <div class="goods-card js-card">
-        <div class="goods-icon">👟</div>
-        <div class="goods-body">
-          <div class="goods-cat">靴</div>
-          <div class="goods-name">歩きやすいスニーカー</div>
-          <p class="goods-desc">旅行では1日1万歩以上歩くことも。クッション性の高いインソール付きが◎。</p>
-          <div class="goods-point">✅ 足の疲れが全然違う</div>
-        </div>
-      </div>
-      <div class="goods-card js-card">
-        <div class="goods-icon">💊</div>
-        <div class="goods-body">
-          <div class="goods-cat">健康</div>
-          <div class="goods-name">常備薬・救急セット</div>
-          <p class="goods-desc">胃薬・頭痛薬・絆創膏を小さいポーチにまとめて持ち歩くと安心。</p>
-          <div class="goods-point">✅ もしもの時の安心感</div>
-        </div>
-      </div>
-      <div class="goods-card js-card">
-        <div class="goods-icon">🎒</div>
-        <div class="goods-body">
-          <div class="goods-cat">バッグ</div>
-          <div class="goods-name">折りたたみデイパック</div>
-          <p class="goods-desc">お土産が増えた時や現地散策に便利。軽量でコンパクトに収納できるものを。</p>
-          <div class="goods-point">✅ お土産袋代わりにも</div>
-        </div>
-      </div>
-      <div class="goods-card js-card">
-        <div class="goods-icon">🌞</div>
-        <div class="goods-body">
-          <div class="goods-cat">日焼け・防寒</div>
-          <div class="goods-name">日焼け止め（夏）または軽量ダウン（冬）</div>
-          <p class="goods-desc">季節に合わせた必需品。夏はSPF50+日焼け止め、冬はコンパクトダウンが旅の定番。</p>
-          <div class="goods-point">✅ 季節問わず快適な旅へ</div>
-        </div>
-      </div>
+    <div class="goods-tabs" id="goods-tabs">
+      <button class="goods-tab active" data-cat="all">すべて</button>
+      <button class="goods-tab" data-cat="spring">🌸 春旅</button>
+      <button class="goods-tab" data-cat="summer">☀️ 夏旅</button>
+      <button class="goods-tab" data-cat="autumn">🍂 秋旅</button>
+      <button class="goods-tab" data-cat="winter">❄️ 冬旅</button>
+      <button class="goods-tab" data-cat="rain">🌂 雨対策</button>
+      <button class="goods-tab" data-cat="sunshade">🌤️ 日差し対策</button>
+      <button class="goods-tab" data-cat="sleep">😴 快眠グッズ</button>
+      <button class="goods-tab" data-cat="photo">📸 写真・カメラ</button>
     </div>
-    <p class="goods-disclaimer" style="margin-top:20px">※当サイトはアフィリエイト広告を含みます。各商品の最新価格・在庫はリンク先でご確認ください。</p>
+    <div class="goods-rakuten-grid" id="goods-rakuten-grid"></div>
+    <p class="goods-disclaimer">※当サイトはアフィリエイト広告を含みます。各商品の最新価格・在庫はリンク先でご確認ください。</p>
   </div>
 </section>
+<script>
+(function(){
+  var _cat = 'all';
+  function shortTitle(t){ return t.replace(/【[^】]*】/g,'').split(/[　 ]/)[0].slice(0,22); }
+  function renderGoods(){
+    var data = window.TRAVEL_GOODS_DATA;
+    if(!data){ return; }
+    var grid = document.getElementById('goods-rakuten-grid');
+    if(!grid){ return; }
+    var items = _cat === 'all' ? data : data.filter(function(g){ return g.cat === _cat; });
+    grid.innerHTML = items.map(function(g){
+      return '<div class="gr-card">'
+        + '<div class="gr-img">' + g.img + '</div>'
+        + '<div class="gr-ttl">' + shortTitle(g.title) + '</div>'
+        + '<a class="gr-cta" href="' + g.url + '" target="_blank" rel="nofollow sponsored noopener">楽天で見る →</a>'
+        + '</div>';
+    }).join('');
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var tabs = document.querySelectorAll('#goods-tabs .goods-tab');
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        tabs.forEach(function(t){ t.classList.remove('active'); });
+        tab.classList.add('active');
+        _cat = tab.dataset.cat;
+        renderGoods();
+      });
+    });
+    renderGoods();
+  });
+})();
+</script>
 
 <!-- トップへ戻るボタン -->
 <button class="back-to-top" id="back-to-top" aria-label="ページトップへ戻る">↑</button>
@@ -672,6 +661,7 @@
 <script src="data/booking.js?v=20260616"></script>
 <script src="data/specialties.js?v=20260616"></script>
 <script src="js/chat.js"></script>
+<script src="data/travel-goods.js?v=20260623-1"></script>
 <script src="js/affiliate-links.js?v=20260619-1"></script>
 <script src="js/tracking.js?v=20260619-1"></script>
 <script src="js/app.js?v=20260619-1"></script>
