@@ -2620,100 +2620,135 @@ button { font-family: inherit; cursor: pointer; }
   transform: translateY(-2px);
 }
 
-/* ===== 旅ノア フロートウィジェット ===== */
-.noa-floating {
-  position: fixed;
-  z-index: 9000;
-  transition: right 0.35s ease, bottom 0.35s ease, opacity 0.35s ease;
-}
-.noa-float-btn {
-  border: none;
-  background: none;
-  padding: 0;
-  cursor: pointer;
-  display: block;
-}
-
-/* ヒーローモード */
-.noa-hero-mode {
-  right: clamp(16px, 4vw, 72px);
-  bottom: clamp(56px, 10vh, 96px);
-}
-.noa-hero-mode .nf-hero-card {
+/* ===== ヒーロー内 旅ノア ===== */
+.hero-noa {
+  position: absolute;
+  right: clamp(24px, 6vw, 96px);
+  bottom: clamp(80px, 11vh, 100px);
+  z-index: 4;
   display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 20px 14px 10px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.93);
-  box-shadow: 0 18px 48px rgba(0,0,0,0.22);
-  backdrop-filter: blur(12px);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  align-items: flex-end;
+  gap: 16px;
+  pointer-events: auto;
 }
-.noa-hero-mode .noa-float-btn:hover .nf-hero-card,
-.noa-hero-mode .noa-float-btn.active .nf-hero-card {
-  transform: translateY(-3px);
-  box-shadow: 0 24px 56px rgba(0,0,0,0.28);
-}
-.noa-hero-mode .nf-avatar-wrap {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-  background: #f5f0e8;
-  border: 3px solid var(--gold, #d49a00);
-}
-.noa-hero-mode .nf-avatar {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+.hero-noa-img {
+  width: clamp(200px, 18vw, 300px);
+  height: auto;
   display: block;
+  filter: drop-shadow(0 24px 36px rgba(0,0,0,0.38));
+  flex-shrink: 0;
 }
-.noa-hero-mode .nf-bubble {
+.hero-noa-bubble {
+  max-width: 260px;
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.92);
+  color: #0f1e33;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.22);
+  backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  text-align: left;
+  gap: 6px;
+  margin-bottom: 16px;
+  position: relative;
 }
-.noa-hero-mode .nf-name {
-  font-size: 13px;
+.hero-noa-bubble::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  bottom: 24px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 12px;
+  border-color: transparent transparent transparent rgba(255,255,255,0.92);
+}
+.hero-noa-name {
+  font-size: 14px;
   font-weight: 800;
   color: #0f1e33;
+  display: block;
 }
-.noa-hero-mode .nf-text {
-  font-size: 12px;
-  color: #444;
-  line-height: 1.5;
+.hero-noa-text {
+  font-size: 13px;
+  color: #333;
+  line-height: 1.6;
+  display: block;
 }
-.noa-hero-mode .nf-cta-label {
+.hero-noa-cta {
   display: inline-flex;
   align-items: center;
-  margin-top: 6px;
-  padding: 6px 14px;
+  justify-content: center;
+  margin-top: 4px;
+  padding: 8px 16px;
   background: #d49a00;
   color: #fff;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
+  border: none;
   border-radius: 999px;
+  cursor: pointer;
   white-space: nowrap;
+  transition: opacity 0.2s;
 }
-.noa-hero-mode .nf-compact-card { display: none; }
+.hero-noa-cta:hover { opacity: 0.86; }
 
-/* コンパクトモード */
-.noa-compact-mode {
-  right: 22px;
-  bottom: 88px;
+/* スマホ */
+@media (max-width: 768px) {
+  .hero-noa {
+    right: 10px;
+    bottom: 72px;
+    gap: 6px;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .hero-noa-img { width: 120px; }
+  .hero-noa-bubble {
+    max-width: 168px;
+    padding: 10px 12px;
+    gap: 4px;
+    border-radius: 14px;
+    margin-bottom: 0;
+  }
+  .hero-noa-bubble::after { display: none; }
+  .hero-noa-name { font-size: 12px; }
+  .hero-noa-text { display: none; }
+  .hero-noa-cta { font-size: 11px; padding: 6px 12px; }
 }
-.noa-compact-mode .nf-hero-card { display: none; }
-.noa-compact-mode .nf-compact-card {
+@media (max-width: 480px) {
+  .hero-noa { bottom: 62px; right: 8px; }
+  .hero-noa-img { width: 100px; }
+  .hero-noa-bubble { max-width: 140px; }
+}
+
+/* ===== 旅ノア フロートウィジェット（コンパクト・スクロール後のみ表示） ===== */
+.noa-floating {
+  position: fixed;
+  right: 18px;
+  bottom: 86px;
+  z-index: 9000;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px) scale(0.96);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.noa-floating.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.noa-float-btn {
+  position: static;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
 }
-.noa-compact-mode .nf-compact-icon {
+.noa-float-icon {
   width: 64px;
   height: 64px;
   border-radius: 50%;
@@ -2722,19 +2757,19 @@ button { font-family: inherit; cursor: pointer; }
   background: var(--navy);
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.noa-compact-mode .noa-float-btn:hover .nf-compact-icon,
-.noa-compact-mode .noa-float-btn.active .nf-compact-icon {
+.noa-float-btn:hover .noa-float-icon,
+.noa-float-btn.active .noa-float-icon {
   transform: scale(1.08);
   box-shadow: 0 6px 28px rgba(12,27,53,0.4), 0 0 0 3px var(--gold-light);
 }
-.noa-compact-mode .nf-compact-icon img {
+.noa-float-icon img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
   display: block;
 }
-.noa-compact-mode .nf-compact-label {
+.noa-float-balloon {
   background: var(--navy);
   color: var(--gold-light);
   font-size: 0.72rem;
@@ -2746,30 +2781,10 @@ button { font-family: inherit; cursor: pointer; }
   pointer-events: none;
 }
 
-/* スマホ調整 */
-@media (max-width: 768px) {
-  .noa-hero-mode {
-    right: 10px;
-    bottom: 18px;
-  }
-  .noa-hero-mode .nf-hero-card {
-    padding: 10px 12px 10px 8px;
-    gap: 8px;
-    max-width: 200px;
-  }
-  .noa-hero-mode .nf-avatar-wrap {
-    width: 64px;
-    height: 64px;
-  }
-  .noa-hero-mode .nf-name { font-size: 12px; }
-  .noa-hero-mode .nf-text { font-size: 11px; }
-  .noa-hero-mode .nf-cta-label { font-size: 11px; padding: 5px 10px; margin-top: 4px; }
-  .noa-compact-mode { right: 16px; bottom: 80px; }
-}
-
 /* モーション軽減 */
 @media (prefers-reduced-motion: reduce) {
-  .noa-floating, .nf-hero-card { transition: none !important; }
+  .noa-floating { transition: none !important; }
+  .hero-noa-cta { transition: none !important; }
 }
 
 .noa-float-panel {

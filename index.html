@@ -138,6 +138,16 @@
 
   </div><!-- /.fh-inner -->
 
+  <!-- ===== ヒーロー内 旅ノア ===== -->
+  <div class="hero-noa" id="heroNoa">
+    <div class="hero-noa-bubble">
+      <strong class="hero-noa-name">旅ノアです</strong>
+      <span class="hero-noa-text">あなたに合う日本旅を<br>一緒に探します。</span>
+      <button type="button" class="hero-noa-cta" id="hero-noa-cta-btn">旅ノアに相談する</button>
+    </div>
+    <img src="images/character/base/noa-main-black-gold.png" alt="旅ノア" class="hero-noa-img">
+  </div>
+
 </section><!-- /.fullhero -->
 
 <!-- ===== はじめての人向け導線 ===== -->
@@ -749,24 +759,10 @@
 <div id="noaFloating" class="noa-floating noa-hero-mode">
   <button id="noa-float-btn" class="noa-float-btn" type="button" aria-label="旅ノアに相談する"
           data-track-category="noah" data-track-id="noa-float" data-track-title="旅ノアに相談する(フロート)" data-track-type="cta">
-    <!-- ヒーローモード：大きいカード -->
-    <div class="nf-hero-card">
-      <div class="nf-avatar-wrap">
-        <img src="images/character/base/noa-main-black-gold.png" alt="旅ノア" class="nf-avatar">
-      </div>
-      <div class="nf-bubble">
-        <strong class="nf-name">旅ノアです</strong>
-        <span class="nf-text">あなたに合う日本旅を<br>一緒に探します。</span>
-        <span class="nf-cta-label">旅ノアに相談 →</span>
-      </div>
+    <div class="noa-float-icon">
+      <img src="images/character/base/noa-purple-kimono-wink.png" alt="旅ノア">
     </div>
-    <!-- コンパクトモード：小さいアイコン -->
-    <div class="nf-compact-card">
-      <div class="nf-compact-icon">
-        <img src="images/character/base/noa-purple-kimono-wink.png" alt="旅ノア">
-      </div>
-      <span class="nf-compact-label">旅ノアに相談</span>
-    </div>
+    <span class="noa-float-balloon">旅ノアに相談</span>
   </button>
 </div>
 
@@ -1271,26 +1267,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     if (closeBtn) closeBtn.addEventListener('click', closePanel);
 
-    // ヒーロー表示中はヒーローモード、スクロール後はコンパクトモードに切り替え
+    // ヒーローを抜けたら右下コンパクトボタンを表示
     var noaFloating = document.getElementById('noaFloating');
     var heroSection = document.getElementById('top');
     if (noaFloating && heroSection) {
       var noaObserver = new IntersectionObserver(function(entries) {
         var entry = entries[0];
         if (entry.isIntersecting) {
-          noaFloating.classList.add('noa-hero-mode');
-          noaFloating.classList.remove('noa-compact-mode');
+          noaFloating.classList.remove('is-visible');
         } else {
-          noaFloating.classList.remove('noa-hero-mode');
-          noaFloating.classList.add('noa-compact-mode');
+          noaFloating.classList.add('is-visible');
         }
-      }, { threshold: 0.2 });
+      }, { threshold: 0.05 });
       noaObserver.observe(heroSection);
     }
 
     // トップCTAからパネルを開く
     var ctaBtn = document.getElementById('fh-open-noa');
     if (ctaBtn) ctaBtn.addEventListener('click', function(e) { e.preventDefault(); openPanel(); });
+
+    // ヒーロー内旅ノアCTAからパネルを開く
+    var heroNoaCta = document.getElementById('hero-noa-cta-btn');
+    if (heroNoaCta) heroNoaCta.addEventListener('click', function() { openPanel(); });
 
     var exploreNoaBtn = document.getElementById('explore-noa-btn');
     if (exploreNoaBtn) exploreNoaBtn.addEventListener('click', function(e) { e.preventDefault(); openPanel(); });
