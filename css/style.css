@@ -484,16 +484,25 @@ button { font-family: inherit; cursor: pointer; }
   .fh-inner { padding: 0 5%; }
 }
 @media (max-width: 768px) {
-  .fullhero { height: 85vh; min-height: 520px; }
-  .fh-inner { padding: 0 20px; }
-  .fh-body { align-items: flex-start; }
+  /* 旅ノア分の高さを確保（テキスト+CTAが上部、旅ノアが下部に収まるよう） */
+  .fullhero { height: auto; min-height: 680px; }
+  .fh-inner {
+    padding: 0 20px;
+    min-height: 680px;
+    /* 下部に旅ノア用スペース確保 */
+    padding-bottom: 172px;
+  }
+  .fh-body { align-items: flex-start; justify-content: flex-start; padding-top: 0; padding-bottom: 0; }
   .fh-maintitle { font-size: clamp(2.2rem, 9vw, 3rem); }
   .fh-cta { gap: 10px; }
   .fh-btn { padding: 11px 20px; font-size: 0.82rem; }
   .fh-scroll { display: none; }
+  /* 下部バーを旅ノアと同レイヤーで処理 */
+  .fh-bottom { padding-bottom: 20px; }
 }
 @media (max-width: 480px) {
-  .fullhero { height: 82vh; }
+  .fullhero { min-height: 660px; }
+  .fh-inner { padding-bottom: 158px; min-height: 660px; }
   .fh-btn.ghost { display: none; }
 }
 
@@ -2696,32 +2705,34 @@ button { font-family: inherit; cursor: pointer; }
 }
 .hero-noa-cta:hover { filter: brightness(1.08); }
 
-/* スマホ */
+/* スマホ：旅ノアをヒーロー下部の独立ゾーンに配置（テキスト・CTAと被らない） */
 @media (max-width: 768px) {
   .hero-noa {
     right: 10px;
-    bottom: 72px;
-    gap: 6px;
-    flex-direction: column;
+    bottom: 24px;         /* fh-bottom と重ならない下部 */
+    gap: 8px;
+    flex-direction: row;  /* 吹き出し左・キャラ右 */
     align-items: flex-end;
   }
-  .hero-noa-img { width: 120px; }
+  .hero-noa-img { width: 118px; }
   .hero-noa-bubble {
-    max-width: 168px;
-    padding: 10px 12px;
-    gap: 4px;
-    border-radius: 14px;
+    max-width: 150px;
+    padding: 9px 10px;
+    gap: 3px;
+    border-radius: 12px;
     margin-bottom: 0;
+    font-size: 11px;
+    line-height: 1.4;
   }
   .hero-noa-bubble::after { display: none; }
   .hero-noa-name { font-size: 12px; }
   .hero-noa-text { display: none; }
-  .hero-noa-cta { font-size: 11px; padding: 6px 12px; }
+  .hero-noa-cta { font-size: 11px; padding: 6px 10px; margin-top: 2px; }
 }
-@media (max-width: 480px) {
-  .hero-noa { bottom: 62px; right: 8px; }
-  .hero-noa-img { width: 100px; }
-  .hero-noa-bubble { max-width: 140px; }
+@media (max-width: 390px) {
+  .hero-noa { right: 8px; bottom: 20px; gap: 6px; }
+  .hero-noa-img { width: 104px; }
+  .hero-noa-bubble { max-width: 132px; font-size: 10.5px; }
 }
 
 /* ===== 旅ノア フロートウィジェット（コンパクト・スクロール後のみ表示） ===== */
