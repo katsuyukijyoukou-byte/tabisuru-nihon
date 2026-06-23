@@ -511,7 +511,7 @@
       <p class="goods-pr-notice">※本ページにはPR・アフィリエイトリンクを含みます。</p>
     </div>
     <div class="goods-tabs" id="goods-tabs">
-      <button class="goods-tab active" data-cat="all">すべて</button>
+      <button class="goods-tab active" data-cat="recommend">🎯 オススメ</button>
       <button class="goods-tab" data-cat="spring">🌸 春旅</button>
       <button class="goods-tab" data-cat="summer">☀️ 夏旅</button>
       <button class="goods-tab" data-cat="autumn">🍂 秋旅</button>
@@ -527,8 +527,97 @@
 </section>
 <script>
 (function(){
-  var _cat = 'all';
-  function shortTitle(t){ return t.replace(/【[^】]*】/g,'').split(/[　 ]/)[0].slice(0,24); }
+  var _cat = 'recommend';
+
+  /* ===== 商品表示名マッピング (url → 表示名) ===== */
+  var GOODS_NAMES = {
+    'https://a.r10.to/hPXvQo': '折りたたみリュック',
+    'https://a.r10.to/hPjtLp': 'トラベルポーチセット',
+    'https://a.r10.to/hgQerB': 'モバイルバッテリー（大容量）',
+    'https://a.r10.to/hRpzgV': 'UVカットカーディガン',
+    'https://a.r10.to/hgOoWG': 'UVカットパーカー',
+    'https://a.r10.to/hkRjIs': '晴雨兼用傘',
+    'https://a.r10.to/h5O5qd': 'ウォーキングシューズ',
+    'https://a.r10.to/hFwjDw': 'エアーネックピロー',
+    'https://a.r10.to/hPTbrK': 'ステンレスタンブラー',
+    'https://a.r10.to/hYWFb7': '花粉対策マスク',
+    'https://a.r10.to/hkkBKN': 'ハンディファン',
+    'https://a.r10.to/hgYUA3': 'クールタオルセット',
+    'https://a.r10.to/hPE1Vz': '折りたたみ完全遮光日傘',
+    'https://a.r10.to/h5VBx9': 'UVカットパーカー（夏）',
+    'https://a.r10.to/hgLMrq': '偏光サングラス',
+    'https://a.r10.to/hYngUR': 'UVアームカバー',
+    'https://a.r10.to/hYnt1C': 'モバイルバッテリー',
+    'https://a.r10.to/hRHvzr': 'ステンレス水筒',
+    'https://a.r10.to/h551N0': '虫除けブレスレット',
+    'https://a.r10.to/h5CGsk': '首掛けネッククーラー',
+    'https://a.r10.to/h5Rt8p': '軽量ダウンジャケット',
+    'https://a.r10.to/h5QfZp': 'UVカットストール',
+    'https://a.r10.to/h5BrD6': '超保温マグボトル',
+    'https://a.r10.to/hH5CnD': '折りたたみアウトドアチェア',
+    'https://a.r10.to/hkonSo': 'モバイルバッテリー（秋）',
+    'https://a.r10.to/h8QYii': 'カメラストラップ',
+    'https://a.r10.to/hP5ucM': 'スリッポンシューズ',
+    'https://a.r10.to/hkjMHX': '撥水ストレッチジャケット',
+    'https://a.r10.to/hktapT': 'UVカット手袋',
+    'https://a.r10.to/hotfcA': 'コンサート用双眼鏡',
+    'https://a.r10.to/h9Snvf': 'シルクネックウォーマー',
+    'https://a.r10.to/hHoxRD': '裏起毛インナー',
+    'https://a.r10.to/hYntXK': 'モバイルバッテリー（冬）',
+    'https://a.r10.to/h5MJay': '使い捨てカイロ大量セット',
+    'https://a.r10.to/h5uGFd': '防寒スマホ対応手袋',
+    'https://a.r10.to/h5Uywv': 'ムートンブーツ',
+    'https://a.r10.to/hPHAIF': 'メンズダウンジャケット',
+    'https://a.r10.to/hFncBJ': 'ステンレスボトル',
+    'https://a.r10.to/h5nOcr': '折りたたみイヤーマフ',
+    'https://a.r10.to/hPDWxX': '衣類圧縮袋セット',
+    'https://a.r10.to/hYwUSd': '完全遮光折りたたみ日傘',
+    'https://a.r10.to/hPvUAo': '防水レインコート',
+    'https://a.r10.to/hkukSE': '防水スニーカー',
+    'https://a.r10.to/h5MX3B': 'スマホ防水ケース',
+    'https://a.r10.to/hYp50z': '防水リュック',
+    'https://a.r10.to/hRRXnU': 'スライド式傘カバー',
+    'https://a.r10.to/hP9UsG': '撥水タオルハンカチ',
+    'https://a.r10.to/h5D3nw': '防水ポーチ',
+    'https://a.r10.to/hP9IZQ': 'トラベル圧縮バッグ',
+    'https://a.r10.to/hPTpJ0': '撥水キャップ',
+    'https://a.r10.to/hPNdHR': '完全遮光長傘',
+    'https://a.r10.to/hgOLyX': 'UVカットパーカー（日差し）',
+    'https://a.r10.to/hRjuqC': 'Wpc.アームカバー',
+    'https://a.r10.to/h506Y9': 'クールタオルセット',
+    'https://a.r10.to/hk7aIG': 'おしゃれサングラス',
+    'https://a.r10.to/hPRrxa': '完全遮光つば広帽子',
+    'https://a.r10.to/hgR63D': '首掛け扇風機',
+    'https://a.r10.to/hRRXTe': '日焼け止め（SPF50+）',
+    'https://a.r10.to/hkMIdC': '熱中症対策スプレー',
+    'https://a.r10.to/hP9IA4': 'アイスネックリング',
+    'https://a.r10.to/hgWeOB': 'H型エアーネックピロー',
+    'https://a.r10.to/hYFxox': '安眠アイマスク',
+    'https://a.r10.to/hPNdxL': '睡眠用耳栓',
+    'https://a.r10.to/h5B2fw': '寝ホン（睡眠用イヤホン）',
+    'https://a.r10.to/hRRXVA': '卓上加湿器',
+    'https://a.r10.to/h52Hgk': 'ピローミスト',
+    'https://a.r10.to/hPOHiM': 'トラベルスリッパ',
+    'https://a.r10.to/hHoJqM': 'ポンプ式ネックピロー',
+    'https://a.r10.to/hPgFLN': 'トラベルブランケット',
+    'https://a.r10.to/h5iSjm': 'ホットアイマスク',
+    'https://a.r10.to/hPOHEF': 'スマホ三脚スタンド',
+    'https://a.r10.to/hPiyF5': '自撮り棒（Bluetooth）',
+    'https://a.r10.to/hgRc9s': '大容量モバイルバッテリー',
+    'https://a.r10.to/h57nbf': 'スマホカメラレンズ',
+    'https://a.r10.to/TLInuy': 'スマホジンバル',
+    'https://a.r10.to/h8dHrm': 'チェキ（インスタントカメラ）',
+    'https://a.r10.to/hRHk2s': 'microSDカード',
+    'https://a.r10.to/h5XWMI': '防水カメラバッグ',
+    'https://a.r10.to/h5u8Ak': '水中撮影防水ケース',
+    'https://a.r10.to/hgNQrk': '撮影用クリップライト'
+  };
+
+  function getDisplayName(url, title){
+    if(GOODS_NAMES[url]) return GOODS_NAMES[url];
+    return title.replace(/【[^】]*】/g,'').replace(/^\s+/,'').split(/[　 ]/)[0].slice(0,20) || title.slice(0,20);
+  }
+
   function imgSrc(imgHtml){
     if(!imgHtml) return '';
     var patterns = [
@@ -543,15 +632,30 @@
     }
     return '';
   }
+
+  function shuffleSlice(arr, n){
+    var a = arr.slice();
+    for(var i=a.length-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1));
+      var tmp=a[i]; a[i]=a[j]; a[j]=tmp;
+    }
+    return a.slice(0, Math.min(n, a.length));
+  }
+
   function renderGoods(){
     var data = window.TRAVEL_GOODS_DATA;
     if(!data){ return; }
     var grid = document.getElementById('goods-rakuten-grid');
     if(!grid){ return; }
-    var items = _cat === 'all' ? data : data.filter(function(g){ return g.cat === _cat; });
+    var items;
+    if(_cat === 'recommend'){
+      items = shuffleSlice(data, 10);
+    } else {
+      items = data.filter(function(g){ return g.cat === _cat; });
+    }
     grid.innerHTML = items.map(function(g){
       var src = imgSrc(g.img);
-      var ttl = shortTitle(g.title);
+      var ttl = getDisplayName(g.url, g.title);
       var url = g.url;
       return '<article class="gr-card">'
         + '<a class="gr-img-wrap" href="' + url + '" target="_blank" rel="nofollow sponsored noopener">'
@@ -564,6 +668,7 @@
         + '</article>';
     }).join('');
   }
+
   document.addEventListener('DOMContentLoaded', function(){
     var tabs = document.querySelectorAll('#goods-tabs .goods-tab');
     tabs.forEach(function(tab){
