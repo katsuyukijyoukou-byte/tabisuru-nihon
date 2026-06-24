@@ -2,11 +2,11 @@
    旅ノア チャットエンジン v2 — 47都道府県対応
 =================================================== */
 
-const NoaChat = (() => {
+var NoaChat = (function() {
 
   /* ---------- 内部状態 ---------- */
-  let _rootPath = '';
-  const R = () => _rootPath; // ルートパス取得
+  var _rootPath = '';
+  var R = function() { return _rootPath; };
 
   /* ---------- 47都道府県データ ---------- */
   const PREF_CHAT = {
@@ -1063,29 +1063,40 @@ const NoaChat = (() => {
       const buttons = (typeof result === 'string') ? null : result.buttons;
       renderMessage(messagesEl, text, 'noa');
       if (buttons && buttons.length) {
-        renderSuggestionsWithLinks(messagesEl, inputEl, handleSend, buttons);
+        renderSuggestionsWithLinks(messagesEl, inputEl, safeSend, buttons);
       } else {
         const sugg = getSuggestions(query);
         let suggestions;
         if (sugg.type === 'pref') suggestions = FOLLOWUP_SETS.pref(sugg.name);
         else suggestions = FOLLOWUP_SETS[sugg.type] || FOLLOWUP_SETS.default;
-        renderSuggestions(messagesEl, inputEl, handleSend, suggestions);
+        renderSuggestions(messagesEl, inputEl, safeSend, suggestions);
       }
     }
 
-    sendBtnEl.addEventListener('click', handleSend);
-    inputEl.addEventListener('keydown', e => {
-      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); }
+    var _sending = false;
+    function safeSend() {
+      if (_sending) return;
+      _sending = true;
+      handleSend().finally(function() { _sending = false; });
+    }
+
+    sendBtnEl.addEventListener('click', safeSend);
+    sendBtnEl.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      safeSend();
+    });
+    inputEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); safeSend(); }
     });
     if (quickBtns) {
-      quickBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
+      quickBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
           inputEl.value = btn.textContent.trim();
-          handleSend();
+          safeSend();
         });
       });
     }
   }
 
-  return { init, findResponse, renderMessage, PREF_CHAT };
-})();
+  return { init: init, findResponse: findResponse, renderMessage: renderMessage, PREF_CHAT: PREF_CHAT };
+}());
