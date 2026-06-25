@@ -425,7 +425,7 @@
   </div>
 </footer>
 
-<script src="../data/specialties.js?v=20260616"></script>
+<script src="../data/specialties.js?v=20260625-1"></script>
 <script src="../js/app.js?v=20260616"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -470,30 +470,32 @@ document.addEventListener('DOMContentLoaded', () => {
     grid.innerHTML = list.map(s => {
       const prefId = PREF_ID_MAP[s.prefecture];
       const prefLink = prefId ? `<a href="../templates/prefecture.html?id=${prefId}" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;background:var(--gold-pale);border:1px solid var(--gold);color:var(--navy);font-size:0.74rem;font-weight:700;text-decoration:none;margin-top:4px">${s.prefecture}のページへ →</a>` : '';
-      const colors = CAT_COLORS[s.category] || { bg: 'linear-gradient(135deg,var(--navy),#1a3060)', accent: 'var(--teal)' };
+      const imgSrc = s.image ? `../${s.image}` : '';
+      const imgAlt = s.imageAlt || s.name;
+      const catLabel = { seafood:'海鮮・魚介', cuisine:'郷土料理', street:'B級グルメ', meat:'肉料理', sweets:'スイーツ' }[s.category] || s.category;
       return `
-      <div class="content-block fade-in" style="margin:0;padding:0;overflow:hidden;border-radius:var(--radius-lg);display:flex;flex-direction:column">
-        <div style="background:${colors.bg};padding:20px 18px 16px;color:white;position:relative">
-          <div style="position:absolute;top:12px;right:14px;font-size:3rem;opacity:0.18;line-height:1">${s.emoji}</div>
-          <div style="display:flex;align-items:flex-start;gap:12px">
-            <span style="font-size:2.2rem;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))">${s.emoji}</span>
+      <div class="content-block fade-in" style="margin:0;padding:0;overflow:hidden;border-radius:var(--radius-lg);display:flex;flex-direction:column;background:var(--card-bg);border:1.5px solid var(--border)">
+        <div style="height:160px;position:relative;overflow:hidden;background:linear-gradient(135deg,#1a3060,#0c4a6e)">
+          ${imgSrc ? `<img src="${imgSrc}" alt="${imgAlt}" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" onerror="this.style.display='none'">` : ''}
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,27,53,0.75))"></div>
+          <div style="position:absolute;bottom:10px;left:12px;display:flex;align-items:center;gap:8px">
+            <span style="font-size:1.6rem;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5))">${s.emoji}</span>
             <div>
-              <div style="font-size:0.7rem;color:rgba(255,255,255,0.6);font-weight:600;letter-spacing:0.05em">${s.prefecture}</div>
-              <div style="font-size:1.05rem;font-weight:800;line-height:1.2;margin-top:2px">${s.name}</div>
-              <div style="font-size:0.78rem;color:rgba(255,255,255,0.75);margin-top:4px">${s.tagline}</div>
+              <div style="font-size:0.62rem;color:rgba(255,255,255,0.75)">${s.prefecture} ／ ${catLabel}</div>
+              <div style="font-size:0.95rem;font-weight:800;color:white;text-shadow:0 1px 4px rgba(0,0,0,0.5)">${s.name}</div>
             </div>
           </div>
-          <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
-            ${s.price ? `<span style="background:rgba(255,255,255,0.15);border-radius:99px;padding:2px 10px;font-size:0.68rem;color:rgba(255,255,255,0.9)">💰 ${s.price}</span>` : ''}
-            ${s.bestSeason ? `<span style="background:rgba(255,255,255,0.15);border-radius:99px;padding:2px 10px;font-size:0.68rem;color:rgba(255,255,255,0.9)">🌿 ${s.bestSeason}</span>` : ''}
-          </div>
         </div>
-        <div style="padding:14px 18px;flex:1;display:flex;flex-direction:column;gap:8px">
-          <p style="font-size:0.83rem;line-height:1.75;color:var(--text-light);margin:0">${s.overview}</p>
-          ${(s.bestSpots||[]).length ? `<div style="font-size:0.78rem;color:var(--text-muted)"><span style="font-weight:700;color:var(--navy)">📍 おすすめスポット：</span>${(s.bestSpots||[]).slice(0,2).join('・')}</div>` : ''}
-          <div style="margin-top:auto;padding-top:10px;border-top:1px solid var(--border-light)">
-            <div style="font-size:0.7rem;font-weight:700;color:var(--teal);margin-bottom:4px">旅ノアより</div>
-            <p style="font-size:0.79rem;color:var(--navy);line-height:1.65;margin:0">${s.noaComment||''}</p>
+        <div style="padding:12px 16px 4px;display:flex;gap:6px;flex-wrap:wrap">
+          ${s.price ? `<span style="background:var(--bg-muted);border-radius:99px;padding:2px 10px;font-size:0.67rem;color:var(--text-muted)">💴 ${s.price}</span>` : ''}
+          ${s.bestSeason ? `<span style="background:var(--bg-muted);border-radius:99px;padding:2px 10px;font-size:0.67rem;color:var(--text-muted)">🌿 ${s.bestSeason}</span>` : ''}
+        </div>
+        <div style="padding:8px 16px 10px;flex:1;display:flex;flex-direction:column;gap:8px">
+          <p style="font-size:0.82rem;line-height:1.75;color:var(--text-light);margin:0">${s.overview}</p>
+          ${(s.bestSpots||[]).length ? `<div style="font-size:0.78rem;color:var(--text-muted)"><span style="font-weight:700;color:var(--navy)">📍 おすすめ：</span>${(s.bestSpots||[]).slice(0,2).join('・')}</div>` : ''}
+          <div style="margin-top:auto;padding-top:8px;border-top:1px solid var(--border-light)">
+            <div style="font-size:0.68rem;font-weight:700;color:var(--teal);margin-bottom:3px">旅ノアより</div>
+            <p style="font-size:0.78rem;color:var(--navy);line-height:1.65;margin:0">${s.noaComment||''}</p>
           </div>
           ${prefLink}
         </div>
