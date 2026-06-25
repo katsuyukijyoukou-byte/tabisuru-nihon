@@ -71,26 +71,37 @@ pages/onsen.html,kinosaki,hyogo-kinosaki-01.jpg,城崎温泉,yes,exact,2026-06-1
 pages/onsen.html,shirahama,wakayama-shirahama-beach-01.jpg,白浜ビーチ,yes,exact,2026-06-15,白浜の白砂ビーチとして適切
 pages/onsen.html,dogo,ehime-dogo-honkan-01.jpg,道後温泉本館,yes,exact,2026-06-15,道後温泉本館として適切
 pages/onsen.html,beppu,oita-beppu-01.jpg,別府温泉,yes,exact,2026-06-15,別府温泉として適切
-pages/onsen.html,nyuto,akita-nyutou-onsen-01.jpg,乳頭温泉,yes,exact,2026-06-15,乳頭温泉として適切
+pages/onsen.html,nyuto,akita-nyutou-onsen-01.jpg,雪山の温泉旅館（Unsplash free photo-1707354304829-b3fae6afb72e by seiya-maeda）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（青色メッシュ）から置換
 pages/onsen.html,zao,yamagata-zao-02.jpg,蔵王,yes,exact,2026-06-15,蔵王温泉の景観として適切
-pages/onsen.html,ginzan,yamagata-ginzan-01.jpg,銀山温泉（要確認）,partial,warn,2026-06-15,要確認：実験器具写真の可能性あり。目視確認が必要
+pages/onsen.html,ginzan,yamagata-ginzan-02.jpg,雪の温泉街・川沿い旅館（Unsplash free photo-1677283818905-af4f00a9883a by chloe-evans）,yes,new_download,2026-06-25,Unsplash License（無料）。旧yamagata-ginzan-01.jpg（実験器具）から置換
 pages/onsen.html,sukayu,aomori-oirase-01.jpg,奥入瀬渓流（青森）,yes,related,2026-06-15,酸ヶ湯は奥入瀬と同エリア（十和田湖周辺）として代替
-pages/onsen.html,yufuin,(no image),—,no,placeholder,2026-06-15,由布院専用写真なし。グラデーション表示
-pages/onsen.html,kurokawa,(no image),—,no,placeholder,2026-06-15,黒川温泉専用写真なし。グラデーション表示
+pages/onsen.html,yufuin,oita-yufuin-01.jpg,川沿い旅館・夜景・灯り（Unsplash free photo-1706017595998-91459e6bfd4e by nichika-sakurai）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（清水寺）から置換
+pages/onsen.html,kurokawa,kumamoto-kurokawa-01.jpg,日本旅館・和室・畳の間（Unsplash free photo-1610375233775-6e0166927193 by filiz-elaerts）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（阿蘇山火口）から置換
+pages/onsen.html,akiu,miyagi-akiu-01.jpg,囲炉裏の旅館・山間部（Unsplash free photo-1706017595286-66e6d946221c by nichika-sakurai）,partial,new_download,2026-06-25,Unsplash License（無料）。旧画像（松島の観光船）から置換
+pages/onsen.html,kawayu,hokkaido-kawayu-01.jpg,青い硫黄温泉池・蒸気（Unsplash free photo-1708789715236-e5060618d118 by momo-kim）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（美瑛の青い池）から置換。川湯温泉は青い硫黄泉で有名なため適切
 pages/onsen.html,gero,(no image),—,no,placeholder,2026-06-15,下呂温泉専用写真なし。グラデーション表示
 pages/onsen.html,jozankei,(no image),—,no,placeholder,2026-06-15,定山渓専用写真なし。グラデーション表示
-pages/onsen.html,ikaho,(no image),—,no,placeholder,2026-06-15,伊香保専用写真なし。グラデーション表示
+pages/onsen.html,ikaho,gunma-kusatsu-02.jpg,温泉大浴場・蒸気（Unsplash free photo-1707327085506-c4f31c951a1a by hyun-kim）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（設計図面）から置換
 pages/onsen.html,kinugawa,(no image),—,no,placeholder,2026-06-15,鬼怒川専用写真なし。グラデーション表示
 pages/onsen.html,wakura,(no image),—,no,placeholder,2026-06-15,和倉温泉専用写真なし。グラデーション表示
 pages/onsen.html,ibusuki,kagoshima-ibusuki-01.jpg,露天風呂・湯気（Unsplash free photo-1644413638617-02369c89c156 by romeo-a）,yes,new_download,2026-06-25,Unsplash License（無料）。旧kagoshima-sakurajima-02.jpg（コスメ画像）から置換
 pages/onsen.html,tamatsukuri,(no image),—,no,placeholder,2026-06-15,玉造温泉専用写真なし。グラデーション表示
 pages/onsen.html,yudanaka,(no image),—,no,placeholder,2026-06-15,湯田中温泉専用写真なし。グラデーション表示
-pages/onsen.html,okuhida,(no image),—,no,placeholder,2026-06-15,奥飛騨温泉郷専用写真なし。グラデーション表示
+pages/onsen.html,okuhida,gifu-shirakawago-02.jpg,囲炉裏の旅館・山岳温泉雰囲気（Unsplash free photo-1706017595286-66e6d946221c by nichika-sakurai）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（居酒屋夜景）から置換
 pages/onsen.html,shima,(no image),—,no,placeholder,2026-06-15,四万温泉専用写真なし。グラデーション表示
-pages/onsen.html,yugawara,(no image),—,no,placeholder,2026-06-15,湯河原温泉専用写真なし。グラデーション表示
-pages/onsen.html,yamashiro,(no image),—,no,placeholder,2026-06-15,山代温泉専用写真なし。グラデーション表示
+pages/onsen.html,yugawara,kanagawa-hakone-01.jpg,木造内湯・温泉湯水（Unsplash free photo-1726537625746-4ab5285c60f8 by wren-chai）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（清水寺）から置換
+pages/onsen.html,yamashiro,ishikawa-kenroku-01.jpg,日本旅館夜景・松の木・星空（Unsplash free photo-1670854753472-4d7cbe07a1c0 by nichika-sakurai）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（清水寺）から置換
 pages/onsen.html,akiu,(no image),—,no,placeholder,2026-06-15,秋保温泉専用写真なし。グラデーション表示
 pages/onsen.html,yamanaka,(no image),—,no,placeholder,2026-06-15,山中温泉専用写真なし。グラデーション表示
+pages/onsen.html,tsukioka,niigata-winter-01.jpg,青い硫黄温泉池・蒸気（Unsplash free photo-1708789715236-e5060618d118 by momo-kim）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（富士山）から置換
+pages/specialties.html,osaka-takoyaki,osaka-takoyaki-01.jpg,たこ焼き・丸形（Unsplash free photo-1751094364516-02b351f9c277 by sooji-min）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（ブランドバッグ）から置換
+pages/specialties.html,akita-nabe,akita-nabe-01.jpg,天丼セット食・和食（Unsplash free photo-1666599207746-0868c6a556d2 by yosuke-ota）,partial,new_download,2026-06-25,Unsplash License（無料）。旧画像（中華火鍋）から置換。天丼だがきりたんぽ鍋より日本料理として適切
+pages/specialties.html,yamagata-imoni,yamagata-imoni-01.jpg,カツ丼・和食丼（Unsplash free photo-1679279726946-a158b8bcaa23 by xavier-chng）,partial,new_download,2026-06-25,Unsplash License（無料）。旧画像（洋食サーモン）から置換。芋煮ではないが日本丼として適切
+pages/specialties.html,tokyo-fukagawa-meshi,tokyo-fukagawa-meshi-01.jpg,あさりスープ・白碗（Unsplash free photo-1560684352-8497838a2229 by do-mee）,partial,new_download,2026-06-25,Unsplash License（無料）。旧画像（タイ料理）から置換。深川めし（あさり）との関連あり
+pages/specialties.html,kanagawa-kamakura,kanagawa-kamakura-01.jpg,握り寿司3貫・和食（Unsplash free photo-1575872058841-955be84be5e7 by jason-leung）,partial,new_download,2026-06-25,Unsplash License（無料）。旧画像（富士山）から置換。しらす丼ではないが日本海鮮として適切
+pages/specialties.html,nagasaki-chanpon,nagasaki-chanpon-01.jpg,うどん麺料理・黒椀（Unsplash free photo-1558985212-324add95595a by youjeen-cho）,partial,new_download,2026-06-25,Unsplash License（無料）。旧画像（揚げ物）から置換。ちゃんぽんに近い麺料理イメージ
+pages/specialties.html,kumamoto-basashi,kumamoto-basashi-01.jpg,マグロ刺身・生魚（Unsplash free photo-1490052048947-f6d652c8512a by jonathan-forage）,partial,new_download,2026-06-25,Unsplash License（無料）。旧画像（インド料理）から置換。馬刺しに近い生肉スライスイメージ
+pages/specialties.html,nara-kakinoha-sushi,nara-kakinoha-sushi-01.jpg,握り寿司3貫・和食（Unsplash free photo-1575872058841-955be84be5e7 by jason-leung）,partial,new_download,2026-06-25,Unsplash License（無料）。旧画像（洋風舟盛り）から置換。日本寿司イメージとして適切
 pages/specialties.html + index.html,北海道の海鮮丼・金沢の回転寿司,hokkaido-kaisen-01.jpg,海鮮丼・寿司（Unsplash free photo-1559410545-0bdcd187e0a6）,yes,new_download,2026-06-15,Unsplash License（無料）。ダウンロード済
 pages/specialties.html,広島風お好み焼き,hiroshima-okonomiyaki-01.jpg,お好み焼き（Unsplash free photo-1579871494447-9811cf80d66c）,yes,new_download,2026-06-15,Unsplash License（無料）。ダウンロード済
 pages/specialties.html + index.html,沖縄そば,okinawa-soba-01.jpg,麺料理スープ（Unsplash free photo-1574484284002-952d92456975）,yes,new_download,2026-06-15,Unsplash License（無料）。ダウンロード済
