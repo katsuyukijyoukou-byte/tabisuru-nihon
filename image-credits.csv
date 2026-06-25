@@ -111,3 +111,19 @@ index.html + pages/specialties.html,讃岐うどん,kagawa-udon-01.jpg,湯気立
 index.html + pages/specialties.html,仙台牛タン,miyagi-gyutan-01.jpg,網焼きスライス牛肉・焼肉（Unsplash free photo-1680169160498-388a40392d19 by aldino-hartan-putra）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（小籠包）から置換
 index.html + pages/specialties.html,金沢の海鮮・寿司,ishikawa-sushi-01.jpg,巻き寿司・醤油・箸（Unsplash free photo-1564489563601-c53cfc451e93 by niclas-illg）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（洋風サーモンロール）から置換
 pages/specialties.html + data/specialties.js,大分のからあげ,oita-karaage-01.jpg,からあげ・揚げ物（Unsplash free photo-1562802378-063ec186a863）,yes,new_download,2026-06-25,Unsplash License（無料）。大分からあげ専用新規追加
+pages/specialties.html,北海道の海鮮丼,hokkaido-kaisen-01.jpg,サーモン海鮮丼（Unsplash free photo-1775889184856-7b2d5caf9a47）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像から置換
+pages/specialties.html,広島のお好み焼き,hiroshima-okonomiyaki-01.jpg,鉄板のお好み焼き（Unsplash free photo-1700324675741-f79f5bad651c）,yes,new_download,2026-06-25,Unsplash License（無料）。確認済み
+pages/specialties.html,大分のからあげ,oita-karaage-01.jpg,骨付き揚げ鶏（Unsplash free photo-1775572761842-7ba6b3d43286）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像から置換
+pages/specialties.html,沖縄そば,okinawa-soba-01.jpg,太麺日本風そば（Unsplash free photo-1558985212-324add95595a）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像から置換
+pages/specialties.html,城崎温泉・カニ,hyogo-kani-01.jpg,松葉ガニ木箱（Unsplash free photo-1730698306944-544a5cb282e3）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像から置換
+pages/specialties.html,松阪牛,mie-matsuzaka-01.jpg,霜降り和牛スライス（Unsplash free photo-1764994880917-b46601e402ab）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像から置換
+pages/specialties.html,金沢の海鮮・寿司,ishikawa-sushi-01.jpg,江戸前寿司盛り合わせ（Unsplash free photo-1563612116625-3012372fccce）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像から置換
+pages/specialties.html,信州そば,nagano-soba-01.jpg,そば麺サラダ風（Unsplash free photo-1565976469618-061774653bee）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像から置換
+pages/specialties.html,北海道スイーツ,hokkaido-sweets-01.jpg,ソフトクリームコーン（Unsplash free photo-1636564499112-6113e73c504a）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像から置換
+pages/specialties.html,宮崎チキン南蛮,miyazaki-chicken-01.jpg,揚げ鶏ナゲット風（Unsplash free photo-1696265498747-efc4c0dd7b98）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像から置換
+pages/specialties.html,福岡のもつ鍋,fukuoka-motsunabe-01.jpg,日本風内臓肉スタイル鍋（Unsplash free photo-1755438538539-695f7bbfff6a）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（中華鍋）から置換
+pages/specialties.html,鹿児島の黒豚,kagoshima-kurobuta-01.jpg,とんかつ定食（Unsplash free photo-1770966666346-fbfde1f89a33）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像から置換
+pages/specialties.html,静岡のうなぎ,shizuoka-unagi-01.jpg,炙りうなぎ寿司（Unsplash free photo-1763627719044-5d1d6a6b809c）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像から置換
+pages/specialties.html,京都の和菓子,kyoto-wagashi-01.jpg,和菓子各種（Unsplash premium premium_photo-1700830647751-3f84c12fbf59）,yes,new_download,2026-06-25,Unsplash+ License（有料）。旧画像から置換
+pages/specialties.html,秋田きりたんぽ鍋,akita-nabe-01.jpg,日本風野菜鍋（Unsplash free photo-1662655552348-4ad26f9d4e75）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（中華しゃぶしゃぶ）から置換
+pages/specialties.html,金沢の和菓子,ishikawa-wagashi-01.jpg,多種類の和菓子盛り合わせ（Unsplash free photo-1696528431003-ff8d38196652）,yes,new_download,2026-06-25,Unsplash License（無料）。旧画像（京都和菓子と重複）から置換
