@@ -726,31 +726,65 @@ var NoaChat = (function() {
   /* ---------- セッション状態管理 ---------- */
   var SESSION = {};
   function resetSession() {
-    SESSION = { intent: null, slots: {}, waitingFor: null, turnCount: 0 };
+    SESSION = { intent: null, slots: {}, waitingFor: null, turnCount: 0, askedFor: [] };
   }
   resetSession();
 
   /* ---------- スロット抽出 ---------- */
   function extractSlots(q) {
     var slots = {};
+    // 出発地
+    if (/東京|とうきょう|首都圏|関東/.test(q)) slots.origin = '東京';
+    else if (/大阪|おおさか|関西/.test(q)) slots.origin = '大阪';
+    else if (/名古屋|なごや|東海/.test(q)) slots.origin = '名古屋';
+    else if (/広島|ひろしま/.test(q)) slots.origin = '広島';
+    else if (/福岡|ふくおか|九州/.test(q)) slots.origin = '福岡';
+    else if (/札幌|北海道/.test(q)) slots.origin = '北海道';
+    else if (/仙台|東北/.test(q)) slots.origin = '仙台';
+    // 予算
     var budgetM = q.match(/(\d+)万/);
     if (budgetM) slots.budget = parseInt(budgetM[1]) * 10000;
-    if (/格安|安め|リーズナブル|コスパ/.test(q)) slots.budgetLevel = 'low';
-    if (/贅沢|高め|奮発|豪華|ラグジュアリー/.test(q)) slots.budgetLevel = 'high';
+    if (/格安|安め|コスパ|節約|お得/.test(q)) slots.budgetLevel = 'low';
+    if (/贅沢|高め|高級|豪華|ラグジュアリー/.test(q)) slots.budgetLevel = 'high';
+    // 同行者
     if (/一人|ひとり|ソロ/.test(q)) slots.who = 'solo';
-    if (/カップル|二人|彼女と|彼氏と|夫婦/.test(q)) slots.who = 'couple';
+    if (/カップル|彼女|彼氏|夫婦|パートナー/.test(q)) slots.who = 'couple';
     if (/家族|子供|子ども|子連れ|ファミリー/.test(q)) slots.who = 'family';
-    if (/友達|グループ|女子旅/.test(q)) slots.who = 'friends';
-    if (/温泉|おんせん/.test(q)) slots.purpose = 'onsen';
-    if (/グルメ|食事|食べ/.test(q)) slots.purpose = 'gourmet';
-    if (/絶景|景色/.test(q)) slots.purpose = 'scenic';
-    if (/歴史|城|神社|寺/.test(q)) slots.purpose = 'history';
+    if (/友達|友人|グループ/.test(q)) slots.who = 'friends';
+    if (/親|両親|お母さん|お父さん|三世代/.test(q)) slots.who = 'parents';
+    // 人数
+    var ninzuM = q.match(/(\d+)人/);
+    if (ninzuM) slots.people = parseInt(ninzuM[1]);
+    // 日数
+    if (/日帰り/.test(q)) slots.days = '日帰り';
+    else if (/1泊|一泊/.test(q)) slots.days = '1泊2日';
+    else if (/2泊|二泊/.test(q)) slots.days = '2泊3日';
+    else if (/3泊|三泊/.test(q)) slots.days = '3泊以上';
+    else if (/週末|土日/.test(q)) slots.days = '1泊2日';
+    // 月
     var monthM = q.match(/(\d+)月/);
     if (monthM) slots.month = parseInt(monthM[1]);
-    if (/春|3月|4月|5月/.test(q)) slots.season = 'spring';
-    if (/夏|6月|7月|8月/.test(q)) slots.season = 'summer';
-    if (/秋|9月|10月|11月/.test(q)) slots.season = 'autumn';
-    if (/冬|12月|1月|2月/.test(q)) slots.season = 'winter';
+    if (/春|3月|4月|5月|桜/.test(q)) slots.season = 'spring';
+    if (/夏|6月|7月|8月|海/.test(q)) slots.season = 'summer';
+    if (/秋|9月|10月|11月|紅葉/.test(q)) slots.season = 'autumn';
+    if (/冬|12月|1月|2月|雪/.test(q)) slots.season = 'winter';
+    // 交通
+    if (/車|ドライブ|マイカー|レンタカー/.test(q)) slots.transport = 'car';
+    if (/電車|新幹線|公共交通|鉄道/.test(q)) slots.transport = 'train';
+    if (/飛行機|フライト/.test(q)) slots.transport = 'plane';
+    if (/車なし|公共交通のみ/.test(q)) slots.transport = 'notrain';
+    // 目的
+    if (/温泉|露天|湯めぐり/.test(q)) slots.purpose = 'onsen';
+    if (/グルメ|食べ歩き|食事/.test(q)) slots.purpose = 'gourmet';
+    if (/絶景|景色|眺め/.test(q)) slots.purpose = 'scenic';
+    if (/歴史|城|神社|仏閣/.test(q)) slots.purpose = 'history';
+    // 宿の種類
+    if (/高級|一休|プレミアム/.test(q)) slots.hotelType = 'premium';
+    if (/コスパ|安い宿|格安宿/.test(q)) slots.hotelType = 'budget';
+    // 予算の種類
+    if (/1人あたり|一人あたり|一人当たり|1名/.test(q)) slots.budgetType = 'per_person';
+    if (/合計|全部で|トータル|二人で|2人で/.test(q)) slots.budgetType = 'total';
+    // 都道府県
     Object.values(PREF_CHAT).forEach(function(d) {
       if (q.includes(d.name)) slots.pref = d.name;
     });
@@ -759,161 +793,466 @@ var NoaChat = (function() {
 
   /* ---------- インテント定義 ---------- */
   var INTENTS = {
-    onsen: {
-      keywords: /温泉|おんせん|湯治|湯めぐり|露天風呂/,
+
+    miyajima: {
+      keywords: /宮島|厳島神社|廿日市/,
       respond: function(s) {
-        if (s.who === 'couple') return { text: 'カップルで温泉なら♨️💑\n\n**おすすめトップ3**\n1. **由布院（大分）** — 絵になる街並みと朝霧\n2. **城崎温泉（兵庫）** — 7つの外湯めぐりが二人旅に最高\n3. **草津温泉（群馬）** — 日本最高峰の泉質\n\n♨️ [温泉地一覧を見る](pages/onsen.html)', buttons: ['由布院の観光スポットは？', '城崎温泉を詳しく', '記念日向けの旅館を探したい', '関西の温泉は？'] };
-        if (s.who === 'family') return { text: '家族で楽しめる温泉地なら！\n\n**アクセス良好・施設充実の3選**\n・**鬼怒川温泉（栃木）** — 東京から2時間以内\n・**湯布院（大分）** — 観光スポットも豊富\n・**熱海（静岡）** — 水族館・遊園地も近い\n\nお子さんは何歳くらいですか？', buttons: ['鬼怒川温泉を詳しく', '子連れで行きやすい温泉は？', '関東の温泉を教えて', '家族向けの宿を探したい'] };
-        if (s.who === 'solo') return { text: '一人旅の温泉なら、静かな秘湯がおすすめです♨️\n\n・**乳頭温泉郷（秋田）** — 秘境感ある混浴露天\n・**野沢温泉（長野）** — 地元民に愛される外湯\n・**黒川温泉（熊本）** — 入湯手形で複数湯めぐり', buttons: ['乳頭温泉を詳しく', '黒川温泉を詳しく', '一人旅向けの宿は？', '秘湯系の温泉地は？'] };
-        return { text: '温泉旅行をお考えですね♨️\n\n**人気温泉地トップ3**\n1. **草津温泉（群馬）** — 日本一の湯量\n2. **由布院（大分）** — 情緒ある街並みと絶景\n3. **道後温泉（愛媛）** — 日本最古の温泉\n\n誰と行く旅ですか？', buttons: ['一人旅', 'カップル・夫婦', '家族・子連れ', '友達グループ'] };
-      },
+        return {
+          text: '宮島・広島旅行ですね！\n\n宮島（厳島神社）は日本三景のひとつ。海に浮かぶ朱の大鳥居は絶対見てほしい絶景です🦌\n\n**広島・宮島2泊3日モデル**\n1日目：広島市内（原爆ドーム・平和記念公園・お好み焼き）\n2日目：宮島（厳島神社・大鳥居・もみじ饅頭・弥山登山）\n3日目：尾道や呉を追加するのもおすすめ\n\n**グルメ**\n・牡蠣（宮島口・牡蠣小屋）\n・広島風お好み焼き\n・もみじ饅頭（揚げもみじも絶品）\n\n宮島口から宮島まではフェリーで10分です。\n宿も探すなら比較ページへ。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['広島県のページ|' + R() + 'templates/prefecture.html?id=hiroshima', '宿を比較する|' + R() + 'pages/booking.html']
+        };
+      }
     },
-    budget: {
-      keywords: /予算|いくら|費用|値段|安く|格安|リーズナブル|コスパ|贅沢|奮発/,
+
+    kyoto: {
+      keywords: /京都.*行きたい|京都.*旅行|京都.*おすすめ/,
       respond: function(s) {
-        var lvl = s.budgetLevel || (s.budget && s.budget < 50000 ? 'low' : s.budget && s.budget >= 100000 ? 'high' : null);
-        if (lvl === 'low') return { text: '格安で楽しめる旅先をご紹介します！\n\n**コスパ最強エリア**\n・**北九州（福岡周辺）** — 飛行機が安く、グルメも豊富\n・**高知** — 四万十川など大自然を安く満喫\n・**長野** — 青春18きっぷでも行ける温泉地多数\n\nどんな目的の旅をご希望ですか？', buttons: ['温泉に入りたい', '絶景を見たい', 'グルメを楽しみたい', '歴史・文化を感じたい'] };
-        if (lvl === 'high') return { text: '贅沢な旅をお探しですね✨\n\n**特別感のある旅先**\n・**京都** — 老舗旅館で本物の和の体験\n・**由布院** — 隠れ家的高級宿が点在\n・**沖縄離島** — 波照間・与那国の秘境感\n\n記念日やご褒美旅行ですか？', buttons: ['記念日・アニバーサリー旅行', '大人カップル向けは？', '高級旅館を探したい', '全国の絶景宿は？'] };
-        return { text: 'ご予算についてお聞きします💰\n\nどのくらいの予算帯をお考えですか？\n（お一人様・一泊あたりの目安）', buttons: ['〜1万円（格安）', '1〜3万円（標準）', '3〜5万円（ちょっと贅沢）', '5万円以上（特別な旅）'] };
-      },
+        return {
+          text: '京都旅行のご相談ですね⛩️\n\n京都は「いつ行くか」でまったく違う体験になります。\n\n・春（3〜4月）：桜×古寺の最高体験。宿は3ヶ月前から要予約\n・夏（7〜8月）：祇園祭（7月）。暑いが人は少ない\n・秋（11月）：紅葉最盛期。東福寺・永観堂・嵐山が圧巻。宿は争奪戦\n・冬（12〜2月）：空いていてお得。雪の金閣寺は幻想的\n\n**外せないスポット**\n金閣寺・清水寺・伏見稲荷・嵐山・祇園・哲学の道\n\n出発地と時期を教えてもらえれば、宿と合わせて提案します。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['京都府のページ|' + R() + 'templates/prefecture.html?id=kyoto', '宿を比較する|' + R() + 'pages/booking.html', '月別おすすめ|' + R() + 'pages/monthly.html']
+        };
+      }
     },
-    couple: {
-      keywords: /カップル|二人旅|彼女と|彼氏と|夫婦旅|新婚|ハネムーン/,
+
+    hokkaido: {
+      keywords: /北海道.*行きたい|北海道.*旅行|北海道.*おすすめ|札幌.*旅行/,
       respond: function(s) {
-        if (s.purpose === 'onsen') return { text: 'カップルで温泉旅行なら♨️💑\n\n**おすすめトップ3**\n1. **由布院（大分）** — 絵になる街並みと絶景の朝霧\n2. **城崎温泉（兵庫）** — 7つの外湯めぐりが二人旅に最高\n3. **草津温泉（群馬）** — 日本最高峰の泉質\n\n♨️ [温泉地一覧を見る](pages/onsen.html)', buttons: ['由布院の観光スポットは？', '城崎温泉を詳しく', '記念日向けの旅館を探したい', '関西圏の温泉は？'] };
-        return { text: 'カップル旅行のおすすめです💑\n\n**シーン別おすすめ**\n・**ロマンチックな街歩き** → 京都・金沢・小樽\n・**温泉でゆっくり** → 由布院・城崎・草津\n・**南国リゾート** → 石垣島・宮古島・沖縄本島\n\nどんな雰囲気がお好みですか？', buttons: ['温泉でゆっくりしたい', '街歩きが好き', '海・リゾートへ行きたい', '予算から絞り込む'] };
-      },
+        var season = s.season;
+        var desc = season === 'summer' ? '夏の北海道は最高です！ラベンダー（美瑛・富良野）・海産物・涼しさが揃います。' :
+                   season === 'winter' ? '冬の北海道はスキー・流氷・雪まつりのシーズン。さっぽろ雪まつりは2月上旬です。' :
+                   season === 'spring' ? '春（4〜5月）の北海道は本州に遅れて花が咲き始め、混雑が少なくねらい目です。' :
+                   '北海道は四季で全く違う顔を見せます。どの季節に行くかで全然変わります。';
+        return {
+          text: '北海道旅行ですね！\n\n' + desc + '\n\n**エリア別のおすすめ**\n・札幌：グルメ・歴史・夜景\n・富良野・美瑛：ラベンダー・絶景\n・函館：夜景・海産物・洋食\n・知床・釧路：大自然・野生動物\n・登別・洞爺湖：温泉\n\n時期を教えてもらえれば、もっと絞り込めます。飛行機の手配も早めがおすすめです。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['北海道のページ|' + R() + 'templates/prefecture.html?id=hokkaido', '宿を比較する|' + R() + 'pages/booking.html']
+        };
+      }
     },
-    family: {
-      keywords: /家族旅行|子連れ|子供と|子どもと|ファミリー|お子さん/,
+
+    okinawa: {
+      keywords: /沖縄.*行きたい|沖縄.*旅行|沖縄.*おすすめ|石垣島|宮古島/,
       respond: function(s) {
-        return { text: '家族旅行のおすすめです👨‍👩‍👧‍👦\n\n**子連れに人気のエリア**\n・**北海道** — 広大な自然と動物ふれあい\n・**沖縄** — きれいな海と子供向け施設が充実\n・**京都・奈良** — 学校の社会科見学にも最適\n\nお子さんの年齢を教えてください！', buttons: ['0〜5歳（幼児・赤ちゃん）', '小学生（6〜12歳）', '中高生と行く旅', '関東圏の家族向け旅先'] };
-      },
+        return {
+          text: '沖縄旅行ですね🌺\n\n沖縄は時期が命です。\n\n・3〜5月（春）：梅雨前の最高シーズン。混雑も少なく狙い目\n・7〜8月（夏）：海のベストシーズン。ただしお盆は価格が最高値\n・9〜11月（秋）：混雑が落ち着き、コスパよく行ける穴場の時期\n・12〜2月（冬）：泳げないが、避寒・観光には快適\n\n**離島も検討を！**\n石垣島・宮古島は本島より透明度が高く、マリンアクティビティが充実。\n\nホテルは早期予約が必須です。GW・夏は半年前から埋まります。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['沖縄県のページ|' + R() + 'templates/prefecture.html?id=okinawa', '宿を比較する|' + R() + 'pages/booking.html']
+        };
+      }
     },
-    solo: {
-      keywords: /一人旅|ひとり旅|ソロ旅|一人で行/,
-      respond: function(s) {
-        return { text: '一人旅、いいですね！🎒\n\n一人だからこそできる自由な旅を提案します。\n**旅の目的は何ですか？**', buttons: ['温泉でゆっくりしたい', '絶景・自然を満喫したい', 'グルメ巡りがしたい', '歴史・文化を感じたい'] };
-      },
-    },
-    women: {
-      keywords: /女子旅|女性一人|女性向け|女友達/,
-      respond: function(s) {
-        return { text: '女子旅のおすすめです💄\n\n**女性に人気の旅先**\n・**京都** — 着物レンタルで街歩き、カフェ巡り\n・**金沢** — ひがし茶屋街・近江町市場\n・**由布院** — 温泉と雑貨屋さん巡り\n・**小樽** — ガラス工房・スイーツ巡り\n\n温泉・グルメ・ショッピングのどれが中心ですか？', buttons: ['温泉でゆっくりしたい', 'グルメ・カフェ巡りがしたい', 'ショッピング・観光がしたい', '映えるスポットを教えて'] };
-      },
-    },
-    anniversary: {
-      keywords: /記念日|誕生日|プロポーズ|サプライズ|アニバーサリー|結婚記念|ご褒美/,
-      respond: function(s) {
-        return { text: '特別な記念日旅行ですね🎉\n\n**サプライズ・記念日におすすめ**\n・**由布院（大分）** — 湯けむりの朝と絵になる街並み\n・**京都** — 和の美意識で特別な夜を\n・**石垣島** — 南国の海と星空\n・**箱根** — 富士山ビューの宿でゆったり\n\nご予算はどのくらいをお考えですか？', buttons: ['〜3万円/人', '3〜5万円/人', '5万円以上/人', '旅ノアにおまかせ'] };
-      },
-    },
-    booking: {
-      keywords: /宿|ホテル|旅館|民宿|予約|泊まり/,
-      respond: function(s) {
-        if (s.pref) {
-          return { text: s.pref + 'の宿をお探しですね🏨\n\n楽天トラベルで最新の空室・料金を確認できます。\nご予算や宿のタイプを教えてください！', buttons: ['温泉旅館がいい', 'ビジネスホテルでOK', 'リゾートホテルがいい', '格安で探したい'] };
-        }
-        return { text: '宿をお探しですね🏨\n\nどのエリア（都道府県）に泊まりたいですか？\n場所を教えていただければ、おすすめをご案内します！', buttons: ['北海道・東北', '関東（東京・箱根など）', '関西（京都・大阪など）', '九州・沖縄'] };
-      },
-    },
-    scenic: {
-      keywords: /絶景|景色|夕日|富士山|星空|天空|ビュー|展望|SNS映え/,
-      respond: function(s) {
-        return { text: '絶景スポットをご紹介します🏔️✨\n\n**日本の絶景ベスト**\n・**富士山（静岡・山梨）** — 日本のシンボル\n・**天橋立（京都）** — 日本三景のひとつ\n・**鳥取砂丘** — 国内唯一の砂丘\n・**美瑛（北海道）** — 映画のような風景\n・**西表島（沖縄）** — 日本最多の星が見える\n\n季節はいつごろお考えですか？', buttons: ['春の絶景（桜・菜の花）', '夏の絶景（海・緑）', '秋の絶景（紅葉）', '冬の絶景（雪景色）'] };
-      },
-    },
-    history: {
-      keywords: /歴史|城めぐり|神社仏閣|武士|侍|戦国|幕末|古都/,
-      respond: function(s) {
-        return { text: '歴史の旅をお考えですね⛩️\n\n**歴史好きにおすすめのエリア**\n・**京都** — 1000年以上の都、神社仏閣が無数\n・**奈良** — 日本最古の都、東大寺・法隆寺\n・**金沢** — 戦災を免れた武家屋敷・茶屋街\n・**会津（福島）** — 幕末・戊辰戦争の舞台\n・**姫路** — 世界遺産・姫路城\n\nどの時代が気になりますか？', buttons: ['京都のおすすめを教えて', '戦国・城めぐりがしたい', '幕末ゆかりの地を訪ねたい', '奈良の観光スポットは？'] };
-      },
-    },
-    gourmet: {
-      keywords: /グルメ旅|食べ歩き|ご当地グルメ|名物料理|食の旅/,
-      respond: function(s) {
-        return { text: 'グルメ旅をお考えですね🍜\n\n**ご当地グルメで選ぶ旅先**\n・**福岡** — 博多ラーメン・もつ鍋・明太子\n・**札幌** — 味噌ラーメン・スープカレー・カニ\n・**香川** — 讃岐うどんの本場\n・**宮崎** — チキン南蛮・地鶏炭火焼\n・**仙台** — 牛タン・ずんだもち\n\n食べたいものやエリアはありますか？', buttons: ['ラーメン目当ての旅先は？', '海鮮を楽しめる場所は？', '関西圏でグルメを楽しむなら', '九州のグルメを教えて'] };
-      },
-    },
-    rainy: {
-      keywords: /雨|梅雨|台風|天気が悪い|室内|屋内/,
-      respond: function(s) {
-        return { text: '雨の日でも楽しめる旅先を紹介します☔\n\n**室内・雨でも楽しい観光地**\n・**大阪** — 水族館・USJ・道頓堀グルメ\n・**東京** — 美術館・博物館・スカイツリー\n・**小樽（北海道）** — 運河沿いのガラス工房・食事\n・**長崎** — 歴史的建物巡り\n\nどんなアクティビティが好きですか？', buttons: ['美術館・博物館めぐり', '水族館・テーマパーク', '温泉でゆっくりしたい', 'グルメ中心に楽しみたい'] };
-      },
-    },
-    car: {
-      keywords: /車.*旅|ドライブ|レンタカー|マイカー/,
-      respond: function(s) {
-        return { text: '車（ドライブ）旅行ですね🚗\n\n**ドライブにおすすめのルート**\n・**北海道** — 富良野〜美瑛の花畑ロード\n・**山陰** — 出雲〜鳥取砂丘の日本海ドライブ\n・**九州** — 阿蘇〜黒川温泉の絶景ルート\n・**伊豆（静岡）** — 海沿いの景色が最高\n\nどのエリアに興味がありますか？', buttons: ['北海道をドライブしたい', '九州をドライブしたい', '伊豆・箱根周辺を走りたい', 'レンタカーが必要な離島は？'] };
-      },
-    },
+
     premium: {
-      keywords: /高級|贅沢旅|特別な旅|リゾート|一流|ラグジュアリー/,
+      keywords: /高級宿|贅沢旅行|高級旅館|高級ホテル|一流旅館|ラグジュアリー旅行/,
       respond: function(s) {
-        return { text: '特別な高級旅行をお考えですね✨\n\n**プレミアムな旅先**\n・**京都** — 老舗旅館で非日常体験\n・**由布院** — 高級別荘宿で静かな時間\n・**沖縄リゾート** — プールと海で非日常\n・**富良野・美瑛** — 大自然の高原リゾート\n\n記念日やご褒美旅行ですか？', buttons: ['記念日旅行を計画したい', '温泉×高級宿を探したい', '沖縄リゾートの詳細は？', '予算を相談したい'] };
-      },
+        var origin = s.origin;
+        var spots = !origin || origin === '東京' ?
+          ['草津温泉・望雲（群馬）', '箱根・強羅花壇（神奈川）', '日光・金谷ホテル（栃木）'] :
+          origin === '大阪' ?
+          ['城崎温泉・西村屋本館（兵庫）', '有馬温泉の高級旅館（兵庫）', '白浜・崎の湯（和歌山）'] :
+          ['由布院・亀の井別荘（大分）', '黒川温泉・旅館 山みず木（熊本）', '草津温泉・松本楼（群馬）'];
+        return {
+          text: '高級旅館のご相談ですね✨\n\n日本の高級旅館は「客室露天・夕食部屋食・おもてなし」の3点が揃うかどうかが判断ポイントです。\n\n' + (origin ? origin + '発からのおすすめ：\n' : '') +
+            spots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') +
+            '\n\n一休.comの「プレミアム旅館」カテゴリが探しやすいです。予約比較ページにもまとめています。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['宿を比較する|' + R() + 'pages/booking.html', '温泉地を探す|' + R() + 'pages/onsen.html']
+        };
+      }
     },
-    monthly: {
-      keywords: /何月|いつ.*行く|ベストシーズン|旅行の時期/,
+
+    anniversary: {
+      keywords: /記念日|誕生日.*旅|旅行.*記念日|プロポーズ|結婚記念|ご褒美旅行/,
       respond: function(s) {
-        if (s.month) {
-          var season = s.month >= 3 && s.month <= 5 ? '春' : s.month >= 6 && s.month <= 8 ? '夏' : s.month >= 9 && s.month <= 11 ? '秋' : '冬';
-          return { text: s.month + '月の旅行をお考えですね📅\n\n' + s.month + '月は' + season + 'の旅にぴったりです！\n月別のおすすめをご覧ください。\n\n📅 [月別おすすめ旅先](pages/monthly.html)', buttons: ['北海道の' + s.month + '月は？', '沖縄の' + s.month + '月は？', '桜の名所を教えて', '混雑しない時期は？'] };
+        var origin = s.origin;
+        var spots = !origin || origin === '東京' ?
+          ['草津温泉の客室露天付き旅館', '箱根の富士山ビュー高級宿', '軽井沢のリゾートホテル'] :
+          origin === '大阪' ?
+          ['城崎温泉の名旅館', '有馬温泉の高級旅館', '由布院（大分）の離れ宿'] :
+          ['由布院（大分）の離れ宿', '黒川温泉（熊本）の露天付き旅館', '草津温泉（群馬）の高級宿'];
+        return {
+          text: '記念日旅行の相談ですね💐\n\n特別な夜を演出するなら、**客室露天付き・夕食部屋食**の旅館が鉄板です。\n\n' + (origin ? origin + '発なら：\n' : '') +
+            spots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') +
+            '\n\n一休.comで「記念日プラン（ケーキ・花付き）」で絞り込むと見つかりやすいです。\n比較ページにもまとめています。\n※宿泊予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['宿を比較する|' + R() + 'pages/booking.html', '温泉地を探す|' + R() + 'pages/onsen.html']
+        };
+      }
+    },
+
+    rainy: {
+      keywords: /雨.*旅|梅雨.*旅|雨でも楽しめ|雨の日.*旅|天気が悪い.*旅/,
+      respond: function(s) {
+        return {
+          text: '雨の日旅行のおすすめです☔\n\n雨でも楽しめる旅先は「温泉」「室内スポット中心」「歴史建築」が三強です。\n\n1. 温泉地（草津・有馬・由布院）— 雨こそ温泉日和。露天風呂で雨音を聞く贅沢\n2. 大阪— 水族館・USJ・グルメは雨でも完全に楽しめる\n3. 東京近郊— 美術館・博物館めぐり。東京国立博物館・森美術館など\n4. 京都— 雨の金閣寺・竜安寺は幻想的で美しい。むしろおすすめ\n\n出発地と時期を教えてもらえれば、より詳しく提案できます。',
+          buttons: ['温泉地を探す|' + R() + 'pages/onsen.html', '目的別の旅を見る|' + R() + 'pages/purpose.html']
+        };
+      }
+    },
+
+    nocar: {
+      keywords: /車なし|電車.*旅行|鉄道旅|公共交通.*旅|新幹線.*旅行|車.*ない.*旅/,
+      respond: function(s) {
+        var origin = s.origin || '東京';
+        var spots = origin === '大阪' ?
+          ['城崎温泉（兵庫）— 電車+バスで約2時間。城崎駅から徒歩で外湯めぐりできる', '有馬温泉（兵庫）— 神戸電鉄で大阪から1時間。駅近で歩いて回れる', '京都— 電車だけで全スポットを回れる観光都市'] :
+          origin === '福岡' ?
+          ['由布院（大分）— 特急ゆふいんの森で直結。駅から徒歩で街全体を歩ける', '長崎— 路面電車でほぼ全観光地を回れる', '熊本— 新幹線＋路面電車でスムーズ'] :
+          ['箱根（神奈川）— 小田急ロマンスカー一択。箱根フリーパスで完結', '草津温泉（群馬）— バスタ新宿から直行高速バスで2.5時間', '金沢（石川）— 北陸新幹線で2.5時間。兼六園・茶屋街は徒歩圏内'];
+        return {
+          text: '車なし旅行のおすすめです🚉\n\n' + origin + '発なら\n\n' +
+            spots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') +
+            '\n\nJRフリーパスや高速バス割引を使うと交通費を節約できます。\n出発地を教えてもらえれば、アクセス情報を詳しく案内できます。',
+          buttons: ['都道府県から探す|' + R() + 'pages/prefectures.html', '月別おすすめ|' + R() + 'pages/monthly.html']
+        };
+      }
+    },
+
+    weekend: {
+      keywords: /週末旅行|土日旅行|週末.*どこ|2日間.*旅|日帰り旅/,
+      respond: function(s) {
+        var origin = s.origin;
+        var spots = !origin || origin === '東京' ?
+          ['箱根（神奈川）— 新宿から90分。温泉・美術館・富士山ビューで充実', '日光（栃木）— 世界遺産と温泉が1泊2日でちょうどいい', '鎌倉・江の島（神奈川）— 歴史・海・グルメが日帰りでOK'] :
+          origin === '大阪' ?
+          ['有馬温泉（兵庫）— 大阪から30分で温泉三昧', '城崎温泉（兵庫）— 1泊2日で外湯めぐりが最高', '吉野山（奈良）— 季節によって桜・紅葉・雪景色'] :
+          ['箱根（温泉・富士山ビュー）', '草津温泉（名湯をゆっくり）', '伊勢志摩（海産物・神社）'];
+        return {
+          text: '週末旅行のおすすめです🗓️\n\n' + (origin ? origin + '発なら、\n\n' : '') +
+            spots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') +
+            '\n\n週末は宿が埋まりやすいです。早めの予約をおすすめします。\n出発地を教えてもらえれば、もっと絞れます。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['宿を比較する|' + R() + 'pages/booking.html', '都道府県から探す|' + R() + 'pages/prefectures.html']
+        };
+      }
+    },
+
+    goods: {
+      keywords: /旅グッズ|旅行グッズ|旅.*道具|持ち物.*旅|旅行.*準備|パッキング/,
+      respond: function(s) {
+        return {
+          text: '旅グッズのご相談ですね🎒\n\nサイトのトップページ「旅が快適になる厳選グッズ」コーナーで80点以上を季節・目的別に紹介しています。\n\n・快眠グッズ（アイマスク・ネックピロー）\n・撮影グッズ（スマホスタンド・ミニ三脚）\n・日差し・雨対策（UVケア・折りたたみ傘）\n・温泉グッズ（湯桶・タオル・温泉スキンケア）\n\n※商品リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['旅グッズを見る|#travel-goods']
+        };
+      }
+    },
+
+    parents: {
+      keywords: /親.*連れ|両親.*旅|お母さん.*旅|お父さん.*旅|三世代.*旅|親孝行.*旅/,
+      respond: function(s) {
+        return {
+          text: '親孝行旅行のご相談ですね🌿\n\n親世代と一緒なら、アクセスのよさ・段差の少なさ・食事のバランスが大切です。\n\n1. 草津温泉（群馬）— 温泉で疲れが取れる。年配の方にも人気\n2. 京都— 寺社めぐりは年配の方に喜ばれやすい。タクシーでも回れる\n3. 有馬温泉（兵庫）— 三ノ宮・新神戸から30分。部屋食旅館が多い\n4. 下呂温泉（岐阜）— 温泉＋川沿いの散策でゆっくりできる\n\n宿は「部屋食」「段差なし」で絞ると喜ばれます。出発地と時期を教えてください。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['宿を比較する|' + R() + 'pages/booking.html', '温泉地を探す|' + R() + 'pages/onsen.html']
+        };
+      }
+    },
+
+    women: {
+      keywords: /女子旅|女性.*旅行|友達.*旅行.*女|ガールズ旅/,
+      respond: function(s) {
+        return {
+          text: '女子旅のおすすめです✨\n\n1. 京都— 着物レンタル・町家カフェ・インスタ映えスポットが豊富\n2. 金沢（石川）— ひがし茶屋街・近江町市場・甘味処が女子旅に最高\n3. 由布院（大分）— 湯けむりとおしゃれな雑貨屋さんが人気\n\n時期はいつ頃ですか？\n春なら桜、秋なら紅葉でさらに映えます。\n\n宿のタイプ（高級旅館/カジュアル/グランピング）が決まれば、予約ページへ誘導します。\n※宿泊予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['目的別の旅を見る|' + R() + 'pages/purpose.html', '宿を比較する|' + R() + 'pages/booking.html']
+        };
+      }
+    },
+
+    solo: {
+      keywords: /一人旅|ひとり旅|ソロ旅行|一人.*おすすめ|おすすめ.*一人/,
+      respond: function(s) {
+        var purpose = s.purpose;
+        var spots = [];
+        if (purpose === 'onsen') {
+          spots = ['乳頭温泉（秋田）— 山奥の秘湯。静かにひとりを満喫できる', '道後温泉（愛媛）— 日本最古の温泉。一人旅に慣れた宿が多い', '草津温泉（群馬）— 一人でも温泉三昧できる施設が豊富'];
+        } else if (purpose === 'history') {
+          spots = ['京都— 古寺巡り・哲学の道・町家カフェが一人旅に最適', '奈良— 鹿・東大寺・正倉院。人混みが少なく落ち着ける', '萩（山口）— 幕末の志士ゆかりの地。コンパクトで回りやすい'];
+        } else if (purpose === 'gourmet') {
+          spots = ['福岡— 屋台・ラーメン・もつ鍋を一人で気軽に楽しめる', '金沢— 近江町市場の海鮮ランチが一人でも入りやすい', '高知— カツオのたたき・日曜市は一人旅にぴったり'];
+        } else {
+          spots = ['金沢（石川）— ひがし茶屋街・近江町市場・兼六園を一人でじっくり', '京都— 朝の寺社は一人の方が雰囲気を味わいやすい', '萩（山口）— 幕末ゆかりの静かな城下町でひとり旅'];
         }
-        return { text: '旅行の時期はいつごろですか？📅\n\n季節や月を教えていただければ、その時期にぴったりの旅先をご案内します！', buttons: ['春（3〜5月）', '夏（6〜8月）', '秋（9〜11月）', '冬（12〜2月）'] };
-      },
+        return {
+          text: '一人旅のおすすめです✈️\n\n' + spots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') +
+            '\n\n「何をしたいか（温泉/グルメ/歴史）」と「出発地」を教えてもらえれば、もっと具体的に絞れます。\n一人泊OKな宿は比較ページから探せます。\n※宿泊予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['都道府県から探す|' + R() + 'pages/prefectures.html', '宿を比較する|' + R() + 'pages/booking.html', !purpose ? '何をしたいか教える' : null].filter(Boolean)
+        };
+      }
     },
+
+    family: {
+      keywords: /家族旅行|ファミリー旅行|子連れ旅|子供.*旅|家族.*おすすめ|三世代旅|親子旅/,
+      respond: function(s) {
+        var origin = s.origin;
+        var spots = [];
+        if (origin === '東京' || !origin) {
+          spots = ['沖縄（美ら海水族館・ビーチ）— 子供が喜ぶ体験が凝縮', '日光（栃木）— 東照宮・華厳の滝・温泉。移動しやすい', '箱根（神奈川）— 美術館・ロープウェイ・温泉が近い距離'];
+        } else if (origin === '大阪' || origin === '名古屋') {
+          spots = ['USJのある大阪— 子供も大人も楽しめる', '志摩スペイン村（三重）— テーマパーク＋温泉', '琵琶湖周辺（滋賀）— アクアリウムや自然体験'];
+        } else if (origin === '福岡') {
+          spots = ['長崎（ハウステンボス）— テーマパーク＋歴史観光', '阿蘇（熊本）— 雄大な自然とドライブ旅', '由布院（大分）— 温泉街の散策と家族向け宿'];
+        }
+        return {
+          text: '家族旅行のおすすめです👨‍👩‍👧\n\n' + (origin ? origin + '発なら、' : '') + 'このあたりが人気です。\n\n' +
+            spots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') +
+            '\n\nお子さんの年齢と移動手段（車あり/なし）を教えてもらえれば、さらに絞れます。\n宿は貸切風呂や子供メニューありの旅館が安心です。\n※宿泊予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['目的別の旅を見る|' + R() + 'pages/purpose.html', '都道府県から探す|' + R() + 'pages/prefectures.html', '宿を比較する|' + R() + 'pages/booking.html']
+        };
+      }
+    },
+
+    couple: {
+      keywords: /カップル|彼女.*旅|彼氏.*旅|夫婦.*旅|二人.*旅行|デート.*旅|旅行.*カップル|旅行.*夫婦/,
+      respond: function(s) {
+        var season = s.season;
+        var budget = s.budgetLevel;
+        var seasonLabel = season === 'spring' ? '春' : season === 'summer' ? '夏' : season === 'autumn' ? '秋' : season === 'winter' ? '冬' : null;
+        var spots = [];
+        if (!season || season === 'autumn' || season === 'winter') {
+          spots = ['由布院（大分）— 湯けむりの街を二人でゆっくり散策できる', '城崎温泉（兵庫）— 浴衣で外湯めぐり。夜の情緒が抜群', '草津温泉（群馬）— 温泉らしさをとことん楽しみたいカップルに'];
+        } else if (season === 'spring') {
+          spots = ['京都— 桜×和の文化。特別な雰囲気の二人旅に', '伊豆（静岡）— 春の海×温泉が楽しめる', '角館（秋田）— 武家屋敷×桜で非日常感がある'];
+        } else if (season === 'summer') {
+          spots = ['沖縄— 青い海と白い砂浜。南国リゾートで非日常感', '石垣島— 本島より静かで、より透明度が高い海', '伊勢志摩— 夏の伊勢参り×海の幸'];
+        }
+        var premiumNote = budget === 'high' ? '\n\n**記念日・贅沢旅なら**客室露天付き離れ（由布院や黒川温泉）がおすすめです。一休.comの「記念日プラン」検索が便利です。' : '';
+        return {
+          text: 'カップル旅行' + (seasonLabel ? '（' + seasonLabel + '）' : '') + 'のおすすめです💑\n\n' +
+            spots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') + premiumNote +
+            '\n\n旅の時期と出発地を教えてもらえれば、もっと絞れます。\n宿も探すなら比較ページへどうぞ。\n※宿泊予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['目的別の旅を見る|' + R() + 'pages/purpose.html', '宿を比較する|' + R() + 'pages/booking.html', !season ? '旅行時期を教える（例：11月）' : null].filter(Boolean)
+        };
+      }
+    },
+
+    budget: {
+      keywords: /予算.*旅|いくら.*旅|費用.*旅|旅.*費用|旅行.*予算|旅行費|コスパ.*旅|安く.*旅|予算.*相談/,
+      respond: function(s) {
+        var hasOrigin = !!s.origin;
+        var hasPeople = !!s.people;
+        var hasDays = !!s.days;
+        var hasBudgetType = !!s.budgetType;
+        var missing = [];
+        if (!hasOrigin) missing.push('出発地');
+        if (!hasPeople) missing.push('人数');
+        if (!hasDays) missing.push('旅行日数（1泊2日か2泊3日か）');
+        if (!hasBudgetType) missing.push('1人あたりか合計予算か');
+        if (missing.length >= 2) {
+          return {
+            text: '予算から旅を考えるなら、まずいくつか確認させてください。\n\n以下が分かると、かなり現実的に提案できます。\n\n' + missing.map(function(m) { return '・' + m; }).join('\n') +
+              '\n\n例えば「東京発・2人・1泊2日・2人で合計5万円」のように教えてもらえると助かります。\n\n先に宿を見たい場合はこちら。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
+            buttons: ['宿を比較する|' + R() + 'pages/booking.html']
+          };
+        }
+        var origin = s.origin || '出発地不明';
+        var days = s.days || '1泊2日';
+        var budget = s.budget;
+        var budgetType = s.budgetType === 'total' ? '合計' : '1人あたり';
+        var budgetLabel = budget ? (budget / 10000) + '万円（' + budgetType + '）' : '予算未定';
+        var tips = '交通費込みの場合、宿代は全体の40〜60%になることが多いです。';
+        if (s.budgetLevel === 'low') tips = 'コスパ重視なら、楽天トラベルの「直前割」・「タイムセール」が狙い目です。';
+        if (s.budgetLevel === 'high') tips = '贅沢旅なら、一休.comの「プレミアム旅館」カテゴリが見やすいです。';
+        return {
+          text: origin + '発・' + days + '・' + budgetLabel + 'の旅ですね。\n\n' + tips +
+            '\n\n宿の比較はこちらで楽天・じゃらん・一休・Yahoo!トラベルをまとめて確認できます。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['宿を比較する|' + R() + 'pages/booking.html', '温泉地を探す|' + R() + 'pages/onsen.html', '月別おすすめを見る|' + R() + 'pages/monthly.html']
+        };
+      }
+    },
+
+    hotel: {
+      keywords: /宿.*探|宿.*どこ|ホテル.*探|旅館.*探|宿泊.*どこ|どこに泊|どこで泊|宿を予約|宿.*おすすめ/,
+      respond: function(s) {
+        var hasArea = !!s.origin;
+        var hasDays = !!s.days;
+        var hasPeople = !!s.people;
+        var hasBudget = !!(s.budget || s.budgetLevel);
+        var missing = [];
+        if (!hasArea) missing.push('行き先（都道府県・エリア）');
+        if (!hasDays) missing.push('宿泊日（1泊2日など）');
+        if (!hasPeople) missing.push('人数');
+        if (!hasBudget) missing.push('予算（1人あたり目安）');
+        if (missing.length >= 2) {
+          return {
+            text: '宿探しですね🏨\n\n条件を整理すると失敗しにくいです。以下を教えてください。\n\n' + missing.map(function(m) { return '・' + m; }).join('\n') +
+              '\n\nあわせて「温泉あり/なし」「高級旅館 or コスパ重視 or 家族向け」も分かると絞り込みやすいです。\n\n今すぐ比較したい場合はこちら。楽天・じゃらん・一休・Yahoo!トラベルをまとめて確認できます。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
+            buttons: ['宿を比較する|' + R() + 'pages/booking.html', '温泉地から探す|' + R() + 'pages/onsen.html']
+          };
+        }
+        var area = s.origin || '';
+        var days = s.days || '1泊2日';
+        var budgetLabel = s.budget ? (s.budget / 10000) + '万円/人' : s.budgetLevel === 'low' ? 'コスパ重視' : s.budgetLevel === 'high' ? '高級宿' : '';
+        return {
+          text: (area ? area + '・' : '') + days + '・' + (budgetLabel || '') + 'の宿探しですね🏨\n\n楽天トラベル・じゃらん・一休・Yahoo!トラベルを比較できるページを用意しています。\n\n温泉宿を探す場合は温泉地ページからも見られます。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['宿を比較する|' + R() + 'pages/booking.html', '温泉地から探す|' + R() + 'pages/onsen.html']
+        };
+      }
+    },
+
+    gourmet: {
+      keywords: /グルメ旅|食べ歩き.*旅|ご当地グルメ.*旅|食の旅|グルメ.*おすすめ.*旅/,
+      respond: function(s) {
+        var origin = s.origin;
+        var spots = !origin || origin === '東京' ?
+          ['福岡— 博多ラーメン・もつ鍋・屋台文化が他にない体験', '金沢（石川）— 近江町市場の海鮮。のど黒・白エビは絶品', '香川— 讃岐うどんを本場で何杯も食べ歩くのが最高'] :
+          origin === '大阪' ?
+          ['大阪— たこ焼き・串カツ・道頓堀グルメで食い倒れ', '神戸— スイーツと洋食の街。中華街も近い', '京都— 懐石・湯豆腐・抹茶スイーツの本場'] :
+          ['福岡— 博多ラーメン・もつ鍋・めんたいこが本場', '宮崎— チキン南蛮・地鶏炭火焼は宮崎でしか食べられない', '鹿児島— 黒豚・さつまあげ・焼酎が揃う食の宝庫'];
+        return {
+          text: 'グルメ旅のおすすめです🍜\n\n' + spots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') +
+            '\n\nグルメ名産品一覧ページでも各地の名物を詳しく見られます。\n食べたいものを教えてもらえると、さらに絞れます。',
+          buttons: ['グルメ一覧を見る|' + R() + 'pages/specialties.html', '都道府県から探す|' + R() + 'pages/prefectures.html']
+        };
+      }
+    },
+
+    history: {
+      keywords: /歴史.*旅|城.*行きたい|神社.*旅|幕末.*旅|戦国.*旅|寺.*旅|世界遺産.*旅/,
+      respond: function(s) {
+        return {
+          text: '歴史旅のおすすめです⛩️\n\n1. 京都— 1000年の古都。神社・寺・町家が凝縮されています\n2. 奈良— 法隆寺・東大寺・春日大社。大仏と鹿で非日常感\n3. 姫路（兵庫）— 白鷺城こと姫路城は現存天守の最高峰\n4. 会津若松（福島）— 幕末・戊辰戦争の舞台。鶴ヶ城と武家屋敷\n5. 萩（山口）— 吉田松陰・長州藩ゆかりの静かな城下町\n\nどの時代・地域が気になりますか？\n都道府県ページで各地の歴史スポットを詳しく見られます。',
+          buttons: ['都道府県から探す|' + R() + 'pages/prefectures.html', '目的別の旅を見る|' + R() + 'pages/purpose.html']
+        };
+      }
+    },
+
+    scenic: {
+      keywords: /絶景|絶景.*見たい|景色.*いい|富士山.*行きたい|絶景旅行|SNS映え.*旅/,
+      respond: function(s) {
+        var season = s.season;
+        var spots = [];
+        if (season === 'spring') spots = ['弘前城の桜（青森）— ソメイヨシノとお城の組み合わせが圧巻', '吉野山（奈良）— 山全体が桜に染まる絶景', '角島大橋（山口）— 春の青い海と白い橋'];
+        else if (season === 'summer') spots = ['美瑛・富良野（北海道）— ラベンダーと緑のパッチワーク', '宮古島（沖縄）— 東洋一透明な海', '白神山地（青森/秋田）— 世界遺産の原生林'];
+        else if (season === 'autumn') spots = ['奥入瀬渓流（青森）— 紅葉と渓流の最高の組み合わせ', '京都・東福寺（京都）— 通天橋からの紅葉は別格', '立山黒部アルペンルート（富山）— 雪の大谷と紅葉'];
+        else if (season === 'winter') spots = ['蔵王の樹氷（山形）— 幻想的な白い怪物（スノーモンスター）', '函館の夜景（北海道）— 世界三大夜景', '地獄谷野猿公苑（長野）— 温泉に入るサルの絶景'];
+        else spots = ['宮島・厳島神社（広島）— 海に浮かぶ朱の大鳥居', '美瑛・富良野（北海道）— 絵本のような風景', '角島大橋（山口）— 日本屈指のドライブ絶景'];
+        return {
+          text: '絶景スポットのおすすめです🌄\n\n' + spots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') +
+            '\n\n季節・出発地によってさらに絞れます。いつ頃行く予定ですか？\n月別おすすめページでも季節ごとの絶景をまとめています。',
+          buttons: ['月別おすすめを見る|' + R() + 'pages/monthly.html', '都道府県から探す|' + R() + 'pages/prefectures.html', !season ? '時期を教える（例：秋）' : null].filter(Boolean)
+        };
+      }
+    },
+
+    monthly: {
+      keywords: /(\d+)月.*旅|旅.*(\d+)月|(\d+)月.*おすすめ|月別|ベストシーズン|いつ.*行|いつが.*いい/,
+      respond: function(s) {
+        var month = s.month;
+        var seasonMap = {
+          1:  { label: '1月',     desc: '正月旅行・初詣シーズン。京都・奈良が空いていてねらい目。北海道スキーも最盛期。' },
+          2:  { label: '2月',     desc: 'さっぽろ雪まつり（2月上旬）と温泉が最高の組み合わせ。沖縄は本土から避寒する人も。' },
+          3:  { label: '3月',     desc: '卒業旅行シーズン。沖縄は梅雨前で最高。九州では桜が先に咲き始める。' },
+          4:  { label: '4月',     desc: '桜シーズン！弘前城（青森）・京都・吉野山（奈良）が特に人気。' },
+          5:  { label: '5月・GW', desc: 'GWは混雑ピーク。北海道・四国は比較的穴場。宿は3〜4ヶ月前から予約必須。' },
+          6:  { label: '6月',     desc: '梅雨ですが逆に旅行のねらい目。北海道は梅雨なし！京都の紫陽花も見頃。' },
+          7:  { label: '7月',     desc: '夏旅全開。沖縄・北海道（ラベンダー）・京都（祇園祭）がピーク。' },
+          8:  { label: '8月・お盆', desc: 'お盆（8/13〜16）は最高混雑・最高価格。前後にずらすと◎。東北の夏祭りがおすすめ。' },
+          9:  { label: '9月',     desc: 'シルバーウィークあり。沖縄はまだ泳げる。北海道は秋の紅葉開始。混雑が落ち着き始める。' },
+          10: { label: '10月',    desc: '北海道・東北の紅葉が最盛期。本州は11月が見頃。お得な時期なので宿も取りやすい。' },
+          11: { label: '11月',    desc: '紅葉の絶頂期！京都・日光・奈良がピーク。宿は2〜3ヶ月前予約が必須。' },
+          12: { label: '12月',    desc: '温泉・イルミ・年末旅行のシーズン。北海道スキーも開始。年末年始の宿は早めに。' }
+        };
+        if (month && seasonMap[month]) {
+          var info = seasonMap[month];
+          return {
+            text: info.label + 'の旅行ですね📅\n\n' + info.desc + '\n\n月別おすすめページでも詳しくまとめています。\n出発地と誰と行くかを教えてもらえれば、具体的な旅先を提案できます。',
+            buttons: ['月別おすすめを見る|' + R() + 'pages/monthly.html', '都道府県から探す|' + R() + 'pages/prefectures.html', '宿を比較する|' + R() + 'pages/booking.html']
+          };
+        }
+        return {
+          text: 'いつ頃の旅行を考えていますか？📅\n\n季節・月を教えてもらえれば、その時期にぴったりの旅先を提案します。\n月別おすすめページでも全月の旅先をまとめています。',
+          buttons: ['月別おすすめを見る|' + R() + 'pages/monthly.html', '春（3〜5月）', '夏（6〜8月）', '秋（9〜11月）', '冬（12〜2月）']
+        };
+      }
+    },
+
+    onsen: {
+      keywords: /温泉|おんせん|湯治|湯めぐり|露天風呂|温泉宿/,
+      respond: function(s) {
+        var origin = s.origin || null;
+        var who = s.who || null;
+        var spots = [];
+        if (origin === '東京') {
+          spots = ['草津温泉（群馬）— 温泉の王様。硫黄泉で解放感抜群', '箱根（神奈川）— 富士山ビューと多彩な湯。日帰りも可', '那須（栃木）— ゆったりした高原温泉。家族や夫婦にも'];
+        } else if (origin === '大阪') {
+          spots = ['有馬温泉（兵庫）— 新幹線なしで30分。日本最古級の名湯', '城崎温泉（兵庫）— 外湯めぐりが楽しい。カップルや家族向け', '白浜温泉（和歌山）— 海と温泉が両方楽しめる'];
+        } else if (origin === '名古屋') {
+          spots = ['下呂温泉（岐阜）— 日本三名泉のひとつ。名古屋から1.5時間', '伊勢・志摩（三重）— 海沿いの温泉と伊勢神宮', '渥美・伊良湖（愛知）— 海沿いの温泉'];
+        } else if (origin === '福岡') {
+          spots = ['由布院（大分）— 九州を代表する温泉地。カップルにも人気', '黒川温泉（熊本）— 山の中の秘湯感。露天めぐりが最高', '嬉野温泉（佐賀）— とろっとした美人湯。グルメも充実'];
+        } else if (origin === '広島') {
+          spots = ['玉造温泉（島根）— 美肌の湯で有名。宍道湖も近い', '道後温泉（愛媛）— 日本最古の温泉。歴史好きにもおすすめ', '湯田温泉（山口）— 新幹線でアクセスできる便利な温泉地'];
+        } else {
+          spots = ['草津温泉（群馬）— 温泉の王様。硫黄泉で解放感抜群', '有馬温泉（兵庫）— アクセス抜群の関西代表名湯', '由布院（大分）— 九州を代表するおしゃれな温泉地'];
+        }
+        var whoNote = '';
+        if (who === 'couple') whoNote = '\n\n**カップル・夫婦なら**客室露天付きの旅館がおすすめです。城崎・由布院・草津が人気です。';
+        else if (who === 'family') whoNote = '\n\n**家族・子連れなら**貸切風呂（家族風呂）がある宿を選ぶと安心です。';
+        else if (who === 'solo') whoNote = '\n\n**一人旅なら**乳頭温泉（秋田）や道後温泉のような湯治向けが人気です。';
+        var askLine = '';
+        if (!origin) askLine = '\n\n**出発地と予算感**を教えてもらえれば、もっと絞り込めます。';
+        return {
+          text: '温泉旅行、いいですね♨️\n\n' + (origin ? origin + '発なら、' : '') + 'このあたりがおすすめです。\n\n' +
+            spots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') + whoNote + askLine +
+            '\n\n宿も同時に探すなら比較ページが便利です。楽天・じゃらん・一休をまとめて確認できます。\n※宿泊予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['温泉地一覧を見る|' + R() + 'pages/onsen.html', '宿を比較する|' + R() + 'pages/booking.html', !origin ? '出発地を教える（例：東京）' : (!who ? '誰と行くか教える' : null)].filter(Boolean)
+        };
+      }
+    },
+
     nodecide: {
-      keywords: /どこ.*行こう|行き先.*決まら|おすすめ.*教えて|どこがいい|迷って|決められない/,
+      keywords: /どこ.*行こう|行き先.*決まら|どこがいい|迷ってる|決められない|行きたい$|旅行したい$/,
       respond: function(s) {
-        return { text: '行き先が決まっていなくても大丈夫です😊\n\nいくつか質問させてください！\n\n**まずは「誰と行く旅」ですか？**', buttons: ['一人旅', 'カップル・夫婦', '家族・子連れ', '友達と'] };
-      },
-      waitingFor: 'who',
+        var hasWho = !!s.who;
+        var hasOrigin = !!s.origin;
+        if (!hasOrigin && !hasWho) {
+          return {
+            text: 'まだ行き先が決まっていなくても大丈夫です😊\n\nいくつか教えてもらえると、かなり具体的に提案できます。\n\n・どこ発ですか？（例：東京・大阪・名古屋）\n・誰と行きますか？（一人・カップル・家族）\n・いつ頃の旅行ですか？（月・季節）\n・温泉・グルメ・絶景・歴史のどれが好きですか？\n・車はありますか？\n\n全部でなくていいです。分かる範囲で教えてください！',
+            buttons: ['一人旅を相談する', 'カップル旅を相談する', '家族旅行を相談する', '予算から相談する']
+          };
+        }
+        if (hasWho && !hasOrigin) {
+          var whoLabel = s.who === 'solo' ? '一人旅' : s.who === 'couple' ? 'カップル旅' : s.who === 'family' ? '家族旅行' : '友達旅行';
+          return {
+            text: whoLabel + 'ですね。出発地を教えてもらえますか？\n\nあわせて、旅行時期（何月頃）と何をしたいか（温泉・グルメ・絶景など）も教えてもらえると、すぐに絞り込めます。',
+            buttons: ['東京発', '大阪発', '名古屋発', '福岡発']
+          };
+        }
+        return {
+          text: (s.origin ? s.origin + '発' : '') + 'の旅行ですね。いつ頃・誰と行きますか？\n\n時期と目的が分かれば、具体的に提案できます。\n\n月別おすすめページや都道府県ページも参考にしてみてください。',
+          buttons: ['月別おすすめ|' + R() + 'pages/monthly.html', '目的別の旅|' + R() + 'pages/purpose.html', '都道府県から探す|' + R() + 'pages/prefectures.html']
+        };
+      }
     },
-    purpose: {
-      keywords: /目的.*旅|旅.*目的|何したい|楽しみ方|アクティビティ.*旅/,
-      respond: function(s) {
-        return { text: '旅の目的から探しましょう🎯\n\n📍 [目的から旅先を探す](pages/purpose.html)\n\nどんな旅がしたいですか？', buttons: ['温泉でゆっくりしたい', '絶景・自然を満喫したい', 'グルメ旅がしたい', '歴史・文化を感じたい'] };
-      },
-    },
-    kids: {
-      keywords: /赤ちゃん.*旅|幼児.*旅|小学生.*旅|子供.*何歳/,
-      respond: function(s) {
-        return { text: 'お子さん連れの旅行ですね👶\n\n年齢別でおすすめが変わります！\nお子さんは何歳くらいですか？', buttons: ['0〜2歳（赤ちゃん）', '3〜5歳（幼児）', '6〜12歳（小学生）', '中高生'] };
-      },
-    },
+
   };
 
   /* ---------- インテント検出 ---------- */
   function detectIntent(q) {
-    for (var key in INTENTS) {
-      if (INTENTS[key].keywords && INTENTS[key].keywords.test(q)) return key;
+    var priority = ['miyajima', 'kyoto', 'hokkaido', 'okinawa', 'premium', 'anniversary', 'rainy', 'nocar', 'weekend', 'goods', 'parents', 'women', 'solo', 'family', 'couple', 'budget', 'hotel', 'gourmet', 'history', 'scenic', 'monthly', 'onsen', 'nodecide'];
+    for (var i = 0; i < priority.length; i++) {
+      var key = priority[i];
+      if (INTENTS[key] && INTENTS[key].keywords && INTENTS[key].keywords.test(q)) return key;
     }
     return null;
   }
 
   /* ---------- セッション応答 ---------- */
-  function sessionRespond_withWho(who) {
-    if (who === 'solo') return { text: '一人旅ですね！\n\n**どんな旅がしたいですか？**', buttons: ['温泉でゆっくりしたい', '絶景・自然を満喫', 'グルメ巡りがしたい', '歴史・文化に触れたい'] };
-    if (who === 'couple') return { text: 'カップル旅行ですね💑\n\n**どんな旅がしたいですか？**', buttons: ['温泉でゆっくりしたい', '海・リゾートへ行きたい', '街歩き・観光がしたい', '記念日・特別な旅'] };
-    if (who === 'family') return { text: '家族旅行ですね👨‍👩‍👧‍👦\n\n**お子さんは何歳くらいですか？**', buttons: ['未就学児（0〜5歳）', '小学生（6〜12歳）', '中高生', '大人のみ家族旅'] };
-    return { text: '友達との旅ですね🎒\n\n**旅の目的は？**', buttons: ['温泉・リゾートで遊ぶ', 'グルメ巡り', '観光・アクティビティ', '夜遊び・お酒を楽しむ'] };
-  }
-
   function sessionRespond(query) {
     var q = query.trim();
     var slots = extractSlots(q);
     for (var k in slots) { SESSION.slots[k] = slots[k]; }
     SESSION.turnCount++;
 
-    // スロット待ち状態の処理
+    // スロット待ち状態の処理（ボタン選択への返答）
     if (SESSION.waitingFor === 'who') {
       if (/一人|ひとり|ソロ/.test(q)) SESSION.slots.who = 'solo';
       else if (/カップル|二人|夫婦/.test(q)) SESSION.slots.who = 'couple';
       else if (/家族|子連れ|ファミリー/.test(q)) SESSION.slots.who = 'family';
       else if (/友達|グループ/.test(q)) SESSION.slots.who = 'friends';
       SESSION.waitingFor = null;
-      if (SESSION.slots.who) return sessionRespond_withWho(SESSION.slots.who);
+    }
+    if (SESSION.waitingFor === 'origin') {
+      if (/東京|関東/.test(q)) SESSION.slots.origin = '東京';
+      else if (/大阪|関西/.test(q)) SESSION.slots.origin = '大阪';
+      else if (/名古屋|東海/.test(q)) SESSION.slots.origin = '名古屋';
+      else if (/福岡|九州/.test(q)) SESSION.slots.origin = '福岡';
+      else if (/広島/.test(q)) SESSION.slots.origin = '広島';
+      else if (/北海道|札幌/.test(q)) SESSION.slots.origin = '北海道';
+      SESSION.waitingFor = null;
     }
 
     var intentKey = detectIntent(q);
@@ -921,10 +1260,8 @@ var NoaChat = (function() {
     var intent = SESSION.intent ? INTENTS[SESSION.intent] : null;
 
     if (intent) {
-      if (intent.waitingFor && !SESSION.slots[intent.waitingFor]) {
-        SESSION.waitingFor = intent.waitingFor;
-      }
-      return intent.respond(SESSION.slots);
+      var result = intent.respond(SESSION.slots);
+      if (result) return result;
     }
     return null;
   }
@@ -936,10 +1273,15 @@ var NoaChat = (function() {
     if (sessionResult) return sessionResult;
     for (var i = 0; i < RULES.length; i++) {
       if (RULES[i].patterns.some(function(p) { return p.test(q); })) {
-        return { text: RULES[i].response(q), buttons: null };
+        var resp = RULES[i].response(q);
+        if (typeof resp === 'string') return { text: resp, buttons: null };
+        return resp;
       }
     }
-    return { text: RULES[RULES.length - 1].response(q), buttons: null };
+    return {
+      text: 'すみません、うまく理解できませんでした。\n\n以下から相談してみてください。\n\n・温泉旅行がしたい\n・カップルにおすすめは？\n・11月の旅先を教えて\n・宿を探したい\n・予算から相談したい',
+      buttons: ['温泉地を探す|' + R() + 'pages/onsen.html', '月別おすすめ|' + R() + 'pages/monthly.html', '宿を比較する|' + R() + 'pages/booking.html']
+    };
   }
 
   /* ---------- UI レンダリング ---------- */
