@@ -1908,6 +1908,10 @@ var NoaChat = (function() {
         return resp;
       }
     }
+    // 答えられなかったクエリをGA4へ通知
+    if (window.NoaChatHooks && typeof window.NoaChatHooks.onFallback === 'function') {
+      window.NoaChatHooks.onFallback(query);
+    }
     return {
       text: 'すみません、うまく理解できませんでした。\n\n以下から相談してみてください。\n\n・温泉旅行がしたい\n・カップルにおすすめは？\n・11月の旅先を教えて\n・宿を探したい\n・予算から相談したい',
       buttons: ['温泉地を探す|' + R() + 'pages/onsen.html', '月別おすすめ|' + R() + 'pages/monthly.html', '宿を比較する|' + R() + 'pages/booking.html']

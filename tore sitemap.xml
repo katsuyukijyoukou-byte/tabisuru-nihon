@@ -1,0 +1,90 @@
+warning: in the working copy of 'sitemap.xml', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/sitemap.xml b/sitemap.xml[m
+[1mindex 6149bca..91cd47c 100644[m
+[1m--- a/sitemap.xml[m
+[1m+++ b/sitemap.xml[m
+[36m@@ -4,6 +4,7 @@[m
+   <!-- トップ -->[m
+   <url>[m
+     <loc>https://tabisuru-nihon.github.io/</loc>[m
+[32m+[m[32m    <lastmod>2026-06-16</lastmod>[m
+     <changefreq>weekly</changefreq>[m
+     <priority>1.0</priority>[m
+   </url>[m
+[36m@@ -11,31 +12,37 @@[m
+   <!-- メインページ -->[m
+   <url>[m
+     <loc>https://tabisuru-nihon.github.io/pages/prefectures.html</loc>[m
+[32m+[m[32m    <lastmod>2026-06-16</lastmod>[m
+     <changefreq>weekly</changefreq>[m
+     <priority>0.9</priority>[m
+   </url>[m
+   <url>[m
+     <loc>https://tabisuru-nihon.github.io/pages/onsen.html</loc>[m
+[32m+[m[32m    <lastmod>2026-06-16</lastmod>[m
+     <changefreq>weekly</changefreq>[m
+     <priority>0.9</priority>[m
+   </url>[m
+   <url>[m
+     <loc>https://tabisuru-nihon.github.io/pages/monthly.html</loc>[m
+[32m+[m[32m    <lastmod>2026-06-16</lastmod>[m
+     <changefreq>weekly</changefreq>[m
+     <priority>0.8</priority>[m
+   </url>[m
+   <url>[m
+     <loc>https://tabisuru-nihon.github.io/pages/purpose.html</loc>[m
+[32m+[m[32m    <lastmod>2026-06-16</lastmod>[m
+     <changefreq>weekly</changefreq>[m
+     <priority>0.8</priority>[m
+   </url>[m
+   <url>[m
+     <loc>https://tabisuru-nihon.github.io/pages/specialties.html</loc>[m
+[32m+[m[32m    <lastmod>2026-06-16</lastmod>[m
+     <changefreq>weekly</changefreq>[m
+     <priority>0.7</priority>[m
+   </url>[m
+   <url>[m
+     <loc>https://tabisuru-nihon.github.io/pages/booking.html</loc>[m
+[32m+[m[32m    <lastmod>2026-06-16</lastmod>[m
+     <changefreq>monthly</changefreq>[m
+     <priority>0.6</priority>[m
+   </url>[m
+[36m@@ -89,6 +96,38 @@[m
+   <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=kagoshima</loc><priority>0.7</priority></url>[m
+   <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=okinawa</loc><priority>0.8</priority></url>[m
+ [m
+[32m+[m[32m  <!-- 温泉地詳細 -->[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=noboribetsu</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=kusatsu</loc><priority>0.7</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=hakone</loc><priority>0.7</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=atami</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=arima</loc><priority>0.7</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=kinosaki</loc><priority>0.7</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=shirahama</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=dogo</loc><priority>0.7</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=beppu</loc><priority>0.7</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=yufuin</loc><priority>0.7</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=nyuto</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=kurokawa</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=gero</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=zao</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=jozankei</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=ginzan</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=ikaho</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=kinugawa</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=ibusuki</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=tamatsukuri</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=yudanaka</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=okuhida</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=shima</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=yugawara</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=yamashiro</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=tsukioka</loc><priority>0.5</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=sukayu</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=akiu</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=wakura</loc><priority>0.6</priority></url>[m
+[32m+[m[32m  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=yamanaka</loc><priority>0.6</priority></url>[m
+[32m+[m
+   <!-- 月別詳細 -->[m
+   <url><loc>https://tabisuru-nihon.github.io/templates/monthly-detail.html?month=1</loc><priority>0.6</priority></url>[m
+   <url><loc>https://tabisuru-nihon.github.io/templates/monthly-detail.html?month=2</loc><priority>0.6</priority></url>[m

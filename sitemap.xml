@@ -4,6 +4,7 @@
   <!-- トップ -->
   <url>
     <loc>https://tabisuru-nihon.github.io/</loc>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,31 +12,37 @@
   <!-- メインページ -->
   <url>
     <loc>https://tabisuru-nihon.github.io/pages/prefectures.html</loc>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://tabisuru-nihon.github.io/pages/onsen.html</loc>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://tabisuru-nihon.github.io/pages/monthly.html</loc>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tabisuru-nihon.github.io/pages/purpose.html</loc>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tabisuru-nihon.github.io/pages/specialties.html</loc>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tabisuru-nihon.github.io/pages/booking.html</loc>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -88,6 +95,38 @@
   <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=miyazaki</loc><priority>0.7</priority></url>
   <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=kagoshima</loc><priority>0.7</priority></url>
   <url><loc>https://tabisuru-nihon.github.io/templates/prefecture.html?id=okinawa</loc><priority>0.8</priority></url>
+
+  <!-- 温泉地詳細 -->
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=noboribetsu</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=kusatsu</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=hakone</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=atami</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=arima</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=kinosaki</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=shirahama</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=dogo</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=beppu</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=yufuin</loc><priority>0.7</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=nyuto</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=kurokawa</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=gero</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=zao</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=jozankei</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=ginzan</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=ikaho</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=kinugawa</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=ibusuki</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=tamatsukuri</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=yudanaka</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=okuhida</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=shima</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=yugawara</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=yamashiro</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=tsukioka</loc><priority>0.5</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=sukayu</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=akiu</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=wakura</loc><priority>0.6</priority></url>
+  <url><loc>https://tabisuru-nihon.github.io/templates/onsen.html?id=yamanaka</loc><priority>0.6</priority></url>
 
   <!-- 月別詳細 -->
   <url><loc>https://tabisuru-nihon.github.io/templates/monthly-detail.html?month=1</loc><priority>0.6</priority></url>
