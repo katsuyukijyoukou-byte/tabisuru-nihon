@@ -1246,7 +1246,7 @@ window.renderPrefecturePage = function() {
   if (hlEl && d.highlights) {
     hlEl.innerHTML = d.highlights.map(h => `
       <div class="spot-card">
-        <div class="spot-thumb">${h.emoji || '📍'}</div>
+        <div class="spot-thumb${h.img ? ' spot-thumb--photo' : ''}">${h.img ? `<img src="${h.img}" alt="${h.name}" loading="lazy">` : (h.emoji || '📍')}</div>
         <div class="spot-info">
           <div class="spot-name">${h.name}</div>
           <div class="spot-desc">${h.desc || ''}</div>
@@ -1259,6 +1259,7 @@ window.renderPrefecturePage = function() {
   const seasonEl = document.querySelector('#pref-seasonal');
   if (seasonEl && d.seasonal) {
     const s = d.seasonal;
+    const si = d.seasonalImages || {};
     seasonEl.innerHTML = [
       { key: 'spring', label: '春', emoji: '🌸' },
       { key: 'summer', label: '夏', emoji: '☀️' },
@@ -1266,7 +1267,7 @@ window.renderPrefecturePage = function() {
       { key: 'winter', label: '冬', emoji: '❄️' },
     ].map(({ key, label, emoji }) => `
       <div class="season-card">
-        <div class="season-emoji">${emoji}</div>
+        <div class="season-emoji${si[key] ? ' season-emoji--photo' : ''}">${si[key] ? `<img src="${si[key]}" alt="${label}の景色" loading="lazy">` : emoji}</div>
         <div class="season-name">${label}</div>
         <div class="season-desc">${s[key] || '—'}</div>
       </div>`).join('');
@@ -1277,7 +1278,7 @@ window.renderPrefecturePage = function() {
   if (gourmetEl && d.gourmet) {
     gourmetEl.innerHTML = d.gourmet.map(g => `
       <div class="food-card">
-        <div class="food-emoji">${g.emoji || '🍽'}</div>
+        <div class="food-emoji${g.img ? ' food-emoji--photo' : ''}">${g.img ? `<img src="${g.img}" alt="${g.name}" loading="lazy">` : (g.emoji || '🍽')}</div>
         <div class="food-name">${g.name}</div>
         <div class="food-desc">${g.desc || ''}</div>
       </div>`).join('');

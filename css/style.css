@@ -1864,13 +1864,16 @@ button { font-family: inherit; cursor: pointer; }
 }
 .spot-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-sm); border-color: var(--navy-light); }
 .spot-thumb {
-  height: 90px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2.4rem;
   background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+  overflow: hidden;
 }
+.spot-thumb--photo { padding: 0; }
+.spot-thumb--photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .spot-info { padding: 10px; }
 .spot-name { font-size: 0.88rem; font-weight: 700; color: var(--navy); }
 .spot-desc { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
@@ -1885,27 +1888,33 @@ button { font-family: inherit; cursor: pointer; }
   background: #fffaf5;
   border: 1px solid #ffe0c0;
   border-radius: var(--radius);
-  padding: 14px;
+  overflow: hidden;
   text-align: center;
   cursor: pointer;
   transition: var(--transition);
 }
 .food-card:hover { background: #fff4e6; transform: translateY(-2px); }
-.food-emoji { font-size: 1.8rem; margin-bottom: 6px; }
-.food-name { font-size: 0.82rem; font-weight: 700; color: var(--navy); }
-.food-desc { font-size: 0.7rem; color: var(--text-muted); margin-top: 3px; }
+.food-emoji { font-size: 1.8rem; padding: 14px 14px 0; }
+.food-emoji--photo { padding: 0; height: 100px; display: flex; }
+.food-emoji--photo img { width: 100%; height: 100%; object-fit: cover; }
+.food-card .food-name,
+.food-card .food-desc { padding-left: 10px; padding-right: 10px; }
+.food-name { font-size: 0.82rem; font-weight: 700; color: var(--navy); padding-top: 8px; }
+.food-desc { font-size: 0.7rem; color: var(--text-muted); margin-top: 3px; padding-bottom: 10px; }
 
 .season-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .season-card {
   background: var(--section-alt);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 14px;
+  overflow: hidden;
   text-align: center;
 }
-.season-emoji { font-size: 1.5rem; margin-bottom: 6px; }
-.season-name { font-size: 0.8rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
-.season-desc { font-size: 0.72rem; color: var(--text-light); line-height: 1.45; }
+.season-emoji { font-size: 1.5rem; padding: 14px 14px 0; }
+.season-emoji--photo { padding: 0; height: 90px; display: flex; }
+.season-emoji--photo img { width: 100%; height: 100%; object-fit: cover; }
+.season-name { font-size: 0.8rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; padding: 8px 10px 0; }
+.season-desc { font-size: 0.72rem; color: var(--text-light); line-height: 1.45; padding: 0 10px 12px; }
 
 .course-steps { display: flex; flex-direction: column; gap: 0; }
 .course-step {
