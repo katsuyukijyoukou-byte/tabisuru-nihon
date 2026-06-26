@@ -43,15 +43,20 @@ function maskPersonalInfo(text) {
 }
 
 function getGaClientId(cb) {
+  var done = false;
+  // 2秒以内に取得できなければ空文字で続行（アドブロッカー対策）
+  var timer = setTimeout(function() {
+    if (!done) { done = true; cb(''); }
+  }, 2000);
   try {
     if (typeof gtag === 'function') {
       gtag('get', 'G-V8ZM6F6F34', 'client_id', function(clientId) {
-        cb(clientId || '');
+        if (!done) { done = true; clearTimeout(timer); cb(clientId || ''); }
       });
       return;
     }
   } catch (e) {}
-  cb('');
+  if (!done) { done = true; clearTimeout(timer); cb(''); }
 }
 
 /* ---------- メインログ送信 ---------- */
@@ -59,6 +64,8 @@ function sendNoaUnansweredLog(params) {
   var userQuestion = maskPersonalInfo(params.userQuestion || '');
   var noaReply     = maskPersonalInfo(params.noaReply || '').slice(0, 300);
   var reason       = params.reason || 'unknown';
+
+  console.log('[Noa unanswered log] triggered reason=' + reason + ' q=' + userQuestion.slice(0, 60));
 
   // GA4イベント（同時送信）
   if (typeof gtag === 'function') {
@@ -69,8 +76,11 @@ function sendNoaUnansweredLog(params) {
     });
   }
 
-  // スプレッドシート送信（エンドポイント未設定なら何もしない）
-  if (!NOA_UNANSWERED_ENDPOINT || NOA_UNANSWERED_ENDPOINT.includes('ここに')) return;
+  // スプレッドシート送信
+  if (!NOA_UNANSWERED_ENDPOINT || NOA_UNANSWERED_ENDPOINT.includes('ここに')) {
+    console.warn('[Noa unanswered log] endpoint not set');
+    return;
+  }
 
   getGaClientId(function(gaClientId) {
     var payload = {
@@ -87,14 +97,17 @@ function sendNoaUnansweredLog(params) {
       ga_client_id:   gaClientId,
       status:         '未対応'
     };
-    try {
-      fetch(NOA_UNANSWERED_ENDPOINT, {
-        method:  'POST',
-        mode:    'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body:    JSON.stringify(payload)
-      }).catch(function() {});
-    } catch (e) {}
+    console.log('[Noa unanswered log] sending', payload);
+    fetch(NOA_UNANSWERED_ENDPOINT, {
+      method:  'POST',
+      mode:    'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body:    JSON.stringify(payload)
+    }).then(function() {
+      console.log('[Noa unanswered log] fetch sent (no-cors, response opaque)');
+    }).catch(function(err) {
+      console.error('[Noa unanswered log] fetch error', err);
+    });
   });
 }
 
@@ -104,6 +117,7 @@ function sendNoaUnansweredLog(params) {
   if (!window.NoaChatHooks) { setTimeout(waitForHooks, 50); return; }
 
   window.NoaChatHooks.onFallback = function(data) {
+    console.log('[Noa hook] onFallback called', data);
     sendNoaUnansweredLog({
       userQuestion: data.query  || '',
       noaReply:     data.reply  || '',
@@ -112,6 +126,7 @@ function sendNoaUnansweredLog(params) {
   };
 
   window.NoaChatHooks.onNegativeFeedback = function(data) {
+    console.log('[Noa hook] onNegativeFeedback called', data);
     sendNoaUnansweredLog({
       userQuestion: data.query         || '',
       noaReply:     data.previousReply || '',
@@ -120,12 +135,15 @@ function sendNoaUnansweredLog(params) {
   };
 
   window.NoaChatHooks.onLongLoopUnresolved = function(data) {
+    console.log('[Noa hook] onLongLoopUnresolved called', data);
     sendNoaUnansweredLog({
       userQuestion: data.query || '',
       noaReply:     data.reply || '',
       reason:       'long_loop_unresolved'
     });
   };
+
+  console.log('[Noa analytics] hooks registered on window.NoaChatHooks');
 }());
 
 /* ================================================================
