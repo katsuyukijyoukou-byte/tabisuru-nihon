@@ -1278,6 +1278,115 @@ var NoaChat = (function() {
       // 下のインテント処理に続ける
     }
 
+    // ===== 初期選択肢フロー開始 =====
+    if (SESSION.chatState === 'idle' && SESSION.turnCount <= 3) {
+      if (/温泉旅行がしたい|温泉に行き/.test(q)) {
+        SESSION.chatState = 'onsen_origin';
+        return { text: '温泉旅行、いいですね♨️\n\nどこから出発しますか？', buttons: ['東京', '大阪', '名古屋', '福岡', '北海道・札幌', 'その他'] };
+      }
+      if (/グルメを楽しむ旅/.test(q)) {
+        SESSION.chatState = 'gourmet_region';
+        return { text: 'グルメ旅、最高ですね🍜\n\nどのエリアのグルメが気になりますか？', buttons: ['北海道・東北', '関東・中部', '関西・四国', '九州・沖縄', 'まだ決まってない'] };
+      }
+      if (/絶景を見に行きたい/.test(q)) {
+        SESSION.chatState = 'scenic_season';
+        return { text: '絶景旅行ですね🌄\n\nいつ頃行く予定ですか？', buttons: ['春（3〜5月）', '夏（6〜8月）', '秋（9〜11月）', '冬（12〜2月）', 'まだ決まってない'] };
+      }
+      if (/子連れ旅行のおすすめ/.test(q)) {
+        SESSION.chatState = 'family_origin';
+        return { text: '家族旅行ですね👨‍👩‍👧\n\nどこから出発しますか？', buttons: ['東京', '大阪', '名古屋', '福岡', 'その他'] };
+      }
+      if (/カップルにおすすめは/.test(q)) {
+        SESSION.chatState = 'couple_season';
+        return { text: 'カップル旅行ですね💑\n\nいつ頃行く予定ですか？', buttons: ['春（3〜5月）', '夏（6〜8月）', '秋（9〜11月）', '冬（12〜2月）', 'まだ決まってない'] };
+      }
+      if (/一人旅でどこ行く/.test(q)) {
+        SESSION.chatState = 'solo_purpose';
+        return { text: '一人旅、最高ですよ🎒\n\nどんな旅がしたいですか？', buttons: ['温泉でゆっくり', 'グルメ食べ歩き', '歴史・文化めぐり', '自然・絶景を見たい'] };
+      }
+      if (/まだ決まっていない/.test(q)) {
+        SESSION.chatState = 'nodecide_who';
+        return { text: '大丈夫です！一緒に決めましょう😊\n\nまず、誰と行きますか？', buttons: ['一人で', 'カップルで', '家族（子連れ）で', '友達と'] };
+      }
+    }
+
+    // ===== 各フローの状態処理 =====
+    if (SESSION.chatState === 'onsen_origin') {
+      var oo = null;
+      if (/東京|関東/.test(q)) oo = '東京';
+      else if (/大阪|関西/.test(q)) oo = '大阪';
+      else if (/名古屋|東海/.test(q)) oo = '名古屋';
+      else if (/福岡|九州/.test(q)) oo = '福岡';
+      else if (/北海道|札幌/.test(q)) oo = '北海道';
+      else if (/広島/.test(q)) oo = '広島';
+      if (oo) SESSION.slots.origin = oo;
+      SESSION.chatState = 'idle';
+      SESSION.intent = 'onsen';
+    }
+
+    if (SESSION.chatState === 'gourmet_region') {
+      var gr = null;
+      var gSpots = [];
+      if (/北海道|東北/.test(q)) { gr = '北海道・東北'; gSpots = ['北海道（海鮮丼・ジンギスカン・スープカレー）', '宮城・仙台（牛タン・はらこ飯）', '秋田（きりたんぽ鍋・稲庭うどん）']; }
+      else if (/関東|中部/.test(q)) { gr = '関東・中部'; gSpots = ['名古屋（ひつまぶし・味噌カツ・手羽先）', '長野（信州そば・馬刺し）', '富山（白エビ・ます寿し・ホタルイカ）']; }
+      else if (/関西|四国/.test(q)) { gr = '関西・四国'; gSpots = ['大阪（たこ焼き・串カツ・食い倒れ）', '京都（懐石・湯豆腐・抹茶スイーツ）', '香川（讃岐うどん・骨付き鳥）']; }
+      else if (/九州|沖縄/.test(q)) { gr = '九州・沖縄'; gSpots = ['福岡（博多ラーメン・もつ鍋・屋台）', '宮崎（チキン南蛮・地鶏炭火焼）', '鹿児島（黒豚・さつま揚げ）', '沖縄（沖縄そば・タコライス）']; }
+      SESSION.chatState = 'idle';
+      if (gr) {
+        return { text: '**' + gr + '**のグルメですね🍜\n\nおすすめはこちら！\n\n' + gSpots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') + '\n\n25品すべてグルメ一覧ページで紹介しています！', buttons: ['グルメ一覧を見る|' + R() + 'pages/specialties.html', '都道府県から探す|' + R() + 'pages/prefectures.html'] };
+      }
+      SESSION.intent = 'gourmet';
+    }
+
+    if (SESSION.chatState === 'scenic_season') {
+      if (/春|3月|4月|5月/.test(q)) SESSION.slots.season = 'spring';
+      else if (/夏|6月|7月|8月/.test(q)) SESSION.slots.season = 'summer';
+      else if (/秋|9月|10月|11月/.test(q)) SESSION.slots.season = 'autumn';
+      else if (/冬|12月|1月|2月/.test(q)) SESSION.slots.season = 'winter';
+      SESSION.chatState = 'idle';
+      SESSION.intent = 'scenic';
+    }
+
+    if (SESSION.chatState === 'family_origin') {
+      var fo = null;
+      if (/東京|関東/.test(q)) fo = '東京';
+      else if (/大阪|関西/.test(q)) fo = '大阪';
+      else if (/名古屋|東海/.test(q)) fo = '名古屋';
+      else if (/福岡|九州/.test(q)) fo = '福岡';
+      if (fo) SESSION.slots.origin = fo;
+      SESSION.slots.who = 'family';
+      SESSION.chatState = 'idle';
+      SESSION.intent = 'family';
+    }
+
+    if (SESSION.chatState === 'couple_season') {
+      if (/春|3月|4月|5月/.test(q)) SESSION.slots.season = 'spring';
+      else if (/夏|6月|7月|8月/.test(q)) SESSION.slots.season = 'summer';
+      else if (/秋|9月|10月|11月/.test(q)) SESSION.slots.season = 'autumn';
+      else if (/冬|12月|1月|2月/.test(q)) SESSION.slots.season = 'winter';
+      SESSION.slots.who = 'couple';
+      SESSION.chatState = 'idle';
+      SESSION.intent = 'couple';
+    }
+
+    if (SESSION.chatState === 'solo_purpose') {
+      if (/温泉/.test(q)) SESSION.slots.purpose = 'onsen';
+      else if (/グルメ|食べ歩き/.test(q)) SESSION.slots.purpose = 'gourmet';
+      else if (/歴史|文化/.test(q)) SESSION.slots.purpose = 'history';
+      else if (/自然|絶景/.test(q)) SESSION.slots.purpose = 'scenic';
+      SESSION.slots.who = 'solo';
+      SESSION.chatState = 'idle';
+      SESSION.intent = 'solo';
+    }
+
+    if (SESSION.chatState === 'nodecide_who') {
+      if (/一人|ひとり|ソロ/.test(q)) { SESSION.slots.who = 'solo'; SESSION.intent = 'solo'; }
+      else if (/カップル|二人|夫婦/.test(q)) { SESSION.slots.who = 'couple'; SESSION.intent = 'couple'; }
+      else if (/家族|子連れ|子供|ファミリー/.test(q)) { SESSION.slots.who = 'family'; SESSION.intent = 'family'; }
+      else if (/友達|友人|グループ/.test(q)) { SESSION.slots.who = 'friends'; SESSION.intent = 'nodecide'; }
+      SESSION.chatState = 'idle';
+    }
+
     // スロット待ち状態の処理（ボタン選択への返答）
     if (SESSION.waitingFor === 'who') {
       if (/一人|ひとり|ソロ/.test(q)) SESSION.slots.who = 'solo';
