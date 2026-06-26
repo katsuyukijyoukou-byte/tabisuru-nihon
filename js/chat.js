@@ -1521,8 +1521,8 @@ var NoaChat = (function() {
     SESSION.turnCount++;
     if (SESSION.chatState === 'initial') SESSION.chatState = 'idle';
 
-    // リセット処理
-    if (/↩|別の旅を相談|最初に戻る|リセット|もう一度|やり直し/.test(q)) {
+    // リセット処理（findResponseの最優先チェックを通過したものの保険）
+    if (/↩|別の旅を相談|最初に戻る|リセット|もう一度|やり直し|旅行相談に戻る|旅行相談をする/.test(q)) {
       resetSession();
       return {
         text: 'わかりました！また一緒に考えましょう😊\n\nどんな旅を相談しますか？',
@@ -1916,9 +1916,65 @@ var NoaChat = (function() {
     return null;
   }
 
+  /* ---------- 最優先インターセプト（フロー割り込み） ---------- */
+
+  // ① 現在時刻クエリ（旅行フローを止めずに答えて返す）
+  function interceptCurrentTime() {
+    var now = new Date();
+    var hh = String(now.getHours()).padStart(2, '0');
+    var mm = String(now.getMinutes()).padStart(2, '0');
+    var text = '現在時刻は **' + hh + ':' + mm + '** ごろです。\n\n旅行相談に戻る場合は「旅行相談に戻る」と送ってくださいね。';
+    SESSION.lastNoaReply = text;
+    return { text: text, buttons: ['旅行相談に戻る'] };
+  }
+
+  // ② 訂正フロー（フローをリセットしてやり直し）
+  function interceptCorrection(query) {
+    if (window.NoaChatHooks && typeof window.NoaChatHooks.onNegativeFeedback === 'function') {
+      window.NoaChatHooks.onNegativeFeedback({ query: query, previousReply: SESSION.lastNoaReply || '' });
+    }
+    resetSession();
+    var text = 'ごめんなさい、違う方向に進めてしまいました🙏\n\nいま聞きたいことをもう一度教えてください。\n旅行相談なら「旅行相談」、別の質問ならそのまま聞いてください。';
+    SESSION.lastNoaReply = text;
+    return {
+      text: text,
+      buttons: ['旅行相談をする', '温泉旅行がしたい', 'カップルにおすすめは？', '予算から相談したい']
+    };
+  }
+
+  // ③ リセットフロー
+  function interceptReset() {
+    resetSession();
+    var text = 'わかりました！また一緒に考えましょう😊\n\nどんな旅を相談しますか？';
+    SESSION.lastNoaReply = text;
+    return {
+      text: text,
+      buttons: ['温泉旅行がしたい', 'グルメを楽しむ旅', '絶景を見に行きたい', '子連れ旅行のおすすめ', 'カップルにおすすめは？', '一人旅でどこ行く？', '予算から相談したい', 'まだ決まっていない']
+    };
+  }
+
   /* ---------- マッチング ---------- */
   function findResponse(query) {
     var q = query.trim();
+
+    // === 最優先：フロー状態に関係なく割り込む ===
+
+    // リセット（sessionRespond内のものより前に処理）
+    if (/^(リセット|最初から|やり直し|もう一回|最初に戻|別の旅を相談)/.test(q)) {
+      return interceptReset();
+    }
+
+    // 現在時刻クエリ（時刻表とは別判定）
+    if (/いま何時|今.*何時|現在.*時刻|時刻.*教えて|何時.*です(か)?$|時間.*教えて/.test(q) && !/時刻表|バス|電車|フェリー|新幹線/.test(q)) {
+      return interceptCurrentTime();
+    }
+
+    // 訂正・否定（フローを強制停止してやり直し）
+    // chatStateがidle以外（フロー進行中）のときだけ発動
+    if (SESSION.chatState !== 'idle' && SESSION.chatState !== 'initial' &&
+        /^(違う|ちがう|違うよ|ちがうよ|そうじゃない|それじゃない|ちがいます|違います|間違い|質問と違|旅行の話じゃ|そうでは|もう一回|別の話)/.test(q)) {
+      return interceptCorrection(query);
+    }
 
     // リアルタイム情報要求ガード（fallbackとして記録）
     var rtLimit = checkRealtimeLimit(q);
@@ -1930,8 +1986,8 @@ var NoaChat = (function() {
       return { text: rtLimit.msg, buttons: ['旅のルートを相談|#', '宿を探す|' + R() + 'pages/booking.html', '旅先を探す|' + R() + 'pages/prefectures.html'] };
     }
 
-    // 否定フィードバック検出（直前のノア返答と一緒に記録）
-    if (/違う|そうじゃない|ちが[うっ]|違います|ちょっと違|そういうことじゃ|わからない|わかんない|関係ない|別の|もっと.*別|そうでは/.test(q)) {
+    // 訂正検出（idle時・ログ目的のみ、フロー継続）
+    if (/違う|そうじゃない|ちが[うっ]|違います|ちょっと違|そういうことじゃ|わかんない|関係ない/.test(q)) {
       if (window.NoaChatHooks && typeof window.NoaChatHooks.onNegativeFeedback === 'function') {
         window.NoaChatHooks.onNegativeFeedback({ query: query, previousReply: SESSION.lastNoaReply || '' });
       }
