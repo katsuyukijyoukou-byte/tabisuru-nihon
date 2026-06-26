@@ -1899,21 +1899,43 @@ var NoaChat = (function() {
   /* ---------- マッチング ---------- */
   function findResponse(query) {
     var q = query.trim();
+
+    // 否定フィードバック検出（直前のノア返答と一緒に記録）
+    if (/違う|そうじゃない|ちが[うっ]|違います|ちょっと違|そういうことじゃ|わからない|わかんない|関係ない|別の|もっと.*別|そうでは/.test(q)) {
+      if (window.NoaChatHooks && typeof window.NoaChatHooks.onNegativeFeedback === 'function') {
+        window.NoaChatHooks.onNegativeFeedback({ query: query, previousReply: SESSION.lastNoaReply || '' });
+      }
+    }
+
     var sessionResult = sessionRespond(q);
-    if (sessionResult) return sessionResult;
+    if (sessionResult) {
+      SESSION.lastNoaReply = typeof sessionResult === 'string' ? sessionResult : (sessionResult.text || '');
+      // 3ターン以上経過してもidle+intent未確定なら長期ループとして記録
+      if (SESSION.turnCount >= 4 && SESSION.chatState === 'idle' && !SESSION.intent) {
+        if (window.NoaChatHooks && typeof window.NoaChatHooks.onLongLoopUnresolved === 'function') {
+          window.NoaChatHooks.onLongLoopUnresolved({ query: query, reply: SESSION.lastNoaReply });
+        }
+      }
+      return sessionResult;
+    }
+
     for (var i = 0; i < RULES.length; i++) {
       if (RULES[i].patterns.some(function(p) { return p.test(q); })) {
         var resp = RULES[i].response(q);
-        if (typeof resp === 'string') return { text: resp, buttons: null };
-        return resp;
+        var matched = typeof resp === 'string' ? { text: resp, buttons: null } : resp;
+        SESSION.lastNoaReply = matched.text || '';
+        return matched;
       }
     }
-    // 答えられなかったクエリをGA4へ通知
+
+    // fallback（答えられなかった）
+    var fallbackText = 'すみません、うまく理解できませんでした。\n\n以下から相談してみてください。\n\n・温泉旅行がしたい\n・カップルにおすすめは？\n・11月の旅先を教えて\n・宿を探したい\n・予算から相談したい';
+    SESSION.lastNoaReply = fallbackText;
     if (window.NoaChatHooks && typeof window.NoaChatHooks.onFallback === 'function') {
-      window.NoaChatHooks.onFallback(query);
+      window.NoaChatHooks.onFallback({ query: query, reply: fallbackText });
     }
     return {
-      text: 'すみません、うまく理解できませんでした。\n\n以下から相談してみてください。\n\n・温泉旅行がしたい\n・カップルにおすすめは？\n・11月の旅先を教えて\n・宿を探したい\n・予算から相談したい',
+      text: fallbackText,
       buttons: ['温泉地を探す|' + R() + 'pages/onsen.html', '月別おすすめ|' + R() + 'pages/monthly.html', '宿を比較する|' + R() + 'pages/booking.html']
     };
   }
