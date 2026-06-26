@@ -726,7 +726,7 @@ var NoaChat = (function() {
   /* ---------- セッション状態管理 ---------- */
   var SESSION = {};
   function resetSession() {
-    SESSION = { intent: null, slots: {}, waitingFor: null, turnCount: 0, askedFor: [] };
+    SESSION = { intent: null, slots: {}, waitingFor: null, turnCount: 0, askedFor: [], chatState: 'initial' };
   }
   resetSession();
 
@@ -1023,21 +1023,25 @@ var NoaChat = (function() {
       respond: function(s) {
         var hasOrigin = !!s.origin;
         var hasPeople = !!s.people;
-        var hasDays = !!s.days;
-        var hasBudgetType = !!s.budgetType;
-        var missing = [];
-        if (!hasOrigin) missing.push('出発地');
-        if (!hasPeople) missing.push('人数');
-        if (!hasDays) missing.push('旅行日数（1泊2日か2泊3日か）');
-        if (!hasBudgetType) missing.push('1人あたりか合計予算か');
-        if (missing.length >= 2) {
+
+        if (!hasOrigin) {
+          SESSION.chatState = 'budget_origin';
           return {
-            text: '予算から旅を考えるなら、まずいくつか確認させてください。\n\n以下が分かると、かなり現実的に提案できます。\n\n' + missing.map(function(m) { return '・' + m; }).join('\n') +
-              '\n\n例えば「東京発・2人・1泊2日・2人で合計5万円」のように教えてもらえると助かります。\n\n先に宿を見たい場合はこちら。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
-            buttons: ['宿を比較する|' + R() + 'pages/booking.html']
+            text: '予算から旅を考えましょう！💰\n\nまず、**どこから出発しますか？**',
+            buttons: ['東京', '大阪', '名古屋', '福岡', '北海道・札幌', 'その他']
           };
         }
-        var origin = s.origin || '出発地不明';
+
+        if (!hasPeople) {
+          SESSION.chatState = 'budget_people';
+          return {
+            text: '**' + s.origin + '発**ですね！\n\n**何名で行く予定ですか？**',
+            buttons: ['1人', '2人', '3〜4人', '5人以上']
+          };
+        }
+
+        var origin = s.origin;
+        var people = s.people;
         var days = s.days || '1泊2日';
         var budget = s.budget;
         var budgetType = s.budgetType === 'total' ? '合計' : '1人あたり';
@@ -1046,7 +1050,7 @@ var NoaChat = (function() {
         if (s.budgetLevel === 'low') tips = 'コスパ重視なら、楽天トラベルの「直前割」・「タイムセール」が狙い目です。';
         if (s.budgetLevel === 'high') tips = '贅沢旅なら、一休.comの「プレミアム旅館」カテゴリが見やすいです。';
         return {
-          text: origin + '発・' + days + '・' + budgetLabel + 'の旅ですね。\n\n' + tips +
+          text: origin + '発・' + people + '名・' + days + '・' + budgetLabel + 'の旅ですね。\n\n' + tips +
             '\n\n宿の比較はこちらで楽天・じゃらん・一休・Yahoo!トラベルをまとめて確認できます。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
           buttons: ['宿を比較する|' + R() + 'pages/booking.html', '温泉地を探す|' + R() + 'pages/onsen.html', '月別おすすめを見る|' + R() + 'pages/monthly.html']
         };
@@ -1194,7 +1198,7 @@ var NoaChat = (function() {
     },
 
     nodecide: {
-      keywords: /どこ.*行こう|行き先.*決まら|どこがいい|迷ってる|決められない|行きたい$|旅行したい$/,
+      keywords: /どこ.*行こう|行き先.*決まら|どこがいい|迷ってる|決められない|行きたい$|旅行したい$|まだ決まっていない|未定/,
       respond: function(s) {
         var hasWho = !!s.who;
         var hasOrigin = !!s.origin;
@@ -1236,6 +1240,43 @@ var NoaChat = (function() {
     var slots = extractSlots(q);
     for (var k in slots) { SESSION.slots[k] = slots[k]; }
     SESSION.turnCount++;
+    if (SESSION.chatState === 'initial') SESSION.chatState = 'idle';
+
+    // chatState: 予算フローの順序確認
+    if (SESSION.chatState === 'budget_origin') {
+      var originExtracted = null;
+      if (/東京|とうきょう|首都圏|関東/.test(q)) originExtracted = '東京';
+      else if (/大阪|おおさか|関西/.test(q)) originExtracted = '大阪';
+      else if (/名古屋|なごや|東海/.test(q)) originExtracted = '名古屋';
+      else if (/福岡|ふくおか|九州/.test(q)) originExtracted = '福岡';
+      else if (/広島|ひろしま/.test(q)) originExtracted = '広島';
+      else if (/北海道|札幌/.test(q)) originExtracted = '北海道';
+      else if (/仙台|東北/.test(q)) originExtracted = '仙台';
+      else if (/その他|わからない|未定/.test(q)) originExtracted = '出発地未定';
+      if (originExtracted) {
+        SESSION.slots.origin = originExtracted;
+        SESSION.chatState = 'budget_people';
+        return {
+          text: '**' + originExtracted + '発**ですね！\n\n次に、何名で行く予定ですか？',
+          buttons: ['1人', '2人', '3〜4人', '5人以上']
+        };
+      }
+      return {
+        text: '出発地を教えてください😊\n（例：東京、大阪、名古屋、福岡など）',
+        buttons: ['東京', '大阪', '名古屋', '福岡', 'その他']
+      };
+    }
+
+    if (SESSION.chatState === 'budget_people') {
+      var peopleM = q.match(/(\d+)/);
+      if (peopleM) SESSION.slots.people = parseInt(peopleM[1]);
+      else if (/5人以上|大人数|グループ/.test(q)) SESSION.slots.people = 5;
+      else if (/一人|1人|ひとり|ソロ/.test(q)) SESSION.slots.people = 1;
+      else if (/二人|2人|ふたり|カップル/.test(q)) SESSION.slots.people = 2;
+      SESSION.chatState = 'idle';
+      SESSION.intent = 'budget';
+      // 下のインテント処理に続ける
+    }
 
     // スロット待ち状態の処理（ボタン選択への返答）
     if (SESSION.waitingFor === 'who') {
@@ -1388,7 +1429,27 @@ var NoaChat = (function() {
     // rootPathをグローバルに保持（リンク生成に使用）
     _rootPath = rootPath;
 
+    // safeSendは先に定義（handleSend宣言はhoistingされる）
+    var _sending = false;
+    function safeSend() {
+      if (_sending) return;
+      _sending = true;
+      handleSend().finally(function() { _sending = false; });
+    }
+
     initialMessages.forEach(({ role, text }) => renderMessage(messagesEl, text, role));
+
+    // 初期8選択肢ボタンを表示
+    renderSuggestions(messagesEl, inputEl, safeSend, [
+      '温泉旅行がしたい',
+      'グルメを楽しむ旅',
+      '絶景を見に行きたい',
+      '子連れ旅行のおすすめ',
+      'カップルにおすすめは？',
+      '一人旅でどこ行く？',
+      '予算から相談したい',
+      'まだ決まっていない'
+    ]);
 
     async function handleSend() {
       const query = inputEl.value.trim();
@@ -1413,13 +1474,6 @@ var NoaChat = (function() {
         else suggestions = FOLLOWUP_SETS[sugg.type] || FOLLOWUP_SETS.default;
         renderSuggestions(messagesEl, inputEl, safeSend, suggestions);
       }
-    }
-
-    var _sending = false;
-    function safeSend() {
-      if (_sending) return;
-      _sending = true;
-      handleSend().finally(function() { _sending = false; });
     }
 
     sendBtnEl.addEventListener('click', safeSend);
