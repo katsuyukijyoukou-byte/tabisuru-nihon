@@ -2952,6 +2952,19 @@ button { font-family: inherit; cursor: pointer; }
   box-shadow: 0 3px 9px rgba(200,150,10,0.3);
 }
 
+/* 初期8ボタン: 2列グリッド */
+.noa-fp-messages .chat-suggestions--grid8 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 4px 0;
+}
+.noa-fp-messages .chat-suggestions--grid8 .chat-suggest-btn {
+  text-align: center;
+  font-size: 0.74rem;
+  padding: 8px 6px;
+}
+
 .noa-fp-chips {
   display: flex;
   flex-wrap: wrap;

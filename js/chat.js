@@ -1040,19 +1040,31 @@ var NoaChat = (function() {
           };
         }
 
-        var origin = s.origin;
-        var people = s.people;
+        var origin = s.origin || '出発地未定';
+        var people = s.people || 2;
         var days = s.days || '1泊2日';
-        var budget = s.budget;
-        var budgetType = s.budgetType === 'total' ? '合計' : '1人あたり';
-        var budgetLabel = budget ? (budget / 10000) + '万円（' + budgetType + '）' : '予算未定';
-        var tips = '交通費込みの場合、宿代は全体の40〜60%になることが多いです。';
-        if (s.budgetLevel === 'low') tips = 'コスパ重視なら、楽天トラベルの「直前割」・「タイムセール」が狙い目です。';
-        if (s.budgetLevel === 'high') tips = '贅沢旅なら、一休.comの「プレミアム旅館」カテゴリが見やすいです。';
+        // 旅行費用の目安を計算（往復交通費+宿泊費+食費+観光費）
+        var nights = days === '日帰り' ? 0 : days === '1泊2日' ? 1 : days === '2泊3日' ? 2 : 3;
+        var transportBase = { '日帰り': 4000, '1泊2日': 8000, '2泊3日': 14000, '3泊以上': 20000 };
+        var hotelBase = nights <= 0 ? 0 : s.budgetLevel === 'high' ? 18000 : s.budgetLevel === 'low' ? 6000 : 9000; // 1人あたり1泊
+        var mealBase = nights <= 0 ? 3000 : 5000 + nights * 3500; // 1人あたり
+        var miscBase = nights <= 0 ? 2000 : 3000 + nights * 1500;
+        var tCost = (transportBase[days] || 8000);
+        var hCost = hotelBase * nights;
+        var total = tCost + hCost + mealBase + miscBase;
+        var breakdown = '**' + origin + '発・' + people + '名・' + days + '** の費用目安（1人あたり）\n\n' +
+          '✈️ 交通費（往復）: 約' + Math.round(tCost / 1000) + '千〜' + (Math.round(tCost * 1.4 / 1000)) + '千円\n' +
+          (nights > 0 ? '🏨 宿泊費: 約' + Math.round(hotelBase / 1000) + '千〜' + Math.round(hotelBase * 1.8 / 1000) + '千円/泊\n' : '') +
+          '🍜 食事代: 約' + Math.round(mealBase / 1000) + '千〜' + Math.round(mealBase * 1.3 / 1000) + '千円\n' +
+          '🎫 観光・その他: 約' + Math.round(miscBase / 1000) + '千〜' + Math.round(miscBase * 1.5 / 1000) + '千円\n\n' +
+          '💰 **合計目安: 約' + Math.round(total / 10000) + '万〜' + Math.round(total * 1.5 / 10000) + '万円/人**\n' +
+          '（' + people + '名合計: 約' + Math.round(total * people / 10000) + '万〜' + Math.round(total * 1.5 * people / 10000) + '万円）\n\n' +
+          (s.budgetLevel === 'low' ? '💡 コスパ重視なら楽天トラベルの「タイムセール」「早割30」が狙い目！' :
+           s.budgetLevel === 'high' ? '💡 贅沢旅なら一休.comの「プレミアム旅館」カテゴリ＋記念日プランが見つかりやすい！' :
+           '💡 楽天・じゃらん・一休・Yahoo!トラベルを比較すると同じ宿でも数千円差が出ることがあります。');
         return {
-          text: origin + '発・' + people + '名・' + days + '・' + budgetLabel + 'の旅ですね。\n\n' + tips +
-            '\n\n宿の比較はこちらで楽天・じゃらん・一休・Yahoo!トラベルをまとめて確認できます。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
-          buttons: ['宿を比較する|' + R() + 'pages/booking.html', '温泉地を探す|' + R() + 'pages/onsen.html', '月別おすすめを見る|' + R() + 'pages/monthly.html']
+          text: breakdown + '\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
+          buttons: ['宿を比較する|' + R() + 'pages/booking.html', '温泉地を探す|' + R() + 'pages/onsen.html', '↩ 別の旅を相談する']
         };
       }
     },
@@ -1295,6 +1307,52 @@ var NoaChat = (function() {
     },
   };
 
+  /* ---------- 友達旅行パーソナライズデータ ---------- */
+  var FRIENDS_REC = {
+    gourmet: {
+      '東京': ['大阪（道頓堀・心斎橋）— たこ焼き×串カツ×食い倒れ。グループで食べ歩き最高', '福岡（博多屋台）— 中洲の屋台でラーメン×もつ鍋×おでん。深夜まで盛り上がる', '金沢（近江町市場）— 白エビ・のど黒の海鮮食べ歩き+深夜の居酒屋文化'],
+      '大阪': ['博多（福岡）— とんこつラーメン×もつ鍋×屋台文化を全力体験。飛行機1.5h', '名古屋— 手羽先×ひつまぶし×あんかけスパのはしご食い', '京都（先斗町）— 鴨川沿いの居酒屋×錦市場食べ歩き×抹茶スイーツ'],
+      '名古屋': ['大阪— 道頓堀〜心斎橋でたこ焼き×串カツ×551豚まん全力制覇', '金沢— 近江町市場の海鮮+能登の地酒+ひがし茶屋街', '京都— 錦市場食べ歩き+伏見の酒蔵見学+夜の居酒屋'],
+      '福岡': ['大阪— 飛行機1.5h。道頓堀グルメを全力制覇', '沖縄— LCC2h。タコライス×ゴーヤチャンプル×泡盛で南国フードツアー', '長崎— ちゃんぽん×皿うどん×カステラ。トルコライスも必食'],
+    },
+    activity: {
+      '東京': ['USJ（大阪）— ハリポタ×マリオ×探偵コナン。新幹線2.5hで1日使いきれる旅', '富士急ハイランド（山梨）— 日本一の絶叫マシン+富士山観光のコンボ', '北海道スキー（ニセコ）— 世界最高のパウダースノー。飛行機1.5h'],
+      '大阪': ['USJ（大阪）— 在住なら遠征不要！グループで1日使い切れる', 'ハウステンボス（長崎）— 飛行機1.5h。夜のイルミネーションが圧巻', '長島スパーランド（三重）— 新幹線+電車で2h。絶叫+温泉のセット'],
+      '名古屋': ['USJ（大阪）— 新幹線50分。グループ旅行の定番', '志摩スペイン村（三重）— 車で2h。テーマパーク+温泉', '富士急ハイランド（山梨）— 特急で1.5h。絶叫王国'],
+      '福岡': ['ハウステンボス（長崎）— 電車1.5h。冬のイルミが感動的', 'USJ（大阪）— 飛行機1.5h。グループで終日楽しめる', '阿蘇ファームランド（熊本）— 卵型コテージ×動物×温泉'],
+    },
+    nature: {
+      '東京': ['沖縄・宮古島— LCCで2.5h。東洋一のミヤコブルーの海でダイビング×シュノーケル×BBQ', '北海道（夏）— ラフティング×ラベンダー×海産物。飛行機1.5h', '伊豆・下田（静岡）— 近場の海でシュノーケル×BBQ×温泉'],
+      '大阪': ['宮古島（沖縄）— LCCで2h。ビーチバレー×BBQ×シュノーケル全力充実', '白浜（和歌山）— 特急2h。ビーチ+アドベンチャーワールド（パンダ！）+温泉', '屋久島（鹿児島）— 飛行機2h。縄文杉トレッキングが最高の体験'],
+      '名古屋': ['宮古島（沖縄）— 飛行機2.5h。世界最高の透明度の海でグループ全員感動', '御嶽山周辺（長野）— ドライブで行ける高山と高原。星空が圧巻', '伊良湖（愛知）— 渥美半島の海。サーフィン体験も可能'],
+      '福岡': ['宮古島（沖縄）— LCCで2h。世界最高レベルの海でダイビング&スノーケル', '屋久島（鹿児島）— 飛行機1h。縄文杉×白谷雲水峡で大自然満喫', '天草（熊本）— イルカウォッチング×海水浴×温泉'],
+    },
+    onsen: {
+      '東京': ['草津温泉（群馬）— バス直行3h。大型旅館が多くグループ大歓迎。大宴会も可能', '熱海（静岡）— 新幹線40分。温泉+グルメ+夏は花火で最高に盛り上がれる', '伊豆（静岡）— 海+温泉+BBQ。車で行けるグループ旅行の定番'],
+      '大阪': ['城崎温泉（兵庫）— 外湯を浴衣でグループめぐり。カニシーズンは特に最高', '有馬温泉（兵庫）— 30分で行ける近場温泉。金銀2種の湯でコンパクトに楽しむ', '湯村温泉（兵庫）— 秘湯感のある大人向け温泉。映画の舞台にもなった場所'],
+      '名古屋': ['下呂温泉（岐阜）— 特急で1.5h。大型旅館でグループ宴会ができる', '伊勢志摩（三重）— 伊勢参拝+海鮮BBQ+温泉でコンテンツ満載', '奥飛騨温泉郷（岐阜）— 露天風呂の宝庫。秘境感があり非日常体験'],
+      '福岡': ['別府（大分）— 地獄めぐりがグループで大盛り上がり。多様な宿が豊富', '由布院（大分）— おしゃれカフェ×温泉×雑貨で女子グループに最高', '黒川温泉（熊本）— 入湯手形で複数の露天をめぐる。山奥の秘湯感'],
+    }
+  };
+
+  function genFriendsFinal(slots) {
+    var purpose = slots.purpose || 'gourmet';
+    var origin = slots.origin;
+    var season = slots.season;
+    var purposeData = FRIENDS_REC[purpose];
+    var spots = purposeData ? (purposeData[origin] || purposeData['東京']) : [];
+    if (!spots.length) spots = ['大阪（グルメ食べ歩き）— 道頓堀×串カツ×たこ焼きで食い倒れ', '北海道（大自然×グルメ）— ラフティング×海産物×絶景', '福岡（博多屋台）— 屋台文化を仲間とどっぷり体験'];
+    var purposeLabel = { gourmet: 'グルメ食べ歩き', activity: 'テーマパーク・アクティビティ', nature: '海・自然アウトドア', onsen: '温泉でゆっくり' }[purpose] || '友達旅行';
+    var seasonLabel = season ? { spring: '春', summer: '夏', autumn: '秋', winter: '冬' }[season] + 'の' : '';
+    var tips = { gourmet: '💡 グループ旅行は食べ歩きしやすいコンパクトな街が正解。事前に名店を調べてリスト化しておくと◎', activity: '💡 アトラクション系は当日チケットより事前のネット購入が割引＆並ばなくて正解！', nature: '💡 マリンスポーツはグループで体験コースを予約すると割引になることが多いです。', onsen: '💡 大人数なら「1棟貸し」「コテージ型」の宿でプライベート宴会が盛り上がります！' }[purpose];
+    return {
+      text: (origin ? '**' + origin + '発**・' : '') + seasonLabel + '**友達旅行（' + purposeLabel + '）**のおすすめです🎉\n\n' +
+        spots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') +
+        '\n\n' + tips + '\n宿は楽天トラベルで大人数プランを検索するのがおすすめ。\n※予約リンクにはPR・アフィリエイトリンクを含みます。',
+      buttons: ['宿を比較する|' + R() + 'pages/booking.html', '都道府県から探す|' + R() + 'pages/prefectures.html', '↩ 別の旅を相談する']
+    };
+  }
+
   function genOnsenFinal(slots) {
     var origin = slots.origin;
     var who = slots.who || 'couple';
@@ -1503,6 +1561,18 @@ var NoaChat = (function() {
       else if (/5人以上|大人数|グループ/.test(q)) SESSION.slots.people = 5;
       else if (/一人|1人|ひとり|ソロ/.test(q)) SESSION.slots.people = 1;
       else if (/二人|2人|ふたり|カップル/.test(q)) SESSION.slots.people = 2;
+      SESSION.chatState = 'budget_days';
+      return {
+        text: '**' + (SESSION.slots.people || '?') + '名**ですね！\n\n旅行の日数はどれくらいですか？',
+        buttons: ['日帰り', '1泊2日', '2泊3日', '3泊4日以上']
+      };
+    }
+
+    if (SESSION.chatState === 'budget_days') {
+      if (/日帰り/.test(q)) SESSION.slots.days = '日帰り';
+      else if (/1泊|一泊/.test(q)) SESSION.slots.days = '1泊2日';
+      else if (/2泊|二泊/.test(q)) SESSION.slots.days = '2泊3日';
+      else if (/3泊|三泊|4泊|以上/.test(q)) SESSION.slots.days = '3泊以上';
       SESSION.chatState = 'idle';
       SESSION.intent = 'budget';
       // 下のインテント処理に続ける
@@ -1706,6 +1776,29 @@ var NoaChat = (function() {
       return genSoloFinal(SESSION.slots);
     }
 
+    if (SESSION.chatState === 'friends_theme') {
+      if (/グルメ|食べ歩き/.test(q)) SESSION.slots.purpose = 'gourmet';
+      else if (/テーマパーク|アクティビティ/.test(q)) SESSION.slots.purpose = 'activity';
+      else if (/海|自然|アウトドア/.test(q)) SESSION.slots.purpose = 'nature';
+      else SESSION.slots.purpose = 'onsen';
+      SESSION.slots.who = 'friends';
+      var fThemeLabel = { gourmet: 'グルメ食べ歩き', activity: 'テーマパーク・アクティビティ', nature: '海・自然', onsen: '温泉' }[SESSION.slots.purpose] || '';
+      SESSION.chatState = 'friends_origin';
+      return {
+        text: '**' + fThemeLabel + '**ですね！\n\nどこから出発しますか？',
+        buttons: ['東京・関東', '大阪・関西', '名古屋・東海', '福岡・九州']
+      };
+    }
+
+    if (SESSION.chatState === 'friends_origin') {
+      if (/東京|関東/.test(q)) SESSION.slots.origin = '東京';
+      else if (/大阪|関西/.test(q)) SESSION.slots.origin = '大阪';
+      else if (/名古屋|東海/.test(q)) SESSION.slots.origin = '名古屋';
+      else if (/福岡|九州/.test(q)) SESSION.slots.origin = '福岡';
+      SESSION.chatState = 'idle';
+      return genFriendsFinal(SESSION.slots);
+    }
+
     if (SESSION.chatState === 'nodecide_who') {
       if (/一人|ひとり|ソロ/.test(q)) SESSION.slots.who = 'solo';
       else if (/カップル|二人|夫婦/.test(q)) SESSION.slots.who = 'couple';
@@ -1725,11 +1818,28 @@ var NoaChat = (function() {
       else if (/秋|9月|10月|11月/.test(q)) SESSION.slots.season = 'autumn';
       else if (/冬|12月|1月|2月/.test(q)) SESSION.slots.season = 'winter';
       var who = SESSION.slots.who;
-      SESSION.chatState = 'idle';
+      var sLabel = { spring: '春', summer: '夏', autumn: '秋', winter: '冬' }[SESSION.slots.season] || '';
       if (who === 'couple') return genCoupleFinal(SESSION.slots);
-      if (who === 'solo') { SESSION.intent = 'solo'; }
-      else if (who === 'family') { SESSION.intent = 'family'; }
-      else { SESSION.intent = 'nodecide'; }
+      if (who === 'solo') {
+        SESSION.chatState = 'solo_purpose';
+        return {
+          text: (sLabel ? '**' + sLabel + '**の一人旅ですね🎒\n\n' : '一人旅ですね🎒\n\n') + 'どんな旅がしたいですか？',
+          buttons: ['温泉でゆっくり', 'グルメ食べ歩き', '歴史・文化めぐり', '自然・絶景を見たい']
+        };
+      }
+      if (who === 'family') {
+        SESSION.chatState = 'family_origin';
+        return {
+          text: (sLabel ? '**' + sLabel + '**の家族旅行ですね👨‍👩‍👧\n\n' : '家族旅行ですね👨‍👩‍👧\n\n') + 'どこから出発しますか？',
+          buttons: ['東京', '大阪', '名古屋', '福岡', 'その他']
+        };
+      }
+      // friends
+      SESSION.chatState = 'friends_theme';
+      return {
+        text: (sLabel ? '**' + sLabel + '**の友達旅行ですね🎉\n\n' : '友達旅行ですね🎉\n\n') + 'どんなテーマで行きますか？',
+        buttons: ['グルメ・食べ歩き', 'テーマパーク・アクティビティ', '海・自然・アウトドア', '温泉でゆっくり']
+      };
     }
 
     // スロット待ち状態の処理（ボタン選択への返答）
@@ -1779,6 +1889,9 @@ var NoaChat = (function() {
       nodecide_season: '時期を入力（例: 秋、冬）',
       budget_origin: '出発地を入力（例: 東京、大阪）',
       budget_people: '人数を入力（例: 2人、3〜4人）',
+      budget_days: '日数を入力（例: 1泊2日、2泊3日）',
+      friends_theme: 'テーマを入力（グルメ、アウトドアなど）',
+      friends_origin: '出発地を入力（例: 東京、大阪）',
     };
     return map[SESSION.chatState] || '旅の悩みを相談…';
   }
@@ -1915,7 +2028,7 @@ var NoaChat = (function() {
 
     initialMessages.forEach(({ role, text }) => renderMessage(messagesEl, text, role));
 
-    // 初期8選択肢ボタンを表示
+    // 初期8選択肢ボタンを表示（2列グリッド）
     renderSuggestions(messagesEl, inputEl, safeSend, [
       '温泉旅行がしたい',
       'グルメを楽しむ旅',
@@ -1926,6 +2039,8 @@ var NoaChat = (function() {
       '予算から相談したい',
       'まだ決まっていない'
     ]);
+    var initBtns = messagesEl.querySelector('.chat-suggestions:last-child');
+    if (initBtns) initBtns.classList.add('chat-suggestions--grid8');
 
     async function handleSend() {
       const query = inputEl.value.trim();
