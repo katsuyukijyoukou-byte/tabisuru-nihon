@@ -1896,9 +1896,39 @@ var NoaChat = (function() {
     return map[SESSION.chatState] || '旅の悩みを相談…';
   }
 
+  /* ---------- リアルタイム情報ガード ---------- */
+  var REALTIME_PATTERNS = [
+    { re: /時刻表|何時発|何時着|始発|最終便|何時まで|何時から/, hint: 'timetable',      msg: 'ごめんなさい、最新の時刻表は旅ノアでは正確にお伝えできません。\n\n出発地と目的地を教えていただければ、どの交通機関を調べればよいかご案内できます。バス・電車・フェリーなど、ご利用予定の交通手段はありますか？' },
+    { re: /運行状況|遅延|運休|ダイヤ|欠航/,                     hint: 'operation',    msg: 'ごめんなさい、リアルタイムの運行状況は旅ノアでは確認できません。\n\n各交通機関の公式サイトやアプリをご確認いただくのが確実です。旅のルートについてのご相談でしたらお役に立てます！' },
+    { re: /混雑|混んでる|空いてる|待ち時間|行列/,               hint: 'crowding',     msg: 'ごめんなさい、現在の混雑状況はリアルタイム情報なので旅ノアでは把握できません。\n\nどの観光地をお考えですか？混みにくい時期や時間帯のアドバイスならできます！' },
+    { re: /営業時間|何時開|何時閉|定休日|休み.*日|閉館|開館/,   hint: 'hours',        msg: 'ごめんなさい、各施設の営業時間・定休日は変更になることがあるため、旅ノアでは最新情報を保証できません。\n\n訪問予定の施設名を教えていただければ、公式サイトの調べ方や周辺の観光プランをご提案できます！' },
+    { re: /料金.*最新|最新.*料金|今の.*値段|入場料|入館料/,      hint: 'price',        msg: 'ごめんなさい、施設の最新料金は変更される場合があるため旅ノアでは確認できません。\n\n公式サイトで確認いただくか、旅の予算相談でしたらお任せください！' },
+    { re: /空室|予約.*取れる|今から.*泊まれる|空き.*確認/,       hint: 'availability', msg: 'ごめんなさい、宿の空室状況はリアルタイムの情報なので旅ノアでは確認できません。\n\n宿探しのご相談でしたら、おすすめのエリアや宿泊比較サイトをご案内できます！' },
+    { re: /今日.*天気|明日.*天気|天気予報|降水確率/,             hint: 'weather',      msg: 'ごめんなさい、天気予報はリアルタイム情報なので旅ノアではお伝えできません。\n\n旅行の時期による気候・服装のアドバイスでしたらできます。いつ頃のご旅行ですか？' },
+    { re: /イベント.*開催|祭り.*いつ|花火.*日程|今年.*祭/,      hint: 'event',        msg: 'ごめんなさい、イベントの開催日程は年によって変わるため旅ノアでは最新情報を持っていません。\n\nどの地域のお祭り・イベントをお探しですか？有名なものであればご紹介できます！' },
+    { re: /駐車場.*空き|今.*停められる|パーキング.*満車/,        hint: 'parking',      msg: 'ごめんなさい、駐車場のリアルタイムな空き情報は旅ノアでは確認できません。\n\n観光地の駐車事情や、電車・バスでのアクセス方法でしたらご案内できます！' },
+  ];
+
+  function checkRealtimeLimit(query) {
+    for (var i = 0; i < REALTIME_PATTERNS.length; i++) {
+      if (REALTIME_PATTERNS[i].re.test(query)) return REALTIME_PATTERNS[i];
+    }
+    return null;
+  }
+
   /* ---------- マッチング ---------- */
   function findResponse(query) {
     var q = query.trim();
+
+    // リアルタイム情報要求ガード（fallbackとして記録）
+    var rtLimit = checkRealtimeLimit(q);
+    if (rtLimit) {
+      SESSION.lastNoaReply = rtLimit.msg;
+      if (window.NoaChatHooks && typeof window.NoaChatHooks.onFallback === 'function') {
+        window.NoaChatHooks.onFallback({ query: query, reply: rtLimit.msg, reason: 'unsupported_realtime_info_' + rtLimit.hint });
+      }
+      return { text: rtLimit.msg, buttons: ['旅のルートを相談|#', '宿を探す|' + R() + 'pages/booking.html', '旅先を探す|' + R() + 'pages/prefectures.html'] };
+    }
 
     // 否定フィードバック検出（直前のノア返答と一緒に記録）
     if (/違う|そうじゃない|ちが[うっ]|違います|ちょっと違|そういうことじゃ|わからない|わかんない|関係ない|別の|もっと.*別|そうでは/.test(q)) {

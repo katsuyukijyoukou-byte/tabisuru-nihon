@@ -25,13 +25,20 @@ function guessDevice() {
 
 function guessCategoryFromQuestion(question) {
   var q = String(question || '');
+  if (/時刻表|何時発|何時着|始発|最終便|運行状況|遅延|運休|欠航/.test(q)) return '時刻表・運行情報';
+  if (/混雑|混んでる|空いてる|待ち時間|行列/.test(q)) return '混雑状況';
+  if (/営業時間|定休日|何時開|何時閉|閉館|開館/.test(q)) return '営業時間・定休日';
+  if (/空室|予約.*取れる|空き.*確認/.test(q)) return '空室・予約可否';
+  if (/今日.*天気|明日.*天気|天気予報/.test(q)) return '天気';
+  if (/イベント.*開催|祭り.*いつ|花火.*日程/.test(q)) return 'イベント';
+  if (/駐車場.*空き|パーキング/.test(q)) return '駐車場';
   if (/温泉|宿|旅館|ホテル|泊ま|宿泊/.test(q)) return '宿泊・温泉';
   if (/予算|安い|高い|料金|費用|いくら/.test(q)) return '予算';
   if (/子供|子連れ|家族|赤ちゃん/.test(q)) return '子連れ';
   if (/夫婦|カップル|記念日|デート/.test(q)) return '夫婦・カップル';
   if (/雨|梅雨|天気/.test(q)) return '雨の日';
   if (/グルメ|ご飯|ランチ|夕食|食べ/.test(q)) return 'グルメ';
-  if (/車なし|電車|新幹線|アクセス|交通/.test(q)) return '交通';
+  if (/車なし|電車|新幹線|アクセス|交通|バス|フェリー/.test(q)) return '交通';
   if (/広島|宮島|京都|大阪|東京|北海道|沖縄/.test(q)) return '地域・都道府県';
   return '未分類';
 }
@@ -121,7 +128,7 @@ function sendNoaUnansweredLog(params) {
     sendNoaUnansweredLog({
       userQuestion: data.query  || '',
       noaReply:     data.reply  || '',
-      reason:       'fallback_reply'
+      reason:       data.reason || 'fallback_reply'
     });
   };
 
