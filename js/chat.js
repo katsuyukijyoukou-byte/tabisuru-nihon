@@ -1530,6 +1530,29 @@ var NoaChat = (function() {
       };
     }
 
+    // ===== マルチスロットショートカット（idleかつ情報十分なら即推薦） =====
+    if (SESSION.chatState === 'idle') {
+      var s = SESSION.slots;
+      // 出発地 + 温泉 + 同行者 → 即推薦
+      if (s.origin && s.purpose === 'onsen' && s.who) { SESSION.chatState = 'idle'; return genOnsenFinal(s); }
+      // 出発地 + 温泉（同行者未確定）→ 同行者だけ聞く
+      if (s.origin && s.purpose === 'onsen' && !s.who) {
+        SESSION.chatState = 'onsen_who';
+        return { text: '**' + s.origin + '発**の温泉旅行ですね♨️\n\n誰と行きますか？', buttons: ['一人でゆっくり', 'カップルで', '家族（子連れ）で', '友達と'] };
+      }
+      // カップル + 出発地 → 即推薦
+      if (s.who === 'couple' && s.origin) { SESSION.chatState = 'idle'; return genCoupleFinal(s); }
+      // 一人旅 + 出発地 → 即推薦
+      if (s.who === 'solo' && s.origin) { SESSION.chatState = 'idle'; return genSoloFinal(s); }
+      // 友達 + 出発地 → 即推薦
+      if (s.who === 'friends' && s.origin) { SESSION.chatState = 'idle'; return genFriendsFinal(s); }
+      // 家族 + 出発地（年齢未確定）→ 年齢だけ聞く
+      if (s.who === 'family' && s.origin && !s.childAge) {
+        SESSION.chatState = 'family_age';
+        return { text: '**' + s.origin + '発**の家族旅行ですね👨‍👩‍👧\n\nお子さんは何歳ごろですか？', buttons: ['未就学児（0〜5歳）', '小学生（6〜12歳）', '中高生（13歳〜）', '年齢はバラバラ'] };
+      }
+    }
+
     // chatState: 予算フローの順序確認
     if (SESSION.chatState === 'budget_origin') {
       var originExtracted = null;
@@ -1580,31 +1603,95 @@ var NoaChat = (function() {
 
     // ===== 初期選択肢フロー開始 =====
     if (SESSION.chatState === 'idle') {
-      if (/温泉旅行がしたい|温泉に行き/.test(q)) {
+      var s2 = SESSION.slots;
+
+      // --- 温泉（自然言語 + スロット活用）---
+      if (/温泉|おんせん|湯めぐり|露天風呂|源泉|日帰り.*湯|湯治|温泉旅行/.test(q)) {
+        SESSION.slots.purpose = 'onsen';
+        if (s2.origin && s2.who) { SESSION.chatState = 'idle'; return genOnsenFinal(s2); }
+        if (s2.origin) {
+          SESSION.chatState = 'onsen_who';
+          return { text: '**' + s2.origin + '発**の温泉旅行ですね♨️\n\n誰と行きますか？', buttons: ['一人でゆっくり', 'カップルで', '家族（子連れ）で', '友達と'] };
+        }
         SESSION.chatState = 'onsen_origin';
         return { text: '温泉旅行、いいですね♨️\n\nどこから出発しますか？', buttons: ['東京', '大阪', '名古屋', '福岡', '北海道・札幌', 'その他'] };
       }
-      if (/グルメを楽しむ旅/.test(q)) {
+
+      // --- グルメ ---
+      if (/グルメ|食べ歩き|美食|うまいもの|ご当地.*食|食.*旅|旅.*食|グルメを楽しむ/.test(q)) {
         SESSION.chatState = 'gourmet_region';
         return { text: 'グルメ旅、最高ですね🍜\n\nどのエリアのグルメが気になりますか？', buttons: ['北海道・東北', '関東・中部', '関西・四国', '九州・沖縄', 'まだ決まってない'] };
       }
-      if (/絶景を見に行きたい/.test(q)) {
+
+      // --- 絶景・自然 ---
+      if (/絶景|絶景を見に|景色.*きれい|きれい.*景色|自然.*旅|旅.*自然|大自然|風景|写真.*旅/.test(q) && !/温泉|グルメ|食/.test(q)) {
+        if (s2.season) {
+          SESSION.chatState = 'scenic_origin';
+          return { text: '絶景旅行ですね🌄\n\nどこから出発しますか？', buttons: ['東京・関東', '大阪・関西', '名古屋・東海', '福岡・九州', '北海道・札幌', 'その他'] };
+        }
         SESSION.chatState = 'scenic_season';
         return { text: '絶景旅行ですね🌄\n\nいつ頃行く予定ですか？', buttons: ['春（3〜5月）', '夏（6〜8月）', '秋（9〜11月）', '冬（12〜2月）', 'まだ決まってない'] };
       }
-      if (/子連れ旅行のおすすめ/.test(q)) {
+
+      // --- 家族・子連れ ---
+      if (/家族|子連れ|子供|子ども|ファミリー|親子旅|赤ちゃん.*旅|旅.*赤ちゃん|子連れ旅行のおすすめ/.test(q)) {
+        SESSION.slots.who = 'family';
+        if (s2.origin) {
+          SESSION.chatState = 'family_age';
+          return { text: '**' + s2.origin + '発**の家族旅行ですね👨‍👩‍👧\n\nお子さんは何歳ごろですか？', buttons: ['未就学児（0〜5歳）', '小学生（6〜12歳）', '中高生（13歳〜）', '年齢はバラバラ'] };
+        }
         SESSION.chatState = 'family_origin';
         return { text: '家族旅行ですね👨‍👩‍👧\n\nどこから出発しますか？', buttons: ['東京', '大阪', '名古屋', '福岡', 'その他'] };
       }
-      if (/カップルにおすすめは/.test(q)) {
+
+      // --- カップル ---
+      if (/カップル|二人旅|彼女.*旅|彼氏.*旅|旅.*彼女|旅.*彼氏|夫婦.*旅|旅.*夫婦|記念日.*旅|旅.*記念日|カップルにおすすめ/.test(q)) {
+        SESSION.slots.who = 'couple';
+        if (s2.origin) { SESSION.chatState = 'idle'; return genCoupleFinal(s2); }
+        if (s2.season) {
+          SESSION.chatState = 'couple_origin';
+          return { text: 'カップル旅行ですね💑\n\nどこから出発しますか？', buttons: ['東京', '大阪', '名古屋', '福岡', 'その他'] };
+        }
         SESSION.chatState = 'couple_season';
         return { text: 'カップル旅行ですね💑\n\nいつ頃行く予定ですか？', buttons: ['春（3〜5月）', '夏（6〜8月）', '秋（9〜11月）', '冬（12〜2月）', 'まだ決まってない'] };
       }
-      if (/一人旅でどこ行く/.test(q)) {
+
+      // --- 一人旅 ---
+      if (/一人旅|ひとり旅|ソロ旅|一人.*旅|旅.*一人|独り旅|一人旅でどこ/.test(q)) {
+        SESSION.slots.who = 'solo';
+        if (s2.origin && s2.purpose) { SESSION.chatState = 'idle'; return genSoloFinal(s2); }
+        if (s2.origin) {
+          SESSION.chatState = 'solo_purpose';
+          return { text: '一人旅、最高ですよ🎒\n\nどんな旅がしたいですか？', buttons: ['温泉でゆっくり', 'グルメ食べ歩き', '歴史・文化めぐり', '自然・絶景を見たい'] };
+        }
+        if (s2.purpose) {
+          SESSION.chatState = 'solo_origin';
+          return { text: '一人旅ですね🎒\n\nどこから出発しますか？', buttons: ['東京・関東', '大阪・関西', '名古屋・東海', '福岡・九州', 'その他'] };
+        }
         SESSION.chatState = 'solo_purpose';
         return { text: '一人旅、最高ですよ🎒\n\nどんな旅がしたいですか？', buttons: ['温泉でゆっくり', 'グルメ食べ歩き', '歴史・文化めぐり', '自然・絶景を見たい'] };
       }
-      if (/まだ決まっていない/.test(q)) {
+
+      // --- 友達旅行 ---
+      if (/友達.*旅|旅.*友達|友人.*旅|旅.*友人|女子旅|男旅|グループ旅|仲間.*旅/.test(q)) {
+        SESSION.slots.who = 'friends';
+        if (s2.origin) { SESSION.chatState = 'idle'; return genFriendsFinal(s2); }
+        SESSION.chatState = 'friends_theme';
+        return { text: '友達旅行ですね🎉\n\nどんなテーマで行きますか？', buttons: ['グルメ・食べ歩き', 'テーマパーク・アクティビティ', '海・自然・アウトドア', '温泉でゆっくり'] };
+      }
+
+      // --- 予算 ---
+      if (/予算|いくら|費用.*旅|旅.*費用|安く.*旅|旅.*安く|予算から相談/.test(q)) {
+        if (s2.origin) {
+          SESSION.chatState = 'budget_people';
+          return { text: '**' + s2.origin + '発**ですね💰\n\n何名でご旅行ですか？', buttons: ['1人', '2人', '3〜4人', '5人以上'] };
+        }
+        SESSION.chatState = 'budget_origin';
+        return { text: '予算のご相談ですね💰\n\nまず、どこから出発しますか？', buttons: ['東京', '大阪', '名古屋', '福岡', 'その他'] };
+      }
+
+      // --- まだ決まっていない・おすすめ全般 ---
+      if (/まだ決まってない|まだ決まっていない|わからない|悩んでる|どこがいい|おすすめ.*教えて|教えて.*おすすめ|どこ.*行こう|旅行.*したい/.test(q)) {
         SESSION.chatState = 'nodecide_who';
         return { text: '大丈夫です！一緒に決めましょう😊\n\nまず、誰と行きますか？', buttons: ['一人で', 'カップルで', '家族（子連れ）で', '友達と'] };
       }
@@ -1613,25 +1700,31 @@ var NoaChat = (function() {
     // ===== 各フローの状態処理 =====
     if (SESSION.chatState === 'onsen_origin') {
       var oo = null;
-      if (/東京|関東/.test(q)) oo = '東京';
-      else if (/大阪|関西/.test(q)) oo = '大阪';
-      else if (/名古屋|東海/.test(q)) oo = '名古屋';
-      else if (/福岡|九州/.test(q)) oo = '福岡';
-      else if (/北海道|札幌/.test(q)) oo = '北海道';
-      else if (/広島/.test(q)) oo = '広島';
-      if (oo) SESSION.slots.origin = oo;
-      SESSION.chatState = 'onsen_who';
-      return {
-        text: (oo ? '**' + oo + '発**ですね！\n\n' : '') + '次に、誰と行きますか？',
-        buttons: ['一人でゆっくり', 'カップルで', '家族（子連れ）で', '友達と']
-      };
+      if (/東京|関東|とうきょう/.test(q)) oo = '東京';
+      else if (/大阪|関西|おおさか/.test(q)) oo = '大阪';
+      else if (/名古屋|東海|なごや/.test(q)) oo = '名古屋';
+      else if (/福岡|九州|ふくおか/.test(q)) oo = '福岡';
+      else if (/北海道|札幌|ほっかいどう/.test(q)) oo = '北海道';
+      else if (/広島|ひろしま/.test(q)) oo = '広島';
+      else if (/仙台|東北|せんだい/.test(q)) oo = '仙台';
+      else if (/その他|わからない|未定|どこでも/.test(q)) oo = '出発地未定';
+      if (oo) {
+        SESSION.slots.origin = oo;
+        SESSION.chatState = 'onsen_who';
+        return { text: '**' + oo + '発**ですね！\n\n誰と行きますか？', buttons: ['一人でゆっくり', 'カップルで', '家族（子連れ）で', '友達と'] };
+      }
+      // 出発地が読み取れなければ再質問
+      return { text: 'どちらから出発しますか？ボタンからでも、「東京」「大阪」のように入力してもOKです！', buttons: ['東京', '大阪', '名古屋', '福岡', '北海道・札幌', 'その他'] };
     }
 
     if (SESSION.chatState === 'onsen_who') {
       if (/一人|ひとり|ソロ/.test(q)) SESSION.slots.who = 'solo';
-      else if (/カップル|二人|夫婦/.test(q)) SESSION.slots.who = 'couple';
-      else if (/家族|子連れ/.test(q)) SESSION.slots.who = 'family';
-      else if (/友達|グループ/.test(q)) SESSION.slots.who = 'friends';
+      else if (/カップル|二人|夫婦|パートナー/.test(q)) SESSION.slots.who = 'couple';
+      else if (/家族|子連れ|子供|子ども/.test(q)) SESSION.slots.who = 'family';
+      else if (/友達|友人|グループ|仲間/.test(q)) SESSION.slots.who = 'friends';
+      if (!SESSION.slots.who) {
+        return { text: '誰と行きますか？', buttons: ['一人でゆっくり', 'カップルで', '家族（子連れ）で', '友達と'] };
+      }
       SESSION.chatState = 'idle';
       return genOnsenFinal(SESSION.slots);
     }
@@ -1746,19 +1839,23 @@ var NoaChat = (function() {
     }
 
     if (SESSION.chatState === 'couple_origin') {
-      if (/東京|関東/.test(q)) SESSION.slots.origin = '東京';
-      else if (/大阪|関西/.test(q)) SESSION.slots.origin = '大阪';
-      else if (/名古屋|東海/.test(q)) SESSION.slots.origin = '名古屋';
-      else if (/福岡|九州/.test(q)) SESSION.slots.origin = '福岡';
-      SESSION.chatState = 'idle';
-      return genCoupleFinal(SESSION.slots);
+      var co = null;
+      if (/東京|関東/.test(q)) co = '東京';
+      else if (/大阪|関西/.test(q)) co = '大阪';
+      else if (/名古屋|東海/.test(q)) co = '名古屋';
+      else if (/福岡|九州/.test(q)) co = '福岡';
+      else if (/広島/.test(q)) co = '広島';
+      else if (/仙台|東北/.test(q)) co = '仙台';
+      else if (/その他|わからない|未定/.test(q)) co = '出発地未定';
+      if (co) { SESSION.slots.origin = co; SESSION.chatState = 'idle'; return genCoupleFinal(SESSION.slots); }
+      return { text: 'どこから出発しますか？', buttons: ['東京', '大阪', '名古屋', '福岡', 'その他'] };
     }
 
     if (SESSION.chatState === 'solo_purpose') {
-      if (/温泉/.test(q)) SESSION.slots.purpose = 'onsen';
-      else if (/グルメ|食べ歩き/.test(q)) SESSION.slots.purpose = 'gourmet';
-      else if (/歴史|文化/.test(q)) SESSION.slots.purpose = 'history';
-      else if (/自然|絶景/.test(q)) SESSION.slots.purpose = 'scenic';
+      if (/温泉|露天|湯/.test(q)) SESSION.slots.purpose = 'onsen';
+      else if (/グルメ|食べ歩き|うまいもの|食事/.test(q)) SESSION.slots.purpose = 'gourmet';
+      else if (/歴史|文化|城|神社|寺/.test(q)) SESSION.slots.purpose = 'history';
+      else if (/自然|絶景|登山|トレッキング/.test(q)) SESSION.slots.purpose = 'scenic';
       SESSION.slots.who = 'solo';
       SESSION.chatState = 'solo_origin';
       return {
@@ -1768,12 +1865,16 @@ var NoaChat = (function() {
     }
 
     if (SESSION.chatState === 'solo_origin') {
-      if (/東京|関東/.test(q)) SESSION.slots.origin = '東京';
-      else if (/大阪|関西/.test(q)) SESSION.slots.origin = '大阪';
-      else if (/名古屋|東海/.test(q)) SESSION.slots.origin = '名古屋';
-      else if (/福岡|九州/.test(q)) SESSION.slots.origin = '福岡';
-      SESSION.chatState = 'idle';
-      return genSoloFinal(SESSION.slots);
+      var so = null;
+      if (/東京|関東/.test(q)) so = '東京';
+      else if (/大阪|関西/.test(q)) so = '大阪';
+      else if (/名古屋|東海/.test(q)) so = '名古屋';
+      else if (/福岡|九州/.test(q)) so = '福岡';
+      else if (/広島/.test(q)) so = '広島';
+      else if (/仙台|東北/.test(q)) so = '仙台';
+      else if (/その他|わからない|どこでも/.test(q)) so = '出発地未定';
+      if (so) { SESSION.slots.origin = so; SESSION.chatState = 'idle'; return genSoloFinal(SESSION.slots); }
+      return { text: 'どこから出発しますか？', buttons: ['東京・関東', '大阪・関西', '名古屋・東海', '福岡・九州', 'その他'] };
     }
 
     if (SESSION.chatState === 'friends_theme') {
@@ -1800,10 +1901,13 @@ var NoaChat = (function() {
     }
 
     if (SESSION.chatState === 'nodecide_who') {
-      if (/一人|ひとり|ソロ/.test(q)) SESSION.slots.who = 'solo';
-      else if (/カップル|二人|夫婦/.test(q)) SESSION.slots.who = 'couple';
-      else if (/家族|子連れ|子供|ファミリー/.test(q)) SESSION.slots.who = 'family';
-      else if (/友達|友人|グループ/.test(q)) SESSION.slots.who = 'friends';
+      if (/一人|ひとり|ソロ|一人で/.test(q)) SESSION.slots.who = 'solo';
+      else if (/カップル|二人|夫婦|彼女|彼氏|パートナー/.test(q)) SESSION.slots.who = 'couple';
+      else if (/家族|子連れ|子供|子ども|ファミリー/.test(q)) SESSION.slots.who = 'family';
+      else if (/友達|友人|グループ|仲間/.test(q)) SESSION.slots.who = 'friends';
+      if (!SESSION.slots.who) {
+        return { text: '誰と行きますか？', buttons: ['一人で', 'カップルで', '家族（子連れ）で', '友達と'] };
+      }
       SESSION.chatState = 'nodecide_season';
       var whoStr = { solo: '一人旅', couple: 'カップル旅行', family: '家族旅行', friends: '友達旅行' }[SESSION.slots.who] || '旅行';
       return {
