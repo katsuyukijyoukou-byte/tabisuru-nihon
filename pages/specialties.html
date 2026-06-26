@@ -1846,6 +1846,116 @@
   </div>
 </section>
 
+<!-- ===== ご当地グルメ豆知識カードセクション ===== -->
+<section class="food-trivia-section" id="food-trivia">
+  <div class="container" style="max-width:1000px">
+    <div style="text-align:center;margin-bottom:36px">
+      <span style="display:inline-block;font-size:0.72rem;font-weight:800;color:#8a5a16;letter-spacing:0.14em;margin-bottom:10px">読むだけで旅が楽しくなる</span>
+      <h2 style="font-size:clamp(1.4rem,3.5vw,2rem);font-weight:900;color:var(--navy);margin:0 0 12px">ご当地グルメ豆知識</h2>
+      <p style="font-size:0.9rem;color:#5f5144;line-height:1.8;max-width:580px;margin:0 auto">和牛、海鮮、麺、寿司、餃子、カレーまで。旅先で食べる前に知っておくと、ひと口目がもっと楽しくなる読み物です。</p>
+    </div>
+    <div class="food-trivia-grid" id="food-trivia-grid"></div>
+    <div style="text-align:center;margin-top:28px">
+      <button id="food-trivia-more-btn" class="food-trivia-more">もっと見る（残り9件）</button>
+    </div>
+  </div>
+</section>
+
+<style>
+.food-trivia-section{padding:56px 20px;background:linear-gradient(180deg,#fffaf2 0%,#ffffff 100%)}
+.food-trivia-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:8px}
+@media(max-width:900px){.food-trivia-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.food-trivia-grid{grid-template-columns:1fr}}
+.food-trivia-card{border:1px solid rgba(120,80,40,0.16);border-radius:18px;padding:18px 18px 14px;background:#fff;box-shadow:0 8px 24px rgba(80,50,20,0.06);display:flex;flex-direction:column}
+.food-trivia-tag{display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;background:#fff3dc;color:#8a5a16;font-size:11px;font-weight:800;letter-spacing:0.05em;margin-bottom:10px;width:fit-content}
+.food-trivia-card h3{margin:0 0 8px;font-size:0.98rem;font-weight:800;color:var(--navy);line-height:1.45}
+.food-trivia-card .card-lead{font-size:0.82rem;line-height:1.75;color:#5f5144;flex:1}
+.food-trivia-toggle{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:0 14px;height:36px;border-radius:999px;border:1px solid #d6a85f;background:#fff;color:#8a5a16;font-size:0.8rem;font-weight:700;cursor:pointer;transition:background .18s}
+.food-trivia-toggle:hover,.food-trivia-toggle[aria-expanded="true"]{background:#fff8ed}
+.food-trivia-detail{margin-top:14px;padding-top:14px;border-top:1px solid rgba(120,80,40,0.12);display:none}
+.food-trivia-detail.open{display:block}
+.food-trivia-detail h4{font-size:0.8rem;font-weight:800;color:#8a5a16;margin:0 0 6px;letter-spacing:0.05em}
+.food-trivia-detail p{font-size:0.82rem;line-height:1.8;color:#3a4255;margin:0 0 8px}
+.food-trivia-noa{margin-top:4px!important;padding:10px 12px;border-radius:10px;background:#f0f6ff;color:#1a3a6b!important}
+.food-affiliate-box{margin-top:14px;padding:12px 14px;border-radius:12px;background:#fff8ed}
+.food-affiliate-pr{margin:0 0 6px;font-size:10.5px;font-weight:800;color:#8a5a16;letter-spacing:0.06em}
+.food-affiliate-link{display:inline-flex;align-items:center;justify-content:center;height:38px;padding:0 18px;border-radius:999px;background:#b87922;color:#fff!important;font-size:0.8rem;font-weight:800;text-decoration:none;transition:background .18s}
+.food-affiliate-link:hover{background:#a06a1a}
+.food-trivia-more{display:inline-flex;align-items:center;justify-content:center;height:46px;padding:0 28px;border-radius:999px;border:2px solid #b87922;background:#fff;color:#8a5a16;font-size:0.9rem;font-weight:800;cursor:pointer;transition:background .18s}
+.food-trivia-more:hover{background:#fff8ed}
+.food-trivia-card.ft-hidden{display:none}
+</style>
+
+<script>
+(function(){
+  var AFF='13d6d4ee.28199bf3.13d6d4ef.2c83be2d';
+  function rUrl(kw){return 'https://hb.afl.rakuten.co.jp/hgc/'+AFF+'/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F'+encodeURIComponent(kw)+'%2F&link_type=hybrid_url';}
+  var T=[
+    {c:'和牛',t:'神戸牛・松阪牛・近江牛の違い',l:'海外人気の神戸牛、脂の甘みの松阪牛、歴史ある近江牛など、和牛ブランドの違いを紹介。',b:'<p>日本の和牛は、地域ごとに味や歴史が異なります。</p><p>神戸牛は海外での知名度が高く、松阪牛は脂の甘みやきめ細かな霜降り、近江牛は歴史ある和牛として知られています。</p><p>どれが一番というより、旅先ごとのごちそうとして楽しむのがおすすめです。</p>',n:'和牛は、旅先で食べると"その土地のごちそう感"が一気に出ます。',at:'楽天で和牛ギフトを探す',k:'和牛 ギフト'},
+    {c:'お好み焼き',t:'広島と関西のお好み焼きの違い',l:'広島は重ね焼き、関西は混ぜ焼き。同じ名前でも食感も文化も違います。',b:'<p>広島のお好み焼きは、薄い生地の上にキャベツ、豚肉、麺、卵などを重ねて焼く重ね焼きです。</p><p>関西のお好み焼きは、生地とキャベツや具材を混ぜてから焼く混ぜ焼きです。</p><p>広島は層と麺の香ばしさ、関西はふんわり感と出汁の一体感が魅力です。</p>',n:'広島のお好み焼きは"食べる建築"、関西のお好み焼きは"みんなで囲む粉もん"という感じです。',at:'楽天でお好み焼きセットを探す',k:'お好み焼き セット'},
+    {c:'うどん',t:'讃岐・稲庭・五島うどんの違い',l:'コシの讃岐、のど越しの稲庭、椿油とあごだしの五島うどん。',b:'<p>讃岐うどんは、香川県を代表するコシの強いうどんです。</p><p>稲庭うどんは、秋田県の細く平たい手延べうどんで、なめらかなのど越しが魅力です。</p><p>五島うどんは、長崎県五島列島の手延べうどんで、椿油を使う製法やあごだしとの相性が特徴です。</p>',n:'讃岐は噛んで楽しい、稲庭はすすって美しい、五島は島旅感まで味わえるうどんです。',at:'楽天でご当地うどんを探す',k:'ご当地うどん'},
+    {c:'ラーメン',t:'札幌・喜多方・博多ラーメンの違い',l:'味噌、醤油、豚骨。地域ごとに麺もスープも文化も変わります。',b:'<p>札幌ラーメンは、味噌ラーメンのイメージが強く、寒い北海道旅にぴったりです。</p><p>喜多方ラーメンは、やさしい醤油スープと平打ちちぢれ麺が特徴で、朝ラー文化もあります。</p><p>博多ラーメンは、白濁した豚骨スープと細麺、替え玉文化が魅力です。</p>',n:'札幌は温まるラーメン、喜多方は朝から食べたいラーメン、博多は替え玉まで楽しむラーメンです。',at:'楽天でご当地ラーメンを探す',k:'ご当地ラーメン'},
+    {c:'寿司',t:'江戸前寿司・押し寿司・ちらし寿司の違い',l:'職人技、保存文化、祝いの食卓。寿司は握りだけではありません。',b:'<p>江戸前寿司は、東京の食文化から発展した握り寿司で、ヅケや煮アナゴなど職人の仕事を味わう寿司です。</p><p>押し寿司は、酢飯と具材を型で押し固める寿司で、駅弁やお土産とも相性が良いです。</p><p>ちらし寿司は、酢飯に具材を散らす華やかな寿司で、祝い事や家庭料理として親しまれています。</p>',n:'寿司は握りだけではありません。職人技、保存、祝いの文化まで含めるとかなり奥深いです。',at:'楽天で押し寿司・ます寿司を探す',k:'ます寿司 押し寿司'},
+    {c:'丼もの',t:'海鮮丼・ひつまぶし・ソースカツ丼の違い',l:'港町、名古屋めし、ガッツリ地方丼。ご飯の上に旅先の個性がのります。',b:'<p>海鮮丼は、港町や市場で楽しみたい海のごちそうです。</p><p>ひつまぶしは、名古屋名物のうなぎ料理で、そのまま、薬味、だし茶漬けと味変を楽しめます。</p><p>ソースカツ丼は、福井、会津、駒ヶ根などで親しまれる、卵でとじないご当地カツ丼です。</p>',n:'丼ものは、旅先のうまいものをご飯にのせた、分かりやすいご当地グルメです。',at:'楽天で海鮮丼セットを探す',k:'海鮮丼 セット'},
+    {c:'餃子',t:'宇都宮餃子・浜松餃子・博多ひとくち餃子の違い',l:'街歩き、円形焼き、夜グルメ。餃子にも地域ごとの楽しみ方があります。',b:'<p>宇都宮餃子は、街全体で餃子店を巡る楽しさがあります。</p><p>浜松餃子は、円形に焼いた餃子と中央のもやしが印象的です。</p><p>博多ひとくち餃子は、小ぶりでパリッと食べやすく、お酒との相性が良い夜グルメです。</p>',n:'宇都宮は巡る餃子、浜松は見た目で覚える餃子、博多はお酒のリズムで食べる餃子です。',at:'楽天でご当地餃子を探す',k:'ご当地餃子'},
+    {c:'そば',t:'信州そば・出雲そば・わんこそばの違い',l:'香り、黒いそば、体験型そば。旅先で食べる意味がそれぞれ違います。',b:'<p>信州そばは、長野の山と水が育てる香り高いそばです。</p><p>出雲そばは、甘皮ごと挽くため黒っぽく、風味が濃いのが特徴です。</p><p>わんこそばは、岩手で楽しめる体験型のそば文化です。</p>',n:'信州は味わうそば、出雲は文化を知るそば、わんこは体験するそばです。',at:'楽天でご当地そばを探す',k:'ご当地そば'},
+    {c:'海鮮',t:'北海道・三陸・瀬戸内海・北陸の海鮮の違い',l:'豪快、濃厚、上品、冬のごちそう。海が違えば海鮮も変わります。',b:'<p>北海道の海鮮は、ウニ、イクラ、カニ、ホタテなど、豪快で写真映えする食材が多いです。</p><p>三陸は、牡蠣、ホタテ、ワカメ、ホヤなど、リアスの海が育てる濃い旨みが魅力です。</p><p>瀬戸内海は、鯛、穴子、牡蠣、タコなど、穏やかな海が育てる上品な魚介が楽しめます。</p><p>北陸は、寒ブリ、白えび、カニ、のどぐろなど、冬のごちそう海鮮が強い地域です。</p>',n:'海鮮旅は、どこの海で食べるかでかなり印象が変わります。',at:'楽天で海鮮ギフトを探す',k:'海鮮 ギフト'},
+    {c:'カレー',t:'金沢カレー・スープカレー・横須賀海軍カレーの違い',l:'濃厚カツ、スパイス、歴史。日本のカレーは地域で進化しています。',b:'<p>金沢カレーは、濃厚なルー、カツ、千切りキャベツが印象的なガッツリ系カレーです。</p><p>スープカレーは、札幌を中心に広がった、スパイスと大きな具材を楽しむさらっとしたカレーです。</p><p>横須賀海軍カレーは、海軍の食文化や軍港の歴史とつながるレトロなご当地カレーです。</p>',n:'金沢は濃厚、札幌はスパイス、横須賀は歴史を食べるカレーです。',at:'楽天でご当地カレーを探す',k:'ご当地カレー'},
+    {c:'焼きそば',t:'富士宮やきそば・横手やきそば・太田焼そばの違い',l:'コシのある麺、目玉焼き、太麺ソース。焼きそばにも地域差があります。',b:'<p>富士宮やきそばは、コシのある麺、肉かす、だし粉が特徴です。</p><p>横手やきそばは、目玉焼きと福神漬けが印象的な秋田のご当地焼きそばです。</p><p>太田焼そばは、太麺と濃いソース、ボリューム感が魅力です。</p>',n:'焼きそばは、地域の祭りや食堂文化が出やすいB級グルメです。',at:'楽天でご当地焼きそばを探す',k:'ご当地焼きそば'},
+    {c:'おでん',t:'静岡・金沢・関東・関西おでんの違い',l:'黒いだし、具材の豊富さ、濃口しょうゆ、昆布だし。おでんは地域でだしが違います。',b:'<p>静岡おでんは、黒いだし、黒はんぺん、青のりやだし粉が特徴です。</p><p>金沢おでんは、車麩、赤巻、バイ貝、カニ面など、具材の豊富さが魅力です。</p><p>関東おでんは、濃口しょうゆとかつお節のしっかりした味わいが印象的です。</p><p>関西おでんは、昆布だしを中心にしたあっさり上品な味わいです。</p>',n:'おでんは、だしの地域差が一番出る冬のご当地グルメです。',at:'楽天でおでんセットを探す',k:'おでん セット'},
+    {c:'鍋料理',t:'すき焼き・しゃぶしゃぶ・もつ鍋・きりたんぽ鍋の違い',l:'和牛、素材の味、福岡の夜、秋田の雪国文化。鍋には旅先の空気が出ます。',b:'<p>すき焼きは、和牛を甘辛い割下で味わうごちそう鍋です。</p><p>しゃぶしゃぶは、薄切り肉をだしにくぐらせ、素材の味を軽く楽しむ鍋です。</p><p>もつ鍋は、福岡の夜に合うスタミナ系の鍋料理です。</p><p>きりたんぽ鍋は、秋田の米文化と比内地鶏の旨みが詰まった郷土鍋です。</p>',n:'鍋は、寒さ、人が集まる文化、地域の食材が出る料理です。',at:'楽天で鍋セットを探す',k:'鍋セット'},
+    {c:'天ぷら',t:'江戸前天ぷら・関西天ぷら・沖縄天ぷらの違い',l:'職人料理、軽い衣、島のおやつ。天ぷらにも地域ごとの楽しみ方があります。',b:'<p>江戸前天ぷらは、魚介を中心に揚げたてを楽しむ職人料理として紹介できます。</p><p>関西の天ぷらは、軽さや素材の味を生かす方向で、だし文化とも相性が良いです。</p><p>沖縄天ぷらは、衣が厚めで、おやつや惣菜として親しまれるローカル感の強い天ぷらです。</p>',n:'天ぷらは、揚げ物なのに地域で軽さ・香り・食べ方が変わります。',at:'楽天で天ぷらセットを探す',k:'天ぷら セット'},
+    {c:'地鶏',t:'名古屋コーチン・比内地鶏・薩摩地鶏の違い',l:'弾力、だし、歯ごたえ。和牛だけでなく、地鶏にも地域ブランドがあります。',b:'<p>名古屋コーチンは、弾力と旨みがあり、親子丼や鍋、焼き鳥に向いています。</p><p>比内地鶏は、秋田のきりたんぽ鍋と相性が良く、だしまでおいしい地鶏です。</p><p>薩摩地鶏は、歯ごたえと旨みが強く、炭火焼きや焼酎文化と相性があります。</p>',n:'地鶏は、噛むほどに土地の味が出るグルメです。',at:'楽天で地鶏ギフトを探す',k:'地鶏 ギフト'},
+    {c:'うなぎ',t:'ひつまぶし・浜名湖うなぎ・柳川せいろ蒸しの違い',l:'味変、産地、せいろ蒸し。うなぎは地域によって食べ方が変わります。',b:'<p>名古屋のひつまぶしは、そのまま、薬味、だし茶漬けと味を変えながら楽しむうなぎ料理です。</p><p>浜名湖うなぎは、静岡・浜名湖の産地で味わう王道のうなぎグルメです。</p><p>柳川せいろ蒸しは、うなぎとタレご飯をせいろで蒸し上げる福岡県柳川のごちそうです。</p>',n:'うなぎは、食べ方で旅先が変わるごちそうです。',at:'楽天でうなぎ蒲焼きを探す',k:'うなぎ 蒲焼き'},
+    {c:'牡蠣',t:'広島・厚岸・三陸・的矢牡蠣の違い',l:'王道、濃厚、海の旨み、上品ブランド。牡蠣は育つ海で味が変わります。',b:'<p>広島牡蠣は、焼き牡蠣、牡蠣フライ、牡蠣めし、土手鍋など料理の幅が広い王道の牡蠣です。</p><p>厚岸牡蠣は、北海道の冷たい海で育つ濃厚な牡蠣として紹介しやすいです。</p><p>三陸牡蠣は、リアス海岸の豊かな海が育てる旨みの強い牡蠣です。</p><p>的矢牡蠣は、伊勢志摩旅と相性が良い上品なブランド牡蠣です。</p>',n:'牡蠣は、海の環境で味が変わるので、旅先で食べ比べる価値があります。',at:'楽天で牡蠣を探す',k:'牡蠣'},
+    {c:'肉グルメ',t:'ジンギスカン・馬刺し・地鶏炭火焼きの違い',l:'北海道の羊、熊本の馬、宮崎の鶏。日本の肉旅は和牛だけではありません。',b:'<p>ジンギスカンは、北海道で楽しみたい羊肉グルメです。</p><p>馬刺しは、熊本を代表するご当地肉グルメで、赤身や霜降りなど部位ごとの違いも楽しめます。</p><p>地鶏炭火焼きは、宮崎の夜に合う香ばしい鶏料理です。</p>',n:'和牛がごちそう肉なら、この3つは土地の暮らしが出る肉グルメです。',at:'楽天で肉グルメを探す',k:'ジンギスカン 馬刺し'},
+    {c:'スイーツ',t:'京都抹茶スイーツ・金沢和菓子・沖縄ぜんざいの違い',l:'茶文化、美しい和菓子、南国の冷たい甘味。休憩時間も旅の楽しみです。',b:'<p>京都抹茶スイーツは、寺社巡りや町歩きの休憩にぴったりな和スイーツです。</p><p>金沢和菓子は、茶の湯文化や城下町の美意識を感じられる美しい甘味です。</p><p>沖縄ぜんざいは、本土の温かいぜんざいとは違い、冷たいかき氷のように楽しむ南国の甘味です。</p>',n:'旅先の甘味は、歩き疲れた時ほど記憶に残ります。',at:'楽天でご当地スイーツを探す',k:'ご当地スイーツ'}
+  ];
+
+  var INIT=10;
+  var expanded=false;
+  var grid=document.getElementById('food-trivia-grid');
+  var btn=document.getElementById('food-trivia-more-btn');
+  if(!grid||!btn)return;
+
+  T.forEach(function(d,i){
+    var art=document.createElement('article');
+    art.className='food-trivia-card'+(i>=INIT?' ft-hidden':'');
+    art.innerHTML=
+      '<span class="food-trivia-tag">'+d.c+'</span>'+
+      '<h3>'+d.t+'</h3>'+
+      '<p class="card-lead">'+d.l+'</p>'+
+      '<button class="food-trivia-toggle" aria-expanded="false">詳しく読む ＋</button>'+
+      '<div class="food-trivia-detail">'+
+        '<h4>豆知識</h4>'+d.b+
+        '<h4>旅ノアの一言</h4>'+
+        '<p class="food-trivia-noa">💬 '+d.n+'</p>'+
+      '</div>'+
+      '<div class="food-affiliate-box">'+
+        '<p class="food-affiliate-pr">PR</p>'+
+        '<a class="food-affiliate-link" href="'+rUrl(d.k)+'" target="_blank" rel="sponsored noopener">'+d.at+' →</a>'+
+      '</div>';
+    var tog=art.querySelector('.food-trivia-toggle');
+    var det=art.querySelector('.food-trivia-detail');
+    tog.addEventListener('click',function(){
+      var o=det.classList.toggle('open');
+      tog.setAttribute('aria-expanded',o?'true':'false');
+      tog.textContent=o?'閉じる －':'詳しく読む ＋';
+    });
+    grid.appendChild(art);
+  });
+
+  btn.addEventListener('click',function(){
+    expanded=!expanded;
+    grid.querySelectorAll('.food-trivia-card').forEach(function(c,i){
+      if(i>=INIT)c.classList.toggle('ft-hidden',!expanded);
+    });
+    btn.textContent=expanded?'閉じる':'もっと見る（残り'+(T.length-INIT)+'件）';
+    if(!expanded)window.scrollTo({top:document.getElementById('food-trivia').offsetTop-80,behavior:'smooth'});
+  });
+}());
+</script>
+
 <!-- ===== ご当地グルメ豆知識10セクション ===== -->
 <section style="background:linear-gradient(135deg,#faf8f5 0%,#f5f0ea 100%);padding:56px 0 64px">
   <div class="container" style="max-width:860px">
