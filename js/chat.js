@@ -1320,6 +1320,18 @@ var NoaChat = (function() {
       else if (/北海道|札幌/.test(q)) oo = '北海道';
       else if (/広島/.test(q)) oo = '広島';
       if (oo) SESSION.slots.origin = oo;
+      SESSION.chatState = 'onsen_who';
+      return {
+        text: (oo ? '**' + oo + '発**ですね！\n\n' : '') + '次に、誰と行きますか？',
+        buttons: ['一人でゆっくり', 'カップルで', '家族（子連れ）で', '友達と']
+      };
+    }
+
+    if (SESSION.chatState === 'onsen_who') {
+      if (/一人|ひとり|ソロ/.test(q)) SESSION.slots.who = 'solo';
+      else if (/カップル|二人|夫婦/.test(q)) SESSION.slots.who = 'couple';
+      else if (/家族|子連れ/.test(q)) SESSION.slots.who = 'family';
+      else if (/友達|グループ/.test(q)) SESSION.slots.who = 'friends';
       SESSION.chatState = 'idle';
       SESSION.intent = 'onsen';
     }
@@ -1365,6 +1377,19 @@ var NoaChat = (function() {
       else if (/秋|9月|10月|11月/.test(q)) SESSION.slots.season = 'autumn';
       else if (/冬|12月|1月|2月/.test(q)) SESSION.slots.season = 'winter';
       SESSION.slots.who = 'couple';
+      SESSION.chatState = 'couple_origin';
+      var seasonLabel = SESSION.slots.season === 'spring' ? '春' : SESSION.slots.season === 'summer' ? '夏' : SESSION.slots.season === 'autumn' ? '秋' : SESSION.slots.season === 'winter' ? '冬' : '';
+      return {
+        text: (seasonLabel ? '**' + seasonLabel + '**ですね！\n\n' : '') + 'どこから出発しますか？',
+        buttons: ['東京', '大阪', '名古屋', '福岡', 'その他']
+      };
+    }
+
+    if (SESSION.chatState === 'couple_origin') {
+      if (/東京|関東/.test(q)) SESSION.slots.origin = '東京';
+      else if (/大阪|関西/.test(q)) SESSION.slots.origin = '大阪';
+      else if (/名古屋|東海/.test(q)) SESSION.slots.origin = '名古屋';
+      else if (/福岡|九州/.test(q)) SESSION.slots.origin = '福岡';
       SESSION.chatState = 'idle';
       SESSION.intent = 'couple';
     }
