@@ -7,6 +7,7 @@
 window.AFF = (() => {
 
   const RAKUTEN_ID = '13d6d4ee.28199bf3.13d6d4ef.2c83be2d';
+  const RAKUTEN_TRAVEL_URL = 'https://hb.afl.rakuten.co.jp/hsc/13f75522.fdfe2a14.195cfe96.88ec73ca/?link_type=hybrid_url&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJoeWJyaWRfdXJsIiwiY29sIjoxLCJjYXQiOiIxMjEiLCJiYW4iOjY5Nzk2MywiYW1wIjpmYWxzZX0%3D';
 
   /* ===== A8.net 案件データ ===== */
   const A8 = {
@@ -394,7 +395,7 @@ window.AFF = (() => {
 
   /* ===== 楽天ボタンHTML生成 ===== */
   function _rakutenBtn(emoji, label, href) {
-    return '<a href="' + href + '" rel="nofollow sponsored" target="_blank" class="aff-rakuten-btn">'
+    return '<a href="' + href + '" rel="nofollow sponsored noopener" target="_blank" class="aff-rakuten-btn">'
       + '<span class="aff-btn-emoji" aria-hidden="true">' + emoji + '</span>'
       + '<span>' + label + '</span>'
       + '</a>';
@@ -446,14 +447,14 @@ window.AFF = (() => {
     var pref = RAKUTEN_PREFS[prefId];
     if (!pref) { el.style.display = 'none'; return; }
 
-    var rUrl1 = _rakutenUrl('https://travel.rakuten.co.jp/search/?f_ken=' + pref.kenCode);
+    var rUrl1 = RAKUTEN_TRAVEL_URL;
     var rUrl2 = _rakutenUrl('https://search.rakuten.co.jp/search/mall/' + encodeURIComponent(pref.name + ' お土産') + '/');
-    var rUrl3 = _rakutenUrl('https://event.rakuten.co.jp/furusato/search/?query=' + encodeURIComponent(pref.name));
+    var rUrl3 = _rakutenUrl('https://search.rakuten.co.jp/search/mall/' + encodeURIComponent(pref.name + ' ふるさと納税') + '/');
 
     var rakutenHtml
       = _rakutenBtn('🏨', pref.name + 'の宿を楽天トラベルで探す', rUrl1)
       + _rakutenBtn('🎁', pref.name + 'のお土産を楽天市場で見る', rUrl2)
-      + _rakutenBtn('🗾', pref.name + 'のふるさと納税を探す', rUrl3);
+      + _rakutenBtn('🌱', pref.name + 'のふるさと納税を探す', rUrl3);
 
     el.innerHTML
       = '<div class="aff-subsection-label">' + pref.name + 'の宿を探す</div>'
