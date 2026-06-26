@@ -2937,6 +2937,20 @@ button { font-family: inherit; cursor: pointer; }
   transform: translateY(-1px);
   box-shadow: 0 3px 9px rgba(12,27,53,0.2);
 }
+.noa-fp-messages .chat-suggest-btn--link {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+  font-weight: 700;
+}
+.noa-fp-messages .chat-suggest-btn--link:hover,
+.noa-fp-messages .chat-suggest-btn--link:active {
+  background: #a07808;
+  border-color: #a07808;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 9px rgba(200,150,10,0.3);
+}
 
 .noa-fp-chips {
   display: flex;

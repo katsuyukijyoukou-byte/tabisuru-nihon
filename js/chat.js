@@ -1309,6 +1309,136 @@ var NoaChat = (function() {
     };
   }
 
+  function genScenicFinal(slots) {
+    var season = slots.season;
+    var origin = slots.origin;
+    var scenicData = {
+      spring: {
+        '東京': ['富士山×桜（山梨/静岡）— 富士五湖の湖畔桜が絶景。東京から2h', '弘前城（青森）— 日本最大級の桜。東北新幹線+バスで3.5h', '谷川岳（群馬）— 残雪×芽吹きの絶景。上越線で2h'],
+        '大阪': ['吉野山（奈良）— 山全体が桜に染まる日本一の花見スポット', '姫路城×桜（兵庫）— 白鷺城と満開の桜の完璧な構図', '竹田城跡（兵庫）— 天空の城×春霧の幻想的絶景'],
+        '名古屋': ['岐阜・根尾谷の薄墨桜— 樹齢1500年の天然記念物', '飛騨高山の桜— 白壁の古い街並みと山桜', '犬山城×桜— 木曽川×春霞のロケーション'],
+        '福岡': ['西都原古墳群（宮崎）— 菜の花と桜が同時に咲く南国の春', '高千穂峡（宮崎）— 新緑と渓谷の春絶景', '桜島×菜の花（鹿児島）— 活火山と春の花の壮大なコラボ'],
+        '北海道': ['松前城（北海道）— 250種の桜。本州より遅い桜の終点', '五稜郭（函館）— 星形の城跡を桜が縁取る絶景', '芝桜の丘（滝上）— 一面の芝桜がじゅうたんのよう'],
+      },
+      summer: {
+        '東京': ['富良野・美瑛（北海道）— ラベンダーと丘のパッチワーク。飛行機1.5h', '宮古島（沖縄）— 東洋一透明な海。LCCで2.5h', '尾瀬ヶ原（群馬）— ニッコウキスゲと湿原。関東から日帰りも可'],
+        '大阪': ['屋久島（鹿児島）— 苔むす原生林。梅雨〜夏が幻想的', '日本海夕日ライン（鳥取）— 鳥取砂丘×夕日の水平線', '宮古島（沖縄）— 東洋一透明な海。LCC2h'],
+        '名古屋': ['能登半島（石川）— 千枚田の棚田と日本海夕景', '白山（石川/岐阜）— 高山植物と万年雪。7月〜8月がベスト', '伊良湖（愛知）— 太平洋の水平線と夕焼け'],
+        '福岡': ['屋久島（鹿児島）— 苔むす白谷雲水峡。夏の雨が美しい', '天草（熊本）— イルカウォッチングと日本海の夕日', '平尾台（福岡）— カルスト台地の絶景。夏草が広がる高原'],
+        '北海道': ['知床（北海道）— 世界自然遺産。原生林×クマ×流氷の夏', '礼文島— 花の浮島。高山植物が島全体に広がる', '大雪山— 日本最大の国立公園。高山植物の天国'],
+      },
+      autumn: {
+        '東京': ['奥入瀬渓流（青森）— 紅葉と水の流れが完璧なハーモニー', '立山黒部アルペンルート（富山）— 紅葉×雪の大谷の共演', '河口湖（山梨）— 富士山×紅葉×逆さ富士'],
+        '大阪': ['京都・東福寺— 通天橋からの紅葉は別格。混むが必見', '大台ヶ原（奈良）— 原生林の紅葉と霧。秘境感がある', '神護寺（京都）— 急斜面の紅葉。投げ瓦体験も名物'],
+        '名古屋': ['香嵐渓（愛知）— 東海一の紅葉名所。11月が最盛期', '飛騨高山（岐阜）— 古い街並みと紅葉×白川郷合掌集落とセットで', '昇仙峡（山梨）— 奇岩×渓谷×紅葉の三重絶景'],
+        '福岡': ['耶馬溪（大分）— 日本三大奇景のひとつ。秋の紅葉が見事', '高千穂峡（宮崎）— 柱状節理×秋霧×紅葉の絶景', '祖谷（徳島）— かずら橋×深い渓谷×紅葉'],
+        '北海道': ['大雪山の紅葉— 9月上旬から始まる日本一早い紅葉', '支笏湖— 透明度日本一の湖と秋の湖面の鏡張り', '層雲峡— 柱状節理の断崖と紅葉が圧巻'],
+      },
+      winter: {
+        '東京': ['蔵王の樹氷（山形）— 幻想的な白い怪物（スノーモンスター）', '函館の夜景（北海道）— 世界三大夜景。冬が最も美しい', '志賀高原（長野）— 星空×雪原の別世界'],
+        '大阪': ['天橋立の雪景色（京都）— 日本三景が白く染まる', '比叡山の樹氷（滋賀）— ロープウェイで上がると絶景', '東大寺の雪（奈良）— 大仏殿と雪の幻想的コラボ'],
+        '名古屋': ['白川郷（岐阜）— 合掌造りと雪景色×ライトアップが幻想的', '奥三河の霧氷（愛知）— 近場で見られる冬の絶景', '養老の滝の氷瀑（岐阜）— 滝が凍る自然アートを間近で'],
+        '福岡': ['地獄谷野猿公苑（長野）— 温泉に入るサルの絶景（冬限定）', '雪の由布院（大分）— 湯けむりと雪の幻想的な組み合わせ', '高千穂の夜神楽（宮崎）— 冬の夜の神秘的な伝統芸能'],
+        '北海道': ['流氷（網走・知床）— 1〜3月、砕氷船は迫力満点', '旭山動物園の冬— ペンギンの散歩が見られる冬限定の絶景', '札幌雪まつり— 2月。雪と氷の巨大アートが林立'],
+      }
+    };
+    var spots = [];
+    var seasonData = scenicData[season || 'autumn'];
+    if (seasonData) spots = seasonData[origin] || seasonData['東京'];
+    if (!spots || !spots.length) spots = ['宮島・厳島神社（広島）— 海に浮かぶ朱の大鳥居', '美瑛・富良野（北海道）— 絵本のような風景', '角島大橋（山口）— 日本屈指のドライブ絶景'];
+    var seasonLabel = { spring: '春', summer: '夏', autumn: '秋', winter: '冬' }[season] || '';
+    return {
+      text: (origin ? '**' + origin + '発**・' : '') + (seasonLabel ? '**' + seasonLabel + '**の' : '') + '**絶景スポット**はこちら🌄\n\n' +
+        spots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') +
+        '\n\n月別ページでも季節ごとの絶景をまとめています！',
+      buttons: ['月別おすすめを見る|' + R() + 'pages/monthly.html', '都道府県から探す|' + R() + 'pages/prefectures.html', '↩ 別の旅を相談する']
+    };
+  }
+
+  function genSoloFinal(slots) {
+    var purpose = slots.purpose;
+    var origin = slots.origin;
+    var soloData = {
+      onsen: {
+        '東京': ['乳頭温泉郷（秋田）— 山奥の秘湯。新幹線+バスで4h。静寂を独り占め', '草津温泉（群馬）— 新宿バス直行3h。湯畑×時間湯体験が最高', '箱根（神奈川）— 1.5hでアクセス抜群。一人宿が多い'],
+        '大阪': ['有馬温泉（兵庫）— 三ノ宮から電車30分。金泉・銀泉を一人でじっくり', '城崎温泉（兵庫）— 特急こうのとり2.5h。外湯を一人でめぐる旅', '道後温泉（愛媛）— 日本最古の湯。一人旅文化が根付いている'],
+        '名古屋': ['下呂温泉（岐阜）— 特急1h20分。美肌の湯でひとり癒し', '湯の山温泉（三重）— 近場で静か。御在所岳の山景色も良い', '奥飛騨温泉郷（岐阜）— 露天風呂の宝庫。秘境感が高い'],
+        '福岡': ['別府（大分）— 地獄めぐり+8種の泉質。一人旅向け宿が豊富', '由布院（大分）— 特急ゆふいんの森で90分。一人散策が気持ちいい', '黒川温泉（熊本）— 入湯手形で複数の湯めぐり。山奥の静寂'],
+      },
+      gourmet: {
+        '東京': ['福岡— 博多ラーメン屋台×もつ鍋。一人でも気軽に入れる店が多い', '金沢— 近江町市場で海鮮ランチ。一人でも入りやすい海鮮丼', '高知— カツオのたたき×日曜市は一人旅にぴったり'],
+        '大阪': ['金沢（石川）— のど黒・白エビ。近江町市場の海鮮を一人でじっくり', '高知— カツオのたたき。旅人に優しい食堂文化', '松山（愛媛）— 鯛めし2スタイル食べ比べ。道後温泉とセット'],
+        '名古屋': ['名古屋— ひつまぶし・味噌カツ・あんかけスパのはしご食い', '岐阜・飛騨高山— みたらし団子×飛騨牛コロッケ×朴葉味噌焼き', '松阪（三重）— 松阪牛の発祥地。本場の牛丼が安くて旨い'],
+        '福岡': ['福岡— 博多屋台でラーメン×餃子×おでん。一人がちょうどいい', '宮崎— チキン南蛮×地鶏炭火焼×冷や汁。宮崎グルメを制覇', '鹿児島— 黒豚しゃぶ×薩摩揚げ×白熊かき氷'],
+      },
+      history: {
+        '東京': ['京都— 朝の寺社は一人の方が雰囲気を味わいやすい。哲学の道を散歩', '鎌倉（神奈川）— 1hで行ける古都。路地探検が一人旅向き', '会津若松（福島）— 幕末・戊辰戦争の舞台。歴史を深く味わえる'],
+        '大阪': ['奈良— 東大寺・春日大社。鹿と歩く静かな時間', '萩（山口）— 吉田松陰ゆかりの幕末の聖地。コンパクトで回りやすい', '姫路— 現存天守の最高峰。1日あれば十分回れる'],
+        '名古屋': ['岐阜・関ヶ原— 日本史の大決戦場。跡地めぐりが一人旅向け', '犬山城（愛知）— 現存天守12城のひとつ。城下町散策が楽しい', '伊勢（三重）— お伊勢参り×おかげ横丁で食べ歩き'],
+        '福岡': ['長崎— 出島・グラバー園・平和公園。歴史の層が厚い', '熊本城— 熊本地震から復旧中。再建の過程を見学できる', '吉野ヶ里遺跡（佐賀）— 弥生時代の集落。日本史の起源を感じる'],
+      },
+      scenic: {
+        '東京': ['富士山×河口湖— 逆さ富士×紅葉×雪。四季の絶景が揃う', '奥入瀬渓流（青森）— 水と苔の別世界。新幹線3hの静寂', '尾瀬ヶ原（群馬）— 水芭蕉の湿原。絶景の中を一人歩く'],
+        '大阪': ['屋久島（鹿児島）— 一人で原生林を歩く最高の体験', '天橋立（京都）— 日本三景を股覗きで。海と砂州の絶景', '大歩危・祖谷（徳島）— かずら橋×深い渓谷×一人旅の醍醐味'],
+        '名古屋': ['立山黒部（富山）— アルペンルートを一人でのんびり縦断', '白山（石川/岐阜）— 高山植物を独り占め。霊山の静寂', '昇仙峡（山梨）— 奇岩渓谷を一人で散策'],
+        '福岡': ['高千穂峡（宮崎）— ボートで渓谷を進む。真名井の滝を間近で', '屋久島— 縄文杉トレッキング。一人で向き合う原始の森', '平尾台（福岡）— カルスト台地の絶景。一人でのんびり歩く'],
+      }
+    };
+    var purposeLabel = { onsen: '温泉一人旅', gourmet: 'グルメ一人旅', history: '歴史一人旅', scenic: '絶景一人旅' }[purpose] || '一人旅';
+    var spots = [];
+    var purposeData = soloData[purpose || 'onsen'];
+    if (purposeData) spots = purposeData[origin] || purposeData['東京'];
+    if (!spots || !spots.length) spots = ['金沢（石川）— ひがし茶屋街をひとりじっくり', '道後温泉（愛媛）— 日本最古の湯。一人旅文化が根付く', '福岡— 屋台・ラーメンを一人で気軽に'];
+    return {
+      text: (origin ? '**' + origin + '発**・' : '') + '**' + purposeLabel + '**のおすすめです✈️\n\n' +
+        spots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') +
+        '\n\n一人泊OKな宿は比較ページから探せます。\n※宿泊予約リンクにはPR・アフィリエイトリンクを含みます。',
+      buttons: ['都道府県から探す|' + R() + 'pages/prefectures.html', '宿を比較する|' + R() + 'pages/booking.html', '↩ 別の旅を相談する']
+    };
+  }
+
+  function genFamilyFinal(slots) {
+    var origin = slots.origin;
+    var childAge = slots.childAge;
+    var familyData = {
+      infant: {
+        '東京': ['那須高原（栃木）— 広大な自然+牧場+温泉。ベビーカーOKの施設多数', '箱根（神奈川）— 1.5h。乗り物が多く幼児が喜ぶ', '伊豆シャボテン動物公園（静岡）— カピバラ×動物ふれあいが人気'],
+        '大阪': ['京都嵐山— 人力車+竹林。幼児連れでも観光しやすい', '神戸どうぶつ王国— 子供が楽しめるコンテンツ充実', '有馬温泉（兵庫）— 貸切風呂の宿が多く赤ちゃん連れに安心'],
+        '名古屋': ['名古屋港水族館— 国内最大級。イルカ×シャチが迫力満点', '志摩スペイン村（三重）— テーマパーク+温泉がセット', '明治村（愛知）— 広い敷地でベビーカーも快適'],
+        '福岡': ['長崎ハウステンボス— ベビーカーOK。広大な敷地で幼児も楽しめる', '阿蘇ファームランド（熊本）— 卵型コテージ×動物ふれあい', '指宿温泉（鹿児島）— 砂むし体験を見学するだけで子供も楽しい'],
+      },
+      elementary: {
+        '東京': ['日光（栃木）— 東照宮×華厳の滝×温泉。小学生に歴史と自然を同時に', '沖縄— 美ら海水族館+離島+マリン体験。思い出になる旅', '富士急ハイランド（山梨）— 絶叫アトラクション+富士五湖観光'],
+        '大阪': ['USJ（大阪）— ハリポタ×マリオ×名探偵コナン。1日では足りない', '伊勢志摩— 鳥羽水族館+伊勢神宮+海女さん体験', '城崎温泉（兵庫）— 外湯めぐり+山陰海岸の自然体験'],
+        '名古屋': ['鈴鹿サーキット（三重）— F1コース体験+遊園地+温泉', 'リトルワールド（愛知）— 世界の家と文化を体験。小学生向けに最適', '志摩スペイン村（三重）— テーマパーク+温泉+海産物'],
+        '福岡': ['長崎ハウステンボス— アトラクション充実。光のイベントが感動的', '阿蘇（熊本）— 火山活動を学べる絶景ドライブと牧場体験', '屋久島（鹿児島）— 縄文杉トレッキング（10歳〜推奨）。壮大な自然教育旅行'],
+      },
+      teen: {
+        '東京': ['京都— 修学旅行とは違う自分たちの視点で古都を再発見', '沖縄— 離島ダイビング×シュノーケル体験。本格的な海アクティビティ', '東京観光— 渋谷×秋葉原×築地。スマホと一緒に都市を体感'],
+        '大阪': ['広島— 平和学習×宮島×カキ料理。歴史を深く考える旅', '淡路島— ニジゲンノモリ×鳴門の渦潮×玉ねぎグルメ', '大阪— グルメ食べ歩き×ユニバ×通天閣'],
+        '名古屋': ['飛騨高山— 古い街並みと現代アートの融合。感性が刺激される旅', 'スキー・スノボ（白馬）— 中高生のスポーツ体験に最適', '長野— 上高地トレッキング+星空観察'],
+        '福岡': ['宮崎— サーフィン体験+地鶏炭火焼+日南海岸ドライブ', '奄美大島（鹿児島）— シュノーケル×マングローブカヌー×郷土料理', '長崎— 軍艦島クルーズ。廃墟×歴史に中高生が夢中になる'],
+      },
+      mixed: {
+        '東京': ['伊豆（静岡）— 海水浴×温泉×グルメ。全年齢が楽しめる万能リゾート', '那須高原— 牧場+温泉+アクティビティ。世代を超えて楽しめる', '鎌倉— 海+歴史+グルメ。ベビーカーから中高生まで対応できる'],
+        '大阪': ['USJ— 全年齢向けエリアが揃う。ミニオンパーク×ハリポタ×アトラクション', '城崎温泉— 外湯めぐりで家族のリフレッシュ。浜坂の松葉ガニも名物', '奈良公園— 鹿に触れる経験は年齢問わず喜ばれる'],
+        '名古屋': ['志摩スペイン村+伊勢神宮— テーマパーク×精神的な体験をセットで', '下呂温泉（岐阜）— 露天風呂+温泉街散策。全年齢で楽しめる', '名古屋城+名古屋めし— 1日で名古屋の全部を詰め込む'],
+        '福岡': ['阿蘇+由布院— 大自然の観光+温泉でリフレッシュ。全年齢向け定番ルート', '長崎ハウステンボス— 夜のイルミネーションは年齢問わず感動的', '宮崎+鹿児島— 南九州2県をドライブ旅。霧島温泉+高千穂+桜島'],
+      }
+    };
+    var ageLabel = { infant: '未就学児連れ', elementary: '小学生連れ', teen: '中高生連れ', mixed: '年齢バラバラの' }[childAge] || '';
+    var spots = [];
+    var ageData = familyData[childAge || 'elementary'];
+    if (ageData) spots = ageData[origin] || ageData['東京'];
+    if (!spots || !spots.length) spots = ['沖縄— 美ら海水族館+離島+マリン体験', '日光（栃木）— 東照宮×華厳の滝×温泉', 'USJ（大阪）— 全年齢が楽しめる定番テーマパーク'];
+    return {
+      text: (origin ? '**' + origin + '発**・' : '') + (ageLabel ? '**' + ageLabel + '**' : '**家族旅行**') + 'のおすすめです👨‍👩‍👧\n\n' +
+        spots.map(function(s, i) { return (i+1) + '. ' + s; }).join('\n') +
+        '\n\n宿は貸切風呂・子供メニューありの旅館が安心です。\n※宿泊予約リンクにはPR・アフィリエイトリンクを含みます。',
+      buttons: ['目的別の旅を見る|' + R() + 'pages/purpose.html', '宿を比較する|' + R() + 'pages/booking.html', '↩ 別の旅を相談する']
+    };
+  }
+
   function genCoupleFinal(slots) {
     var season = slots.season || 'autumn';
     var origin = slots.origin;
@@ -1379,7 +1509,7 @@ var NoaChat = (function() {
     }
 
     // ===== 初期選択肢フロー開始 =====
-    if (SESSION.chatState === 'idle' && SESSION.turnCount <= 3) {
+    if (SESSION.chatState === 'idle') {
       if (/温泉旅行がしたい|温泉に行き/.test(q)) {
         SESSION.chatState = 'onsen_origin';
         return { text: '温泉旅行、いいですね♨️\n\nどこから出発しますか？', buttons: ['東京', '大阪', '名古屋', '福岡', '北海道・札幌', 'その他'] };
@@ -1489,8 +1619,22 @@ var NoaChat = (function() {
       else if (/夏|6月|7月|8月/.test(q)) SESSION.slots.season = 'summer';
       else if (/秋|9月|10月|11月/.test(q)) SESSION.slots.season = 'autumn';
       else if (/冬|12月|1月|2月/.test(q)) SESSION.slots.season = 'winter';
+      var scenicSeasonLabel = { spring: '春', summer: '夏', autumn: '秋', winter: '冬' }[SESSION.slots.season] || '';
+      SESSION.chatState = 'scenic_origin';
+      return {
+        text: (scenicSeasonLabel ? '**' + scenicSeasonLabel + '**の絶景旅ですね🌄\n\n' : '') + 'どこから出発しますか？',
+        buttons: ['東京・関東', '大阪・関西', '名古屋・東海', '福岡・九州', '北海道・札幌', 'その他']
+      };
+    }
+
+    if (SESSION.chatState === 'scenic_origin') {
+      if (/東京|関東/.test(q)) SESSION.slots.origin = '東京';
+      else if (/大阪|関西/.test(q)) SESSION.slots.origin = '大阪';
+      else if (/名古屋|東海/.test(q)) SESSION.slots.origin = '名古屋';
+      else if (/福岡|九州/.test(q)) SESSION.slots.origin = '福岡';
+      else if (/北海道|札幌/.test(q)) SESSION.slots.origin = '北海道';
       SESSION.chatState = 'idle';
-      SESSION.intent = 'scenic';
+      return genScenicFinal(SESSION.slots);
     }
 
     if (SESSION.chatState === 'family_origin') {
@@ -1501,8 +1645,20 @@ var NoaChat = (function() {
       else if (/福岡|九州/.test(q)) fo = '福岡';
       if (fo) SESSION.slots.origin = fo;
       SESSION.slots.who = 'family';
+      SESSION.chatState = 'family_age';
+      return {
+        text: (fo ? '**' + fo + '発**ですね！\n\n' : '') + 'お子さんは何歳ごろですか？',
+        buttons: ['未就学児（0〜5歳）', '小学生（6〜12歳）', '中高生（13歳〜）', '年齢はバラバラ']
+      };
+    }
+
+    if (SESSION.chatState === 'family_age') {
+      if (/未就学|0〜5|0-5|幼児|赤ちゃん|乳幼児/.test(q)) SESSION.slots.childAge = 'infant';
+      else if (/小学生|6〜12|6-12/.test(q)) SESSION.slots.childAge = 'elementary';
+      else if (/中高生|13|中学|高校/.test(q)) SESSION.slots.childAge = 'teen';
+      else SESSION.slots.childAge = 'mixed';
       SESSION.chatState = 'idle';
-      SESSION.intent = 'family';
+      return genFamilyFinal(SESSION.slots);
     }
 
     if (SESSION.chatState === 'couple_season') {
@@ -1534,8 +1690,20 @@ var NoaChat = (function() {
       else if (/歴史|文化/.test(q)) SESSION.slots.purpose = 'history';
       else if (/自然|絶景/.test(q)) SESSION.slots.purpose = 'scenic';
       SESSION.slots.who = 'solo';
+      SESSION.chatState = 'solo_origin';
+      return {
+        text: 'いいですね🎒\n\nどこから出発しますか？',
+        buttons: ['東京・関東', '大阪・関西', '名古屋・東海', '福岡・九州', 'その他']
+      };
+    }
+
+    if (SESSION.chatState === 'solo_origin') {
+      if (/東京|関東/.test(q)) SESSION.slots.origin = '東京';
+      else if (/大阪|関西/.test(q)) SESSION.slots.origin = '大阪';
+      else if (/名古屋|東海/.test(q)) SESSION.slots.origin = '名古屋';
+      else if (/福岡|九州/.test(q)) SESSION.slots.origin = '福岡';
       SESSION.chatState = 'idle';
-      SESSION.intent = 'solo';
+      return genSoloFinal(SESSION.slots);
     }
 
     if (SESSION.chatState === 'nodecide_who') {
@@ -1591,6 +1759,28 @@ var NoaChat = (function() {
       if (result) return result;
     }
     return null;
+  }
+
+  function getPlaceholder() {
+    var map = {
+      onsen_origin: '出発地を入力（例: 東京、大阪）',
+      onsen_who: '誰と行くか教えてください',
+      gourmet_region: 'エリアを入力（例: 北海道、関西）',
+      gourmet_type: 'ジャンルを入力（例: 海鮮、麺料理）',
+      scenic_season: '時期を入力（例: 春、秋、11月）',
+      scenic_origin: '出発地を入力（例: 東京・関東）',
+      family_origin: '出発地を入力（例: 東京、大阪）',
+      family_age: 'お子さんの年齢を入力',
+      solo_purpose: '目的を入力（例: 温泉、グルメ）',
+      solo_origin: '出発地を入力（例: 東京、福岡）',
+      couple_season: '時期を入力（例: 春、冬）',
+      couple_origin: '出発地を入力（例: 大阪、名古屋）',
+      nodecide_who: '誰と行くか教えてください',
+      nodecide_season: '時期を入力（例: 秋、冬）',
+      budget_origin: '出発地を入力（例: 東京、大阪）',
+      budget_people: '人数を入力（例: 2人、3〜4人）',
+    };
+    return map[SESSION.chatState] || '旅の悩みを相談…';
   }
 
   /* ---------- マッチング ---------- */
@@ -1682,7 +1872,7 @@ var NoaChat = (function() {
       const label = parts[0];
       const url = parts[1] || null;
       const btn = document.createElement('button');
-      btn.className = 'chat-suggest-btn';
+      btn.className = url ? 'chat-suggest-btn chat-suggest-btn--link' : 'chat-suggest-btn';
       btn.textContent = label;
       if (url) {
         btn.addEventListener('click', () => { wrap.remove(); window.location.href = url; });
@@ -1743,6 +1933,9 @@ var NoaChat = (function() {
       inputEl.value = '';
       // 既存のサジェストを削除
       messagesEl.querySelectorAll('.chat-suggestions').forEach(el => el.remove());
+      // 初回送信時にクイックチップを非表示
+      var chipsEl = document.querySelector('.noa-fp-chips');
+      if (chipsEl) chipsEl.style.display = 'none';
       renderMessage(messagesEl, query, 'user');
       const typing = showTyping(messagesEl);
       await new Promise(r => setTimeout(r, 700 + Math.random() * 500));
@@ -1751,6 +1944,7 @@ var NoaChat = (function() {
       const text = (typeof result === 'string') ? result : result.text;
       const buttons = (typeof result === 'string') ? null : result.buttons;
       renderMessage(messagesEl, text, 'noa');
+      inputEl.placeholder = getPlaceholder();
       if (buttons && buttons.length) {
         renderSuggestionsWithLinks(messagesEl, inputEl, safeSend, buttons);
       } else {
