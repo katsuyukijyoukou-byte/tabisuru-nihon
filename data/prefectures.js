@@ -824,11 +824,11 @@ window.PREFECTURES_DATA = {
       { type: '手つかずの大自然が見たい', reason: '自然は奥松島・三陸海岸など海岸沿いが中心' },
     ],
     highlights: [
-      { name: '松島', type: '絶景・世界遺産級', desc: '日本三景の一つ。遊覧船で島々を巡る体験が定番', bestSeason: '春・秋', emoji: '🌊' },
+      { name: '松島', type: '絶景・世界遺産級', desc: '日本三景の一つ。遊覧船で島々を巡る体験が定番', bestSeason: '春・秋', emoji: '🌊', img: '../images/japan/miyagi/miyagi-matsushima-01.jpg' },
       { name: '瑞巌寺', type: '文化', desc: '伊達政宗が建立した臨済宗の名刹。国宝の本堂', bestSeason: '通年', emoji: '⛩️' },
       { name: '仙台城跡（青葉城）', type: '歴史', desc: '伊達政宗公の騎馬像と仙台市街の眺望', bestSeason: '通年', emoji: '🏯' },
       { name: '秋保温泉', type: '温泉', desc: '仙台から30分。「仙台の奥座敷」と呼ばれる名湯', bestSeason: '通年', emoji: '♨️' },
-      { name: '仙台七夕祭り', type: 'イベント', desc: '8月6〜8日。七夕飾りの量・質ともに日本最大級', bestSeason: '夏', emoji: '🎋' },
+      { name: '仙台七夕祭り', type: 'イベント', desc: '8月6〜8日。七夕飾りの量・質ともに日本最大級', bestSeason: '夏', emoji: '🎋', img: '../images/japan/miyagi/miyagi-tanabata-01.jpg' },
     ],
     onsens: [
       { name: '秋保温泉', desc: '仙台市内から30分。大型ホテルから小料理旅館まで揃う', suits: ['家族', 'カップル'] },
@@ -836,8 +836,8 @@ window.PREFECTURES_DATA = {
     ],
     gourmet: [
       { name: '牛タン', desc: '仙台発祥。炭火焼きで分厚く焼いた仙台式が本場', emoji: '🥩' },
-      { name: '牡蠣（三陸産）', desc: '三陸海岸の牡蠣は全国最高水準の濃厚さ', emoji: '🦪' },
-      { name: 'ずんだ餅', desc: '枝豆をすり潰した緑の餅。仙台の定番スイーツ', emoji: '🍡' },
+      { name: '牡蠣（三陸産）', desc: '三陸海岸の牡蠣は全国最高水準の濃厚さ', emoji: '🦪', img: '../images/japan/miyagi/miyagi-oyster-01.jpg' },
+      { name: 'ずんだ餅', desc: '枝豆をすり潰した緑の餅。仙台の定番スイーツ', emoji: '🍡', img: '../images/japan/miyagi/miyagi-zunda-01.jpg' },
       { name: 'はらこ飯', desc: '鮭の旨味が染みたご飯に鮭とイクラをのせた秋の郷土料理', emoji: '🍚' },
     ],
     specialties: [
@@ -849,6 +849,12 @@ window.PREFECTURES_DATA = {
       summer: '8月6〜8日：仙台七夕まつり',
       autumn: '10月：松島・奥松島の紅葉',
       winter: '12〜2月：三陸の牡蠣が旬・秋保温泉の雪見風呂',
+    },
+    seasonalImages: {
+      spring: '../images/japan/iwate/iwate-spring-sakura-01.jpg',
+      summer: '../images/japan/miyagi/miyagi-tanabata-01.jpg',
+      autumn: '../images/japan/aomori/aomori-towada-lake-01.jpg',
+      winter: '../images/japan/aomori/aomori-winter-01.jpg',
     },
     models: {
       oneDay: {
