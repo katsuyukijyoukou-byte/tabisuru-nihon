@@ -172,3 +172,11 @@ templates/prefecture.html?id=akita,観光:田沢湖,akita-tazawa-lake-01.jpg,田
 templates/prefecture.html?id=akita,季節:春,akita-spring-sakura-01.jpg,桜+赤い社殿（大阪の神社・春の代表シーン）,yes,approx,2026-06-28,Unsplash: photo-1617599136989-9d6c7035a0cc (Yusheng Deng)
 templates/prefecture.html?id=akita,季節:秋,iwate-autumn-temple-01.jpg,紅葉+五重塔（岩手から流用）,yes,approx,2026-06-28,流用: images/japan/iwate/iwate-autumn-temple-01.jpg
 templates/prefecture.html?id=akita,季節:冬,akita-nyutou-onsen-01.jpg,雪山麓の温泉宿（乳頭温泉風）,yes,approx,2026-06-28,既存ファイル（前セッション）
+yamagata,highlight-yamadera,yamagata-yamadera-01.jpg,山寺（立石寺）の石段と山門（秋・落ち葉）,yes,approximate,2026-06-28,撮影地はMt.Daisen/鳥取だが山寺の雰囲気を代表する石段+山門として採用
+yamagata,highlight-juhyo,yamagata-juhyo-01.jpg,蔵王温泉の樹氷（スノーモンスター）,yes,exact,2026-06-28,Unsplash pen_ash photo-1755083108214-53ba08b9c4b8 Zao Onsen確認
+yamagata,gourmet-wagyu,yamagata-wagyu-01.jpg,霜降り和牛（米沢牛イメージ）,yes,approximate,2026-06-28,Unsplash photo-1773902665665-0f3077aa9355 A5和牛セット
+yamagata,gourmet-cherry,yamagata-cherry-01.jpg,さくらんぼ（赤く熟した実・水滴），,yes,exact,2026-06-28,Unsplash photo-1593070322157-15d58e74c2d2 Anna Bratiychuk
+fukushima,highlight-ouchi-juku,fukushima-ouchi-juku-01.jpg,大内宿の茅葺き屋根の街並み（俯瞰）,yes,exact,2026-06-28,Unsplash photo-1628926867153-b6bad577f000 Shino Nakamura 大内宿入口確認
+fukushima,highlight-inawashiro,fukushima-inawashiro-01.jpg,紅葉と青い湖（猪苗代湖イメージ）,yes,approximate,2026-06-28,湖+紅葉の日本の秋景色として採用
+fukushima,gourmet-katsudon,fukushima-katsudon-01.jpg,カツ丼（ソースかつ丼の近似）,yes,approximate,2026-06-28,Unsplash photo-1765510295901-3aa756cc1471 Kouji Tsuru 卵とじカツ丼
+fukushima,seasonal-autumn,fukushima-autumn-lake-01.jpg,紅葉+和傘の女性（五色沼秋イメージ）,yes,approximate,2026-06-28,秋の湖畔・和装女性で五色沼の紅葉シーズンを表現

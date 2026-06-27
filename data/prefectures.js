@@ -1570,14 +1570,18 @@ window.PREFECTURES_DATA = {
     suitableFor:['カップル','家族','温泉好き'],
     notIdealFor:['都市観光派'],
     highlights:[
-      {name:'山寺（立石寺）',type:'文化',desc:'1000段以上の石段と松尾芭蕉の俳句「閑さや〜」の舞台',bestSeason:'春・秋',emoji:'⛩️'},
-      {name:'蔵王温泉・樹氷',type:'自然',desc:'冬の樹氷（スノーモンスター）は世界的に珍しい絶景',bestSeason:'冬',emoji:'🌨️'},
+      {name:'山寺（立石寺）',type:'文化',desc:'1000段以上の石段と松尾芭蕉の俳句「閑さや〜」の舞台',bestSeason:'春・秋',emoji:'⛩️',img:'../images/japan/yamagata/yamagata-yamadera-01.jpg'},
+      {name:'蔵王温泉・樹氷',type:'自然',desc:'冬の樹氷（スノーモンスター）は世界的に珍しい絶景',bestSeason:'冬',emoji:'🌨️',img:'../images/japan/yamagata/yamagata-juhyo-01.jpg'},
       {name:'出羽三山',type:'パワースポット',desc:'月山・羽黒山・湯殿山の三山。修験道の聖地',bestSeason:'夏',emoji:'⛰️'},
     ],
     onsens:[{name:'蔵王温泉',desc:'強酸性の硫黄泉。スキーとのセットが人気',suits:['カップル','友人グループ']},{name:'銀山温泉',desc:'大正ロマンの景観が美しい温泉街。夜の街灯が幻想的',suits:['カップル','写真好き']}],
-    gourmet:[{name:'米沢牛',desc:'日本三大和牛の一つ。霜降りの上品な旨み',emoji:'🥩'},{name:'山形そば',desc:'板そば・冷たいそば。かみのやま・天童が有名',emoji:'🍜'},{name:'さくらんぼ',desc:'佐藤錦を中心に全国生産の7割以上',emoji:'🍒'}],
+    gourmet:[{name:'米沢牛',desc:'日本三大和牛の一つ。霜降りの上品な旨み',emoji:'🥩',img:'../images/japan/yamagata/yamagata-wagyu-01.jpg'},{name:'山形そば',desc:'板そば・冷たいそば。かみのやま・天童が有名',emoji:'🍜'},{name:'さくらんぼ',desc:'佐藤錦を中心に全国生産の7割以上',emoji:'🍒',img:'../images/japan/yamagata/yamagata-cherry-01.jpg'}],
     specialties:[{name:'将棋駒',desc:'天童市が全国生産の9割。工人の手彫り駒が逸品',emoji:'♟️'}],
     seasonal:{spring:'6月：さくらんぼ狩り',summer:'7月〜8月：花笠まつり（8月5〜7日）',autumn:'11月：芋煮会シーズン',winter:'1〜3月：蔵王の樹氷'},
+    seasonalImages:{
+      spring:'../images/japan/yamagata/yamagata-cherry-01.jpg',
+      winter:'../images/japan/yamagata/yamagata-juhyo-01.jpg',
+    },
     hiddenGems: [
       { name: '元滝伏流水', desc: '鳥海山の雪解け水が苔むした岩肌から滲み出す神秘的な滝。観光客が少なく幻想的な写真が撮れる', type: '秘境', emoji: '💧' },
       { name: '肘折温泉', desc: '開湯1200年の秘湯。山深い谷間に昔ながらの温泉旅館が並ぶ。朝市が名物', type: '温泉', emoji: '♨️' },
@@ -1621,13 +1625,16 @@ window.PREFECTURES_DATA = {
     notIdealFor:['短時間旅行'],
     highlights:[
       {name:'鶴ヶ城（会津若松城）',type:'文化',desc:'日本有数の復元天守。幕末・戊辰戦争の歴史が凝縮',bestSeason:'春・秋',emoji:'🏯'},
-      {name:'大内宿',type:'文化',desc:'茅葺き屋根の宿場町。江戸時代の街並みが現存',bestSeason:'春・夏',emoji:'🏘️'},
-      {name:'磐梯山・猪苗代湖',type:'自然',desc:'日本第4位の広さを誇る湖と火山の絶景',bestSeason:'夏',emoji:'🏔️'},
+      {name:'大内宿',type:'文化',desc:'茅葺き屋根の宿場町。江戸時代の街並みが現存',bestSeason:'春・夏',emoji:'🏘️',img:'../images/japan/fukushima/fukushima-ouchi-juku-01.jpg'},
+      {name:'磐梯山・猪苗代湖',type:'自然',desc:'日本第4位の広さを誇る湖と火山の絶景',bestSeason:'夏',emoji:'🏔️',img:'../images/japan/fukushima/fukushima-inawashiro-01.jpg'},
     ],
     onsens:[{name:'東山温泉',desc:'会津若松市街地から近い老舗温泉。野口英世ゆかりの地',suits:['歴史好き','カップル']},{name:'裏磐梯',desc:'磐梯山噴火で生まれた五色沼の周辺に点在する温泉群',suits:['自然好き']}],
-    gourmet:[{name:'ソースかつ丼',desc:'会津名物。甘辛ソースをかけた揚げたてのかつ',emoji:'🍱'},{name:'棒たら煮',desc:'乾燥させた鱈を甘辛く煮た会津の家庭料理',emoji:'🐟'}],
+    gourmet:[{name:'ソースかつ丼',desc:'会津名物。甘辛ソースをかけた揚げたてのかつ',emoji:'🍱',img:'../images/japan/fukushima/fukushima-katsudon-01.jpg'},{name:'棒たら煮',desc:'乾燥させた鱈を甘辛く煮た会津の家庭料理',emoji:'🐟'}],
     specialties:[{name:'赤べこ',desc:'会津地方の張り子玩具。福と健康を呼ぶお守り',emoji:'🐂'}],
     seasonal:{spring:'4月：鶴ヶ城の桜',summer:'7月：大内宿の夏祭り',autumn:'10月：五色沼の紅葉',winter:'2月：会津絵ろうそくまつり'},
+    seasonalImages:{
+      autumn:'../images/japan/fukushima/fukushima-autumn-lake-01.jpg',
+    },
     hiddenGems: [
       { name: '五色沼湖沼群', desc: '磐梯山の噴火で生まれた青・緑・赤など色が異なる沼が連なる。ハイキングコースから全沼を巡れる', type: '自然', emoji: '🌊' },
       { name: '塔のへつり', desc: '百万年もかけて浸食・風化した断崖が川沿いに続く奇景。国の天然記念物で入場無料', type: '自然', emoji: '⛰️' },
