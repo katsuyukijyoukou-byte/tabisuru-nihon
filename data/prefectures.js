@@ -1432,12 +1432,18 @@ window.PREFECTURES_DATA = {
     highlights:[
       {name:'平泉・中尊寺',type:'世界遺産',desc:'金色堂で有名な世界遺産。奥州藤原氏の栄華を伝える',bestSeason:'秋',emoji:'⛩️'},
       {name:'三陸海岸',type:'自然',desc:'リアス式海岸と碧い海。龍泉洞・浄土ヶ浜が絶景',bestSeason:'夏',emoji:'🌊'},
-      {name:'遠野',type:'文化',desc:'河童伝説・民話の里。柳田國男「遠野物語」の舞台',bestSeason:'秋',emoji:'🏘️'},
+      {name:'遠野',type:'文化',desc:'河童伝説・民話の里。柳田國男「遠野物語」の舞台',bestSeason:'秋',emoji:'🏘️',img:'../images/japan/iwate/iwate-tono-01.jpg'},
     ],
     onsens:[{name:'花巻温泉',desc:'宮沢賢治ゆかりの地にある温泉。松の湯・山の神温泉など多数',suits:['カップル','歴史好き']}],
     gourmet:[{name:'わんこそば',desc:'次々とそばを盛られる名物体験。花巻・盛岡が本場',emoji:'🍜'},{name:'盛岡冷麺',desc:'コシの強い麺とキムチ・スイカの独特な組み合わせ',emoji:'🍱'}],
     specialties:[{name:'南部鉄器',desc:'200年の歴史を持つ鋳鉄工芸品。急須・フライパン',emoji:'🫖'}],
     seasonal:{spring:'4月：北上川千本桜（北上展勝地）',summer:'8月：盛岡さんさ踊り',autumn:'10月：平泉の紅葉',winter:'2月：遠野雪まつり'},
+    seasonalImages:{
+      spring:'../images/japan/iwate/iwate-spring-sakura-01.jpg',
+      summer:'../images/japan/iwate/iwate-summer-sansa-01.jpg',
+      autumn:'../images/japan/iwate/iwate-autumn-temple-01.jpg',
+      winter:'../images/japan/aomori/aomori-winter-01.jpg',
+    },
     access:{fromTokyo:'新幹線（はやぶさ）で約2時間10分（盛岡）',fromOsaka:'新幹線で約3時間50分',tip:'三陸へはレンタカーが便利'},
     booking:{recommended:['じゃらん','楽天トラベル'],tip:'夏の三陸・お盆は早めに'},
     hiddenGems: [
