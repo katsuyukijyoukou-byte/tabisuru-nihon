@@ -1738,7 +1738,7 @@ window.PREFECTURES_DATA = {
     suitableFor:['家族','歴史好き','カップル'],
     notIdealFor:['都市派'],
     highlights:[
-      {name:'日光東照宮',type:'世界遺産',desc:'徳川家康を祀る絢爛豪華な社殿。「見猿言わ猿聞か猿」で有名',bestSeason:'春・秋',emoji:'⛩️'},
+      {name:'日光東照宮',type:'世界遺産',desc:'徳川家康を祀る絢爛豪華な社殿。「見猿言わ猿聞か猿」で有名',bestSeason:'春・秋',emoji:'⛩️',img:'../images/japan/tochigi/tochigi-nikko-01.jpg'},
       {name:'華厳の滝',type:'自然',desc:'日本三名瀑の一つ。高さ97mの壮大な滝',bestSeason:'秋',emoji:'💧'},
       {name:'那須高原',type:'自然',desc:'牧場・温泉・ハイキングが楽しめる高原リゾート',bestSeason:'夏・秋',emoji:'🌿'},
     ],
@@ -1746,6 +1746,9 @@ window.PREFECTURES_DATA = {
     gourmet:[{name:'宇都宮餃子',desc:'日本の餃子の聖地。来らっせ（宇都宮市内）で食べ比べ',emoji:'🥟'},{name:'日光湯葉',desc:'日光の名産。豆乳を加熱して薄皮をすくい取った高級食材',emoji:'🥢'}],
     specialties:[{name:'日光彫り',desc:'ひっかき刀で彫る日光独特の漆工芸',emoji:'🎨'}],
     seasonal:{spring:'4月：日光東照宮の春例大祭',summer:'8月：那須高原のひまわり',autumn:'11月：いろは坂の紅葉（日光）',winter:'冬：日光の雪景色'},
+    seasonalImages:{
+      winter:'../images/japan/tochigi/tochigi-kinugawa-01.jpg',
+    },
     hiddenGems: [
       { name: '日光・奥日光湿原（戦場ヶ原）', desc: '中禅寺湖の奥に広がる高層湿原。初夏の野草と秋の紅葉が絶景。温泉ヶ岳・男体山を眺めながらのハイキング', type: '自然', emoji: '🌿' },
       { name: '那珂川・鮎釣り（茂木）', desc: '日本有数の鮎の清流。初夏の友釣り体験や鮎料理が楽しめる。那珂川のカヌー下りも人気', type: '自然', emoji: '🎣' },
