@@ -1899,7 +1899,7 @@ window.PREFECTURES_DATA = {
     suitableFor:['カップル','友人グループ','写真好き'],
     notIdealFor:['交通至便を求める'],
     highlights:[
-      {name:'富士五湖（河口湖）',type:'自然',desc:'富士山の絶景スポット。湖面に映る逆さ富士が人気',bestSeason:'春・秋',emoji:'🗻'},
+      {name:'富士五湖（河口湖）',type:'自然',desc:'富士山の絶景スポット。湖面に映る逆さ富士が人気',bestSeason:'春・秋',emoji:'🗻',img:'../images/japan/yamanashi/yamanashi-kawaguchiko-01.jpg'},
       {name:'昇仙峡',type:'自然',desc:'日本有数の渓谷美。奇岩・滝・パワースポット',bestSeason:'秋',emoji:'⛰️'},
       {name:'身延山久遠寺',type:'文化',desc:'枝垂れ桜の名所。日蓮宗の総本山',bestSeason:'春',emoji:'🌸'},
     ],
@@ -1907,6 +1907,9 @@ window.PREFECTURES_DATA = {
     gourmet:[{name:'ほうとう',desc:'太い平打ち麺と味噌汁が合わさった郷土鍋料理',emoji:'🍲'},{name:'山梨ワイン',desc:'勝沼（甲州市）が主産地。白ワイン（甲州種）が有名',emoji:'🍷'},{name:'信玄餅',desc:'黒蜜・きな粉と餅の黄金コンビ',emoji:'🍡'}],
     specialties:[{name:'ほうとう',desc:'山梨の代表的な郷土料理セット土産として人気',emoji:'🍲'}],
     seasonal:{spring:'3月下旬：桃の花（一宮・御坂）、4月：富士芝桜まつり',summer:'7〜9月：富士山登山シーズン',autumn:'11月：紅葉＋富士山（精進湖）',winter:'12〜2月：ダイヤモンド富士（山中湖）'},
+    seasonalImages:{
+      autumn:'../images/japan/yamanashi/yamanashi-kawaguchiko-01.jpg',
+    },
     hiddenGems: [
       { name: '精進湖', desc: '富士五湖の中で最も静かな湖。湖岸から「子抱き富士」と呼ばれる富士山と小御岳のシルエットが見える穴場ビューポイント', type: '絶景', emoji: '🗻' },
       { name: '西沢渓谷', desc: '日本屈指の渓谷美。七ツ釜五段の滝など大小の滝が連なるハイキングコース。紅葉シーズンは特に美しい', type: '自然', emoji: '💧' },
