@@ -2390,12 +2390,15 @@ window.PREFECTURES_DATA = {
     highlights:[
       {name:'萩城下町',type:'文化',desc:'吉田松陰・高杉晋作ゆかりの幕末の城下町。世界遺産',bestSeason:'春・秋',emoji:'🏯'},
       {name:'秋芳洞',type:'自然',desc:'日本最大の鍾乳洞。長さ8.8kmの地下宮殿',bestSeason:'通年',emoji:'🕳️'},
-      {name:'角島大橋',type:'自然',desc:'コバルトブルーの海に架かる全長1780mの絶景橋',bestSeason:'夏',emoji:'🌊'},
+      {name:'角島大橋',type:'自然',desc:'コバルトブルーの海に架かる全長1780mの絶景橋',bestSeason:'夏',emoji:'🌊',img:'../images/japan/yamaguchi/yamaguchi-tsunoshima-01.jpg'},
     ],
     onsens:[{name:'湯田温泉',desc:'山口市内の温泉地。中原中也ゆかりの地',suits:['歴史好き','カップル']}],
     gourmet:[{name:'フグ（ふく）料理',desc:'下関が日本最大のフグ産地。刺身・鍋・唐揚げ',emoji:'🐡'},{name:'瓦そば',desc:'熱した瓦の上でそばを焼く下関・川棚温泉の名物',emoji:'🍜'}],
     specialties:[{name:'萩焼',desc:'茶道愛好家に人気の陶磁器。「一楽二萩三唐津」といわれる名器',emoji:'🏺'}],
     seasonal:{spring:'3〜4月：錦帯橋の桜',summer:'7〜8月：角島の海水浴',autumn:'11月：萩の紅葉',winter:'12〜2月：下関のふくの旬'},
+    seasonalImages:{
+      summer:'../images/japan/yamaguchi/yamaguchi-tsunoshima-01.jpg',
+    },
     hiddenGems: [
       { name: '角島大橋ドライブ', desc: '全長1780mのコバルトブルーの海に架かる橋。車で走ると沖縄かと見紛う絶景。CMやPV撮影地としても人気', type: '絶景', emoji: '🌊' },
       { name: '萩・菊屋家住宅（豪商の邸宅）', desc: '江戸時代初期の豪商の屋敷が完全保存。藩主も宿泊した格式ある建物で萩城下町の精華', type: '歴史', emoji: '🏯' },
@@ -2437,7 +2440,7 @@ window.PREFECTURES_DATA = {
     suitableFor:['アドベンチャー派','カップル','友人グループ'],
     notIdealFor:['都市観光派'],
     highlights:[
-      {name:'鳴門の渦潮',type:'自然',desc:'世界三大潮流の一つ。干満の差で生まれる迫力の渦',bestSeason:'春（3〜4月）',emoji:'🌊'},
+      {name:'鳴門の渦潮',type:'自然',desc:'世界三大潮流の一つ。干満の差で生まれる迫力の渦',bestSeason:'春（3〜4月）',emoji:'🌊',img:'../images/japan/tokushima/tokushima-naruto-01.jpg'},
       {name:'祖谷のかずら橋',type:'自然',desc:'シラクチカズラで編んだ長さ45mの吊り橋。国の重要有形民俗文化財',bestSeason:'秋',emoji:'🌿'},
       {name:'阿波おどり',type:'文化',desc:'8月12〜15日に徳島市内で開催。400年の歴史を誇る踊り',bestSeason:'夏',emoji:'💃'},
     ],
@@ -2445,6 +2448,9 @@ window.PREFECTURES_DATA = {
     gourmet:[{name:'徳島ラーメン',desc:'豚骨醤油スープに生卵が定番。甘辛い濃厚な味わい',emoji:'🍜'},{name:'なると金時',desc:'全国ブランドのサツマイモ。甘くほくほく',emoji:'🍠'}],
     specialties:[{name:'大谷焼',desc:'藍染とともに徳島の伝統工芸',emoji:'🏺'}],
     seasonal:{spring:'3月：鳴門の渦潮（大潮時）',summer:'8月12〜15日：阿波おどり',autumn:'10〜11月：大歩危・祖谷の紅葉',winter:'雪景色の祖谷かずら橋'},
+    seasonalImages:{
+      spring:'../images/japan/tokushima/tokushima-naruto-01.jpg',
+    },
     hiddenGems: [
       { name: '祖谷・奥祖谷二重かずら橋', desc: '観光客が少ない奥祖谷の二重かずら橋（男橋・女橋）。一本橋（野猿）も架かる秘境感が桁違い', type: '自然', emoji: '🌿' },
       { name: '大歩危・小歩危渓谷（吉野川）', desc: '1億7500万年前の岩が吉野川に削られた絶壁の渓谷。遊覧船から見る岩の造形が圧巻', type: '自然', emoji: '🏞️' },
@@ -2537,12 +2543,15 @@ window.PREFECTURES_DATA = {
     highlights:[
       {name:'道後温泉本館',type:'温泉',desc:'3000年の歴史を持つ日本最古の温泉地。千と千尋のモデルとも',bestSeason:'通年',emoji:'♨️'},
       {name:'しまなみ海道',type:'自然',desc:'本州〜四国を結ぶ橋と島のサイクリングロード（70km）',bestSeason:'春・秋',emoji:'🚴'},
-      {name:'松山城',type:'文化',desc:'現存天守12城の一つ。市内中心から見上げる山城',bestSeason:'春',emoji:'🏯'},
+      {name:'松山城',type:'文化',desc:'現存天守12城の一つ。市内中心から見上げる山城',bestSeason:'春',emoji:'🏯',img:'../images/japan/ehime/ehime-matsuyama-01.jpg'},
     ],
     onsens:[{name:'道後温泉',desc:'アルカリ性単純泉。美肌効果。本館・椿の湯・飛鳥乃湯がある',suits:['カップル','一人旅','温泉好き']}],
     gourmet:[{name:'鯛めし（宇和島風・松山風）',desc:'新鮮な鯛を使った二種類の鯛めし。日本の旅行グルメ最高峰',emoji:'🐟'},{name:'じゃこ天',desc:'小魚のすり身を揚げた練り物。そのまま・うどんに入れても',emoji:'🍢'},{name:'今治焼き豚玉子飯',desc:'豚の角煮と目玉焼き乗せご飯。今治のソウルフード',emoji:'🍱'}],
     specialties:[{name:'今治タオル',desc:'世界最高水準の吸水性。ブランドギフトとして人気',emoji:'🛁'}],
     seasonal:{spring:'4月：松山城の桜',summer:'7〜8月：しまなみ海道のサイクリング',autumn:'11月：しまなみ海道の秋景色',winter:'冬のみかん狩り・道後温泉'},
+    seasonalImages:{
+      spring:'../images/japan/ehime/ehime-matsuyama-01.jpg',
+    },
     hiddenGems: [
       { name: '道後温泉・飛鳥乃湯泉', desc: '2019年開業の飛鳥・奈良時代をモチーフにした新しい道後温泉の施設。本館より空いていて快適', type: '温泉', emoji: '♨️' },
       { name: 'しまなみ海道・多々羅しまなみ公園', desc: '多々羅大橋のふもとのサイクリスト聖地。鐘を鳴らして旅の安全を祈願するのが定番儀式', type: '自然', emoji: '🚴' },
