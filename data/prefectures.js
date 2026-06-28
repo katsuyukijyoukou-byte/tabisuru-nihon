@@ -1952,14 +1952,17 @@ window.PREFECTURES_DATA = {
     suitableFor:['家族','カップル','ドライブ好き'],
     notIdealFor:['短時間旅行'],
     highlights:[
-      {name:'伊豆半島',type:'自然',desc:'温泉・海・断崖絶壁のリゾート。下田・修善寺・熱海',bestSeason:'春・夏',emoji:'🌊'},
-      {name:'富士山（南麓）',type:'自然',desc:'朝霧高原・白糸の滝などから見る富士の絶景',bestSeason:'春・秋',emoji:'🗻'},
+      {name:'伊豆半島',type:'自然',desc:'温泉・海・断崖絶壁のリゾート。下田・修善寺・熱海',bestSeason:'春・夏',emoji:'🌊',img:'../images/japan/shizuoka/shizuoka-izu-01.jpg'},
+      {name:'富士山（南麓）',type:'自然',desc:'朝霧高原・白糸の滝などから見る富士の絶景',bestSeason:'春・秋',emoji:'🗻',img:'../images/japan/shizuoka/shizuoka-fuji-01.jpg'},
       {name:'日本平',type:'自然',desc:'駿河湾と富士山を一望できる丘陵地帯。久能山東照宮も',bestSeason:'通年',emoji:'⛰️'},
     ],
     onsens:[{name:'熱海温泉',desc:'東京から最も近い温泉地。海と温泉のリゾート',suits:['カップル','家族']},{name:'修善寺温泉',desc:'伊豆最古の温泉地。竹林と独鈷の湯が幻想的',suits:['カップル','歴史好き']}],
     gourmet:[{name:'桜エビ',desc:'由比漁港の桜エビ。春・秋の生桜エビかき揚げが絶品',emoji:'🦐'},{name:'うなぎ',desc:'浜松・浜名湖産の白焼き・蒲焼き。日本一のうなぎどころ',emoji:'🐍'},{name:'お茶（本山茶・掛川茶）',desc:'静岡は全国一の茶の産地',emoji:'🍵'}],
     specialties:[{name:'登呂遺跡の土産品',desc:'弥生時代の集落跡ゆかりの工芸品',emoji:'🏺'}],
     seasonal:{spring:'3月：河津桜（伊豆・河津）、4〜5月：茶摘みシーズン',summer:'7〜8月：伊豆の海水浴',autumn:'11月：みかん狩り・紅葉',winter:'12月〜2月：熱海の梅園'},
+    seasonalImages:{
+      spring:'../images/japan/shizuoka/shizuoka-fuji-01.jpg',
+    },
     hiddenGems: [
       { name: '三保の松原', desc: '世界文化遺産「富士山」の構成資産。羽衣伝説ゆかりの松林越しに見える富士山は絵画のような絶景', type: '絶景', emoji: '🗻' },
       { name: '堂ヶ島（西伊豆）', desc: '海の侵食で生まれた奇岩・洞窟群。遊覧船で洞窟内を進む体験と、天窓から光が差す「天窓洞」が幻想的', type: '自然', emoji: '🌊' },
