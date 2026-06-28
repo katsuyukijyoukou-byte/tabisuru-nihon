@@ -2109,7 +2109,7 @@ window.PREFECTURES_DATA = {
     suitableFor:['歴史好き','カップル','家族'],
     notIdealFor:['海・リゾート志向'],
     highlights:[
-      {name:'彦根城',type:'文化',desc:'国宝の天守が現存する稀少な城。ひこにゃんで有名',bestSeason:'春',emoji:'🏯'},
+      {name:'彦根城',type:'文化',desc:'国宝の天守が現存する稀少な城。ひこにゃんで有名',bestSeason:'春',emoji:'🏯',img:'../images/japan/shiga/shiga-hikone-01.jpg'},
       {name:'比叡山延暦寺',type:'文化',desc:'世界遺産。天台宗の総本山。標高848mの山上に広大な境内',bestSeason:'秋',emoji:'⛩️'},
       {name:'近江八幡',type:'文化',desc:'安土桃山時代の城下町。水郷地帯と赤レンガの町並み',bestSeason:'春',emoji:'🏘️'},
     ],
@@ -2117,6 +2117,9 @@ window.PREFECTURES_DATA = {
     gourmet:[{name:'近江牛',desc:'日本三大和牛の一つ。しっとり柔らかい肉質',emoji:'🥩'},{name:'鮒寿司',desc:'琵琶湖固有種のニゴロブナを使った発酵ずし。強烈な風味',emoji:'🐟'},{name:'赤こんにゃく',desc:'三二酸化鉄で着色した近江八幡名物の赤いこんにゃく',emoji:'🫘'}],
     specialties:[{name:'信楽焼',desc:'日本六古窯の一つ。たぬきの置物で有名',emoji:'🏺'}],
     seasonal:{spring:'4月：彦根城の桜',summer:'7月：琵琶湖花火大会',autumn:'11月：比叡山の紅葉',winter:'12月：メタセコイア並木の紅葉（マキノ高原）'},
+    seasonalImages:{
+      spring:'../images/japan/shiga/shiga-hikone-01.jpg',
+    },
     hiddenGems: [
       { name: 'マキノ高原・メタセコイア並木', desc: '2.4kmにわたってメタセコイア500本が続く並木道。秋は黄金色・冬は雪景色と四季折々の絶景が楽しめる', type: '絶景', emoji: '🌲' },
       { name: '近江八幡・水郷めぐり', desc: '安土桃山時代に整備された水路をゆったり船でめぐる。葦の群生と城下町の景観が見事', type: '自然', emoji: '🚣' },
