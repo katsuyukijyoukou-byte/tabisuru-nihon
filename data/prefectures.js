@@ -501,8 +501,8 @@ window.PREFECTURES_DATA = {
     ],
     notIdealFor: [],
     highlights: [
-      { name: '宮島・厳島神社', type: '世界遺産', desc: '海に浮かぶ大鳥居。干潮時は歩いて近づける', bestSeason: '通年', emoji: '⛩️' },
-      { name: '原爆ドーム・平和記念公園', type: '世界遺産', desc: '平和への誓いを刻む世界遺産', bestSeason: '通年', emoji: '🕊️' },
+      { name: '宮島・厳島神社', type: '世界遺産', desc: '海に浮かぶ大鳥居。干潮時は歩いて近づける', bestSeason: '通年', emoji: '⛩️', img: '../images/japan/hiroshima/hiroshima-miyajima-01.jpg' },
+      { name: '原爆ドーム・平和記念公園', type: '世界遺産', desc: '平和への誓いを刻む世界遺産', bestSeason: '通年', emoji: '🕊️', img: '../images/japan/hiroshima/hiroshima-peace-01.jpg' },
       { name: 'しまなみ海道', type: 'アクティビティ', desc: '尾道〜今治を繋ぐ世界的サイクリングロード', bestSeason: '春・秋', emoji: '🚴' },
       { name: '尾道', type: '歴史・文化', desc: '坂の街と猫の街。昭和の情緒が残る港町', bestSeason: '通年', emoji: '🐱' },
       { name: '大久野島', type: '穴場', desc: '数百羽のうさぎが島内を自由に歩き回る', bestSeason: '春〜秋', emoji: '🐰' },
@@ -528,6 +528,9 @@ window.PREFECTURES_DATA = {
       summer: '7〜8月：宮島水中花火大会（8月）。しまなみ海道サイクリングにも最適',
       autumn: '11月：弥山の紅葉と牡蠣シーズン開幕。宮島の紅葉は特に美しい',
       winter: '12〜3月：牡蠣が最も旨い季節。生牡蠣・カキフライ・牡蠣鍋を堪能',
+    },
+    seasonalImages: {
+      summer: '../images/japan/hiroshima/hiroshima-miyajima-01.jpg',
     },
     hiddenGems: [
       { name: '大久野島（うさぎ島）', desc: '竹原から船で15分。700羽以上の野生のウサギが島内を自由に歩き回る。世界各国のメディアが取り上げる珍スポット', type: '自然', emoji: '🐰' },
