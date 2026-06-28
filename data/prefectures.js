@@ -2177,13 +2177,17 @@ window.PREFECTURES_DATA = {
     notIdealFor:['アクセス重視'],
     highlights:[
       {name:'熊野古道',type:'世界遺産',desc:'ユネスコ世界遺産の巡礼路。那智大社・熊野本宮大社が特に有名',bestSeason:'春・秋',emoji:'🌿'},
-      {name:'高野山',type:'文化',desc:'空海が開いた真言密教の聖地。奥之院の石畳が神秘的',bestSeason:'秋・春',emoji:'⛩️'},
-      {name:'那智の滝',type:'自然',desc:'日本一の落差（133m）の滝。那智大社と一体の景観',bestSeason:'通年',emoji:'💧'},
+      {name:'高野山',type:'文化',desc:'空海が開いた真言密教の聖地。奥之院の石畳が神秘的',bestSeason:'秋・春',emoji:'⛩️',img:'../images/japan/wakayama/wakayama-koyasan-01.jpg'},
+      {name:'那智の滝',type:'自然',desc:'日本一の落差（133m）の滝。那智大社と一体の景観',bestSeason:'通年',emoji:'💧',img:'../images/japan/wakayama/wakayama-nachi-01.jpg'},
     ],
     onsens:[{name:'白浜温泉',desc:'白い砂浜と紺碧の海に面した温泉地。崎の湯は海に突き出た露天風呂',suits:['カップル','家族']},{name:'龍神温泉',desc:'日本三美人の湯の一つ。美肌効果で有名',suits:['女性','カップル']}],
     gourmet:[{name:'マグロ（勝浦）',desc:'本州最大のマグロ水揚げ港。刺身・ひつまぶしが旨い',emoji:'🐟'},{name:'熊野牛',desc:'日本でも珍しい放牧された和牛',emoji:'🥩'},{name:'みかん（有田）',desc:'有田みかんは全国ブランド。温暖な気候が育む甘さ',emoji:'🍊'}],
     specialties:[{name:'紀州梅（南高梅）',desc:'梅干しの最高峰。塩だけで漬けた昔ながらの梅が絶品',emoji:'🟣'}],
     seasonal:{spring:'2〜3月：南部梅林（梅まつり）',summer:'7〜8月：白浜の海水浴',autumn:'11月：熊野古道の紅葉',winter:'12月：高野山の雪景色'},
+    seasonalImages:{
+      autumn:'../images/japan/wakayama/wakayama-nachi-01.jpg',
+      winter:'../images/japan/wakayama/wakayama-koyasan-01.jpg',
+    },
     hiddenGems: [
       { name: '那智勝浦・勝浦朝市', desc: '400年以上続く早朝の朝市。新鮮なマグロや干物・干しシイタケが揃う。地元の漁師が直接売る昔ながらの市場', type: 'グルメ', emoji: '🐟' },
       { name: '熊野古道・中辺路（なかへち）', desc: '最も多くの参拝者が歩いた巡礼路。苔むした石畳と杉の巨木が続く神秘的な山道', type: '自然', emoji: '🌿' },
@@ -2225,7 +2229,7 @@ window.PREFECTURES_DATA = {
     suitableFor:['カップル','友人グループ','アドベンチャー派'],
     notIdealFor:['都市観光派'],
     highlights:[
-      {name:'鳥取砂丘',type:'自然',desc:'日本最大の砂丘。パラグライダー・ラクダ乗りも楽しめる',bestSeason:'通年',emoji:'🏜️'},
+      {name:'鳥取砂丘',type:'自然',desc:'日本最大の砂丘。パラグライダー・ラクダ乗りも楽しめる',bestSeason:'通年',emoji:'🏜️',img:'../images/japan/tottori/tottori-dunes-01.jpg'},
       {name:'水木しげるロード',type:'文化',desc:'鬼太郎・ゲゲゲのキャラクターが140体以上並ぶ',bestSeason:'通年',emoji:'👹'},
       {name:'大山',type:'自然',desc:'中国地方最高峰（1729m）。ブナ林の紅葉が絶美',bestSeason:'秋',emoji:'⛰️'},
     ],
@@ -2233,6 +2237,9 @@ window.PREFECTURES_DATA = {
     gourmet:[{name:'松葉蟹（ズワイガニ）',desc:'11月〜3月が旬。境港水揚げの松葉蟹は日本一の品質',emoji:'🦀'},{name:'とっとりバーガーフェスタ',desc:'地元食材を使った個性派バーガーが有名',emoji:'🍔'}],
     specialties:[{name:'鳥取砂丘コナン空港限定グッズ',desc:'名探偵コナンの作者青山剛昌の出身地',emoji:'🕵️'}],
     seasonal:{spring:'4月：打吹公園の桜（倉吉）',summer:'8月：鳥取砂丘の夜間開放',autumn:'10月：大山の紅葉',winter:'11〜3月：松葉蟹シーズン'},
+    seasonalImages:{
+      summer:'../images/japan/tottori/tottori-dunes-01.jpg',
+    },
     hiddenGems: [
       { name: '砂の美術館（鳥取市）', desc: '世界のトップ砂像彫刻家が制作する砂の彫刻美術館。毎年テーマが変わり国際的な砂像が圧巻', type: '文化', emoji: '🏜️' },
       { name: '境港・魚市場（夜明け競り）', desc: '日本海の松葉ガニ・アジ・サバの水揚げが盛んな境港。早朝の競りを一般開放している日もある', type: 'グルメ', emoji: '🦀' },
