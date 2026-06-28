@@ -2281,7 +2281,7 @@ window.PREFECTURES_DATA = {
     suitableFor:['カップル','歴史好き','一人旅'],
     notIdealFor:['アクセス重視'],
     highlights:[
-      {name:'出雲大社',type:'文化',desc:'縁結びの神・大国主命を祀る日本最古の大社。大しめ縄が迫力満点',bestSeason:'通年',emoji:'⛩️'},
+      {name:'出雲大社',type:'文化',desc:'縁結びの神・大国主命を祀る日本最古の大社。大しめ縄が迫力満点',bestSeason:'通年',emoji:'⛩️',img:'../images/japan/shimane/shimane-izumo-01.jpg'},
       {name:'松江城',type:'文化',desc:'現存する国宝の天守。宍道湖の夕日との組み合わせが絶景',bestSeason:'通年',emoji:'🏯'},
       {name:'石見銀山',type:'世界遺産',desc:'江戸時代に世界の銀の3分の1を産出した巨大銀山',bestSeason:'春・秋',emoji:'⛏️'},
     ],
@@ -2289,6 +2289,9 @@ window.PREFECTURES_DATA = {
     gourmet:[{name:'のどぐろ（赤むつ）',desc:'山陰が誇る高級魚。脂の乗りが違う',emoji:'🐟'},{name:'出雲そば',desc:'黒っぽい色が特徴の割子そば。薬味が豊富',emoji:'🍜'},{name:'宍道湖のシジミ',desc:'全国シェアの約7割。みそ汁の定番',emoji:'🐚'}],
     specialties:[{name:'勾玉',desc:'古代から伝わる宝飾品。縁結びのお守りとして人気',emoji:'💎'}],
     seasonal:{spring:'4月：松江城の桜',summer:'7月：出雲大社の例大祭',autumn:'旧暦10月（神無月）：出雲は神在月として全国の神が集まる',winter:'11〜12月：宍道湖の水鳥'},
+    seasonalImages:{
+      summer:'../images/japan/shimane/shimane-izumo-01.jpg',
+    },
     hiddenGems: [
       { name: '稲佐の浜（出雲市）', desc: '旧暦10月に全国の神々が集まるとされる神聖な浜。夕日が沈む黄金色の海が美しい。弁天島が立つ絵になる景観', type: '文化', emoji: '🌅' },
       { name: '温泉津温泉（おんせんつ）', desc: '石見銀山のそばにある江戸情緒が残る小さな温泉街。炭酸泉の元湯は200年以上変わらぬ趣', type: '温泉', emoji: '♨️' },
@@ -2330,7 +2333,7 @@ window.PREFECTURES_DATA = {
     suitableFor:['家族','カップル','歴史好き'],
     notIdealFor:['山岳アドベンチャー志向'],
     highlights:[
-      {name:'後楽園',type:'文化',desc:'日本三名園の一つ。広大な池泉回遊式庭園',bestSeason:'春・秋',emoji:'🌸'},
+      {name:'後楽園',type:'文化',desc:'日本三名園の一つ。広大な池泉回遊式庭園',bestSeason:'春・秋',emoji:'🌸',img:'../images/japan/okayama/okayama-korakuen-01.jpg'},
       {name:'倉敷美観地区',type:'文化',desc:'白壁と柳並木の江戸時代の街並み。大原美術館も',bestSeason:'通年',emoji:'🏘️'},
       {name:'蒜山高原',type:'自然',desc:'中国地方最大の高原リゾート。ジャージー牛とラベンダー',bestSeason:'夏',emoji:'🌿'},
     ],
@@ -2338,6 +2341,9 @@ window.PREFECTURES_DATA = {
     gourmet:[{name:'岡山の桃・マスカット',desc:'白桃・ピオーネ・マスカット。最高級フルーツ',emoji:'🍑'},{name:'ままかり',desc:'岡山湾の酢漬け小魚。ご飯のお替わりをせずにはいられない味',emoji:'🐟'}],
     specialties:[{name:'備前焼',desc:'日本六古窯の一つ。釉薬なしで焼き上げた素朴な陶器',emoji:'🏺'}],
     seasonal:{spring:'4月：後楽園の春まつり',summer:'7月：岡山桃太郎まつり',autumn:'9〜10月：桃・マスカット狩り',winter:'11月：後楽園の紅葉'},
+    seasonalImages:{
+      spring:'../images/japan/okayama/okayama-korakuen-01.jpg',
+    },
     hiddenGems: [
       { name: '倉敷・美観地区の朝散歩', desc: '観光客がいない早朝6〜8時の美観地区は格別。白壁に揺れる柳と川のせせらぎだけが聞こえる静かな時間', type: '絶景', emoji: '🏘️' },
       { name: '牛窓（うしまど）・オリーブ園', desc: '日本のエーゲ海と呼ばれる瀬戸内の港町。オリーブ園からの眺望と地中海風の街並みが美しい', type: '自然', emoji: '🫒' },
